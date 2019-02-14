@@ -2,7 +2,7 @@
 * lbaw1863
 
 ### Project
-* 7.Project Management
+* 7 - Project Management
 
 ### Team
 
