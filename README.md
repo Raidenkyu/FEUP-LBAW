@@ -1,8 +1,8 @@
-## Group Reference
+### Group Reference
 * lbaw1863
 
-## Project
-* 7. Project
+### Project
+* 7.Project Management
 
 ### Team
 
