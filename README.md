@@ -2,7 +2,7 @@
 * lbaw1863
 
 ### Project
-* 7 - Project Management
+* workpad (Project Management)
 
 ### Team
 
