@@ -3,8 +3,8 @@
 # Stop execution if a step fails
 set -e
 
-DOCKER_USERNAME=tiagoboldt # Replace by your docker hub username
-IMAGE_NAME=lbaw-piu
+DOCKER_USERNAME=joaoccm # Replace by your docker hub username
+IMAGE_NAME=lbaw1863
 
 docker build -t $DOCKER_USERNAME/$IMAGE_NAME .
 docker push $DOCKER_USERNAME/$IMAGE_NAME
