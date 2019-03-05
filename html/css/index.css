@@ -1,5 +1,14 @@
+.btn {
+    border: 0px;
+}
+
 .btn-primary {
     border-color: white;
+}
+
+.btn-primary:hover {
+    border-color: white;
+    background-color: #007bff;
 }
 
 .btn-secondary {
@@ -9,6 +18,21 @@
 }
 
 .btn-secondary:hover {
-    background-color: #007bff;
+    background-color: white;
     border-color: white;
+    color:#007bff;;
+}
+
+.page-footer {
+    background-color: #007bff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
+
+.page-footer div{
+    display:inline-block;
 }
