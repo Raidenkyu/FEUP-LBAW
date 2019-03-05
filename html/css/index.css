@@ -1,0 +1,14 @@
+.btn-primary {
+    border-color: white;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #007bff;
+    border-color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #007bff;
+    border-color: white;
+}
