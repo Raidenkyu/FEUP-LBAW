@@ -1,9 +1,5 @@
-.btn {
-    border: 0px;
-}
-
 .btn-primary {
-    border-color: white;
+    border: 0px;
 }
 
 .btn-primary:hover {
@@ -17,10 +13,20 @@
     border-color: white;
 }
 
-.btn-secondary:hover {
-    background-color: white;
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:visited {
+    background-color: #007bff !important;
     border-color: white;
-    color:#007bff;;
+    color: white;
+}
+
+.workpad-logo {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.motivation {
+    font-size: 20px;
 }
 
 .page-footer {
