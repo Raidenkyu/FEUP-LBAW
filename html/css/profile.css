@@ -1,3 +1,11 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
 .profile-block{
     background-color: #298FCA;
     border-radius: 15px;
@@ -7,4 +15,22 @@
 .profile-bottom{
     padding-top: 2em;
     padding-left: 5em;
+}
+
+.profile-text{
+    text-align: left;
+}
+
+.profile-title > p {
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.profile-area{
+    color:white;
+}
+
+.image-canvas{
+    border-color:white;
+    border: 3px solid white;
 }

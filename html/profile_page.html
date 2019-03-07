@@ -5,6 +5,7 @@
     <title>workpad</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/profile.css">
@@ -15,32 +16,58 @@
 
 <body>
 
-    <nav class="navbar navbar-dark bg-primary navbar-right shadow-sm sticky-top">
-        <div id="logo" class="logo-container mr-auto">
-            <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
-        </div>
+    <header>
 
-        <div id="sign" class="login-container">
-            <button class="btn btn-primary">Log In</button>
-            <button class="btn btn-secondary">Sign Up</button>
-        </div>
-    </nav>
+        <nav class="navbar navbar-dark bg-primary navbar-right shadow-sm">
+            <div id="logo" class="logo-container mr-auto">
+                <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
+            </div>
+
+            <div id="sign" class="login-container">
+                <img src="./icons/plus.svg" style="width:35px;" alt="Responsive image">
+                <img src="./icons/notification.svg" style="width:35px;" alt="Responsive image">
+                <span style="color:white;">claudiolemos</span>
+                <img src="./icons/claudio.jpg" class="rounded-circle" style="width:35px;" alt="Responsive image">
+            </div>
+        </nav>
+
+    </header>
 
 
-    <div class="container mt-5 profile-block d-sm-flex p-3 w-50">
+    <div class="container mt-5 profile-block d-sm-flex p-3 w-50 profile-area">
         <div class="row mt-9">
             <div class="profile-header row container">
-                <div class="profile-image col-6">
-                    <p>Profile Image</p>
+                <div class="profile-image col-4 pl-3">
+                    <img class="image-canvas w-75 rounded-circle" src="icons/claudio.jpg"></img>
                 </div>
-                <div class="profile-info row col-6">
-                    <div class="profile-title">
-                            <p>Claudio Lemos</p>
+                <div class="profile-info row col-8">
+                    <div class="col">
+                        <div class="profile-title">
+                            <p>Cláudio Lemos</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="profile-tag col-7">
+                                <p>@claudiolemos</p>
+                            </div>
+                            <div class="profile-location">
+                                <p>Porto, Portugal</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                A brief about or tagline
+                            </div>
+                            
+                        </div>
+
+
                     </div>
-                    
+
+
                 </div>
             </div>
-            <div class="col-12 text-center">
+            <div class="profile-text row col-12 text-left pr-2 pl-5 pt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
@@ -50,10 +77,10 @@
             <div class="profile-bottom container">
                 <div class="row">
                     <p class="e-mail col-8">
-                        e-mail@random.com
+                        claudiolemos@workpad.com
                     </p>
                     <p class="phone-number col-3">
-                        3510000000
+                        +35910000000
                     </p>
                 </div>
 
