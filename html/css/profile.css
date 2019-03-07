@@ -13,8 +13,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .profile-bottom{
-    padding-top: 2em;
-    padding-left: 5em;
+    padding-inline-start: 2em;
 }
 
 .profile-text{
@@ -26,11 +25,17 @@ h1,h2,h3,h4,h5,h6 {
     font-size: 1.5em;
 }
 
-.profile-area{
+.profile-area {
     color:white;
+    min-width: 485px;
+}
+
+.profile-image{
+    padding-left: 2em;
 }
 
 .image-canvas{
     border-color:white;
     border: 3px solid white;
+    
 }
