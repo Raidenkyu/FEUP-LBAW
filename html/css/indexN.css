@@ -1,0 +1,72 @@
+:root{
+    --orange: rgb(243, 156, 19);
+    --dark_orange: rgb(243, 106, 19);
+}
+
+.title-row{
+    /*margin: 0.5em 0 0 0;*/
+}
+
+/* TITLE LINE, TEXT AND BUTTONS */
+
+.title-orange-line{
+    background-color: var(--orange);
+}
+
+.title-line{
+    border-color: white;
+}
+
+.title-box{
+    padding: 1.5em 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.title-buttons{
+    padding: 1.2em 0;
+}
+
+/* Task Lists */
+
+
+
+.task-list-block{
+    margin: 1em;
+}
+
+.list-col{
+    padding: 1em;
+    margin: 1em;
+    background-color: rgb(231, 231, 231);
+    border-radius: 0.5em;
+}
+
+.list-col-title{
+    text-align: left;
+    font-weight: bold;
+    padding: 0 0 0.5em 0;
+}
+
+.task-sel{
+    background-color: var(--orange);
+    margin: 0.2em 0;
+    border-radius: 0.5em;
+}
+
+
+.task-sel:hover{
+    background-color: var(--dark_orange);
+}
+
+.task-sel:focus{
+    background-color: var(--dark_orange);
+}
+
+@media only screen and (max-width: 576px) {
+    .row {
+      background-color: red;
+    }
+  }
+
+
