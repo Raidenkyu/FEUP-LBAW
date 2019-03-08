@@ -1,11 +1,15 @@
 :root{
     --orange: rgb(243, 156, 19);
     --dark_orange: rgb(243, 106, 19);
+    --white: white;
+    --black: black;
 }
 
 .title-row{
     /*margin: 0.5em 0 0 0;*/
+    /*min-width: 1050px;*/
 }
+
 
 /* TITLE LINE, TEXT AND BUTTONS */
 
@@ -27,45 +31,87 @@
     padding: 1.2em 0;
 }
 
+
+
 /* Task Lists */
 
 
 
 .task-list-block{
     margin: 1em;
+    min-width: 910px;
 }
 
-.list-col{
+.list-col, .topic-col{
     padding: 1em;
     margin: 1em;
     background-color: rgb(231, 231, 231);
     border-radius: 0.5em;
 }
 
-.list-col-title{
+.list-col-title, .topics-list-title{
     text-align: left;
     font-weight: bold;
     padding: 0 0 0.5em 0;
 }
 
-.task-sel{
+.task-sel, .topic-sel{
     background-color: var(--orange);
     margin: 0.2em 0;
     border-radius: 0.5em;
+    color: var(--white);
+    padding: 0.3em 3em 0.3em 0.5em;
+    text-align: left;
 }
 
+#create-topic{
+    background-color: var(--white);
+    margin: 0.2em 0;
+    border-radius: 0.5em;
+    border: 0.15em solid var(--orange);
+    color: var(--black);
+    padding: 0.3em 3em 0.3em 0.5em;
+    text-align: left;
+}
 
-.task-sel:hover{
+.task-sel:hover, .topic-sel:hover{
     background-color: var(--dark_orange);
 }
 
-.task-sel:focus{
+.task-sel:focus, .topic-sel:focus{
     background-color: var(--dark_orange);
+}
+
+.topic-block{
+    margin: 1em;
+}
+
+.topic-title{
+    text-align: left;
+    font-weight: bold;
+    font-size: 200%;
+    padding: 0 0 0.5em 0;
+}
+
+.topic-title-div{
+    padding: 0.5em 0 1.5em 0em;
+}
+
+.forum-comment-name{
+    text-align: left;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.forum-comment-box{
+    margin: 1em 0;
 }
 
 @media only screen and (max-width: 576px) {
     .row {
-      background-color: red;
+      /*background-color: red;*/
+
+        
     }
   }
 
