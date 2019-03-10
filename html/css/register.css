@@ -15,4 +15,15 @@ form  {
 }
 
 .register-block{
+    min-width: 411px;
+}
+
+.navbar{
+    min-width: 411px;
+}
+
+@media(max-width: 768px){
+    .body {
+        font-size:0.1em;
+    }
 }
