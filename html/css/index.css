@@ -4,17 +4,17 @@
 
 .btn-primary:hover {
     border-color: white;
-    background-color: #007bff;
+    background-color: #4894dd;
 }
 
 .btn-secondary {
     background-color: white;
-    color: #007bff;
+    color: #4894dd;
     border-color: white;
 }
 
 .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:visited {
-    background-color: #007bff !important;
+    background-color: #4894dd !important;
     border-color: white;
     color: white;
 }
@@ -32,11 +32,17 @@
 }
 
 .motivation {
-    font-size: 20px;
+    font-size: 1.5em;
+}
+
+@media (max-width: 576px) {
+    .second-container {
+        text-align: center;
+    }
 }
 
 footer {
-    background-color: #007bff;
+    background-color: #4894dd;
     color: white;
 }
 
