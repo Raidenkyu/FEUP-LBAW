@@ -51,7 +51,8 @@
 .task-sel{
     background-color: var(--orange);
     margin: 0.2em 0;
-    border-radius: 0.5em;
+    border-radius: 0.5em !important;
+    border-color: var(--orange);
     color: var(--white);
     padding: 0.3em 3em 0.3em 0.5em;
     text-align: left;
@@ -59,6 +60,7 @@
 
 .task-sel:hover{
     background-color: var(--dark_orange);
+    border-color: var(--orange);
 }
 
 .task-sel:focus{
@@ -81,13 +83,3 @@
 .forum-comment-box{
     margin: 1em 0;
 }
-
-@media only screen and (max-width: 576px) {
-    .row {
-      /*background-color: red;*/
-
-        
-    }
-  }
-
-

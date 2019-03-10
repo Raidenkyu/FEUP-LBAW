@@ -10,6 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/dashboard_project.js" defer></script>
 </head>
 
 <body>
@@ -59,9 +60,14 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">To Do</span>
-          <a href="#" class="list-group-item list-group-item-action task-sel">Create Interface</a>
+          <div class="btn-group-vertical">
+              <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">Create Interface</button>
+              <button type="button" class="btn btn-primary task-sel">Fix Login</button>
+              <button type="button" class="btn btn-primary task-sel">Add Tests</button>
+          </div> 
+          <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
           <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
-          <a href="#" class="list-group-item list-group-item-action task-sel">Add Tests</a>
+          <a href="#" class="list-group-item list-group-item-action task-sel">Add Tests</a>-->
         </div>
       </div>
 
@@ -95,6 +101,29 @@
     </div>
   </div>
 
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
