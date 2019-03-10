@@ -1,0 +1,56 @@
+.btn-primary {
+    border: 0px;
+}
+
+.btn-primary:hover {
+    border-color: white;
+    background-color: #4894dd;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #4894dd;
+    border-color: white;
+}
+
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:visited {
+    background-color: #4894dd !important;
+    border-color: white;
+    color: white;
+}
+
+.about-text{
+  margin: 0 5%;
+}
+
+@media (max-width: 576px) {
+  .about-text{
+    margin: 10%;
+  }
+}
+
+footer {
+    background-color: #4894dd;
+    color: white;
+}
+
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.footer-link{
+  color: white;
+}
+
+.answer{
+  text-align: right;
+}
+
+.question::before{
+  content: 'Question: '
+}
+
+.answer::before{
+  content: 'Answer: '
+}
