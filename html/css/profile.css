@@ -6,6 +6,10 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
 }
 
+.navbar{
+    min-width: 485px;
+}
+
 .profile-block{
     background-color: #298FCA;
     border-radius: 15px;
@@ -28,6 +32,7 @@ h1,h2,h3,h4,h5,h6 {
 .profile-area {
     color:white;
     min-width: 485px;
+    height:auto;
 }
 
 .profile-image{
@@ -37,5 +42,18 @@ h1,h2,h3,h4,h5,h6 {
 .image-canvas{
     border-color:white;
     border: 3px solid white;
+    min-width: 130px;
     
+}
+
+@media(max-width: 768px){
+    .profile-tag{
+        padding-left: 2em;
+    }
+    .profile-location{
+        padding-left: 2em;
+    }
+    .profile-brief{
+        padding-left: 2em;
+    }
 }
