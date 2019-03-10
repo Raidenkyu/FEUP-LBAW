@@ -1,0 +1,93 @@
+:root{
+    --orange: rgb(243, 156, 19);
+    --dark_orange: rgb(243, 106, 19);
+    --white: white;
+    --black: black;
+}
+
+
+/* TITLE LINE, TEXT AND BUTTONS */
+
+.title-orange-line{
+    background-color: var(--orange);
+}
+
+.title-line{
+    border-color: white;
+}
+
+.title-box{
+    padding: 1.5em 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.title-buttons{
+    padding: 1.2em 0;
+}
+
+
+
+/* Task Lists */
+
+.task-list-block{
+    margin: 1em;
+    min-width: 910px;
+}
+
+.list-col{
+    padding: 1em;
+    margin: 1em;
+    background-color: rgb(231, 231, 231);
+    border-radius: 0.5em;
+}
+
+.list-col-title{
+    text-align: left;
+    font-weight: bold;
+    padding: 0 0 0.5em 0;
+}
+
+.task-sel{
+    background-color: var(--orange);
+    margin: 0.2em 0;
+    border-radius: 0.5em;
+    color: var(--white);
+    padding: 0.3em 3em 0.3em 0.5em;
+    text-align: left;
+}
+
+.task-sel:hover{
+    background-color: var(--dark_orange);
+}
+
+.task-sel:focus{
+    background-color: var(--dark_orange);
+}
+
+
+/* Forum */
+
+.forum-comment-name{
+    font-size: 150%;
+    /*padding: 0.2em 2em 0.2em 0;*/
+}
+
+.forum-comment-date{
+    font-size: 150%;
+    /*padding: 0.2em 0.5em;*/
+}
+
+.forum-comment-box{
+    margin: 1em 0;
+}
+
+@media only screen and (max-width: 576px) {
+    .row {
+      /*background-color: red;*/
+
+        
+    }
+  }
+
+

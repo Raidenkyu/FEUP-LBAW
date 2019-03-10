@@ -36,26 +36,20 @@
 /* Task Lists */
 
 
-
-.task-list-block{
-    margin: 1em;
-    min-width: 910px;
-}
-
-.list-col, .topic-col{
+.topic-col{
     padding: 1em;
     margin: 1em;
     background-color: rgb(231, 231, 231);
     border-radius: 0.5em;
 }
 
-.list-col-title, .topics-list-title{
+.topics-list-title{
     text-align: left;
     font-weight: bold;
     padding: 0 0 0.5em 0;
 }
 
-.task-sel, .topic-sel{
+.topic-sel{
     background-color: var(--orange);
     margin: 0.2em 0;
     border-radius: 0.5em;
@@ -74,11 +68,11 @@
     text-align: left;
 }
 
-.task-sel:hover, .topic-sel:hover{
+.topic-sel:hover{
     background-color: var(--dark_orange);
 }
 
-.task-sel:focus, .topic-sel:focus{
+.topic-sel:focus{
     background-color: var(--dark_orange);
 }
 
@@ -97,22 +91,21 @@
     padding: 0.5em 0 1.5em 0em;
 }
 
+/* Forum */
+
 .forum-comment-name{
-    text-align: left;
-    font-weight: bold;
     font-size: 150%;
+    /*padding: 0.2em 2em 0.2em 0;*/
+}
+
+.forum-comment-date{
+    font-size: 150%;
+    /*padding: 0.2em 0.5em;*/
 }
 
 .forum-comment-box{
     margin: 1em 0;
 }
 
-@media only screen and (max-width: 576px) {
-    .row {
-      /*background-color: red;*/
-
-        
-    }
-  }
 
 
