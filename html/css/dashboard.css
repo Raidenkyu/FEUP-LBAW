@@ -1,0 +1,29 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
+.navbar{
+    min-width: 485px;
+}
+
+.project-card h5{
+  position:absolute;
+  bottom:5px;
+  left:10px;
+}
+
+.project-card{
+  display:inline-block;
+  width:12rem;
+  height:8rem;
+}
+
+@media(max-width: 768px){
+    .projects{
+      margin-left: 1.5em;
+    }
+}
