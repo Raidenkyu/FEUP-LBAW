@@ -1,0 +1,29 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+form  {
+    width: 75%;  
+}
+
+.register-block{
+    min-width: 411px;
+}
+
+.navbar{
+    min-width: 411px;
+}
+
+@media(max-width: 768px){
+    .body {
+        font-size:0.1em;
+    }
+}

@@ -4,17 +4,17 @@
 
 .btn-primary:hover {
     border-color: white;
-    background-color: #007bff;
+    background-color: #4894dd;
 }
 
 .btn-secondary {
     background-color: white;
-    color: #007bff;
+    color: #4894dd;
     border-color: white;
 }
 
 .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:visited {
-    background-color: #007bff !important;
+    background-color: #4894dd !important;
     border-color: white;
     color: white;
 }
@@ -25,20 +25,32 @@
     height: auto;
 }
 
+.workpad-homepage {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 .motivation {
-    font-size: 20px;
+    font-size: 1.5em;
 }
 
-.page-footer {
-    background-color: #007bff;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+@media (max-width: 576px) {
+    .second-container {
+        text-align: center;
+    }
+}
+
+footer {
+    background-color: #4894dd;
     color: white;
-    font-weight: bold;
 }
 
-.page-footer div{
-    display:inline-block;
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.footer-link{
+  color: white;
 }
