@@ -25,20 +25,26 @@
     height: auto;
 }
 
+.workpad-homepage {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 .motivation {
     font-size: 20px;
 }
 
-.page-footer {
+footer {
     background-color: #007bff;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     color: white;
-    font-weight: bold;
 }
 
-.page-footer div{
-    display:inline-block;
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.footer-link{
+  color: white;
 }
