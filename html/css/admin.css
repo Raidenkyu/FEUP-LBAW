@@ -1,3 +1,17 @@
+.navbar {
+    background-color: #4894dd;
+}
+
+.btn-primary {
+    border: 0px;
+    background-color: #4894dd;
+}
+
+.btn-primary:hover {
+    border-color: white;
+    background-color: #4894dd;
+}
+
 body {
     font-family: 'Noto Sans TC',sans-serif;
 }
@@ -24,11 +38,11 @@ form  {
 }
 
 .login-block{
-    min-width: 411px;
+    min-width: 270px;
 }
 
 .navbar{
-    min-width: 411px;
+    min-width: 270px;
 }
 
 @media(max-width: 768px){
@@ -56,4 +70,18 @@ form  {
     background-color: #4894dd !important;
     border-color: white;
     color: white;
+}
+
+footer {
+    background-color: #4894dd;
+    color: white;
+}
+
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1em;
+}
+
+.footer-link{
+  color: white;
 }
