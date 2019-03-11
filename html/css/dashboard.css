@@ -6,9 +6,12 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
 }
 
-.navbar{
-    min-width: 485px;
+.navbar {
+  background-color: #4894dd;
+
+  min-width: 485px;
 }
+
 
 .project-card h5{
   position:absolute;
@@ -26,4 +29,18 @@ h1,h2,h3,h4,h5,h6 {
     .projects{
       margin-left: 1.5em;
     }
+}
+
+footer {
+  background-color: #4894dd;
+  color: white;
+}
+
+.workpad-copyright{
+font-weight: 900;
+font-size: 1em;
+}
+
+.footer-link{
+color: white;
 }

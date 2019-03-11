@@ -3,8 +3,24 @@
     --dark_orange: rgb(243, 106, 19);
     --white: white;
     --black: black;
+    --blue: #4894dd;
 }
 
+/* The navigation bar */
+.navbar {
+    background-color: #4894dd;
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+  }
+
+
+
+.btn-primary {
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
 
 /* TITLE LINE, TEXT AND BUTTONS */
 
@@ -82,4 +98,19 @@
 
 .forum-comment-box{
     margin: 1em 0;
+}
+
+footer {
+    background-color: #4894dd;
+    color: white;
+    min-width: 910px;
+}
+
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1em;
+}
+
+.footer-link{
+  color: white;
 }
