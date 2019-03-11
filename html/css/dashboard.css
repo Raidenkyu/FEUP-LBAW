@@ -8,11 +8,8 @@ h1,h2,h3,h4,h5,h6 {
 
 .navbar {
   background-color: #4894dd;
-
-  min-width: 485px;
+  min-width:328px;
 }
-
-
 .project-card h5{
   position:absolute;
   bottom:5px;
@@ -29,6 +26,7 @@ h1,h2,h3,h4,h5,h6 {
     .projects{
       margin-left: 1.5em;
     }
+
 }
 
 footer {
