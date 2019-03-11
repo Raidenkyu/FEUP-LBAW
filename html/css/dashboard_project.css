@@ -3,6 +3,8 @@
     --dark_orange: rgb(243, 106, 19);
     --white: white;
     --black: black;
+    --grey: grey;
+    --dark_grey: rgb(117, 116, 116);
 }
 
 
@@ -56,6 +58,7 @@
     color: var(--white);
     padding: 0.3em 3em 0.3em 0.5em;
     text-align: left;
+    box-shadow: none !important;
 }
 
 .task-sel:hover{
@@ -63,10 +66,41 @@
     border-color: var(--orange);
 }
 
-.task-sel:focus{
-    background-color: var(--dark_orange);
+.task-edit-side{
+    border-left: 0.1em solid var(--black);
 }
 
+.task-edit-desc-row{
+    border-top: 0.1em solid var(--black)
+}
+
+.task-edit-button-group{
+    width: 100%;
+}
+
+.task-edit-button{
+    background-color: var(--dark_grey);
+    margin: 0.2em 0;
+    border-radius: 0.5em !important;
+    border-color: var(--dark_grey);
+    color: var(--white);
+    padding: 0.3em 3em 0.3em 0.5em;
+    text-align: left;
+    box-shadow: none !important;
+}
+
+.task-edit-button:hover{
+    background-color: var(--grey);
+    border-color: var(--grey);
+}
+
+.task-edit-description{
+    width: 100%;
+}
+
+.rounded-circle{
+    border: 0.1em solid var(--black);
+}
 
 /* Forum */
 
