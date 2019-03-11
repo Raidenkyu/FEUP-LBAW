@@ -41,6 +41,9 @@
 }
 
 @media (max-width: 576px) {
+    .motivation {
+        font-size: 1.1em;
+    }
     .second-container {
         text-align: center;
     }
