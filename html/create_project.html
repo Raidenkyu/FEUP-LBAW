@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>workpad</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/create.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+
+    <nav class="navbar navbar-dark bg-primary navbar-right shadow-sm">
+      <div id="logo" class="logo-container mr-auto">
+        <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
+      </div>
+
+      <div id="sign" class="login-container">
+        <img src="./icons/create_project.svg" style="width:35px;" alt="Responsive image">
+        <img src="./icons/notification_center.svg" style="width:35px;" alt="Responsive image">
+        <span style="color:white;">claudiolemos</span>
+        <img src="./images/claudio.jpg" class="rounded-circle" style="width:35px;" alt="Responsive image">
+      </div>
+    </nav>
+
+  </header>
+
+<div class="container px-1 projects">
+  <div class="container py-5">
+    <div class="row">
+      <h1 class="dashboard-title font-weight-bolder">Create Project</h1>
+    </div>
+  </div>
+
+<form class="p-0 w-50 justify-content-left">
+  <div class="form-group input-group-lg py-1">
+    <input class="border rounded form-control" placeholder=" Project name" type="text">
+  </div>
+</form>
+
+  <div class="container">
+    <h5>Color</h5>
+    <div class="container">
+      <div class="color-picker" id="color-picker-1"></div>
+      <div class="color-picker" id="color-picker-2"></div>
+      <div class="color-picker" id="color-picker-3"></div>
+      <div class="color-picker" id="color-picker-4"></div>
+      <div class="color-picker" id="color-picker-5"></div>
+      <div class="color-picker" id="color-picker-6"></div>
+    </div>
+    <div class="container">
+      <div class="color-picker" id="color-picker-7"></div>
+      <div class="color-picker" id="color-picker-8"></div>
+      <div class="color-picker" id="color-picker-9"></div>
+      <div class="color-picker" id="color-picker-10"></div>
+      <div class="color-picker" id="color-picker-11"></div>
+      <div class="color-picker" id="color-picker-12"></div>
+    </div>
+  </div>
+
+
+    <div class="container">
+      <h5>Team</h5>
+      <h6 class="py-2">MANAGERS</h6>
+      <div class="py-1 container">
+        <img src="./images/pedro.jpg" class="mx-2 rounded-circle team-profile-icon"  alt="Responsive image">
+        <img src="./icons/+.svg" class="mx-2 rounded-circle team-profile-add"  alt="Responsive image">
+      </div>
+      <h6 class="py-2">DEVELOPERS</h6>
+      <div class="py-1 container">
+        <img src="./images/claudio.jpg" class="mx-2 rounded-circle team-profile-icon"  alt="Responsive image">
+        <img src="./images/joao.jpg" class="mx-2 rounded-circle team-profile-icon" alt="Responsive image">
+        <img src="./images/fernando.jpg" class="mx-2 rounded-circle team-profile-icon"  alt="Responsive image">
+        <img src="./icons/+.svg" class="mx-2 rounded-circle team-profile-add"  alt="Responsive image">
+      </div>
+      <button class="btn btn-lg btn-primary my-5" type="submit" class="btn btn-primary">
+          Create project
+      </button>
+    </div>
+</div>
+
+</body>
+
+</html>

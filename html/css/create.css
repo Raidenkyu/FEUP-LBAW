@@ -1,0 +1,89 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
+.navbar{
+    min-width: 485px;
+}
+
+.color-picker{
+  width: 50px;
+  height: 50px;
+  margin-right:10px;
+  margin-bottom:10px;
+  display: inline-block;
+}
+
+.color-picker:hover{
+  border-radius: 2px;
+  border-color: white;
+  border-style: solid;
+}
+
+#color-picker-1{
+  background-color:#f77d13;
+}
+
+#color-picker-2{
+  background-color:#ffcc00;
+}
+
+#color-picker-3{
+  background-color:#e82020;
+}
+
+#color-picker-4{
+  background-color:#2dcc71;
+}
+
+#color-picker-5{
+  background-color:#9c58b6;
+}
+
+#color-picker-6{
+  background-color:#4894dd;
+}
+
+#color-picker-7{
+  background-color:#c45e00;
+}
+
+#color-picker-8{
+  background-color:#f39c13;
+}
+
+#color-picker-9{
+  background-color:#c92b1a;
+}
+
+#color-picker-10{
+  background-color:#179f85;
+}
+
+#color-picker-11{
+  background-color:#7f14ad;
+}
+
+#color-picker-12{
+  background-color:#2880ba;
+}
+
+.team-profile-icon{
+  width:50px;
+}
+
+.team-profile-add{
+  width:50px;
+  padding: 10px;
+  background-color: #f77d13;
+}
+
+@media(max-width: 768px){
+    .projects{
+      margin-left: 1.5em;
+    }
+}
