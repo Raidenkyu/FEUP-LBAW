@@ -8,10 +8,11 @@ h1,h2,h3,h4,h5,h6 {
 
 .navbar{
     min-width: 485px;
+    background-color: #4894dd;
 }
 
 .profile-block{
-    background-color: #298FCA;
+    background-color: #4894dd;
     border-radius: 15px;
 
 }
@@ -56,4 +57,19 @@ h1,h2,h3,h4,h5,h6 {
     .profile-brief{
         padding-left: 2em;
     }
+}
+
+footer {
+    background-color: #4894dd;
+    color: white;
+    min-width: 485px;
+}
+
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1em;
+}
+
+.footer-link{
+  color: white;
 }

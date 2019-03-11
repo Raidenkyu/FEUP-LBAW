@@ -6,6 +6,10 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
 }
 
+.navbar {
+    background-color: #4894dd;
+}
+
 body {
     background-color: #F5F5F5;
 }
@@ -26,4 +30,19 @@ form  {
     .body {
         font-size:0.1em;
     }
+}
+
+footer {
+    background-color: #4894dd;
+    color: white;
+    min-width: 411px;
+}
+
+.workpad-copyright{
+  font-weight: 900;
+  font-size: 1em;
+}
+
+.footer-link{
+  color: white;
 }

@@ -1,5 +1,10 @@
+.navbar {
+    background-color: #4894dd;
+}
+
 .btn-primary {
     border: 0px;
+    background-color: #4894dd;
 }
 
 .btn-primary:hover {
@@ -48,7 +53,7 @@ footer {
 
 .workpad-copyright{
   font-weight: 900;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .footer-link{
