@@ -15,7 +15,7 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top" style="min-width:360px;">
+    <nav class="navbar navbar-dark shadow-sm sticky-top">
       <div id="logo" class="logo-container mr-auto">
         <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
       </div>
@@ -30,18 +30,20 @@
     <h1 class="dashboard-title font-weight-bolder">Admin dashboard</h1>
   </div>
 
-  <div class="container pr-5" >
+  <div class="container pr-5 mb-5">
     <div class="row mx">
-      <div class="col-sm mx-5"style="min-width:400px;">
+      <div class="col-sm mx-4">
         <div class="row">
-          <h5 class="dashboard-menu-title">User</h5>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;" alt="Responsive image">
+          <h4 class="dashboard-menu-title font-weight-bolder">Users</h4>
+          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Responsive image">
         </div>
-        <div class="row">
+        <div class="row mr-2">
+          <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col"></th>
                 <th scope="col">User</th>
                 <th scope="col">Email</th>
                 <th scope="col">Action</th>
@@ -50,6 +52,7 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
+                <td><img class="ban rounded-circle" src="./images/claudio.jpg" alt="Responsive image"></td>
                 <td>Cláudio Lemos</td>
                 <td>claudio@workpad.com</td>
                 <td>
@@ -58,6 +61,7 @@
               </tr>
               <tr>
                 <th scope="row">2</th>
+                <td><img class="ban rounded-circle" src="./images/fernando.jpg" alt="Responsive image"></td>
                 <td>Fernando Alves</td>
                 <td>fernando@workpad.com</td>
                 <td>
@@ -66,6 +70,7 @@
               </tr>
               <tr>
                 <th scope="row">3</th>
+                <td><img class="ban rounded-circle" src="./images/joao.jpg" alt="Responsive image"></td>
                 <td>João Carlos Maduro</td>
                 <td>joao@workpad.com</td>
                 <td>
@@ -74,6 +79,7 @@
               </tr>
               <tr>
                 <th scope="row">4</th>
+                <td><img class="ban rounded-circle" src="./images/pedro.jpg" alt="Responsive image"></td>
                 <td>Pedro Gonçalves</td>
                 <td>pedro@workpad.com</td>
                 <td>
@@ -83,13 +89,15 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="col-sm mx-5" style="min-width:400px;">
-        <div class="row">
-          <h5 class="dashboard-menu-title">Projects</h5>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;" alt="Responsive image">
         </div>
+      </div>
+      <div class="col-sm mx-4">
         <div class="row">
+          <h4 class="dashboard-menu-title">Projects</h4>
+          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Responsive image">
+        </div>
+        <div class="row mr-2">
+          <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
@@ -119,11 +127,12 @@
             </tbody>
           </table>
         </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer class="container-fluid py-2 footer fixed-bottom" style="min-width:455px;">
+  <footer class="container-fluid py-2 footer">
     <div class="container d-flex justify-content-center">
       <div class="row workpad-copyright">
         workpad &copy; 2019

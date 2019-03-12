@@ -2,6 +2,11 @@ body {
     font-family: 'Noto Sans TC',sans-serif;
 }
 
+body, html{
+    height: 100%;
+}
+
+
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
 }
@@ -50,10 +55,6 @@ form  {
     max-width: 600px;
 }
 
-.navbar {
-    min-width: 270px;
-}
-
 .login-btn {
     min-width: 100px;
 }
@@ -68,12 +69,6 @@ form  {
     .workpad-logo {
         width: 55%;
         height: 40%;
-    }
-}
-
-@media(max-width: 768px){
-    .body {
-        font-size:0.1em;
     }
 }
 
@@ -101,6 +96,7 @@ form  {
 footer {
     background-color: #4894dd;
     color: white;
+
 }
 
 .workpad-copyright{
