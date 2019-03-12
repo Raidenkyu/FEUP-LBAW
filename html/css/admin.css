@@ -1,11 +1,7 @@
 body {
     font-family: 'Noto Sans TC',sans-serif;
+    background-color: #F5F5F5;
 }
-
-body, html{
-    height: 100%;
-}
-
 
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
@@ -25,16 +21,8 @@ h1,h2,h3,h4,h5,h6 {
     background-color: #4894dd;
 }
 
-body {
-    font-family: 'Noto Sans TC',sans-serif;
-}
-
-h1,h2,h3,h4,h5,h6 {
-    font-family: 'Roboto',sans-serif;
-}
-
-body {
-    background-color: #F5F5F5;
+.page-container {
+    min-height: calc(100vh - 130px);
 }
 
 form  {
@@ -60,6 +48,9 @@ form  {
 }
 
 @media(max-width: 567px){
+    .dashboard-title {
+        text-align: center;
+    }
     .register-title {
         font-size: 1.75em;
     }
