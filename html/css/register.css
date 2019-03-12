@@ -26,16 +26,18 @@ form  {
     min-width: 411px;
 }
 
-@media(max-width: 768px){
-    .body {
-        font-size:0.1em;
+@media(max-width: 567px){
+    .register-title {
+        font-size: 2em;
+    }
+    .form-group input {
+        text-align: center;
     }
 }
 
 footer {
     background-color: #4894dd;
     color: white;
-    min-width: 411px;
 }
 
 .workpad-copyright{
