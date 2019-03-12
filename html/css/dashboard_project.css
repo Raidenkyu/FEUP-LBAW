@@ -17,7 +17,7 @@ body {
     font-family: 'Noto Sans TC',sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,span,button {
     font-family: 'Roboto',sans-serif;
 }
 
@@ -41,6 +41,10 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* TITLE LINE, TEXT AND BUTTONS */
+
+body{
+    min-width: 1000px;
+}
 
 .title-orange-line{
     background-color: var(--orange);
@@ -77,6 +81,7 @@ h1,h2,h3,h4,h5,h6 {
 .list-col-title{
     text-align: left;
     font-weight: bold;
+    color: white;
     padding: 0 0 0.5em 0;
 }
 
@@ -221,8 +226,25 @@ footer {
     margin-top: 0.2em;
 }
 
+
+.list-col:nth-child(1){
+    height: 185px;
+}
+.list-col:nth-child(2){
+    height: 220px;
+}
+.list-col:nth-child(3){
+    height: 105px;
+}
+.list-col:nth-child(4){
+    height: 185px;
+}
+
 @media (max-width: 768px) {
     .res-text{
+        font-size: 0.8em;
+    }
+    .list-col-title{
         font-size: 0.8em;
     }
     .task-sel{
@@ -238,11 +260,26 @@ footer {
     .tasks-text{
         margin-top: 0.5em;
     }
+    .list-col:nth-child(1){
+        height: 150px;
+    }
+    .list-col:nth-child(2){
+        height: 180px;
+    }
+    .list-col:nth-child(3){
+        height: 90px;
+    }
+    .list-col:nth-child(4){
+        height: 150px;
+    }
 }
 
 
 @media (max-width: 576px) {
     .res-text{
+        font-size: 0.8em;
+    }
+    .list-col-title{
         font-size: 0.8em;
     }
     .task-sel{
@@ -264,6 +301,19 @@ footer {
     }
     .selection-button{
         font-size: 0.7em;
+    }
+
+    .list-col:nth-child(1){
+        height: 140px;
+    }
+    .list-col:nth-child(2){
+        height: 165px;
+    }
+    .list-col:nth-child(3){
+        height: 80px;
+    }
+    .list-col:nth-child(4){
+        height: 140px;
     }
 }
 
