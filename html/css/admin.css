@@ -1,3 +1,11 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
 .navbar {
     background-color: #4894dd;
 }
@@ -29,8 +37,8 @@ form  {
 }
 
 .workpad-logo {
-    width:25%;
-    height: 25%;
+    width: 50%;
+    height: 50%;
 }
 
 .ban{
@@ -43,6 +51,12 @@ form  {
 
 .navbar{
     min-width: 270px;
+}
+
+@media(max-width: 567px){
+    .register-title {
+        font-size: 1.75em;
+    }
 }
 
 @media(max-width: 768px){

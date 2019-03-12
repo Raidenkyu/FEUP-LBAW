@@ -5,6 +5,14 @@
     --black: black;
 }
 
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+}
+
 .title-row{
     /*margin: 0.5em 0 0 0;*/
     /*min-width: 1050px;*/
