@@ -28,8 +28,6 @@
     padding: 1.2em 0;
 }
 
-
-
 /* Task Lists */
 
 .task-list-block{
@@ -65,18 +63,6 @@
     background-color: var(--dark_orange);
     border-color: var(--orange);
 }
-
-/*
-.task-edit-side{
-    border-left: 0.1em solid var(--black);
-}
-
-.task-edit-desc-row{
-    border-top: 0.1em solid var(--black)
-}
-*/
-
-
 
 .task-edit-button-group{
     width: 100%;
@@ -166,10 +152,6 @@
     }
 }
 
-@media (max-width: 1200px) {
-    body{
 
-    }
-}
 
 
