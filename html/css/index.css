@@ -56,17 +56,3 @@ h1,h2,h3,h4,h5,h6 {
         text-align: center;
     }
 }
-
-footer {
-    background-color: #4894dd;
-    color: white;
-}
-
-.workpad-copyright{
-  font-weight: 900;
-  font-size: 1em;
-}
-
-.footer-link{
-  color: white;
-}

@@ -10,6 +10,9 @@ h1,h2,h3,h4,h5,h6 {
   background-color: #4894dd;
 }
 
+.projects {
+  min-height: calc(100vh - 130px);
+}
 
 .color-picker{
   width: 50px;
@@ -83,22 +86,11 @@ h1,h2,h3,h4,h5,h6 {
   background-color: #f77d13;
 }
 
-@media(max-width: 768px){
-    .projects{
-      padding-left: 1.5em;
+@media (max-width: 768px){
+    .dashboard-title {
+      text-align: center;
     }
-}
-
-footer {
-  background-color: #4894dd;
-  color: white;
-}
-
-.workpad-copyright{
-font-weight: 900;
-font-size: 1em;
-}
-
-.footer-link{
-color: white;
+    .projects {
+      margin-left: 1em;
+    }
 }

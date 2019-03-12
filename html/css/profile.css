@@ -1,49 +1,40 @@
 body {
-    font-family: 'Noto Sans TC',sans-serif;
+  font-family: 'Noto Sans TC',sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto',sans-serif;
 }
 
 .navbar{
   background-color: #4894dd;
-  min-width:328px;
 }
 
-.profile-block{
-    background-color: #4894dd;
-    border-radius: 15px;
-
+.profile-area{
+  background-color: #4894dd;
+  border-radius: 15px;
 }
 
 .profile-bottom{
-    padding-inline-start: 2em;
+  padding-inline-start: 2em;
 }
 
 .profile-text{
-    text-align: left;
+  text-align: left;
 }
 
 .profile-title > p {
-    font-weight: bolder;
-    font-size: 1.5em;
+  font-weight: bolder;
+  font-size: 1.5em;
 }
 
 .profile-area {
-    color:white;
-    min-width: 485px;
-    height:auto;
-}
-
-.profile-area {
-    color:white;
-    min-width: 485px;
-    height:auto;
+  color:white;
+  height:auto;
 }
 
 .profile-image{
-    padding-left: 2em;
+  /* padding-left: 2em; */
 }
 
 .profile-strap-space{
@@ -57,22 +48,42 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .image-canvas{
-    border-color:white;
-    border: 3px solid white;
-    min-width: 130px;
+  border-color:white;
+  border: 3px solid white;
+  min-width: 130px;
 
 }
 
 @media(max-width: 768px){
-    .profile-tag{
-        padding-left: 2em;
-    }
-    .profile-location{
-        padding-left: 2em;
-    }
-    .profile-brief{
-        padding-left: 2em;
-    }
+  .profile-tag{
+    padding-left: 2em;
+  }
+  .profile-location{
+    padding-left: 2em;
+  }
+  .profile-brief{
+    padding-left: 2em;
+  }
+}
+
+@media(max-width: 991px){
+  .profile-tag-location,  .profile-title, .profile-title,{
+    text-align: center;
+     margin: 0 auto;
+  }
+
+  .profile-header, .profile-tag,  .profile-location{
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .profile-text h6{
+    text-align: center;
+  }
+
+  .profile-bottom{
+    text-align: center;
+  }
 }
 
 .profile-icon{
@@ -81,9 +92,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 footer {
-    background-color: #4894dd;
-    color: white;
-    min-width: 485px;
+  background-color: #4894dd;
+  color: white;
 }
 
 .workpad-copyright{
