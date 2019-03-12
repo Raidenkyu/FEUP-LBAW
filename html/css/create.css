@@ -10,6 +10,9 @@ h1,h2,h3,h4,h5,h6 {
   background-color: #4894dd;
 }
 
+.projects {
+  min-height: calc(100vh - 130px);
+}
 
 .color-picker{
   width: 50px;
