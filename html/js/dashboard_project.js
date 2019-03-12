@@ -1,5 +1,5 @@
-let title_row = document.querySelector(".title-row");
-let allLists = document.querySelector(".lists-table");
+//let title_row = document.querySelector(".title-row");
+//let allLists = document.querySelector(".lists-table");
 //let firstList = document.querySelector(".lists-table:first-child");
 
 

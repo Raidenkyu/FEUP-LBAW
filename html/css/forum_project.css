@@ -1,8 +1,16 @@
 :root{
-    --orange: rgb(243, 156, 19);
-    --dark_orange: rgb(243, 106, 19);
+    --orange: #F39C13;
+    --dark_orange: #F77D13;
     --white: white;
     --black: black;
+    --blue: #4894DD;
+    --dark_blue: #21618C;
+    --darkest_blue: #34495E;
+    --darkest_dark_blue: #2B3E50;
+    --darkest_grey: #576161;
+    --dark_grey: #848C8C;
+    --grey: #A5ABAB;
+    --other_grey: #C6BCBC;
 }
 
 body {
@@ -13,11 +21,15 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Roboto',sans-serif;
 }
 
-.title-row{
-    /*margin: 0.5em 0 0 0;*/
-    /*min-width: 1050px;*/
+.btn-primary {
+    background-color: var(--blue);
+    border-color: var(--blue);
 }
 
+.btn-primary:hover{
+    background-color: var(--darkest_blue);
+    border-color: var(--darkest_blue);
+}
 
 /* TITLE LINE, TEXT AND BUTTONS */
 
@@ -91,7 +103,7 @@ h1,h2,h3,h4,h5,h6 {
 .topic-title{
     text-align: left;
     font-weight: bold;
-    font-size: 200%;
+    font-size: 2em;
     padding: 0 0 0.5em 0;
 }
 
@@ -102,17 +114,78 @@ h1,h2,h3,h4,h5,h6 {
 /* Forum */
 
 .forum-comment-name{
-    font-size: 150%;
+    font-size: 1.5em;
     /*padding: 0.2em 2em 0.2em 0;*/
 }
 
 .forum-comment-date{
-    font-size: 150%;
+    font-size: 1.25em;
+    margin-top: 0.2em;
     /*padding: 0.2em 0.5em;*/
+    color: var(--darkest_grey);
 }
 
 .forum-comment-box{
     margin: 1em 0;
+}
+
+.forum-comment-image{
+    width: 3em;
+    margin-left: 1em;
+}
+
+.forum-comment-image-box{
+    
+}
+
+@media (max-width: 768px) {
+    .forum-comment p{
+        font-size: 0.8em;
+    }
+    .topic-title{
+        font-size: 1.5em;
+    }
+    .forum-comment-name{
+        font-size: 1.2em;
+    }
+    
+    .forum-comment-date{
+        font-size: 1em;
+    }
+    .forum-comment-image{
+        width: 3em;
+        margin-left: 0em;
+    }
+    .title-box{
+        font-size: 0.9em;
+        margin-top: 0.4em;
+    }
+    .selection-button{
+        font-size: 0.9em;
+    }
+    .title-box{
+        font-size: 0.8em;
+        margin-top: 0.7em;
+        margin-left: 0.4em;
+    }
+    .title-buttons{
+        margin-top: 0.2em
+    }
+    .selection-button{
+        font-size: 0.9em;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+    .forum-comment-image{
+        width: 2.5em;
+        margin-left: 0em;
+    }
+    .selection-button{
+        font-size: 0.7em;
+    }
 }
 
 

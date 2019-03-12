@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/dashboard_project.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/dashboard_project.js" defer></script>
 </head>
@@ -43,9 +43,9 @@
         <div class="col-3 title-buttons">
           <div class="container">
             <div class="btn-group">
-              <button type="button" class="btn btn-primary">•••Tasks</button>
-              <button type="button" class="btn btn-primary">•••Discussion</button>
-              <button type="button" class="btn btn-primary">•••Settings</button>
+              <button type="button" class="btn btn-primary selection-button">•••Tasks</button>
+              <button type="button" class="btn btn-primary selection-button">•••Discussion</button>
+              <button type="button" class="btn btn-primary selection-button">•••Settings</button>
             </div>
           </div>
         </div>
@@ -74,26 +74,32 @@
         <div class="col-sm-* list-col">
           <div class="list-group">
             <span class="list-col-title">In Progress</span>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Create Interface</a>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Do stuff</a>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Do more stuff</a>
+            <div class="btn-group-vertical">
+              <button type="button" class="btn btn-primary task-sel">Create Interface</button>
+              <button type="button" class="btn btn-primary task-sel">Fix Login</button>
+              <button type="button" class="btn btn-primary task-sel">Add Tests</button>
+              <button type="button" class="btn btn-primary task-sel">Discover more Tasks</button>
+            </div>
           </div>
         </div>
 
         <div class="col-sm-* list-col">
           <div class="list-group">
             <span class="list-col-title">Pending Approval</span>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Create Interface</a>
+            <div class="btn-group-vertical">
+              <button type="button" class="btn btn-primary task-sel">Improve CSS</button>
+            </div>
           </div>
         </div>
 
         <div class="col-sm-* list-col">
           <div class="list-group">
             <span class="list-col-title">Done</span>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Create Interface</a>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
-            <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
+            <div class="btn-group-vertical">
+              <button type="button" class="btn btn-primary task-sel">Base code</button>
+              <button type="button" class="btn btn-primary task-sel">Basic logic</button>
+              <button type="button" class="btn btn-primary task-sel">Initial Tests</button>
+            </div>
           </div>
         </div>
 
@@ -102,147 +108,151 @@
     </div>
 
 
-
-
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Interface</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-9">
-                <div class="row task-edit-top">
-                  <div class="col-sm">
-                    <span class="res-text task-edit-top-title">Members</span>
-                    <img src="./icons/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
-                      alt="Team Member">
-                  </div>
-                  <div class="col-sm">
-                    <span class="res-text task-edit-top-title">Due Date</span>
-                    <span class="res-text">Jun 3 at 10:00 PM</span>
-                  </div>
-                  <div class="col-sm">
-                    <span class="res-text task-edit-top-title">Issue</span>
-                    <button type="button" class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
-                  </div>
-                </div>
-                <div class="row task-edit-desc-row">
-                  <div class="col-sm-2">
-                    <img src="./icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg"
-                      alt="User Photo">
-                  </div>
-                  <div class="col-sm-10">
-                    <span class="res-text">
-                      Description
-                    </span>
-                    <div class="form-group task-edit-description">
-                      <textarea class="form-control" rows="3" id="comment"></textarea>
+    <!-- Modal -->
+    <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Interface</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="row task-edit-top">
+                    <div class="col-sm">
+                      <span class="res-text task-edit-top-title">Members</span>
+                      <img src="./images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
+                        alt="Team Member">
+                    </div>
+                    <div class="col-sm">
+                      <span class="res-text task-edit-top-title">Due Date</span>
+                      <span class="res-text">Jun 3 at 10:00 PM</span>
+                    </div>
+                    <div class="col-sm">
+                      <span class="res-text task-edit-top-title">Issue</span>
+                      <button type="button"
+                        class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
                     </div>
                   </div>
-                </div>
-                <div class="row task-edit-check-row">
-                  <div class="col-sm-2">
-                    <img src="./icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg" alt="User Photo">
-                  </div>
-                  <div class="col-sm-10">
-                    <span class="res-text">
-                      Checklist title
-                    </span>
-                    <br>
-
-                    <div class="progress task-edit-prog-bar">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="row task-edit-desc-row">
+                    <div class="col-sm-2">
+                      <img src="./icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg"
+                        alt="User Photo">
                     </div>
-
-                    <div class="row">
-                      <div class="">
-                        <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
-                      </div>
-                      <div class="res-text">
-                        <span>Task #1</span>
+                    <div class="col-sm-10">
+                      <span class="res-text">
+                        Description
+                      </span>
+                      <div class="form-group task-edit-description">
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="">
-                        <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
-                      </div>
-                      <div class="res-text">
-                        <span>Task #2</span>
-                      </div>
+                  </div>
+                  <div class="row task-edit-check-row">
+                    <div class="col-sm-2">
+                      <img src="./icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg"
+                        alt="User Photo">
                     </div>
-                    <div class="row">
-                      <div class="">
-                        <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                    <div class="col-sm-10">
+                      <span class="res-text">
+                        Checklist title
+                      </span>
+                      <br>
+
+                      <div class="progress task-edit-prog-bar">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+                          aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <div class="res-text">
-                        <span>Task #3</span>
+
+                      <div class="row">
+                        <div class="">
+                          <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                        </div>
+                        <div class="res-text tasks-text">
+                          <span>Task #1</span>
+                        </div>
                       </div>
+                      <div class="row">
+                        <div class="">
+                          <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                        </div>
+                        <div class="res-text tasks-text">
+                          <span>Task #2</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="">
+                          <img src="./icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                        </div>
+                        <div class="res-text tasks-text">
+                          <span>Task #3</span>
+                        </div>
+                      </div>
+
+
                     </div>
-
-
                   </div>
-                </div>
 
-                <div class="row task-edit-comm-row">
-                  <div class="col-sm-2">
-                    <img src="./icons/comments.svg" class="img-fluid task-edit-comm-svg" alt="User Photo">
+                  <div class="row task-edit-comm-row">
+                    <div class="col-sm-2">
+                      <img src="./icons/comments.svg" class="img-fluid task-edit-comm-svg" alt="User Photo">
+                    </div>
+                    <div class="col-sm-10">
+                      <span class="res-text">
+                        Comments
+                      </span>
+
+                    </div>
                   </div>
-                  <div class="col-sm-10">
-                    <span class="res-text">
-                      Comments
-                    </span>
 
+                </div>
+                <div class="col-sm-3 task-edit-side">
+                  <span>Add to Task</span>
+
+                  <div class="btn-group-vertical task-edit-button-group">
+                    <button type="button" class="btn btn-primary task-edit-button res-text">Members</button>
+                    <button type="button" class="btn btn-primary task-edit-button res-text">Due Date</button>
+                    <button type="button" class="btn btn-primary task-edit-button res-text">Checklist</button>
+                    <button type="button" class="btn btn-primary task-edit-button res-text">Attachment</button>
                   </div>
-                </div>
+                  <br>
+                  <span>Actions</span>
+                  <div class="btn-group-vertical task-edit-button-group">
+                    <button type="button" class="btn btn-primary task-edit-button res-text">Move to in Progress</button>
+                  </div>
 
-              </div>
-              <div class="col-sm-3 task-edit-side">
-                <span>Add to Task</span>
-
-                <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Members</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Due Date</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Checklist</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Checklist</button>
                 </div>
-                <br>
-                <span>Actions</span>
-                <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Move to in Progress</button>
-                </div>
-
               </div>
             </div>
+
+
           </div>
-
-
         </div>
       </div>
     </div>
+  </div>
 
-    <footer class="container-fluid py-2 footer">
-      <div class="container d-flex justify-content-center">
-        <div class="row workpad-copyright">
-          workpad &copy; 2019
-          <div class="container d-flex justify-content-center">
-            <div class="row">
-              <a class="mr-3 footer-link" href="#">About</a>
-              <a class="mr-3 footer-link" href="#">Help</a>
-              <a class="footer-link" href="#">Contact</a>
-            </div>
-          </div>
-    </footer>
+  <footer class="container-fluid py-2 footer">
+    <div class="container d-flex justify-content-center">
+      <div class="row workpad-copyright">
+        workpad &copy; 2019
+      </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <div class="row">
+        <a class="mr-3 footer-link" href="#">About</a>
+        <a class="mr-3 footer-link" href="#">Help</a>
+        <a class="footer-link" href="#">Contact</a>
+      </div>
+    </div>
+
+
+  </footer>
 
 
 

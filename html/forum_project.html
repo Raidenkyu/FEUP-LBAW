@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/forum_project.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
 
@@ -29,154 +29,96 @@
     </nav>
   </header>
 
-  <div class="container-fluid title-row">
-    <div class="row">
-      <div class="col-2">
-        <ul class="list-group title-line">
-          <li class="list-group-item title-line"></li>
-          <li class="list-group-item title-line title-orange-line"></li>
-          <li class="list-group-item title-line"></li>
-        </ul>
-      </div>
-      <div class="col-* title-box">App Tuga POP</div>
-      <div class="col-3 title-buttons">
-        <div class="container">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">•••Tasks</button>
-            <button type="button" class="btn btn-primary">•••Discussion</button>
-            <button type="button" class="btn btn-primary">•••Settings</button>
+  <div class="page-container">
+
+    <div class="container-fluid title-row">
+      <div class="row">
+        <div class="col-2">
+          <ul class="list-group title-line">
+            <li class="list-group-item title-line"></li>
+            <li class="list-group-item title-line title-orange-line"></li>
+            <li class="list-group-item title-line"></li>
+          </ul>
+        </div>
+        <div class="col-* title-box">App Tuga POP</div>
+        <div class="col-3 title-buttons">
+          <div class="container">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary selection-button">•••Tasks</button>
+              <button type="button" class="btn btn-primary selection-button">•••Discussion</button>
+              <button type="button" class="btn btn-primary selection-button">•••Settings</button>
+            </div>
           </div>
         </div>
+        <div class="col-*"></div>
       </div>
-      <div class="col-*"></div>
     </div>
+
+    <div class="topic-block">
+      <div class="row d-flex justify-content-md-start">
+        <div class="col-sm-* topic-col">
+          <div class="list-group">
+            <span class="topics-list-title">Topics</span>
+            <a href="#" class="list-group-item list-group-item-action topic-sel">Underscores</a>
+            <a href="#" class="list-group-item list-group-item-action topic-sel">Issues</a>
+            <a href="#" class="list-group-item list-group-item-action topic-sel">Suggestions</a>
+            <a href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic">+ Create
+              Topic</a>
+          </div>
+        </div>
+
+        <div class="col-sm-8 topic-col">
+          <div class="topic-title-div">
+            <span class="topic-title">Underscores</span>
+          </div>
+
+          <div class="row forum-comment">
+            <div class="col-2 forum-comment-image-box">
+              <img src="./images/claudio.jpg" class="rounded-circle forum-comment-image" alt="User Photo">
+            </div>
+
+            <div class="col-10">
+              <div class="row">
+                <div class="col-5 forum-comment-name">
+                  <span class="align-text-bottom">Fernando</span>
+                </div>
+                <div class="col-7 forum-comment-date">
+
+                  <span class="align-bottom">2018-03-13 at 16:03</span>
+                </div>
+              </div>
+              <p class="forum-comment-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex
+                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt
+                mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+
+
+          <button type="button" class="btn btn-secondary">Add Comment</button>
+          <div class="form-group forum-comment-box">
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
   </div>
 
 
 
-  <div class="topic-block">
-    <div class="row d-flex justify-content-md-start">
-      <div class="col-sm-* topic-col">
-        <div class="list-group">
-          <span class="topics-list-title">Topics</span>
-          <a href="#" class="list-group-item list-group-item-action topic-sel">Underscores</a>
-          <a href="#" class="list-group-item list-group-item-action topic-sel">Issues</a>
-          <a href="#" class="list-group-item list-group-item-action topic-sel">Suggestions</a>
-          <a href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic">+ Create
-            Topic</a>
-        </div>
-      </div>
 
-      <div class="col-sm-8 topic-col">
-        <div class="topic-title-div">
-          <span class="topic-title">Underscores</span>
-        </div>
 
-        <div class="row forum-comment">
-          <div class="col-2 forum-comment-image">
-            <img src="random_guy.jpg" class="rounded-circle img-fluid" alt="User Photo">
-          </div>
 
-          <div class="col-10">
-            <div class="row">
-              <div class="col-5 forum-comment-name">
-                <span class="align-text-bottom">Fernando</span>
-              </div>
-              <div class="col-7 forum-comment-date">
-                <span class="align-bottom">2018-03-13 at 16:03</span>
-              </div>
-            </div>
-            <p class="forum-comment-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
 
-        <div class="row forum-comment">
-          <div class="col-2 forum-comment-image">
-            <img src="random_guy.jpg" class="rounded-circle img-fluid" alt="User Photo">
-          </div>
-
-          <div class="col-10">
-            <div class="row">
-              <div class="col-5 forum-comment-name">
-                <span class="align-text-bottom">Claudio</span>
-              </div>
-              <div class="col-7 forum-comment-date">
-                <span class="align-bottom">2018-03-13 at 16:05</span>
-              </div>
-            </div>
-            <p class="forum-comment-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-
-        <div class="row forum-comment">
-          <div class="col-2 forum-comment-image">
-            <img src="random_guy.jpg" class="rounded-circle img-fluid" alt="User Photo">
-          </div>
-
-          <div class="col-10">
-            <div class="row">
-              <div class="col-5 forum-comment-name">
-                <span class="align-text-bottom">João</span>
-              </div>
-              <div class="col-7 forum-comment-date">
-                <span class="align-bottom">2018-03-13 at 16:09</span>
-              </div>
-            </div>
-            <p class="forum-comment-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-
-        <div class="row forum-comment">
-          <div class="col-2 forum-comment-image">
-            <img src="random_guy.jpg" class="rounded-circle img-fluid" alt="User Photo">
-          </div>
-
-          <div class="col-10">
-            <div class="row">
-              <div class="col-5 forum-comment-name">
-                <span class="align-text-bottom">Pedro</span>
-              </div>
-              <div class="col-7 forum-comment-date">
-                <span class="align-bottom">2018-03-13 at 16:34</span>
-              </div>
-            </div>
-            <p class="forum-comment-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-
-        <button type="button" class="btn btn-secondary">Add Comment</button>
-        <div class="form-group forum-comment-box">
-          <textarea class="form-control" rows="5" id="comment"></textarea>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 
 
 
