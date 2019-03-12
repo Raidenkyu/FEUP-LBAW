@@ -37,25 +37,37 @@ form  {
 }
 
 .workpad-logo {
-    width: 50%;
-    height: 50%;
+    width: 25%;
+    height: 25%;
 }
 
-.ban{
+.ban {
   width: 30px;
 }
 
-.login-block{
+.login-block {
+    min-width: 270px;
+    max-width: 600px;
+}
+
+.navbar {
     min-width: 270px;
 }
 
-.navbar{
-    min-width: 270px;
+.login-btn {
+    min-width: 100px;
 }
 
 @media(max-width: 567px){
     .register-title {
         font-size: 1.75em;
+    }
+    .form-group input{
+        text-align: center;
+    }
+    .workpad-logo {
+        width: 55%;
+        height: 40%;
     }
 }
 
