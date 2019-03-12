@@ -31,6 +31,10 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     border-color: var(--darkest_blue);
 }
 
+.navbar{
+  background-color: #4894dd;
+}
+
 /* TITLE LINE, TEXT AND BUTTONS */
 
 .title-orange-line{
@@ -153,7 +157,7 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     .forum-comment-name{
         font-size: 1.2em;
     }
-    
+
     .forum-comment-date{
         font-size: 1em;
     }
@@ -182,7 +186,6 @@ h1,h2,h3,h4,h5,h6,p,span,button {
 
 }
 
-
 @media (max-width: 576px) {
     .forum-comment-image{
         width: 2.5em;
@@ -192,6 +195,3 @@ h1,h2,h3,h4,h5,h6,p,span,button {
         font-size: 0.7em;
     }
 }
-
-
-
