@@ -17,9 +17,7 @@
 <body>
 
 
-
-  <header>
-    <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top navbar-fixed-left">
+    <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top">
       <div id="logo" class="logo-container mr-auto">
         <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
       </div>
@@ -31,7 +29,6 @@
         <img src="./images/claudio.jpg" class="rounded-circle" style="width:35px;" alt="Responsive image">
       </div>
     </nav>
-  </header>
 
   <div class="profile-strap container">
     <div class="row justify-content-center">
@@ -40,32 +37,29 @@
 
 
 
-    <div class="container my-5 profile-block d-sm-flex p-3 w-50 profile-area">
-      <div class="row mt-9">
-        <div class="profile-strap-space row container">
-        </div>
-        <div class="profile-header row container">
-          <div class="profile-image col-4">
-            <img class="image-canvas img-fluid w-75 rounded-circle" alt="Responsive image" src="images/claudio.jpg"></img>
+    <!-- <div class="container my-5 profile-block p-3"> -->
+      <div class="row profile-area m-5 p-3">
+        <div class="profile-strap-space row container align-self-center"></div>
+        <div class="profile-header row container align-self-center">
+          <div class="profile-image col-lg-4 col-lg-pull align-self-center">
+            <img class="image-canvas w-75 rounded-circle align-self-center" alt="Responsive image" src="images/claudio.jpg"></img>
           </div>
-          <div class="profile-info row col-8">
+          <div class="profile-info col-lg-8 col-lg-push align-self-center">
             <div class="col">
-              <div class="profile-title">
+              <div class="profile-title align-self-center">
                 <p>Cláudio Lemos</p>
               </div>
 
-              <div class="row">
-                <div class="profile-tag col-7">
+              <div class="row profile-tag-location align-self-center">
+                <div class="profile-tag col-lg">
                   <p>@claudiolemos</p>
                 </div>
-                <div class="profile-location">
-                  <p>Porto, Portugal</p>
+                <div class="profile-location col-lg">
+                  <p><img class="profile-icon" src="./icons/location_pin.svg" alt="Responsive image">Porto, Portugal</p>
                 </div>
               </div>
               <div class="row">
-                <div class="profile-brief col-12">
-                  A brief about or tagline
-                </div>
+                <div class="profile-brief col-12">A brief about or tagline</div>
 
               </div>
 
@@ -76,19 +70,19 @@
           </div>
         </div>
         <div class="profile-text row col-12 text-left pr-2 pl-5 pt-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
           dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
           ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
           eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
+          deserunt mollit anim id est laborum.</h6>
         </div>
         <div class="profile-bottom container pt-3">
           <div class="row">
-            <p class="e-mail col-7">
+            <p class="e-mail col-lg col-lg-pull">
               <img class="profile-icon" src="./icons/mail.svg" alt="Responsive image">
               claudiolemos@workpad.com
             </p>
-            <p class="phone-number col-5 pl-5">
+            <p class="phone-number col-lg col-lg-pull">
               <img class="profile-icon" src="./icons/phone.svg" alt="Responsive image">
               +35910000000
             </p>
@@ -98,7 +92,8 @@
 
       </div>
 
-    </div>
+    <!-- </div> -->
+
     <footer class="container-fluid py-2 mt-xl-5">
       <div class="container d-flex justify-content-center">
         <div class="row workpad-copyright">
