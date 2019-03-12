@@ -10,10 +10,6 @@ h1,h2,h3,h4,h5,h6 {
   background-color: #4894dd;
 }
 
-.projects {
-  min-height: calc(100vh - 130px);
-}
-
 .project-card h5{
   position:absolute;
   bottom:5px;
@@ -31,4 +27,15 @@ h1,h2,h3,h4,h5,h6 {
       margin-left: 1.5em;
     }
 
+    .project-card{
+      display:inline-block;
+      width:6rem;
+      height:4rem;
+    }
+
+    .project-card h5{
+      font-size: 0.75em;
+      bottom:0px;
+      left:5px;
+    }
 }
