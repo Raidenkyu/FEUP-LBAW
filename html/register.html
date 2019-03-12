@@ -2,32 +2,33 @@
 <html lang="en">
 
 <head>
-    <title>workpad</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/register.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+  <title>workpad</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/register.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-dark shadow-sm sticky-top">
-            <div class="logo-container mr-auto container-fluid">
-                <div id="logo" class="mx-auto">
-                    <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
-                </div>
-            </div>
+  <header>
+    <nav class="navbar navbar-dark shadow-sm sticky-top">
+      <div class="logo-container mr-auto container-fluid">
+        <div id="logo" class="mx-auto">
+          <img src="./icons/logo.png" style="width:50px;" alt="Responsive image">
+        </div>
+      </div>
 
-        </nav>
-    </header>
-    <div class="pt-0 pb-5">
-        <div class="register-block container mt-5 w-50 d-flex bg-white rounded">
+    </nav>
+  </header>
+
+    <div class="py-2 pb-5">
+        <div class="login-block container mt-5 w-50 d-flex bg-white rounded">
             <div class="col">
-                <div class="row py-3 justify-content-center">
+                <div class="row py-4 justify-content-center">
                     <h1 class="register-title font-weight-bolder text-center">Create a workpad account</h1>
                 </div>
 
@@ -35,24 +36,23 @@
                 <div class="row justify-content-center">
                     <form class="p-0 justify-content-center">
                         <div class="form-group input-group-lg py-1">
-                            <input class="border rounded form-control" placeholder=" Name">
+                            <input class="border rounded form-control" placeholder="Name" type="email">
+                        </div>
+                        <div class="form-group input-group-lg py-1">
+                            <input class="border rounded form-control" placeholder="Email" type="email">
                         </div>
 
                         <div class="form-group input-group-lg py-1">
-                            <input class="border rounded form-control" placeholder=" Email" type="email">
+                            <input class="border rounded form-control" placeholder="Password" type="password">
                         </div>
 
                         <div class="form-group input-group-lg py-1">
-                            <input class="border rounded form-control" placeholder=" Password" type="password">
-                        </div>
-
-                        <div class="form-group input-group-lg py-1">
-                            <input class="border rounded form-control" placeholder=" Confirm Password" type="password">
+                            <input class="border rounded form-control" placeholder="Confirm password" type="password">
                         </div>
 
                         <div class="form-group center-block mx-auto py-1">
                             <div class="row justify-content-center">
-                                <button class="btn btn-lg btn-primary" type="submit" class="btn btn-primary">
+                                <button class="btn btn-lg btn-primary login-btn" type="submit" class="btn btn-primary">
                                     Create account
                                 </button>
                             </div>
@@ -67,20 +67,20 @@
 
     </div>
 
-    <footer class="container-fluid py-2 footer fixed-bottom">
-        <div class="container d-flex justify-content-center">
-            <div class="row workpad-copyright">
-                workpad &copy; 2019
-            </div>
-        </div>
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                <a class="mr-3 footer-link" href="#">About</a>
-                <a class="mr-3 footer-link" href="#">Help</a>
-                <a class="footer-link" href="#">Contact</a>
-            </div>
-        </div>
-    </footer>
+  <footer class="container-fluid py-2 footer fixed-bottom">
+    <div class="container d-flex justify-content-center">
+      <div class="row workpad-copyright">
+        workpad &copy; 2019
+      </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <div class="row">
+        <a class="mr-3 footer-link" href="#">About</a>
+        <a class="mr-3 footer-link" href="#">Help</a>
+        <a class="footer-link" href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 
