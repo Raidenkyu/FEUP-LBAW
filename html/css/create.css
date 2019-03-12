@@ -8,8 +8,8 @@ h1,h2,h3,h4,h5,h6 {
 
 .navbar{
   background-color: #4894dd;
-  min-width:328px;
 }
+
 
 .color-picker{
   width: 50px;
@@ -85,7 +85,7 @@ h1,h2,h3,h4,h5,h6 {
 
 @media(max-width: 768px){
     .projects{
-      margin-left: 1.5em;
+      padding-left: 1.5em;
     }
 }
 
