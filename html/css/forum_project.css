@@ -17,7 +17,7 @@ body {
     font-family: 'Noto Sans TC',sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,p,span,button {
     font-family: 'Roboto',sans-serif;
 }
 
@@ -38,7 +38,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .title-line{
-    border-color: white;
+    border-color: var(--white);
 }
 
 .title-box{
@@ -70,7 +70,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .topic-sel{
-    background-color: var(--orange);
+    background-color: var(--blue);
     margin: 0.2em 0;
     border-radius: 0.5em;
     color: var(--white);
@@ -82,18 +82,19 @@ h1,h2,h3,h4,h5,h6 {
     background-color: var(--white);
     margin: 0.2em 0;
     border-radius: 0.5em;
-    border: 0.15em solid var(--orange);
+    border: 0.15em solid var(--blue);
     color: var(--black);
     padding: 0.3em 3em 0.3em 0.5em;
     text-align: left;
 }
 
 .topic-sel:hover{
-    background-color: var(--dark_orange);
+    background-color: var(--darkest_blue);
+    color: var(--white);
 }
 
 .topic-sel:focus{
-    background-color: var(--dark_orange);
+    background-color: var(--darkest_blue);
 }
 
 .topic-block{
@@ -115,13 +116,11 @@ h1,h2,h3,h4,h5,h6 {
 
 .forum-comment-name{
     font-size: 1.5em;
-    /*padding: 0.2em 2em 0.2em 0;*/
 }
 
 .forum-comment-date{
     font-size: 1.25em;
     margin-top: 0.2em;
-    /*padding: 0.2em 0.5em;*/
     color: var(--darkest_grey);
 }
 
@@ -130,13 +129,19 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .forum-comment-image{
-    width: 3em;
+    width: 4.5em;
     margin-left: 1em;
 }
 
-.forum-comment-image-box{
-    
+
+@media (max-width: 992px) {
+    .forum-comment-image{
+        width: 3.8em;
+        margin-left: 1em;
+    }
+
 }
+
 
 @media (max-width: 768px) {
     .forum-comment p{
