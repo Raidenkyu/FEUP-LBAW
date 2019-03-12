@@ -7,7 +7,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .navbar{
-    min-width: 485px;
+  background-color: #4894dd;
+  min-width:328px;
 }
 
 .color-picker{

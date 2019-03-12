@@ -7,7 +7,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .navbar {
-    background-color: #4894dd;
+  background-color: #4894dd;
+  min-width:328px;
 }
 
 .btn-primary {
@@ -81,4 +82,3 @@ footer {
 .footer-link{
   color: white;
 }
-
