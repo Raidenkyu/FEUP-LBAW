@@ -38,13 +38,11 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .page-container {
     min-height: calc(100vh - 130px);
+    width: 100vw;
+    overflow-x: scroll;
 }
 
 /* TITLE LINE, TEXT AND BUTTONS */
-
-body{
-    min-width: 1000px;
-}
 
 .title-orange-line{
     background-color: var(--orange);
@@ -68,7 +66,7 @@ body{
 
 .task-list-block{
     margin: 1em;
-    /*min-width: 910px;*/
+    min-width: 1000px;
 }
 
 .list-col{
@@ -160,17 +158,17 @@ body{
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: #111;
+    background-color: rgb(223, 223, 223);
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 25px;
 }
   
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 40px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: var(--black);
     display: block;
     transition: 0.3s;
 }
@@ -181,15 +179,147 @@ body{
   
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
+    top: 10px;
+    right: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--white);
     margin-left: 50px;
 }
-  
+
+.pop-up-box{
+    padding: 0px 0px 0px 20px;
+}
+
+.pop-up-title{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.pop-up-name-title{
+    font-size: 1.2em;
+    padding-left: 0.8em;
+}   
+
+.pop-up-name{
+    font-size: 0.8em;
+    padding-left: 1.5em;
+    
+}
+
+.pop-up-color-box{
+    padding-top: 0.5em;
+}
+
+.pop-up-color-title{
+    font-size: 1.2em;
+    padding-left: 1em;
+}
+
+.pop-up-team-title{
+    margin-bottom: 0em;
+}
+
+.pop-up-man-title{
+    font-size: 0.8em;
+    margin-bottom: 0em;
+    margin-left: 1em;
+}
+
+.pop-up-dev-title{
+    font-size: 0.8em;
+    margin-bottom: 0em;
+    margin-left: 1em;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+.color-picker{
+    width: 32px;
+    height: 32px;
+    margin-right:0px;
+    margin-bottom:0px;
+    display: inline-block;
+  }
+  
+  .color-picker:hover{
+    border-radius: 2px;
+    border-color: white;
+    border-style: solid;
+  }
+  
+  #color-picker-1{
+    background-color:#f77d13;
+  }
+  
+  #color-picker-2{
+    background-color:#ffcc00;
+  }
+  
+  #color-picker-3{
+    background-color:#e82020;
+  }
+  
+  #color-picker-4{
+    background-color:#2dcc71;
+  }
+  
+  #color-picker-5{
+    background-color:#9c58b6;
+  }
+  
+  #color-picker-6{
+    background-color:#4894dd;
+  }
+  
+  #color-picker-7{
+    background-color:#c45e00;
+  }
+  
+  #color-picker-8{
+    background-color:#f39c13;
+  }
+  
+  #color-picker-9{
+    background-color:#c92b1a;
+  }
+  
+  #color-picker-10{
+    background-color:#179f85;
+  }
+  
+  #color-picker-11{
+    background-color:#7f14ad;
+  }
+  
+  #color-picker-12{
+    background-color:#2880ba;
+  }
+  
+  .team-profile-icon{
+    width:35px;
+  }
+  
+  .team-profile-add{
+    width:35px;
+    padding: 10px;
+    background-color: #f77d13;
+  }
+
+.pop-up-settings-box{
+    margin-bottom: 0.1em;
+}
+
+.pop-up-button-first{
+    margin: 1em 0em 0em 0em;
+}
+
+.pop-up-button-last{
+    margin: 0.5em 0em;
+    margin-bottom: 5em;
 }
 
 
