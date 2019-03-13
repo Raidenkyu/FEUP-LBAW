@@ -66,6 +66,20 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
+@media(min-width: 991px){
+  footer {
+      position: fixed;
+      height: 100px;
+      bottom: 0;
+      width: 100%;
+  }
+
+  .profile-area{
+    margin-left: 15em;
+    margin-right: 15em;
+  }
+}
+
 @media(max-width: 991px){
   .profile-tag-location,  .profile-title, .profile-title,{
     text-align: center;
@@ -84,6 +98,11 @@ h1,h2,h3,h4,h5,h6 {
   .profile-bottom{
     text-align: center;
   }
+
+
+    .profile-area{
+      margin: 1em;
+    }
 }
 
 .profile-icon{
