@@ -14,7 +14,7 @@
   <script src="js/bootstrap.min.js"></script>
 </head>
 
-<body >
+<body>
 
   <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
@@ -22,13 +22,13 @@
     </div>
 
     <div id="sign" class="login-container">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Log In</button>
-      <a href="./register.html"><button class="btn btn-secondary">Sign Up</button></a>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
+      <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
     </div>
   </nav>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -37,7 +37,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body pb-0">
           <form id="login-form" class="p-0 justify-content-center">
 
             <div class="form-group input-group-lg py-1">
@@ -50,9 +50,78 @@
 
           </form>
         </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" form="login-form" class="btn btn-lg btn-block btn-primary">Sign In</button>
-        
+        <div class="modal-footer pt-0 pl-0">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <button type="button" form="login-form" class="btn btn-lg btn-primary">Sign In</button>
+              </div>
+              <div class="col-6 text-right pr-0">
+                <button class="btn ">Forgot Password?</button>
+              </div>
+
+            </div>
+            <div class="register-callout mt-3 pt-1">
+              Need an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close" data-toggle="modal"
+                data-target="#registerModal">Sign up now!</button>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="ModalLabel">Create a workpad account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0">
+          <form id="register-form" class="p-0 justify-content-center">
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Name" type="email">
+            </div>
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Email" type="email">
+            </div>
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Password" type="password">
+            </div>
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Confirm password" type="password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer pt-0 pl-0">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <button type="button" form="register-form" class="btn btn-lg btn-primary">Create account</button>
+              </div>
+
+            </div>
+            <div class="register-callout mt-3 pt-1">
+              Already have an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close"
+                data-toggle="modal" data-target="#loginModal">Sign in now!</button>
+            </div>
+
+
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -68,7 +137,9 @@
 
     <div class="row mt-5">
       <div class="motivation col-12 text-center">
-        We are an online project management platform where you can manage and discuss the progress of all your projects with other team members. Our platform helps you manage the projects you are involved in, in a way that increases your efficiency and promotes your cooperation with the team.
+        We are an online project management platform where you can manage and discuss the progress of all your projects
+        with other team members. Our platform helps you manage the projects you are involved in, in a way that increases
+        your efficiency and promotes your cooperation with the team.
       </div>
     </div>
 
@@ -79,10 +150,12 @@
     <div class="row">
       <div class="col-sm align-self-center">
         <div class="row px-5 second-container">
-            <h1>Work with your team. Anywhere!</h1>
+          <h1>Work with your team. Anywhere!</h1>
         </div>
         <div class="row motivation px-5 py-5 second-container">
-          Whether it’s for work, a side project, workpad helps your development team stay organized. Dive into the details by adding comments, attachments, due dates, and more directly to workpad cards. Collaborate on projects from beginning to end.
+          Whether it’s for work, a side project, workpad helps your development team stay organized. Dive into the
+          details by adding comments, attachments, due dates, and more directly to workpad cards. Collaborate on
+          projects from beginning to end.
         </div>
       </div>
       <div class="col-sm align-self-center">
