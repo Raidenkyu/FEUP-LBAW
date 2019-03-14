@@ -1,16 +1,11 @@
 let sidebar = document.querySelector("#mySidenav");
-let size = "320px";
+let negSize = "-320px";
 
 function settingsButtonClicked() {
-    if(sidebar.style.width == size){
-        sidebar.style.width = "0";
+    if(sidebar.style.right == negSize || sidebar.style.right == ""){
+        sidebar.style.right = "0";
     }
     else{
-        
-        sidebar.style.width = size;
+        sidebar.style.right = negSize;
     }
-  }
-  
-  function closeNav() {
-    sidebar.style.width = "0";
   }

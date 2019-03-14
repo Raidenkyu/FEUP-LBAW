@@ -153,11 +153,11 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .sidenav {
     height: 100%;
-    width: 0;
+    width: 320px;
     position: fixed;
     z-index: 1;
     top: 0;
-    right: 0;
+    right: -320px;
     background-color: rgb(223, 223, 223);
     overflow-x: hidden;
     transition: 0.5s;
