@@ -32,8 +32,12 @@ h1,h2,h3,h4,h5,h6 {
     color: white;
 }
 
+.logo-container{
+    text-align: center;
+}
+
 .workpad-logo {
-    display: block;
+    width: 700px;
     max-width: 100%;
     height: auto;
 }
