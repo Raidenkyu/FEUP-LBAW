@@ -33,10 +33,6 @@ h1,h2,h3,h4,h5,h6 {
   height:auto;
 }
 
-.profile-image{
-  /* padding-left: 2em; */
-}
-
 .profile-strap-space{
   height: 2em;
 }
@@ -75,8 +71,8 @@ h1,h2,h3,h4,h5,h6 {
   }
 
   .profile-area{
-    margin-left: 15em;
-    margin-right: 15em;
+    margin-left: 26%;
+    margin-right: 26%;
   }
 }
 
@@ -107,7 +103,6 @@ h1,h2,h3,h4,h5,h6 {
 
 .profile-icon{
   width: 20px;
-  filter: invert(100%) sepia(0%) saturate(7487%) hue-rotate(292deg) brightness(107%) contrast(105%);
 }
 
 footer {
