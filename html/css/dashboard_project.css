@@ -349,12 +349,7 @@ footer {
 }
 
 .task-edit-desc-svg, .task-edit-check-svg, .task-edit-comm-svg{
-<<<<<<< HEAD
     max-width: 2em;
-=======
-    width: 25px;
-    margin-right: 0.5em;
->>>>>>> e83a4d3b0f7d82d6326165daec035e1f493d7253
 }
 
 .task-edit-prog-bar{
