@@ -350,6 +350,7 @@ footer {
 
 .task-edit-desc-svg, .task-edit-check-svg, .task-edit-comm-svg{
     max-width: 2em;
+    margin-right: 7px;
 }
 
 .task-edit-prog-bar{
