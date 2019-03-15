@@ -15,6 +15,7 @@
 
 body {
     font-family: 'Noto Sans TC',sans-serif;
+    background-color: #F5F5F5;
 }
 
 h1,h2,h3,h4,h5,h6,span,button {
@@ -44,12 +45,13 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 /* TITLE LINE, TEXT AND BUTTONS */
 
-.title-orange-line{
-    background-color: var(--orange);
-}
+
 
 .title-line{
-    border-color: var(--white);
+    background-color: var(--orange);
+    min-width: 50px;
+    height: 7px;
+    margin-top:5px;
 }
 
 .title-box{
@@ -377,6 +379,12 @@ footer {
 }
 .list-col:nth-child(4){
     height: 185px;
+}
+
+.project-title-line{
+  /* width:50px; */
+  /* height: 5px; */
+  background-color: red;
 }
 
 @media (max-width: 768px) {
