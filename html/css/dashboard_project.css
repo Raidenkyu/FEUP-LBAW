@@ -107,10 +107,10 @@ h1,h2,h3,h4,h5,h6,span,button {
 }
 
 .task-edit-button{
-    background-color: var(--dark_grey);
+    background-color: #79afd9;
     margin: 0.2em 0;
     border-radius: 0.5em !important;
-    border-color: var(--dark_grey);
+    border-color: #79afd9;
     color: var(--white);
     padding: 0.3em 3em 0.3em 0.5em;
     text-align: left;
@@ -118,8 +118,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 }
 
 .task-edit-button:hover{
-    background-color: var(--darkest_grey);
-    border-color: var(--darkest_grey);
+    filter: brightness(85%);
 }
 
 .task-edit-description{
