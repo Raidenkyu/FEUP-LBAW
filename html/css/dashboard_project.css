@@ -163,7 +163,7 @@ h1,h2,h3,h4,h5,h6,span,button {
     transition: 0.5s;
     padding-top: 25px;
 }
-  
+
 .sidenav a {
     padding: 8px 8px 8px 40px;
     text-decoration: none;
@@ -172,11 +172,11 @@ h1,h2,h3,h4,h5,h6,span,button {
     display: block;
     transition: 0.3s;
 }
-  
+
 .sidenav a:hover {
     color: #f1f1f1;
 }
-  
+
 .sidenav .closebtn {
     position: absolute;
     top: 10px;
@@ -198,7 +198,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .pop-up-name-title{
     font-size: 1.2em;
-}   
+}
 
 .pop-up-name{
     font-size: 0.8em;
@@ -239,65 +239,65 @@ h1,h2,h3,h4,h5,h6,span,button {
     margin-bottom:0px;
     display: inline-block;
   }
-  
+
   .color-picker:hover{
     border-radius: 2px;
     border-color: white;
     border-style: solid;
   }
-  
+
   #color-picker-1{
     background-color:#f77d13;
   }
-  
+
   #color-picker-2{
     background-color:#ffcc00;
   }
-  
+
   #color-picker-3{
     background-color:#e82020;
   }
-  
+
   #color-picker-4{
     background-color:#2dcc71;
   }
-  
+
   #color-picker-5{
     background-color:#9c58b6;
   }
-  
+
   #color-picker-6{
     background-color:#4894dd;
   }
-  
+
   #color-picker-7{
     background-color:#c45e00;
   }
-  
+
   #color-picker-8{
     background-color:#f39c13;
   }
-  
+
   #color-picker-9{
     background-color:#c92b1a;
   }
-  
+
   #color-picker-10{
     background-color:#179f85;
   }
-  
+
   #color-picker-11{
     background-color:#7f14ad;
   }
-  
+
   #color-picker-12{
     background-color:#2880ba;
   }
-  
+
   .team-profile-icon{
     width:35px;
   }
-  
+
   .team-profile-add{
     width:35px;
     padding: 10px;
@@ -336,7 +336,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 footer {
     background-color: var(--blue);
     color: var(--white);
-    
+
 }
 
 .workpad-copyright{
@@ -349,7 +349,8 @@ footer {
 }
 
 .task-edit-desc-svg, .task-edit-check-svg, .task-edit-comm-svg{
-    max-width: 3em;
+    width: 25px;
+    margin-right: 0.5em;
 }
 
 .task-edit-prog-bar{
@@ -454,6 +455,3 @@ footer {
         height: 140px;
     }
 }
-
-
-
