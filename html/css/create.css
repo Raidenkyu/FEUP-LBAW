@@ -95,3 +95,26 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
+
+.color-box{
+  padding-top: 0.5em;
+}
+
+.color-title{
+  font-size: 1.2em;
+  padding-left: 1em;
+}
+
+.team-title{
+  margin-bottom: 0em;
+}
+
+.man-title{
+  font-size: 0.8em;
+  margin-bottom: 0em;
+}
+
+.dev-title{
+  font-size: 0.8em;
+  margin-bottom: 0em;
+}
