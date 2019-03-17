@@ -62,6 +62,10 @@ h1,h2,h3,h4,h5,h6,span,button {
     padding: 1.2em 0;
 }
 
+.selection-button{
+    margin: 0 0.4em;
+}
+
 /* Task Lists */
 
 .task-list-block{
@@ -394,6 +398,7 @@ footer {
     }
     .selection-button{
         font-size: 0.9em;
+        margin: 0 0.2em;
     }
     .tasks-text{
         margin-top: 0.5em;
@@ -439,6 +444,7 @@ footer {
     }
     .selection-button{
         font-size: 0.7em;
+        margin: 0 0.15em;
     }
 
     .list-col:nth-child(1){
