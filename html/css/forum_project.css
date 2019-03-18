@@ -55,6 +55,9 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     padding: 1.2em 0;
 }
 
+.selection-button{
+    margin: 0 0.4em;
+}
 
 
 /* Task Lists */
@@ -171,6 +174,7 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     }
     .selection-button{
         font-size: 0.9em;
+        margin: 0 0.2em;
     }
     .title-box{
         font-size: 0.8em;
@@ -193,5 +197,6 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     }
     .selection-button{
         font-size: 0.7em;
+        margin: 0 0.15em;
     }
 }
