@@ -20,6 +20,7 @@ body {
 
 h1,h2,h3,h4,h5,h6,p,span,button {
     font-family: 'Roboto',sans-serif;
+    color: #2b3e50;
 }
 
 .btn-primary {
