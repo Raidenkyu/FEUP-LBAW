@@ -70,3 +70,7 @@ footer {
   font-weight: 600;
   content: 'Answer: '
 }
+
+.modal-footer{
+  border: 0px;
+}
