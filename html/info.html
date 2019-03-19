@@ -27,175 +27,200 @@
     </div>
   </nav>
 
-    <!-- Sign In Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title font-weight-bold" id="ModalLabel">Log in</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="ModalLabel">Log in</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0">
+          <form id="login-form" class="p-0 justify-content-center">
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Email" type="email">
+            </div>
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Password" type="password">
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer pt-0 pl-0">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <button type="button" form="login-form" class="btn btn-lg btn-primary"
+                  onclick="location.href='dashboard.html';">Sign In</button>
+              </div>
+              <div class="col-6 text-right pr-0">
+                <button class="btn ">Forgot Password?</button>
+              </div>
+
+            </div>
+            <div class="register-callout mt-3 pt-1">
+              Need an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close" data-toggle="modal"
+                data-target="#registerModal">Sign up now!</button>
+            </div>
+
+
           </div>
-          <div class="modal-body pb-0">
-            <form id="login-form" class="p-0 justify-content-center">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="ModalLabel">Create a workpad account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0">
+          <form id="register-form" class="p-0 justify-content-center">
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Name" type="email">
+            </div>
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Email" type="email">
+            </div>
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Password" type="password">
+            </div>
+
+            <div class="form-group input-group-lg py-1">
+              <input class="border rounded form-control" placeholder="Confirm password" type="password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer pt-0 pl-0">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <button type="button" form="register-form" class="btn btn-lg btn-primary"
+                  onclick="location.href='dashboard.html';">Create account</button>
+              </div>
+
+            </div>
+            <div class="register-callout mt-3 pt-1">
+              Already have an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close"
+                data-toggle="modal" data-target="#loginModal">Sign in now!</button>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content container mt-5">
+
+    <h1 class="text-center">workpad</h1>
+
+    <div class="row mt-1 px-5 justify-content-center">
+      <div class="row flex-row">
+        <div class="about col-lg-6 col-xs-12 flex text-center mt-5">
+          <h3 id="about">About Us</h3>
+          <div class="text-left py-4">
+            <h6 class="about-text py-2 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</h6>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-12 flex mt-5 justify-content-center">
+          <div class="about col-12 text-center">
+            <h3 id="contact">Contact</h3>
+          </div>
+          <div class="py-4 text-center">
+
+            <form class="p-0 justify-content-center">
+
+              <div class="form-group input-group-lg py-1">
+                <input class="border rounded form-control" placeholder="Name" type="text">
+              </div>
 
               <div class="form-group input-group-lg py-1">
                 <input class="border rounded form-control" placeholder="Email" type="email">
               </div>
 
               <div class="form-group input-group-lg py-1">
-                <input class="border rounded form-control" placeholder="Password" type="password">
+                <textarea class="border rounded form-control" placeholder="Message"></textarea>
               </div>
-
+              <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
             </form>
           </div>
-          <div class="modal-footer pt-0 pl-0">
-            <div class="col">
-              <div class="row">
-                <div class="col-6">
-                  <button type="button" form="login-form" class="btn btn-lg btn-primary" onclick="location.href='dashboard.html';">Sign In</button>
-                </div>
-                <div class="col-6 text-right pr-0">
-                  <button class="btn ">Forgot Password?</button>
-                </div>
 
-              </div>
-              <div class="register-callout mt-3 pt-1">
-                Need an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close"
-                  data-toggle="modal" data-target="#registerModal">Sign up now!</button>
-              </div>
-
-
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-        <!-- Register Modal -->
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title font-weight-bold" id="ModalLabel">Create a workpad account</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body pb-0">
-              <form id="register-form" class="p-0 justify-content-center">
-  
-                <div class="form-group input-group-lg py-1">
-                  <input class="border rounded form-control" placeholder="Name" type="email">
-                </div>
-                <div class="form-group input-group-lg py-1">
-                  <input class="border rounded form-control" placeholder="Email" type="email">
-                </div>
-  
-                <div class="form-group input-group-lg py-1">
-                  <input class="border rounded form-control" placeholder="Password" type="password">
-                </div>
-  
-                <div class="form-group input-group-lg py-1">
-                  <input class="border rounded form-control" placeholder="Confirm password" type="password">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer pt-0 pl-0">
-              <div class="col">
-                <div class="row">
-                  <div class="col-6">
-                    <button type="button" form="register-form" class="btn btn-lg btn-primary" onclick="location.href='dashboard.html';">Create account</button>
-                  </div>
-  
-                </div>
-                <div class="register-callout mt-3 pt-1">
-                  Already have an account? <button class="btn pl-1 pt-0" data-dismiss="modal" aria-label="Close"
-                    data-toggle="modal" data-target="#loginModal">Sign in now!</button>
-                </div>
-  
-  
-              </div>
-  
-  
-            </div>
-          </div>
         </div>
       </div>
 
-  <div class="container mt-5">
+      <div class="row mt-5">
+        <div class="about col-12 text-center">
+          <h3 id="help">FAQ</h3>
+        </div>
 
-    <h1 class="text-center">workpad</h1>
+        <div class="container faq p-5">
+          <div class="question">
+            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat.</h6>
+          </div>
+          <div class="answer py-4">
+            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat.</h6>
+          </div>
+        </div>
 
-    <div class="row mt-5 px-5 justify-content-center">
-      <div class="about col-12 text-center">
-        <h3 id="about">About</h3>
-        <h6 class="about-text py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h6>
       </div>
+
       <div class="row py-4 text-center">
-        <div class="col">
-          <img  class="rounded-circle border" src="./images/claudio.jpg" style="width:100px;" alt="Responsive image">
-          <h6 class="pt-3">Cláudio Lemos</h6>
+        <div class="about col-12 text-center">
+          <h3 id="team">Team</h3>
         </div>
-        <div class="col">
-          <img class="rounded-circle border" src="./images/fernando.jpg" style="width:100px;" alt="Responsive image">
-          <h6 class="pt-3">Fernando Alves</h6>
+        <div class="row my-3">
+          <div class="col">
+            <img class="rounded-circle border" src="./images/claudio.jpg" style="width:100px;" alt="Responsive image">
+            <h6 class="pt-3">Cláudio Lemos</h6>
+          </div>
+          <div class="col">
+            <img class="rounded-circle border" src="./images/fernando.jpg" style="width:100px;" alt="Responsive image">
+            <h6 class="pt-3">Fernando Alves</h6>
+          </div>
+          <div class="col">
+            <img class="rounded-circle border" src="./images/joao.jpg" style="width:100px;" alt="Responsive image">
+            <h6 class="pt-3">João Carlos Maduro</h6>
+          </div>
+          <div class="col">
+            <img class="rounded-circle border" src="./images/pedro.jpg" style="width:100px;" alt="Responsive image">
+            <h6 class="pt-3">Pedro Gonçalves</h6>
+          </div>
         </div>
-        <div class="col">
-          <img class="rounded-circle border" src="./images/joao.jpg" style="width:100px;" alt="Responsive image">
-          <h6 class="pt-3">João Carlos Maduro</h6>
-        </div>
-        <div class="col">
-          <img class="rounded-circle border" src="./images/pedro.jpg" style="width:100px;" alt="Responsive image">
-          <h6 class="pt-3">Pedro Gonçalves</h6>
-        </div>
+
       </div>
     </div>
 
-    <div class="row mt-5 justify-content-center">
-      <div class="about col-12 text-center">
-        <h3 id="contact">Contact</h3>
-      </div>
-      <div class="py-4 text-center">
 
-        <form class="p-0 justify-content-center">
 
-          <div class="form-group input-group-lg py-1">
-            <input class="border rounded form-control" placeholder=" Name" type="text">
-          </div>
 
-          <div class="form-group input-group-lg py-1">
-            <input class="border rounded form-control" placeholder=" Email" type="email">
-          </div>
-
-          <div class="form-group input-group-lg py-1">
-            <textarea class="border rounded form-control" placeholder=" Message"></textarea>
-          </div>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Submit</button>
-        </form>
-      </div>
-
-    </div>
-
-    <div class="row mt-5">
-      <div class="about col-12 text-center">
-        <h3 id="help">Help</h3>
-      </div>
-
-      <div class="container faq p-5">
-        <div class="question">
-          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h6>
-        </div>
-        <div class="answer py-4">
-          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h6>
-        </div>
-      </div>
-
-    </div>
 
   </div>
 
