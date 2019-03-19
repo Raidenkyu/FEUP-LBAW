@@ -61,12 +61,30 @@ footer {
   text-align: right;
 }
 
+.question{
+  border-color:#A5ABAB;
+  background-color: #A5ABAB;
+}
+
+.question:hover{
+  cursor: pointer;
+}
+
+.answer{
+  border-color:#4894DD;
+  background-color: #4894DD;
+}
+
 .question::before{
   font-weight: 600;
-  content: 'Question: '
+  content: 'Question: ';
+  padding-bottom: 1em;
+  padding-left: 1em;
 }
 
 .answer::before{
+  padding-bottom: 1em;
+  padding-right: 1em;
   font-weight: 600;
   content: 'Answer: '
 }
@@ -77,7 +95,7 @@ footer {
 
 @media (max-width: 768px){
   .about{
-    
+
   }
 }
 
