@@ -59,6 +59,11 @@ form  {
     min-width: 100px;
 }
 
+.projects-table, .users-table{
+  background-color: white;
+  border-radius: 10px;
+}
+
 @media(max-width: 567px){
     .dashboard-title {
         text-align: center;
@@ -66,9 +71,13 @@ form  {
     .register-title {
         font-size: 1.75em;
     }
-  
+
     .workpad-logo {
         width: 55%;
         height: 40%;
     }
+}
+
+.users-table, .projects-table{
+  margin: 0 1em 1em 1em;
 }
