@@ -28,7 +28,7 @@ CREATE TABLE member (
     about text,
     description text,
     location text,
-    phone_number INTEGER CONSTRAINT user_phone_uk UNIQUE,
+    phone_number INTEGER,
     region_code INTEGER,
     banned BOOLEAN DEFAULT FALSE
 );
@@ -76,7 +76,7 @@ CREATE TABLE assignTo (
 
 
 create TABLE tasklist (
-    id_task INTEGER PRIMARY KEY REFERENCES task (id_task) ON UPDATE CASCADE,
+    id_task INTEGER PRIMARY KEY REFERENCES task (id_task) ON UPDATE CASCADE
 
 );
 
