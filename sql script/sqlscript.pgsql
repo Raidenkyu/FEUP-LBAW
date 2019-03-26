@@ -5,7 +5,8 @@ DROP TYPE IF EXISTS Color CASCADE;
 
 -- Drop Tables
 
-DROP TABLE IF EXISTS member, project, projectMember, task CASCADE;
+DROP TABLE IF EXISTS member, defaultAuth, googleAuth, project, projectMember, task, assignTo,
+tasklist, subtask, taskComment, forum, forumComment, notification, admin CASCADE;
 
 -- Types
  
@@ -30,6 +31,16 @@ CREATE TABLE member (
     phone_number INTEGER CONSTRAINT user_phone_uk UNIQUE,
     region_code INTEGER,
     banned BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE defaultAuth (
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE googleAuth (
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
+    password TEXT NOT NULL
 );
 
 CREATE TABLE project (
@@ -58,8 +69,63 @@ CREATE TABLE task (
     issue text
 );
 
+CREATE TABLE assignTo (
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE
+);
 
 
+create TABLE tasklist (
+    id_task INTEGER PRIMARY KEY REFERENCES task (id_task) ON UPDATE CASCADE,
+
+);
+
+CREATE TABLE subtask(
+    id_subtask INTEGER PRIMARY KEY,
+    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE taskComment (
+    id_task_comment SERIAL PRIMARY KEY,
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
+    content text NOT NULL,
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
+
+CREATE TABLE forum (
+    id_forum SERIAL PRIMARY KEY,
+    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
+    topic text NOT NULL
+);
+
+
+
+CREATE TABLE forumComment (
+    id_forum_comment SERIAL PRIMARY KEY,
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_forum INTEGER REFERENCES forum (id_forum) ON UPDATE CASCADE,
+    content text NOT NULL,
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
+
+CREATE TABLE notification (
+    id_notification SERIAL PRIMARY KEY,
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    content text NOT NULL,
+    interactable BOOLEAN NOT NULL
+
+);
+
+CREATE TABLE admin (
+    id_admin SERIAL PRIMARY KEY,
+    username text NOT NULL CONSTRAINT admin_name UNIQUE,
+    password text NOT NULL
+);
 
 
 
