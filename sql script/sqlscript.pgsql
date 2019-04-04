@@ -5,7 +5,7 @@ DROP TYPE IF EXISTS Color CASCADE;
 
 -- Drop Tables
 
-DROP TABLE IF EXISTS member, defaultAuth, googleAuth, project, projectMember, task, assignedTo, subtask, taskComment, forum, forumComment, notification, admin CASCADE;
+DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin CASCADE;
 
 -- Types
  
