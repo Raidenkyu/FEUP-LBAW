@@ -1,3 +1,19 @@
+-- deletes (order is important!)
+
+DELETE FROM admin;
+DELETE FROM subtask;
+DELETE FROM task_comment;
+DELETE FROM forum_comment;
+DELETE FROM default_auth;
+DELETE FROM google_auth;
+DELETE FROM project_member;
+DELETE FROM assigned_to;
+DELETE FROM task;
+DELETE FROM forum;
+DELETE FROM project;
+DELETE FROM notification;
+DELETE FROM member;
+
 -- member (id_member, name, username, email, about, description, location, phone_number, region_code, banned)
 
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(1, 'Cláudio Lemos', 'claudiolemos', 'claudio@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000001', '351', false);

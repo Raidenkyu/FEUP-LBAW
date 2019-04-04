@@ -75,7 +75,7 @@ CREATE TABLE assigned_to (
 
 
 CREATE TABLE subtask(
-    id_subtask INTEGER PRIMARY KEY,
+    id_subtask SERIAL PRIMARY KEY,
     id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE,
     brief text NOT NULL
 );
