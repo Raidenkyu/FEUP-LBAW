@@ -167,7 +167,7 @@ INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date)
 -- notification (id_notification, id_member, content, seen, interactable, link)
 
 INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (1, 1, 'Pedro commented on your task', true, false, '/');
-INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false '/');
+INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false, '/');
 
 -- admin (id_admin, username, password)
 
