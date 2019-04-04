@@ -51,14 +51,14 @@ CREATE TABLE project (
 );
 
 CREATE TABLE project_member (
-    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     manager BOOLEAN NOT NULL
 );
 
 CREATE TABLE task (
     id_task SERIAL PRIMARY KEY,
-    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
     list_name List NOT NULL,
     name text NOT NULL,
     description text NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE subtask(
 
 CREATE TABLE task_comment (
     id_task_comment SERIAL PRIMARY KEY,
-    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
     content text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
@@ -101,7 +101,7 @@ CREATE TABLE forum (
 
 CREATE TABLE forum_comment (
     id_forum_comment SERIAL PRIMARY KEY,
-    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     id_forum INTEGER REFERENCES forum (id_forum) ON UPDATE CASCADE,
     content text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
@@ -110,7 +110,7 @@ CREATE TABLE forum_comment (
 
 CREATE TABLE notification (
     id_notification SERIAL PRIMARY KEY,
-    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
+    id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     content text NOT NULL,
     seen BOOLEAN DEFAULT FALSE NOT NULL,
     interactable BOOLEAN NOT NULL
