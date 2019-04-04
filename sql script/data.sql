@@ -166,12 +166,12 @@ INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date)
 
 -- notification (id_notification, id_member, content, seen, interactable, link)
 
-INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (1, 1, 'Pedro commented on your task', '/');
-INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', '/');
+INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (1, 1, 'Pedro commented on your task', true, false, '/');
+INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false '/');
 
 -- admin (id_admin, username, password)
 
-INSERT INTO admin (id_admin, username, password) VALUES (1, claudio, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO admin (id_admin, username, password) VALUES (2, fernando, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO admin (id_admin, username, password) VALUES (3, joao, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO admin (id_admin, username, password) VALUES (4, pedro, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO admin (id_admin, username, password) VALUES (1, 'claudio', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO admin (id_admin, username, password) VALUES (2, 'fernando', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO admin (id_admin, username, password) VALUES (3, 'joao', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO admin (id_admin, username, password) VALUES (4, 'pedro', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
