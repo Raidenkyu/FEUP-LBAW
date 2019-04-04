@@ -5,8 +5,7 @@ DROP TYPE IF EXISTS Color CASCADE;
 
 -- Drop Tables
 
-DROP TABLE IF EXISTS member, defaultAuth, googleAuth, project, projectMember, task, assignTo,
-tasklist, subtask, taskComment, forum, forumComment, notification, admin CASCADE;
+DROP TABLE IF EXISTS member, defaultAuth, googleAuth, project, projectMember, task, assignTo, subtask, taskComment, forum, forumComment, notification, admin CASCADE;
 
 -- Types
  
@@ -33,12 +32,12 @@ CREATE TABLE member (
     banned BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE defaultAuth (
+CREATE TABLE default_auth (
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     password TEXT NOT NULL
 );
 
-CREATE TABLE googleAuth (
+CREATE TABLE google_auth (
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     password TEXT NOT NULL
 );
@@ -51,7 +50,7 @@ CREATE TABLE project (
     deleted BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE projectMember (
+CREATE TABLE project_member (
     id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     manager BOOLEAN NOT NULL
@@ -60,7 +59,7 @@ CREATE TABLE projectMember (
 CREATE TABLE task (
     id_task SERIAL PRIMARY KEY,
     id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
-    --id_tasklist,   -- TODO: Se faltarem tables, dividir o tasklist em 4 para cada secçao OU nem ter a tabela tasklist
+    list_name List NOT NULL,
     name text NOT NULL,
     description text NOT NULL,
     creation_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
@@ -69,16 +68,11 @@ CREATE TABLE task (
     issue text
 );
 
-CREATE TABLE assignTo (
+CREATE TABLE assign_to (
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,
     id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE
 );
 
-
-create TABLE tasklist (
-    id_task INTEGER PRIMARY KEY REFERENCES task (id_task) ON UPDATE CASCADE,
-    list_name List NOT NULL
-);
 
 CREATE TABLE subtask(
     id_subtask INTEGER PRIMARY KEY,
@@ -88,7 +82,7 @@ CREATE TABLE subtask(
 
 
 
-CREATE TABLE taskComment (
+CREATE TABLE task_comment (
     id_task_comment SERIAL PRIMARY KEY,
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
     id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
@@ -105,7 +99,7 @@ CREATE TABLE forum (
 
 
 
-CREATE TABLE forumComment (
+CREATE TABLE forum_comment (
     id_forum_comment SERIAL PRIMARY KEY,
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
     id_forum INTEGER REFERENCES forum (id_forum) ON UPDATE CASCADE,
@@ -118,8 +112,8 @@ CREATE TABLE notification (
     id_notification SERIAL PRIMARY KEY,
     id_member INTEGER REFERENCES member (id_member) ON UPDATE CASCADE,  -- TODO: LER DOC A TENTAR PERCEBER O PORQUE DISTO
     content text NOT NULL,
+    seen BOOLEAN DEFAULT FALSE NOT NULL,
     interactable BOOLEAN NOT NULL
-
 );
 
 CREATE TABLE admin (
