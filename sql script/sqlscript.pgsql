@@ -29,7 +29,8 @@ CREATE TABLE member (
     location text,
     phone_number INTEGER,
     region_code INTEGER,
-    banned BOOLEAN DEFAULT FALSE
+    banned BOOLEAN NOT NULL DEFAULT FALSE,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE default_auth (
