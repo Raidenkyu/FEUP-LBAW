@@ -124,3 +124,24 @@ CREATE TABLE admin (
     password text NOT NULL
 );
 
+-- TRIGGERS
+
+DROP FUNCTION IF EXISTS inactive_delete_assigns_remove();
+DROP TRIGGER IF EXISTS inactive_delete_assigns_remove on member;
+
+
+CREATE OR REPLACE FUNCTION inactive_delete_assigns_remove()
+RETURNS TRIGGER AS 
+$BODY$
+begin
+DELETE FROM assigned_to WHERE id_member = NEW.id_member;
+DELETE FROM project_member WHERE id_member = NEW.id_member;
+return new;
+end;
+$BODY$
+language plpgsql;
+
+CREATE TRIGGER inactive_delete_assigns_remove
+    AFTER UPDATE ON member
+    FOR EACH ROW
+    EXECUTE PROCEDURE inactive_delete_assigns_remove();
