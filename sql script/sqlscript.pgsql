@@ -10,11 +10,14 @@ DROP TRIGGER IF EXISTS inactive_user_remove_assigns on member;
 DROP TRIGGER IF EXISTS unique_forum_titles on forum;
 DROP TRIGGER IF EXISTS delete_task on task;
 DROP TRIGGER IF EXISTS only_manager on project_member;
+DROP TRIGGER IF EXISTS make_everyone_manager on project_member;
+
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
 DROP FUNCTION IF EXISTS unique_forum_titles();
 DROP FUNCTION IF EXISTS delete_task();
 DROP FUNCTION IF EXISTS only_manager();
+DROP FUNCTION IF EXISTS make_everyone_manager();
 
 
 -- Drop Tables
@@ -202,8 +205,8 @@ CREATE OR REPLACE FUNCTION only_manager()
 RETURNS TRIGGER AS 
 $BODY$
 begin
-    IF (SELECT COUNT(*) FROM(SELECT id_member FROM project_member WHERE id_project = NEW.id_project AND manager = true) AS id) = 1 THEN
-        RAISE 'Cannot remove only manager';
+    IF (SELECT COUNT(*) FROM(SELECT id_member FROM project_member WHERE id_project = NEW.id_project AND manager = true) AS id) = 0 THEN
+        RAISE EXCEPTION 'Cannot remove only manager';
     END IF;
 return new;
 end;
@@ -211,9 +214,29 @@ $BODY$
 language plpgsql;
 
 CREATE TRIGGER only_manager
-    BEFORE UPDATE ON project_member
+    AFTER UPDATE ON project_member
     FOR EACH ROW
     EXECUTE PROCEDURE only_manager();
+
+
+
+CREATE OR REPLACE FUNCTION make_everyone_manager()
+RETURNS TRIGGER AS
+$BODY$
+begin
+    IF (old.manager = true AND (SELECT count(*) FROM project_member WHERE id_project = old.id_project AND manager = true) = 0) THEN
+    UPDATE project_member SET manager = true WHERE id_project = old.id_project;
+    END IF;
+return old;
+end;
+$BODY$
+language plpgsql;
+
+
+CREATE TRIGGER make_everyone_manager
+    AFTER DELETE ON project_member
+    FOR EACH ROW
+    EXECUTE PROCEDURE make_everyone_manager();
 
 
 
