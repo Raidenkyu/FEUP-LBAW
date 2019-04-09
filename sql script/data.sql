@@ -15,7 +15,6 @@ DELETE FROM notification;
 DELETE FROM member;
 
 -- member (id_member, name, username, email, about, description, location, phone_number, region_code, banned)
-
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(1, 'Cláudio Lemos', 'claudiolemos', 'claudio@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000001', '351', false);
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(2, 'Fernando Alves', 'fernandoalves', 'fernando@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000002', '351', false);
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(3, 'João Maduro', 'joaomaduro', 'joao@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000003', '351', false);
@@ -37,6 +36,9 @@ INSERT INTO member (id_member, name, username, email, about, description, locati
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(19, 'Paula Rocha', 'paularocha', 'paula@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000019', '351', false);
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(20, 'Beatriz Henriques', 'beatrizhenriques', 'beatriz@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000020', '351', false);
 
+SELECT setval(pg_get_serial_sequence('member', 'id_member'), (SELECT MAX(id_member) FROM member));
+
+
 -- default_auth (id_member, password)
 INSERT INTO default_auth (id_member, password) VALUES(1, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO default_auth (id_member, password) VALUES(2, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
@@ -48,6 +50,7 @@ INSERT INTO default_auth (id_member, password) VALUES(7, '03AC674216F3E15C761EE1
 INSERT INTO default_auth (id_member, password) VALUES(8, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO default_auth (id_member, password) VALUES(9, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO default_auth (id_member, password) VALUES(10, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+
 
 -- google_auth (id_member, password)
 INSERT INTO google_auth (id_member, password) VALUES(11, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
@@ -61,6 +64,7 @@ INSERT INTO google_auth (id_member, password) VALUES(18, '03AC674216F3E15C761EE1
 INSERT INTO google_auth (id_member, password) VALUES(19, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO google_auth (id_member, password) VALUES(20, '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 
+
 -- project (id_project, name, color, end_date, deleted)
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(1, 'workpad', 'Green', '2019-06-02 12:00:00', false);
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(2, 'NIFEUP', 'Orange', '2019-06-02 12:00:00', false);
@@ -68,8 +72,10 @@ INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(3, 'IEEE
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(4, 'AEFEUP', 'Yellow', '2019-06-02 12:00:00', false);
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(5, 'Tuga POP', 'Red', '2019-06-02 12:00:00', false);
 
--- project_member (id_project, id_member, manager)
+SELECT setval(pg_get_serial_sequence('project', 'id_project'), (SELECT MAX(id_project) FROM project));
 
+
+-- project_member (id_project, id_member, manager)
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 1, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 2, true);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 3, false);
@@ -102,8 +108,8 @@ INSERT INTO project_member (id_project, id_member, manager) VALUES(4, 9, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(4, 10, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(5, 1, true);
 
--- task (id_task, id_project, list_name, name, description, creation_date, due_date, issue)
 
+-- task (id_task, id_project, list_name, name, description, creation_date, due_date, issue)
 INSERT INTO task (id_task, id_project, list_name, name, description, creation_date, due_date, issue) VALUES(1, 1, 'To Do', 'Create database', null, '2019-04-01 12:00:00', '2019-06-02 12:00:00', null);
 INSERT INTO task (id_task, id_project, list_name, name, description, creation_date, due_date, issue) VALUES(2, 1, 'In Progress', 'Storyboards', null, '2019-04-01 12:00:00', '2019-06-02 12:00:00', null);
 INSERT INTO task (id_task, id_project, list_name, name, description, creation_date, due_date, issue) VALUES(3, 1, 'Pending Approval', 'Create workpad logo', null, '2019-04-01 12:00:00', '2019-06-02 12:00:00', null);
@@ -125,8 +131,10 @@ INSERT INTO task (id_task, id_project, list_name, name, description, creation_da
 INSERT INTO task (id_task, id_project, list_name, name, description, creation_date, due_date, issue) VALUES(19, 5, 'Pending Approval', 'Create logo', null, '2019-04-01 12:00:00', null, null);
 INSERT INTO task (id_task, id_project, list_name, name, description, creation_date, due_date, issue) VALUES(20, 5, 'Done', 'Buy domain', null, '2019-04-01 12:00:00', null, null);
 
--- assigned_to (id_member, id_task)
+SELECT setval(pg_get_serial_sequence('task', 'id_task'), (SELECT MAX(id_task) FROM task));
 
+
+-- assigned_to (id_member, id_task)
 INSERT INTO assigned_to (id_member, id_task) VALUES (1,1);
 INSERT INTO assigned_to (id_member, id_task) VALUES (2,2);
 INSERT INTO assigned_to (id_member, id_task) VALUES (3,3);
@@ -148,20 +156,24 @@ INSERT INTO assigned_to (id_member, id_task) VALUES (1,18);
 INSERT INTO assigned_to (id_member, id_task) VALUES (1,19);
 INSERT INTO assigned_to (id_member, id_task) VALUES (1,20);
 
--- subtask (id_subtask, id_task, brief)
 
+-- subtask (id_subtask, id_task, brief)
 INSERT INTO subtask (id_subtask, id_task, brief) VALUES (1, 3, 'Sketch');
 INSERT INTO subtask (id_subtask, id_task, brief) VALUES (2, 3, 'Vectorize');
 INSERT INTO subtask (id_subtask, id_task, brief) VALUES (3, 13, 'Contact booking agencies');
 INSERT INTO subtask (id_subtask, id_task, brief) VALUES (4, 13, 'Ask for price');
 INSERT INTO subtask (id_subtask, id_task, brief) VALUES (5, 13, 'Email rider');
 
--- task_comment (id_task_comment, id_member, id_task, content, date)
+SELECT setval(pg_get_serial_sequence('subtask', 'id_subtask'), (SELECT MAX(id_subtask) FROM subtask));
 
+
+-- task_comment (id_task_comment, id_member, id_task, content, date)
 INSERT INTO task_comment (id_task_comment, id_member, id_task, content, date) VALUES (1, 1, 3, 'Make the w bigger. The rest is perfect. Good work!', '2019-03-25 12:00:00');
 
--- forum (id_forum, id_project, topic)
+SELECT setval(pg_get_serial_sequence('task_comment', 'id_task_comment'), (SELECT MAX(id_task_comment) FROM task_comment));
 
+
+-- forum (id_forum, id_project, topic)
 INSERT INTO forum (id_forum, id_project, topic) VALUES (1, 1, 'General');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (2, 2, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (3, 2, 'Team 2');
@@ -170,8 +182,10 @@ INSERT INTO forum (id_forum, id_project, topic) VALUES (5, 3, 'Team 2');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (6, 4, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (7, 4, 'Team 2');
 
--- forum_comment (id_forum_comment, id_member, id_forum, content, date)
+SELECT setval(pg_get_serial_sequence('forum', 'id_forum'), (SELECT MAX(id_forum) FROM forum));
 
+
+-- forum_comment (id_forum_comment, id_member, id_forum, content, date)
 INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date) VALUES (1, 1, 1, 'Hello everyone!', '2019-03-25 12:00:00');
 INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date) VALUES (2, 7, 2, 'Hello everyone!', '2019-03-25 12:00:00');
 INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date) VALUES (3, 7, 3, 'Hello everyone!', '2019-03-25 12:00:00');
@@ -180,13 +194,17 @@ INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date)
 INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date) VALUES (6, 2, 6, 'Hello everyone!', '2019-03-25 12:00:00');
 INSERT INTO forum_comment (id_forum_comment, id_member, id_forum, content, date) VALUES (7, 2, 7, 'Hello everyone!', '2019-03-25 12:00:00');
 
--- notification (id_notification, id_member, content, seen, interactable, link)
+SELECT setval(pg_get_serial_sequence('forum_comment', 'id_forum_comment'), (SELECT MAX(id_forum_comment) FROM forum_comment));
 
+
+-- notification (id_notification, id_member, content, seen, interactable, link)
 INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (1, 1, 'Pedro commented on your task', true, false, '/');
 INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false, '/');
 
--- admin (id_admin, username, password)
+SELECT setval(pg_get_serial_sequence('notification', 'id_notification'), (SELECT MAX(id_notification) FROM notification));
 
+
+-- admin (id_admin, username, password)
 INSERT INTO admin (id_admin, username, password) VALUES (1, 'claudio', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO admin (id_admin, username, password) VALUES (2, 'fernando', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO admin (id_admin, username, password) VALUES (3, 'joao', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
