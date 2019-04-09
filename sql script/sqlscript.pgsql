@@ -7,8 +7,10 @@ DROP TYPE IF EXISTS Color CASCADE;
 
 
 DROP TRIGGER IF EXISTS inactive_user_remove_assigns on member;
+DROP TRIGGER IF EXISTS unique_forum_titles on forum;
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
+DROP FUNCTION IF EXISTS unique_forum_titles();
 
 
 -- Drop Tables
@@ -138,12 +140,12 @@ RETURNS TRIGGER AS
 $BODY$
 begin
 IF NEW.banned = true THEN
-DELETE FROM assigned_to WHERE id_member = NEW.id_member;
-DELETE FROM project_member WHERE id_member = NEW.id_member;
+    DELETE FROM assigned_to WHERE id_member = NEW.id_member;
+    DELETE FROM project_member WHERE id_member = NEW.id_member;
 END IF;
 IF NEW.deleted = true THEN
-DELETE FROM assigned_to WHERE id_member = NEW.id_member;
-DELETE FROM project_member WHERE id_member = NEW.id_member;
+    DELETE FROM assigned_to WHERE id_member = NEW.id_member;
+    DELETE FROM project_member WHERE id_member = NEW.id_member;
 END IF;
 return new;
 end;
@@ -156,5 +158,21 @@ CREATE TRIGGER inactive_user_remove_assigns
     EXECUTE PROCEDURE inactive_user_remove_assigns();
 
 
+CREATE OR REPLACE FUNCTION unique_forum_titles()
+RETURNS TRIGGER AS 
+$BODY$
+begin
+IF EXISTS (SELECT * FROM forum WHERE id_project = NEW.id_project AND topic = NEW.topic) THEN
+    RAISE EXCEPTION 'A topic with the same name already exists';
+END IF;
+return new;
+end;
+$BODY$
+language plpgsql;
+
+CREATE TRIGGER unique_forum_titles
+    BEFORE INSERT ON forum
+    FOR EACH ROW
+    EXECUTE PROCEDURE unique_forum_titles();
 
 
