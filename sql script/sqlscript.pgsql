@@ -9,10 +9,12 @@ DROP TYPE IF EXISTS Color CASCADE;
 DROP TRIGGER IF EXISTS inactive_user_remove_assigns on member;
 DROP TRIGGER IF EXISTS unique_forum_titles on forum;
 DROP TRIGGER IF EXISTS delete_task on task;
+DROP TRIGGER IF EXISTS only_manager on project_member;
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
 DROP FUNCTION IF EXISTS unique_forum_titles();
 DROP FUNCTION IF EXISTS delete_task();
+DROP FUNCTION IF EXISTS only_manager();
 
 
 -- Drop Tables
@@ -195,6 +197,23 @@ CREATE TRIGGER delete_task
     FOR EACH ROW
     EXECUTE PROCEDURE delete_task();
 
+
+CREATE OR REPLACE FUNCTION only_manager()
+RETURNS TRIGGER AS 
+$BODY$
+begin
+    IF (SELECT COUNT(*) FROM(SELECT id_member FROM project_member WHERE id_project = NEW.id_project AND manager = true) AS id) = 1 THEN
+        RAISE 'Cannot remove only manager';
+    END IF;
+return new;
+end;
+$BODY$
+language plpgsql;
+
+CREATE TRIGGER only_manager
+    BEFORE UPDATE ON project_member
+    FOR EACH ROW
+    EXECUTE PROCEDURE only_manager();
 
 
 
