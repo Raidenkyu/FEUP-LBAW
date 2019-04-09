@@ -1,11 +1,12 @@
 CREATE OR REPLACE FUNCTION make_everyone_manager()
 RETURN TRIGGER AS
 $BODY$
-BEGIN
+begin
     IF (old.manager = true)
     UPDATE project_member SET manager = true where id_project = old.id_project
     END IF;
-END;
+return new;
+end;
 $BODY$
 language plpgsql;
 
