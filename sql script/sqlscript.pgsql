@@ -137,7 +137,18 @@ CREATE TABLE admin (
 
 -- INDEXES
 
+CREATE INDEX developer_project ON project_member (id_project,manager);
+CREATE INDEX task_project ON task USING hash(id_project);
+CREATE INDEX member_task ON assigned_to USING hash(id_task);
+CREATE INDEX task_member ON assigned_to USING hash(id_member);
+CREATE INDEX subtask_task ON subtask USING hash(id_task);
+CREATE INDEX comment_task ON task_comment USING hash(id_task);
+CREATE INDEX forum_project ON forum USING hash(id_project);
+CREATE INDEX comment_forum ON forum_comment USING hash(id_forum);
+CREATE INDEX notification_member ON notification USING hash(id_member);
 
+CREATE INDEX search_idx_name ON MEMBER USING GIST (to_tsvector('english', ' ' || name || username));
+CREATE INDEX search_idx_desc ON MEMBER USING GIST (to_tsvector('english', ' ' || about || description || location));
 
 
 -- TRIGGERS and UDFs
