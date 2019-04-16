@@ -8,14 +8,12 @@ DROP TYPE IF EXISTS Color CASCADE;
 
 DROP TRIGGER IF EXISTS inactive_user_remove_assigns on member;
 DROP TRIGGER IF EXISTS unique_forum_titles on forum;
-DROP TRIGGER IF EXISTS delete_task on task;
 DROP TRIGGER IF EXISTS only_manager on project_member;
 DROP TRIGGER IF EXISTS make_everyone_manager on project_member;
 
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
 DROP FUNCTION IF EXISTS unique_forum_titles();
-DROP FUNCTION IF EXISTS delete_task();
 DROP FUNCTION IF EXISTS only_manager();
 DROP FUNCTION IF EXISTS make_everyone_manager();
 
@@ -193,23 +191,6 @@ CREATE TRIGGER unique_forum_titles
     FOR EACH ROW
     EXECUTE PROCEDURE unique_forum_titles();
 
-
-CREATE OR REPLACE FUNCTION delete_task()
-RETURNS TRIGGER AS 
-$BODY$
-begin
-    DELETE FROM assigned_to WHERE OLD.id_task = assigned_to.id_task;
-    DELETE FROM subtask WHERE OLD.id_task = subtask.id_task;
-    DELETE FROM task_comment WHERE OLD.id_task = task_comment.id_task;
-return new;
-end;
-$BODY$
-language plpgsql;
-
-CREATE TRIGGER delete_task
-    BEFORE DELETE ON task
-    FOR EACH ROW
-    EXECUTE PROCEDURE delete_task();
 
 
 CREATE OR REPLACE FUNCTION only_manager()
