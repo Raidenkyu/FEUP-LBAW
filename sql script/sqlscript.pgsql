@@ -10,17 +10,19 @@ DROP TRIGGER IF EXISTS inactive_user_remove_assigns on member;
 DROP TRIGGER IF EXISTS unique_forum_titles on forum;
 DROP TRIGGER IF EXISTS only_manager on project_member;
 DROP TRIGGER IF EXISTS make_everyone_manager on project_member;
+DROP TRIGGER IF EXISTS create_invite_notification on invite;
 
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
 DROP FUNCTION IF EXISTS unique_forum_titles();
 DROP FUNCTION IF EXISTS only_manager();
 DROP FUNCTION IF EXISTS make_everyone_manager();
+DROP FUNCTION IF EXISTS create_invite_notification();
 
 
 -- Drop Tables
 
-DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin CASCADE;
+DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin, invite CASCADE;
 
 
 
@@ -114,6 +116,12 @@ CREATE TABLE forum_comment (
     id_forum INTEGER NOT NULL REFERENCES forum (id_forum) ON UPDATE CASCADE,
     content text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
+CREATE TABLE invite (
+    id_invite SERIAL PRIMARY KEY,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE
 );
 
 CREATE TABLE notification (
@@ -231,4 +239,18 @@ CREATE TRIGGER make_everyone_manager
     EXECUTE PROCEDURE make_everyone_manager();
 
 
+CREATE OR REPLACE FUNCTION create_invite_notification()
+RETURNS TRIGGER AS
+$BODY$
+begin
+    INSERT INTO notification (id_member, content, interactable) VALUES (NEW.id_member, ('You have been invited to Join Project ' || (SELECT max(name) FROM project WHERE id_project = NEW.id_project)), true);
+return new;
+end;
+$BODY$
+language plpgsql;
 
+
+CREATE TRIGGER create_invite_notification
+    AFTER INSERT ON invite
+    FOR EACH ROW
+    EXECUTE PROCEDURE create_invite_notification();

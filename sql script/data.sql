@@ -1,6 +1,7 @@
 -- deletes (order is important!)
 
 DELETE FROM admin;
+DELETE FROM invite;
 DELETE FROM subtask;
 DELETE FROM task_comment;
 DELETE FROM forum_comment;
@@ -202,6 +203,16 @@ INSERT INTO notification (id_notification, id_member, content, seen, interactabl
 INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false, '/');
 
 SELECT setval(pg_get_serial_sequence('notification', 'id_notification'), (SELECT MAX(id_notification) FROM notification));
+
+
+-- invite (id_invite, id_member, id_project)
+
+INSERT INTO invite (id_invite, id_member, id_project) VALUES (1,3,2);
+INSERT INTO invite (id_invite, id_member, id_project) VALUES (2,9,2);
+INSERT INTO invite (id_invite, id_member, id_project) VALUES (3,12,2);
+INSERT INTO invite (id_invite, id_member, id_project) VALUES (4,15,2);
+
+SELECT setval(pg_get_serial_sequence('invite', 'id_invite'), (SELECT MAX(id_invite) FROM invite));
 
 
 -- admin (id_admin, username, password)
