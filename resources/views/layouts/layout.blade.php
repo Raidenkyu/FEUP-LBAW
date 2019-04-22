@@ -6,11 +6,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-  <link rel="stylesheet" href="./../../../html/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./../../../html/css/forum_project.css">
-  <script src="./../../../html/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="./../../../html/js/bootstrap.bundle.min.js"></script>
-  <script src="./../../../html/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/forum_project.css') }}">
+  <script type="text/javascript">
+    // Fix for Firefox autofocus CSS bug
+    // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
+</script>
+  <script type="text/html" src={{ asset('js/jquery-3.2.1.slim.min.js') }}></script>
+  
+  <!--<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  -->
+  
+  <script src={{ asset('js/bootstrap.bundle.min.js') }} ></script>
+  <script src={{ asset('js/bootstrap.min.js') }} ></script>
+
+
 </head>
 
 <body>

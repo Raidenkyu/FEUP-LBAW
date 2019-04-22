@@ -1,0 +1,74 @@
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+    background-color: #F5F5F5;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto',sans-serif;
+    color: #2b3e50;
+}
+
+.navbar {
+    background-color: #4894dd;
+}
+
+.btn-primary {
+    border: 0px;
+    background-color: #4894dd;
+}
+
+.btn-primary:hover {
+    border-color: white;
+    background-color: #4894dd;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #4894dd;
+    border-color: white;
+}
+
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:visited {
+    background-color: #4894dd !important;
+    border-color: white;
+    color: white;
+}
+
+.page-container {
+    min-height: calc(100vh - 130px);
+}
+
+form  {
+    width: 75%;
+}
+
+.workpad-logo {
+    width: 25%;
+    height: 25%;
+}
+
+.ban {
+  width: 30px;
+}
+
+.login-block {
+    min-width: 270px;
+    max-width: 600px;
+}
+
+.login-btn {
+    min-width: 100px;
+}
+
+@media(max-width: 567px){
+    .register-title {
+        font-size: 1.75em;
+    }
+    .form-group input{
+        text-align: center;
+    }
+    .workpad-logo {
+        width: 55%;
+        height: 40%;
+    }
+}
