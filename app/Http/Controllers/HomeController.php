@@ -15,8 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        #return view('auth.login');
-         return redirect('login');
+        return view('auth.login');
+        # return redirect('login');
         #return view('pages.homepage');
     }
 }
