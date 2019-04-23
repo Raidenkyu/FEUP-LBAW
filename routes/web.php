@@ -45,6 +45,7 @@ Route::post('register', 'Auth\RegisterController@register');
 // Projects
 
 Route::get('projects', 'ProjectsController@index');
+Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Profile
 

@@ -12,7 +12,7 @@ class ProjectsController extends Controller
 
 
     public function index(){
-        
+
         if (!Auth::check()) return redirect('/');
 
         $user = Auth::user();
@@ -20,13 +20,23 @@ class ProjectsController extends Controller
         echo '<script>console.log('.json_encode($user).')</script>';
 
         #$this->authorize('list', Card::class);
-  
+
         #$cards = Auth::user()->cards()->orderBy('id')->get();
-        
+
         $my_projects = \App\Project::all();  //TODO: Get só dos projects em o user é manager
         $projects = \App\Project::all();    //TODO: Get de todos projects em que o user participa
 
         return view('pages.projects', ['projects' => $projects, 'my_projects' => $my_projects]);
+    }
+
+    public function dashboard($id){
+      // if (!Auth::check()) return redirect('/');
+      // $user = Auth::user();
+      $todo = \App\Task::whereIdProject($id)->whereListName('To Do')->get();
+      $in_progress = \App\Task::whereIdProject($id)->whereListName('In Progress')->get();
+      $pending = \App\Task::whereIdProject($id)->whereListName('Pending Approval')->get();
+      $done = \App\Task::whereIdProject($id)->whereListName('Done')->get();
+      return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done]);
     }
 
     public static function colorToHex($color){

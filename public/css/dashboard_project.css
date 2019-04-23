@@ -371,18 +371,8 @@ footer {
     margin-top: 0.2em;
 }
 
-
-.list-col:nth-child(1){
-    height: 185px;
-}
-.list-col:nth-child(2){
-    height: 220px;
-}
-.list-col:nth-child(3){
-    height: 105px;
-}
-.list-col:nth-child(4){
-    height: 185px;
+.list-col{
+  height: 100%;
 }
 
 .project-title-line{
