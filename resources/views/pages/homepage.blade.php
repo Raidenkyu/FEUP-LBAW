@@ -18,11 +18,11 @@
             {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
-            <input id="email" type="email" name="email" class="border rounded form-control" placeholder="Email">
+            <input id="email" type="email" name="email" class="border rounded form-control" placeholder="Email" required autofocus>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input id="password" type="password" name="password" class="border rounded form-control" placeholder="Password" type="password">
+            <input id="password" type="password" name="password" class="border rounded form-control" placeholder="Password" type="password" required>
           </div>
 
         </form>
@@ -69,18 +69,18 @@
           {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
-            <input id="name" type="text" name="name" class="border rounded form-control" placeholder="Name" required>
+            <input id="name" type="text" name="name" class="border rounded form-control" placeholder="Name" required autofocus>
           </div>
           <div class="form-group input-group-lg py-1">
             <input id="email" type="email" name="email" class="border rounded form-control" placeholder="Email" required>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input id="password" type="password" name="password" class="border rounded form-control" placeholder="Password">
+            <input id="password" type="password" name="password" class="border rounded form-control" placeholder="Password" required>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input class="border rounded form-control" placeholder="Confirm password" type="password">
+            <input id="password-confirm" type="password" name="password_confirmation" class="border rounded form-control" placeholder="Confirm password" required>
           </div>
         </form>
       </div>

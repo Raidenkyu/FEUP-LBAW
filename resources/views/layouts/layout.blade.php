@@ -25,12 +25,12 @@
 
   <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Responsive image"></a>
+      <a href="{{ url('/') }}"><img src="./icons/logo.png" style="width:50px;" alt="Responsive image"></a>
     </div>
 
     <div id="sign" class="login-container">
         @if (Auth::check())
-          <span>{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span>
+          <a href="{{ url('/profile') }}"><span style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
           <button class="button btn btn-secondary" >
             <a class="button" href="{{ url('/logout') }}"> Logout </a> 
           </button>
