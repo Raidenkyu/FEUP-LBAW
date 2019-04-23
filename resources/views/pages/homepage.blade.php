@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title','TESTE')
+
 @section('content')
 <!-- Sign In Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
