@@ -24,13 +24,13 @@
     <div class="container-fluid projects-list">
 
         @foreach ($my_projects as $project)
-            <div class="card text-white mb-3 project-card mx-2" style="background-color:#2880ba;" /*TODO: Color*/>
+            <div class="card text-white mb-3 project-card mx-2" style="background-color:#{{\App\Http\Controllers\ProjectsController::colorToHex($project->color)}};" /*TODO: Color*/>
                 <div class="card-body">
                     <a href="./dashboard_project.html" /*TODO: Link*/ style="color:white;">
                         <h5>{{ $project->name }}</h5>
                     </a>
                 </div>
-            </div>    
+            </div>
         @endforeach
 
     </div>
@@ -41,15 +41,15 @@
     </div>
 
     <div class="container projects-list">
-      
+
         @foreach ($projects as $project)
-            <div class="card text-white mb-3 project-card mx-2" style="background-color:#2880ba;" /*TODO: Color*/>
+            <div class="card text-white mb-3 project-card mx-2" style="background-color:#{{\App\Http\Controllers\ProjectsController::colorToHex($project->color)}};" /*TODO: Color*/>
                 <div class="card-body">
                     <a href="./dashboard_project.html" /*TODO: Link*/ style="color:white;">
                         <h5>{{ $project->name }}</h5>
                     </a>
                 </div>
-            </div>    
+            </div>
         @endforeach
 
     </div>

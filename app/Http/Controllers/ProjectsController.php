@@ -15,9 +15,35 @@ class ProjectsController extends Controller
         return view('pages.projects', ['projects' => $projects, 'my_projects' => $my_projects]);
     }
 
-
-    public function colorToHex(){
-        //TODO: Don't know if this function goes here, but will convert the Color name to Hex
+    public static function colorToHex($color){
+      switch ($color) {
+        case 'Orange':
+          return 'f77d13';
+        case 'Yellow':
+          return 'ffcc00';
+        case 'Red':
+          return 'e82020';
+        case 'Green':
+          return '2dcc71';
+        case 'Lilac':
+          return '9c58b6';
+        case 'Sky':
+          return '4894dd';
+        case 'Blue':
+          return '2880ba';
+        case 'Purple':
+          return '7f14ad';
+        case 'Emerald':
+          return '179f85';
+        case 'Bordeaux':
+          return 'c92b1a';
+        case 'Golden':
+          return 'c45e00';
+        case 'Brown':
+          return 'c45e00';
+        default:
+          return '4894dd';
+      }
     }
 
 }

@@ -32,9 +32,9 @@
             <tbody>
               @foreach($users as $user)
                 <tr>
-                  <td><img class="ban rounded-circle" src="./images/{{$user['username']}}.jpg"></td>
-                  <td>{{$user['name']}}</td>
-                  <td>{{$user['email']}}</td>
+                  <td><img class="ban rounded-circle" src="./images/{{$user->username}}.jpg"></td>
+                  <td>{{$user->name}}</td>
+                  <td>{{$user->email}}</td>
                   <td>
                     <img class="ban" src="./icons/ban.svg">
                   </td>
@@ -62,7 +62,7 @@
             <tbody>
               @foreach($projects as $project)
                 <tr>
-                  <td>{{$project['name']}}</td>
+                  <td>{{$project->name}}</td>
                   <td>
                     <img class="ban" src="./icons/ban.svg">
                   </td>
