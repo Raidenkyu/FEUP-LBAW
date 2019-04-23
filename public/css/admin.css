@@ -63,6 +63,7 @@ form  {
 .projects-table, .users-table{
   background-color: white;
   border-radius: 10px;
+  height: 100%;
 }
 
 @media(max-width: 567px){
