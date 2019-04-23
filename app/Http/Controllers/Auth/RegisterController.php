@@ -53,10 +53,10 @@ class RegisterController extends Controller
         echo '<script>console.log("Validator")</script>';
         
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             //TODO: username
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'email' => 'required|string|email|min:3|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
