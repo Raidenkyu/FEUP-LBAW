@@ -10,6 +10,9 @@ class ProfileController extends Controller
     //
 
     public function index(){
+
+        if (!Auth::check()) return redirect('/');
+
         $user = (\App\Member::where('id_member',Auth::user()->id_member)->get())[0];
 
         //return $projects;

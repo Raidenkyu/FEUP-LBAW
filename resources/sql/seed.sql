@@ -25,49 +25,6 @@ DROP FUNCTION IF EXISTS create_invite_notification();
 DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin, invite CASCADE;
 
 
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS cards CASCADE;
-DROP TABLE IF EXISTS items CASCADE;
-
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  email VARCHAR UNIQUE NOT NULL,
-  password VARCHAR NOT NULL,
-  remember_token VARCHAR
-);
-
-CREATE TABLE cards (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  user_id INTEGER REFERENCES users NOT NULL
-);
-
-CREATE TABLE items (
-  id SERIAL PRIMARY KEY,
-  card_id INTEGER NOT NULL REFERENCES cards ON DELETE CASCADE,
-  description VARCHAR NOT NULL,
-  done BOOLEAN NOT NULL DEFAULT FALSE
-);
-
-INSERT INTO users VALUES (
-  DEFAULT,
-  'John Doe',
-  'john@example.com',
-  '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W'
-); -- Password is 1234. Generated using Hash::make('1234')
-
-INSERT INTO cards VALUES (DEFAULT, 'Things to do', 1);
-INSERT INTO items VALUES (DEFAULT, 1, 'Buy milk');
-INSERT INTO items VALUES (DEFAULT, 1, 'Walk the dog', true);
-
-INSERT INTO cards VALUES (DEFAULT, 'Things not to do', 1);
-INSERT INTO items VALUES (DEFAULT, 2, 'Break a leg');
-INSERT INTO items VALUES (DEFAULT, 2, 'Crash the car');
-
-
-
-
 -- TYPES
  
 CREATE TYPE List AS ENUM ('To Do', 'In Progress', 'Pending Approval', 'Done');
@@ -342,29 +299,29 @@ SELECT setval(pg_get_serial_sequence('member', 'id_member'), (SELECT MAX(id_memb
 
 
 -- default_auth (id_member, password)
-INSERT INTO default_auth (id_member, email, password) VALUES(1, 'claudio@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(2, 'fernando@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(3, 'joao@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(4, 'pedro@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(5, 'alexandra@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(6, 'fabio@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(7, 'duarte@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(8, 'diogo@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(9, 'carolina@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO default_auth (id_member, email, password) VALUES(10, 'ruben@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO default_auth (id_member, email, password) VALUES(1, 'claudio@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(2, 'fernando@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(3, 'joao@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(4, 'pedro@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(5, 'alexandra@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(6, 'fabio@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(7, 'duarte@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(8, 'diogo@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(9, 'carolina@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO default_auth (id_member, email, password) VALUES(10, 'ruben@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
 
 
 -- google_auth (id_member, password)
-INSERT INTO google_auth (id_member, email, password) VALUES(11, 'vitor@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(12, 'antonio@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(13, 'rita@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(14, 'daniela@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(15, 'joana@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(16, 'mariana@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(17, 'maria@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(18, 'helena@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(19, 'paula@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-INSERT INTO google_auth (id_member, email, password) VALUES(20, 'beatriz@mail.com', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+INSERT INTO google_auth (id_member, email, password) VALUES(11, 'vitor@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(12, 'antonio@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(13, 'rita@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(14, 'daniela@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(15, 'joana@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(16, 'mariana@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(17, 'maria@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(18, 'helena@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(19, 'paula@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
+INSERT INTO google_auth (id_member, email, password) VALUES(20, 'beatriz@mail.com', '$2y$10$NEtUaZvD8ZXtMIkYgMKuJuxPCdo2NM.d8ibp5eRIcXkYhY6N0.2hO');
 
 
 -- project (id_project, name, color, end_date, deleted)
