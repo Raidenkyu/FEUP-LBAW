@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'def_auth',
         'passwords' => 'users',
     ],
 
@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'def_auth' => [
+            'driver' => 'session',
+            'provider' => 'def_auths',
+        ],
     ],
 
     /*
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'def_auths' => [
+            'driver' => 'eloquent',
+            'model' => App\DefaultAuth::class,
         ],
 
         // 'users' => [

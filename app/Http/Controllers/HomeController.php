@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
     {
         # return view('auth.login');
         # return redirect('login');
+        echo '<script>console.log('.json_encode(Auth::user()).')</script>';
         return view('pages.homepage');
     }
 }
