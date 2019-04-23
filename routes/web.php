@@ -54,3 +54,7 @@ Route::get('projects', 'ProjectsController@index');
 
 Route::get('profile', 'ProfileController@index');
 
+
+// Admin
+
+Route::get('admin', 'AdminController@index');
