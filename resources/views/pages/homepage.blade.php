@@ -14,14 +14,15 @@
         </button>
       </div>
       <div class="modal-body pb-0">
-        <form id="login-form" class="p-0 justify-content-center">
+        <form id="login-form" class="p-0 justify-content-center" method="POST" action="{{ route('login') }}">
+            {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
-            <input class="border rounded form-control" placeholder="Email" type="email">
+            <input id="email" type="email" name="email" class="border rounded form-control" placeholder="Email">
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input class="border rounded form-control" placeholder="Password" type="password">
+            <input id="password" type="password" name="password" class="border rounded form-control" placeholder="Password" type="password">
           </div>
 
         </form>
@@ -30,8 +31,9 @@
         <div class="col">
           <div class="row">
             <div class="col-6">
-              <button type="button" form="login-form" class="btn btn-lg btn-primary"
-                onclick="location.href='dashboard.html';">Sign In</button>
+              <button type="submit" form="login-form" class="btn btn-lg btn-primary">
+                Sign In
+              </button>
             </div>
             <div class="col-6 text-right pr-0">
               <button class="btn ">Forgot Password?</button>

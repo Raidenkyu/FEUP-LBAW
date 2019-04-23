@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/projects';
 
     /**
      * Create a new controller instance.
@@ -41,51 +41,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-/*
-    public function register(Request $request){
-        echo '<script>console.log("Overload")</script>';
-
-        echo '<script>console.log('.json_encode($request->name).')</script>';
-        echo '<script>console.log('.json_encode($request->email).')</script>';
-        echo '<script>console.log('.json_encode($request->password).')</script>';
-
-/*
-        $validatedData = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-        
-        
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            //TODO: username
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $validatedData->create();
-
-        /*
-        try {
-            $validatedData['password']        = bcrypt(array_get($validatedData, 'password'));
-            $member                           = app(Member::class)->create($validatedData);
-            $defaultArgs = ['id_member' => $member->id_member]
-
-            $def_auth                         = app(De::class)->create($validatedData);
-        } catch (\Exception $exception) {
-            logger()->error($exception);
-            return redirect()->back()->with('message', 'Unable to create new user.');
-        }
-        
-        
-
-        # return redirect()->back()->with('message', 'Successfully created a new account. Please check your email and activate your account.');
-
-
-    }
-    */
 
     /**
      * Get a validator for an incoming registration request.
@@ -113,15 +68,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        echo '<script>console.log("Hi")</script>';
+        //echo '<script>console.log("Hi")</script>';
 
         $temp = 'Something';
 
         $data['username'] = $temp;
 
-        echo '<script>console.log('.json_encode($data['name']).')</script>';
-        echo '<script>console.log('.json_encode($data['username']).')</script>';
-        echo '<script>console.log('.json_encode($data['email']).')</script>';
+        //echo '<script>console.log('.json_encode($data['name']).')</script>';
+        //echo '<script>console.log('.json_encode($data['username']).')</script>';
+        //echo '<script>console.log('.json_encode($data['email']).')</script>';
         
         $member = Member::create([
             'name' => $data['name'],
@@ -129,15 +84,12 @@ class RegisterController extends Controller
             'email' => $data['email']
         ]);
 
-        
-        echo '<script>console.log("Hi2")</script>';
-
-        DefaultAuth::create([
+        return DefaultAuth::create([
             'id_member' => $member->id_member,
+            'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
 
-        return $member; //TODO: change to defaultAuth?
 
 
     }

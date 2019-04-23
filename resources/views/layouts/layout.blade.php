@@ -29,8 +29,16 @@
     </div>
 
     <div id="sign" class="login-container">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
-      <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
+        @if (Auth::check())
+          <span>{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span>
+          <button class="button btn btn-secondary" >
+            <a class="button" href="{{ url('/logout') }}"> Logout </a> 
+          </button>
+        @else
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
+          <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
+        @endif
+
     </div>
   </nav>
   @yield('content')

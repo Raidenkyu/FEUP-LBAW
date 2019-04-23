@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     //
 
     public function index(){
-        $user = \App\Member::first(); //TODO - Change to Auth()
+        $user = (\App\Member::where('id_member',Auth::user()->id_member)->get())[0];
 
         //return $projects;
         return view('pages.profile', ['user' => $user]);
