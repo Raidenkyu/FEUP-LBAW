@@ -37,6 +37,13 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+/*
+Route::post('register', function () {
+    echo '<script>console.log("Redirect")</script>';
+    return view('pages.profile');
+});
+*/
+
 
 
 // Projects
