@@ -50,8 +50,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {   
         return Validator::make($data, [
-            'name' => 'required|string|min:3|max:255',
-            //TODO: username
+            'username' => 'required|string|min:3|max:20', //TODO: username unique
+            'name' => 'required|string|min:3|max:255', 
             'email' => 'required|string|email|min:3|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -64,15 +64,10 @@ class RegisterController extends Controller
      * @return \App\DefaultAuth
      */
     protected function create(array $data)
-    {
-
-        $temp = 'Something';
-
-        $data['username'] = $temp;
-        
+    {        
         $member = Member::create([
             'name' => $data['name'],
-            'username' => $data['username'], //TODO: change to not be hardcoded
+            'username' => $data['username'],
             'email' => $data['email']
         ]);
 

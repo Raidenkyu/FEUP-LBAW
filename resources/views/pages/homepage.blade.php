@@ -69,6 +69,9 @@
           {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
+            <input id="username" type="text" name="username" class="border rounded form-control" placeholder="Username" required autofocus>
+          </div>
+          <div class="form-group input-group-lg py-1">
             <input id="name" type="text" name="name" class="border rounded form-control" placeholder="Name" required autofocus>
           </div>
           <div class="form-group input-group-lg py-1">
