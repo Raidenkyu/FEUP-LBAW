@@ -19,6 +19,13 @@ return [
     ],
 
     /*
+    'defaults' => [
+        'guard' => 'web',
+        'passwords' => 'users',
+    ],
+    */
+
+    /*
     |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
@@ -38,12 +45,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'def_auths',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'def_auths',
         ],
 
         'def_auth' => [
@@ -51,6 +58,20 @@ return [
             'provider' => 'def_auths',
         ],
     ],
+
+    /*
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+    ],
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -85,6 +106,21 @@ return [
         //     'table' => 'users',
         // ],
     ],
+
+    /*
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
+    ],
+    */
+
 
     /*
     |--------------------------------------------------------------------------

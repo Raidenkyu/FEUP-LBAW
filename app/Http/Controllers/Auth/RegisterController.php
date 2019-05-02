@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Member;
 use App\DefaultAuth;
 use App\Http\Controllers\Controller;
@@ -49,13 +48,11 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        echo '<script>console.log("Validator")</script>';
-        
+    {   
         return Validator::make($data, [
             'name' => 'required|string|min:3|max:255',
             //TODO: username
-            'email' => 'required|string|email|min:3|max:255|unique:users',
+            'email' => 'required|string|email|min:3|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -68,15 +65,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //echo '<script>console.log("Hi")</script>';
 
         $temp = 'Something';
 
         $data['username'] = $temp;
-
-        //echo '<script>console.log('.json_encode($data['name']).')</script>';
-        //echo '<script>console.log('.json_encode($data['username']).')</script>';
-        //echo '<script>console.log('.json_encode($data['email']).')</script>';
         
         $member = Member::create([
             'name' => $data['name'],
@@ -89,8 +81,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
-
-
-
     }
 }

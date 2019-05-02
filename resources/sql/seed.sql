@@ -22,6 +22,9 @@ DROP FUNCTION IF EXISTS create_invite_notification();
 
 -- Drop Tables
 
+
+DROP TABLE IF EXISTS cards, items, users CASCADE;
+
 DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin, invite CASCADE;
 
 
@@ -326,7 +329,7 @@ INSERT INTO google_auth (id_member, email, password) VALUES(20, 'beatriz@mail.co
 
 -- project (id_project, name, color, end_date, deleted)
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(1, 'workpad', 'Green', '2019-06-02 12:00:00', false);
-INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(2, 'NIFEUP', 'Orange', '2019-06-02 12:00:00', false);
+INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(2, 'NIAEFEUP', 'Orange', '2019-06-02 12:00:00', false);
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(3, 'IEEE', 'Blue', '2019-06-02 12:00:00', false);
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(4, 'AEFEUP', 'Yellow', '2019-06-02 12:00:00', false);
 INSERT INTO project (id_project, name, color, end_date, deleted) VALUES(5, 'Tuga POP', 'Red', '2019-06-02 12:00:00', false);
