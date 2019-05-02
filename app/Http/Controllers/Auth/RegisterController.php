@@ -53,8 +53,8 @@ class RegisterController extends Controller
         echo '<script>console.log("Validator")</script>';
         
         return Validator::make($data, [
-            'name' => 'required|string|min:3|max:255',
-            //TODO: username
+            'username' => 'required|string|min:3|max:20', //TODO: username unique
+            'name' => 'required|string|min:3|max:255', 
             'email' => 'required|string|email|min:3|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -67,20 +67,10 @@ class RegisterController extends Controller
      * @return \App\DefaultAuth
      */
     protected function create(array $data)
-    {
-        //echo '<script>console.log("Hi")</script>';
-
-        $temp = 'Something';
-
-        $data['username'] = $temp;
-
-        //echo '<script>console.log('.json_encode($data['name']).')</script>';
-        //echo '<script>console.log('.json_encode($data['username']).')</script>';
-        //echo '<script>console.log('.json_encode($data['email']).')</script>';
-        
+    {        
         $member = Member::create([
             'name' => $data['name'],
-            'username' => $data['username'], //TODO: change to not be hardcoded
+            'username' => $data['username'],
             'email' => $data['email']
         ]);
 
@@ -89,8 +79,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
-
-
-
     }
 }
