@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         # return view('auth.login');
         # return redirect('login');
-        echo '<script>console.log('.json_encode(Auth::user()).')</script>';
+        # echo '<script>console.log('.json_encode(Auth::user()).')</script>';
         return view('pages.homepage');
     }
 }
