@@ -15,16 +15,11 @@ class ProjectsController extends Controller
 
         if (!Auth::check()) return redirect('/');
 
-        $user = Auth::user();
+        $id = Auth::user()->id_member;
+        $member = \App\Member::find($id);
 
-        echo '<script>console.log('.json_encode($user).')</script>';
-
-        #$this->authorize('list', Card::class);
-
-        #$cards = Auth::user()->cards()->orderBy('id')->get();
-
-        $my_projects = \App\Project::all();  //TODO: Get só dos projects em o user é manager
-        $projects = \App\Project::all();    //TODO: Get de todos projects em que o user participa
+        $my_projects = $member->my_projects;
+        $projects = $member->projects;
 
         return view('pages.projects', ['projects' => $projects, 'my_projects' => $my_projects]);
     }
