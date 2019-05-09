@@ -50,6 +50,8 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 // Profile
 
 Route::get('profile', 'ProfileController@index');
+Route::get('profile/edit', 'ProfileController@edit');
+Route::patch('profile', 'ProfileController@update');
 
 
 // Admin
