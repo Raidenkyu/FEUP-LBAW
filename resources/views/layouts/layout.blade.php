@@ -50,9 +50,9 @@
     </div>
     <div class="container d-flex justify-content-center">
       <div class="row">
-        <a class="mr-3 footer-link" href="./info.html#about">About</a>
-        <a class="mr-3 footer-link" href="./info.html#help">Help</a>
-        <a class="footer-link" href="./info.html#contact">Contact</a>
+        <a class="mr-3 footer-link" href="/info.html#about">About</a>
+        <a class="mr-3 footer-link" href="/info.html#help">Help</a>
+        <a class="footer-link" href="/info.html#contact">Contact</a>
       </div>
     </div>
   </footer>

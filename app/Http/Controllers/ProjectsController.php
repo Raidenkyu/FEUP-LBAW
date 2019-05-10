@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
-    //
-
 
     public function index(){
 
@@ -34,35 +32,43 @@ class ProjectsController extends Controller
       return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done]);
     }
 
+    public function create(){
+
+        if (!Auth::check()) return redirect('/');
+
+        return view('pages.create_project');
+    }
+
+    public function store(Request $request){
+      $data = $request->validate([
+        'name' => 'required',
+        'color' => 'required',
+      ]);
+
+      $project = \App\Project::create($data);
+
+      return redirect('/projects/' . $project->id_project);
+
+
+    }
+
     public static function colorToHex($color){
-      switch ($color) {
-        case 'Orange':
-          return 'f77d13';
-        case 'Yellow':
-          return 'ffcc00';
-        case 'Red':
-          return 'e82020';
-        case 'Green':
-          return '2dcc71';
-        case 'Lilac':
-          return '9c58b6';
-        case 'Sky':
-          return '4894dd';
-        case 'Blue':
-          return '2880ba';
-        case 'Purple':
-          return '7f14ad';
-        case 'Emerald':
-          return '179f85';
-        case 'Bordeaux':
-          return 'c92b1a';
-        case 'Golden':
-          return 'c45e00';
-        case 'Brown':
-          return 'c45e00';
-        default:
-          return '4894dd';
-      }
+      $colors = array(
+        'Orange' => 'f77d13',
+        'Yellow' => 'ffcc00',
+        'Red' => 'e82020',
+        'Green' => '2dcc71',
+        'Lilac' => '9c58b6',
+        'Sky' => '4894dd',
+        'Brown' => 'c45e00',
+        'Golden' => 'f39c13',
+        'Bordeaux' => 'c92b1a',
+        'Emerald' => '179f85',
+        'Purple' => '7f14ad',
+        'Blue' => '2880ba',
+      );
+
+      return $colors[$color];
     }
 
 }
