@@ -44,7 +44,10 @@ h1,h2,h3,h4,h5,h6,p,span,button {
 }
 
 .title-line{
-    border-color: var(--white);
+    background-color: var(--orange);
+    min-width: 50px;
+    height: 7px;
+    margin-top:5px;
 }
 
 .title-box{

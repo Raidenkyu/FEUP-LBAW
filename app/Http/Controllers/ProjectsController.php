@@ -39,6 +39,22 @@ class ProjectsController extends Controller
       return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done]);
     }
 
+    public function forums($id){
+      if (!Auth::check()) return redirect('/');
+      $forums = \App\Project::find($id)->forums;
+      return view('pages.forums', compact('forums'));
+    }
+
+    public function forum($id, $forum_id){
+      if (!Auth::check()) return redirect('/');
+      $forums = \App\Project::find($id)->forums;
+      $selectedForum = \App\Project::find($id)->forums->find($forum_id);
+      return view('pages.forum', compact('forums', 'selectedForum'));
+
+      // $forums = \App\Project::find($id)->forums;
+      // return view('pages.forums', ['forums' => $forums]);
+    }
+
     public static function colorToHex($color){
       switch ($color) {
         case 'Orange':
