@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="/css/dashboard_project.css">
 
+<script src="/js/settings.js" defer></script>
+
 <div class="page-container">
   <div class="container-fluid title-row">
     <div class="row">
