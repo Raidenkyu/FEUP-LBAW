@@ -24,14 +24,13 @@ function settingsButtonClicked(project) {
 
 function sendTitleRequest(event) {  
     let title = document.querySelector('.title-box').innerHTML;
-    sendAjaxRequest('get', '/api/projects/' + 1, {title: title}, titleRequestHandler);
+    sendAjaxRequest('get', '/api/projects/' + 1, {name: title}, titleRequestHandler); //TODO: Ask teacher about how to get the ID
 }
 
 function titleRequestHandler() {
-    if (this.status != 200) window.location = '/projects/1';
+    if (this.status != 200) window.location = '/projects/' + id; //TODO: Ask teacher about how to get the ID
     let project = JSON.parse(this.responseText);
-    console.log("Vou mudar cenas bro");
-    projectTitle.innerHTML = `${project.title}`;
+    projectTitle.innerHTML = `${project.project.name}`;
   }
 
 function closeSettings(event) {

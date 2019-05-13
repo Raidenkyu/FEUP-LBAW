@@ -42,8 +42,6 @@ class ProjectsController extends Controller
 
     public function settings($id){
       $project = \App\Project::where('id_project', $id)->first();
-      echo '<script>console.log('.teste.')</script>';
-      $project->name = "ola";
       return ['project' => $project];
     }
 
