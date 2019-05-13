@@ -14,7 +14,7 @@
       <div class="col-2 align-self-center">
         <div class="title-line"></div>
       </div>
-      <div class="col-* title-box">App Tuga POP</div>
+      <div class="col-* title-box">{{$project->name}}</div>
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
@@ -203,14 +203,14 @@
   </div>
 
   <div id="mySidenav" class="sidenav mt-5">
-    <a href="javascript:void(0)" class="closebtn" onclick="settingsButtonClicked()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="settingsButtonClicked();">&times;</a>
     <div class="pop-up-box">
       <div class="pop-up-settings-box pt-3">
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
       </div>
       <div class="pop-up-name-box px-0 pt-4">
         <span class="pop-up-name-title font-weight-bolder py-2">Name</span><br>
-        <span class="pop-up-name">App Tuga POP</span><br>
+        <span class="pop-up-name">{{ $project->name }}</span><br>
       </div>
       <div class="pop-up-color-box pt-4">
         <div class="container px-0">
