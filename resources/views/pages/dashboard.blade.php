@@ -203,7 +203,7 @@
   </div>
 
   <div id="mySidenav" class="sidenav mt-5">
-    <a href="javascript:void(0)" class="closebtn" onclick="settingsButtonClicked();">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="settingsButtonClicked({{$project}});">&times;</a>
     <div class="pop-up-box">
       <div class="pop-up-settings-box pt-3">
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
