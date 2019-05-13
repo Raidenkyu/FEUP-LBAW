@@ -16,12 +16,9 @@
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
-            <a href="dashboard_project.html"><button type="button"
-                class="btn btn-primary selection-button">•••Tasks</button></a>
-            <a href="forum_project.html"><button type="button"
-                class="btn btn-primary selection-button">•••Discussion</button></a>
-            <a><button type="button" id="sidebarCollapse"
-                class="btn btn-primary selection-button">•••Settings</button></a>
+            <a href="dashboard_project.html"><button type="button" class="btn btn-primary selection-button">•••Tasks</button></a>
+            <a href="forum_project.html"><button type="button" class="btn btn-primary selection-button">•••Discussion</button></a>
+            <a><button type="button" id="sidebarCollapse" class="btn btn-primary selection-button">•••Settings</button></a>
           </div>
         </div>
       </div>
@@ -36,7 +33,7 @@
           <span class="list-col-title">To Do</span>
           <div class="btn-group-vertical">
             @foreach($todo as $task)
-              <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
           <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
@@ -49,9 +46,9 @@
         <div class="list-group">
           <span class="list-col-title">In Progress</span>
           <div class="btn-group-vertical">
-          @foreach($in_progress as $task)
+            @foreach($in_progress as $task)
             <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @endforeach
           </div>
         </div>
       </div>
@@ -60,9 +57,9 @@
         <div class="list-group">
           <span class="list-col-title">Pending Approval</span>
           <div class="btn-group-vertical">
-          @foreach($pending as $task)
+            @foreach($pending as $task)
             <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @endforeach
           </div>
         </div>
       </div>
@@ -71,9 +68,9 @@
         <div class="list-group">
           <span class="list-col-title">Done</span>
           <div class="btn-group-vertical">
-          @foreach($done as $task)
+            @foreach($done as $task)
             <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @endforeach
           </div>
         </div>
       </div>
@@ -84,8 +81,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -101,8 +97,7 @@
                 <div class="row task-edit-top">
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Members</span>
-                    <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
-                      alt="Team Member">
+                    <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;" alt="Team Member">
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Due Date</span>
@@ -110,8 +105,7 @@
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Issue</span>
-                    <button type="button"
-                      class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
+                    <button type="button" class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
                   </div>
                 </div>
                 <div class="row task-edit-desc-row">
@@ -132,8 +126,7 @@
                     <br>
 
                     <div class="progress task-edit-prog-bar">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 
                     <div class="row">

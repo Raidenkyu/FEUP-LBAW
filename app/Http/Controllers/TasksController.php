@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Http\Resources\TaskResource as TaskResource;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -81,5 +82,12 @@ class TasksController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+
+    public function retrieve($id_project, $id_task)
+    {
+        $task = \App\Task::whereIdProject($id_task)->get()[0];
+        $json = new TaskResource($task);
+        return $json;
     }
 }
