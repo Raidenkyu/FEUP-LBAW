@@ -14,6 +14,6 @@ class Member extends Model
     public $timestamps = false;
 
     public function forum_comments(){
-        return $this->hasMany('App\ForumComment', 'id_forum_comment');
+        return $this->hasMany('App\ForumComment', 'id_member');
     }
 }

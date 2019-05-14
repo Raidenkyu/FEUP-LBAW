@@ -9,7 +9,7 @@ class Forum extends Model
 
     protected $table = 'forum';
     protected $primaryKey = 'id_forum';
-    // protected $fillable = [''];
+    protected $fillable = ['id_project', 'topic'];
     public $timestamps = false;
 
     public function project(){
@@ -17,6 +17,6 @@ class Forum extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\ForumComment', 'id_forum_comment');
+        return $this->hasMany('App\ForumComment', 'id_forum');
     }
 }
