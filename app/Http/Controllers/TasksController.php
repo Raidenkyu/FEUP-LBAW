@@ -86,7 +86,7 @@ class TasksController extends Controller
 
     public function retrieve($id_project, $id_task)
     {
-        $task = \App\Task::whereIdProject($id_task)->get()[0];
+        $task = \App\Task::find($id_task);
         $json = new TaskResource($task);
         return $json;
     }

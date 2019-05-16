@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\MemberResource as MemberResource;
+use App\Http\Resources\SubTaskResource as SubTaskResource;
 
 class TaskResource extends JsonResource
 {
@@ -20,7 +22,9 @@ class TaskResource extends JsonResource
             'description' => $this->description,
             'creation_date' => $this->creation_date,
             'due_date' => $this->due_date,
-            'issue' => $this->issue
+            'issue' => $this->issue,
+            'checklist' => SubTaskResource::collection($this->checklist()),
+            'members' => MemberResource::collection($this->members())
         ];
     }
 }
