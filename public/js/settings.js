@@ -23,12 +23,12 @@ function settingsButtonClicked(project) {
 }
 
 function sendTitleRequest(event) {  
-    let title = document.querySelector('.title-box').innerHTML;
-    sendAjaxRequest('get', '/api/projects/' + 1, {name: title}, titleRequestHandler); //TODO: Ask teacher about how to get the ID
+    let id = document.getElementById('title-box').getAttribute('data-id');
+    sendAjaxRequest('get', '/api/projects/' + id, {}, titleRequestHandler);
 }
 
 function titleRequestHandler() {
-    if (this.status != 200) window.location = '/projects/' + id; //TODO: Ask teacher about how to get the ID
+    if (this.status != 200) window.location = '/projects/' + id;
     let project = JSON.parse(this.responseText);
     projectTitle.innerHTML = `${project.project.name}`;
   }

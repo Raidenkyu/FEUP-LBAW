@@ -14,7 +14,7 @@
       <div class="col-2 align-self-center">
         <div class="title-line"></div>
       </div>
-      <div class="col-* title-box">{{$project->name}}</div>
+      <div class="col-* title-box" id="title-box" data-id="{{$project->id}}">{{$project->name}}</div>
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
