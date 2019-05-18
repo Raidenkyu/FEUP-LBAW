@@ -10,8 +10,7 @@ class ForumsController extends Controller
 {
   public function store($id){
     request()->validate(['topic' => 'required']);
-    $forum = \App\Project::find($id)->addForum(request('topic'));
-    return redirect('/projects/' . $id . '/forums/' . $forum->id_forum);
+    return\App\Project::find($id)->addForum(request('topic'));
   }
 
   public function forums($id){

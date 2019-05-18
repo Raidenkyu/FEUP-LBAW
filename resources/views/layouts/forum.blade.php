@@ -29,10 +29,12 @@
       <div class="col-sm-* topic-col">
         <div class="list-group">
           <span class="topics-list-title">Topics</span>
-          @foreach($forums as $forum)
-          <a href="/projects/{{$forum->project->id_project}}/forums/{{$forum->id_forum}}" class="list-group-item list-group-item-action topic-sel">{{$forum->topic}}</a>
-          @endforeach
-          <form class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
+          <div id="all-forums">
+            @foreach($forums as $forum)
+            <a href="/projects/{{$forum->project->id_project}}/forums/{{$forum->id_forum}}" class="list-group-item list-group-item-action topic-sel">{{$forum->topic}}</a>
+            @endforeach
+          </div>
+          <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
             @csrf
             <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic" name="topic" required placeholder="+ Create new topic">
           </form>
@@ -43,6 +45,12 @@
     </div>
   </div>
 </div>
+
+<script>
+    var token = '{{Session::token()}}';
+    var urlForum = '/projects/{{$forum->project->id_project}}/forums/create_forum';
+    var idProject = '{{$selectedForum->project->id_project}}';
+</script>
 
 
 @endsection

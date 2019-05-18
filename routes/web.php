@@ -52,6 +52,7 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 Route::get('projects/{id}/forums', 'ForumsController@forums');
 Route::get('projects/{id}/forums/{forum_id}', 'ForumsController@forum');
 Route::post('projects/{id}/forums/create_forum', 'ForumsController@store');
+Route::post('projects/{id_project}/forums/{id_forum}/create_comment', 'ForumCommentsController@store');
 
 // Profile
 

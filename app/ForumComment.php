@@ -9,7 +9,7 @@ class ForumComment extends Model
 
     protected $table = 'forum_comment';
     protected $primaryKey = 'id_forum_comment';
-    // protected $fillable = [''];
+    protected $fillable = ['id_member', 'id_forum', 'content'];
     public $timestamps = false;
 
     public function forum(){
