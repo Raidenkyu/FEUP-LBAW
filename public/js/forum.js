@@ -1,36 +1,42 @@
-$('#add-comment-form').on('submit', forumCommentRequest);
-$('#create-forum-form').on('submit', forumRequest);
+$('#create-comment-form').on('submit', createForumCommentRequest);
+$('#create-forum-form').on('submit', createForumRequest);
+$('.delete-comment').on('click', deleteForumRequest);
 
-function forumCommentRequest(event){
+function createForumCommentRequest(event){
   event.preventDefault();
 
   let content = $('#comment-content').val();
 
   if(content != '')
-    sendAjaxRequest('post', urlComment, {content: content, _token: token}, forumCommentHandler);
+    sendAjaxRequest('post', urlCreateComment, {content: content, _token: token}, createForumCommentHandler);
 }
 
-function forumRequest(event){
+function createForumRequest(event){
   event.preventDefault();
 
   let topic = $('#create-topic').val();
 
   if(topic != '')
-    sendAjaxRequest('post', urlForum, {topic: topic, _token: token}, forumHandler);
+    sendAjaxRequest('post', urlCreateForum, {topic: topic, _token: token}, createForumHandler);
 }
 
-function forumCommentHandler(){
+function deleteForumRequest(event){
+  event.preventDefault();
+  sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler);
+}
+
+function createForumCommentHandler(){
   // if (this.status != 200) window.location = '/';
   let comment = JSON.parse(this.responseText);
 
   let newComment = createComment(comment);
   document.querySelector('#all-comments').appendChild(newComment);
 
-  $('#add-comment-form [type=text]').value = "";
+  $('#create-comment-form [type=text]').value = "";
 
 }
 
-function forumHandler(){
+function createForumHandler(){
   // if (this.status != 200) window.location = '/';
   let forum = JSON.parse(this.responseText);
 
@@ -41,8 +47,15 @@ function forumHandler(){
 
 }
 
+function deleteForumCommentHandler(){
+  // if (this.status != 200) window.location = '/';
+  let id = JSON.parse(this.responseText);
+  $(`#forum-comment-${id}`).remove();
+}
+
 function createComment(comment){
   let newComment = document.createElement('div');
+  newComment.id = `forum-comment-${comment.id_forum_comment}`;
   newComment.classList.add('row');
   newComment.classList.add('forum-comment');
   newComment.innerHTML = `
@@ -55,16 +68,16 @@ function createComment(comment){
         <span class="align-text-bottom">${name}</span>
       </div>
       <div class="col-7 forum-comment-date">
-        <span class="align-bottom">${comment.date}</span>
-        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_comment}" method="post">
+        <span class="align-bottom">${String(today.getHours() + 1).padStart(2, '0') + ':' + String(today.getMinutes()).padStart(2, '0') + ' ' + today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')}</span>
+        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" method="post">
           <input type="hidden" name="_method" value="patch">
           <input type="hidden" name="_token" value="${token}">
-          <button type="submit" >EDIT</button>
+          <input type="image" src="/icons/edit_pencil.svg" alt="Submit Form" />
         </form>
-        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_comment}" method="post">
+        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="_token" value="${token}">
-          <button type="submit" >DELETE</button>
+          <img type="image" src="/icons/trash.svg" alt="Submit Form" />
         </form>
       </div>
     </div>

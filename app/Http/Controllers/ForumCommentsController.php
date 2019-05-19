@@ -12,4 +12,9 @@ class ForumCommentsController extends Controller
     request()->validate(['content' => 'required']);
     return \App\Forum::find($id_forum)->addComment(request('content'));
   }
+
+  public function delete($id_project, $id_forum, $id_forum_comment){
+    return \App\ForumComment::find($id_forum_comment)->delete();
+    return $id_forum_comment;
+  }
 }

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Auth;
 
-use Carbon\Carbon;
-
 class Forum extends Model
 {
 
@@ -28,8 +26,7 @@ class Forum extends Model
       return ForumComment::create([
         'id_member' => Auth::user()->id_member,
         'id_forum' => $this->id_forum,
-        'content' => $content,
-        'date' => Carbon::now()
+        'content' => $content
       ]);
     }
 }

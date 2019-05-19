@@ -48,8 +48,8 @@
 
 <script>
     var token = '{{Session::token()}}';
-    var urlForum = '/projects/{{$forum->project->id_project}}/forums/create_forum';
-    var idProject = '{{$selectedForum->project->id_project}}';
+    var urlCreateForum = '/projects/{{$forums->first()->project->id_project}}/forums/create_forum';
+    var idProject = '{{$forums->first()->project->id_project}}';
 </script>
 
 
