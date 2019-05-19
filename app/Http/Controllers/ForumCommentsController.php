@@ -13,8 +13,8 @@ class ForumCommentsController extends Controller
     return \App\Forum::find($id_forum)->addComment(request('content'));
   }
 
-  public function delete($id_project, $id_forum, $id_forum_comment){
-    return \App\ForumComment::find($id_forum_comment)->delete();
+  public function destroy($id_project, $id_forum, $id_forum_comment){
+    \App\ForumComment::find($id_forum_comment)->delete();
     return $id_forum_comment;
   }
 }

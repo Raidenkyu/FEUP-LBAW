@@ -1,6 +1,7 @@
 $('#create-comment-form').on('submit', createForumCommentRequest);
 $('#create-forum-form').on('submit', createForumRequest);
-$('.delete-comment').on('click', deleteForumRequest);
+$('.delete-comment').on('click', deleteForumCommentRequest);
+$('.edit-comment').on('click', editForumCommentRequest);
 
 function createForumCommentRequest(event){
   event.preventDefault();
@@ -20,9 +21,14 @@ function createForumRequest(event){
     sendAjaxRequest('post', urlCreateForum, {topic: topic, _token: token}, createForumHandler);
 }
 
-function deleteForumRequest(event){
+function deleteForumCommentRequest(event){
   event.preventDefault();
   sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler);
+}
+
+function editForumCommentRequest(event){
+  event.preventDefault();
+  // sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler);
 }
 
 function createForumCommentHandler(){
@@ -32,7 +38,10 @@ function createForumCommentHandler(){
   let newComment = createComment(comment);
   document.querySelector('#all-comments').appendChild(newComment);
 
-  $('#create-comment-form [type=text]').value = "";
+  newComment.querySelector('.delete-comment').addEventListener('click', deleteForumCommentRequest);
+  newComment.querySelector('.edit-comment').addEventListener('click', editForumCommentRequest);
+
+  $('#comment-content').val("");
 
 }
 
@@ -69,16 +78,8 @@ function createComment(comment){
       </div>
       <div class="col-7 forum-comment-date">
         <span class="align-bottom">${String(today.getHours() + 1).padStart(2, '0') + ':' + String(today.getMinutes()).padStart(2, '0') + ' ' + today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')}</span>
-        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" method="post">
-          <input type="hidden" name="_method" value="patch">
-          <input type="hidden" name="_token" value="${token}">
-          <input type="image" src="/icons/edit_pencil.svg" alt="Submit Form" />
-        </form>
-        <form action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="_token" value="${token}">
-          <img type="image" src="/icons/trash.svg" alt="Submit Form" />
-        </form>
+        <a class="edit-comment" href="#"><img action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" src="/icons/edit_pencil.svg" alt="Edit comment" /></a>
+        <a class="delete-comment" href="#"><img action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" src="/icons/trash.svg" alt="Delete comment" /></a>
       </div>
     </div>
     <p class="forum-comment-text">${comment.content}</p>
