@@ -1,7 +1,27 @@
 $('#create-comment-form').on('submit', createForumCommentRequest);
 $('#create-forum-form').on('submit', createForumRequest);
 $('.delete-comment').on('click', deleteForumCommentRequest);
-$('.edit-comment').on('click', editForumCommentRequest);
+$('.edit-comment').on('click', editForumComment);
+// $('.edit-comment-form').on('submit', editForumCommentRequest);
+
+function editForumComment(event){
+  event.preventDefault();
+  let comment = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.forum-comment-text');
+  let button = comment.parentNode.querySelector('button');
+  button.classList.remove('hidden-button');
+  let textarea = document.createElement('textarea');
+  textarea.classList.add('forum-comment-textarea');
+  textarea.setAttribute('name', 'content');
+  textarea.required = true;
+  textarea.innerHTML = `${comment.innerHTML}`;
+  comment.replaceWith(textarea);
+}
+
+function editForumCommentRequest(event){
+  // event.preventDefault();
+  // console.log(1);
+  // console.log(event.target);
+}
 
 function createForumCommentRequest(event){
   event.preventDefault();

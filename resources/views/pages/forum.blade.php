@@ -29,7 +29,12 @@
             <a class="delete-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/trash.svg" alt="Delete comment" /></a>
           </div>
         </div>
-        <p class="forum-comment-text">{{$comment->content}}</p>
+        <form class="edit-comment-form" action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" method="post">
+          @csrf
+          @method('patch')
+          <p class="forum-comment-text">{{$comment->content}}</p>
+          <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit Comment</button>
+        </form>
       </div>
     </div>
     @endforeach

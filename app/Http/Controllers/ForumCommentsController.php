@@ -17,4 +17,10 @@ class ForumCommentsController extends Controller
     \App\ForumComment::find($id_forum_comment)->delete();
     return $id_forum_comment;
   }
+
+  public function update($id_project, $id_forum, $id_forum_comment){
+    request()->validate(['content' => 'required']);
+    \App\ForumComment::find($id_forum_comment)->update(['content' => request('content')]);
+    return back();
+  }
 }
