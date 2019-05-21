@@ -149,6 +149,15 @@ h1,h2,h3,h4,h5,h6,p,span,button {
   display: none;
 }
 
+.edit-comment img, .delete-comment img{
+  width:1.5em;
+}
+
+.forum-comment-textarea{
+  width: 100%;
+  border-radius: 0.5em;
+}
+
 
 @media (max-width: 992px) {
     .forum-comment-image{

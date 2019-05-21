@@ -25,16 +25,22 @@
           </div>
           <div class="col-7 forum-comment-date">
             <span class="align-bottom">{{date('H:i Y-m-d', strtotime($comment->date))}}</span>
+            @if ($comment->id_member == Auth::user()->id_member)
             <a class="edit-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/edit_pencil.svg" alt="Edit comment" /></a>
             <a class="delete-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/trash.svg" alt="Delete comment" /></a>
+            @endif
           </div>
         </div>
-        <form class="edit-comment-form" action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" method="post">
-          @csrf
-          @method('patch')
-          <p class="forum-comment-text">{{$comment->content}}</p>
-          <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit Comment</button>
-        </form>
+        @if ($comment->id_member == Auth::user()->id_member)
+          <form class="edit-comment-form" action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" method="post">
+            @csrf
+            @method('put')
+        @endif
+            <p class="forum-comment-text">{{$comment->content}}</p>
+        @if ($comment->id_member == Auth::user()->id_member)
+            <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit Comment</button>
+          </form>
+        @endif
       </div>
     </div>
     @endforeach

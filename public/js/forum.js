@@ -2,7 +2,7 @@ $('#create-comment-form').on('submit', createForumCommentRequest);
 $('#create-forum-form').on('submit', createForumRequest);
 $('.delete-comment').on('click', deleteForumCommentRequest);
 $('.edit-comment').on('click', editForumComment);
-// $('.edit-comment-form').on('submit', editForumCommentRequest);
+$('.edit-comment-form').on('submit', editForumCommentRequest);
 
 function editForumComment(event){
   event.preventDefault();
@@ -18,9 +18,24 @@ function editForumComment(event){
 }
 
 function editForumCommentRequest(event){
-  // event.preventDefault();
-  // console.log(1);
-  // console.log(event.target);
+  event.preventDefault();
+
+  let content = $(this).find('textarea').val();
+
+  if(content != '')
+    sendAjaxRequest('PUT', event.target.getAttribute("action"), {content: content, _token: token}, editForumCommentHandler);
+}
+
+function editForumCommentHandler(event){
+  if (this.status != 200) window.location = '/';
+  let json = JSON.parse(this.responseText);
+  let textarea = document.querySelector(`#forum-comment-${json.id} textarea`);
+  let button = document.querySelector(`#forum-comment-${json.id} button`);
+  button.classList.add('hidden-button');
+  let comment = document.createElement('p');
+  comment.classList.add('forum-comment-text');
+  comment.innerHTML = `${json.content}`;
+  textarea.replaceWith(comment);
 }
 
 function createForumCommentRequest(event){
@@ -43,30 +58,27 @@ function createForumRequest(event){
 
 function deleteForumCommentRequest(event){
   event.preventDefault();
-  sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler);
-}
-
-function editForumCommentRequest(event){
-  event.preventDefault();
-  // sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler);
+  if (window.confirm("Are you sure you want to delete your comment?"))
+    sendAjaxRequest('delete', event.target.getAttribute("action"), {_token: token}, deleteForumCommentHandler)
 }
 
 function createForumCommentHandler(){
-  // if (this.status != 200) window.location = '/';
+  if (this.status != 201) window.location = '/';
   let comment = JSON.parse(this.responseText);
 
   let newComment = createComment(comment);
   document.querySelector('#all-comments').appendChild(newComment);
 
   newComment.querySelector('.delete-comment').addEventListener('click', deleteForumCommentRequest);
-  newComment.querySelector('.edit-comment').addEventListener('click', editForumCommentRequest);
+  newComment.querySelector('.edit-comment').addEventListener('click', editForumComment);
+  newComment.querySelector('.edit-comment-form').addEventListener('submit', editForumCommentRequest);
 
   $('#comment-content').val("");
 
 }
 
 function createForumHandler(){
-  // if (this.status != 200) window.location = '/';
+  if (this.status != 201) window.location = '/';
   let forum = JSON.parse(this.responseText);
 
   let newForum = createForum(forum);
@@ -77,7 +89,7 @@ function createForumHandler(){
 }
 
 function deleteForumCommentHandler(){
-  // if (this.status != 200) window.location = '/';
+  if (this.status != 200) window.location = '/';
   let id = JSON.parse(this.responseText);
   $(`#forum-comment-${id}`).remove();
 }
@@ -102,7 +114,12 @@ function createComment(comment){
         <a class="delete-comment" href="#"><img action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" src="/icons/trash.svg" alt="Delete comment" /></a>
       </div>
     </div>
-    <p class="forum-comment-text">${comment.content}</p>
+    <form class="edit-comment-form" action="/projects/${idProject}/forums/${idForum}/${comment.id_forum_comment}" method="post">
+      <input type="hidden" name="_token" value="${token}">
+      <input type="hidden" name="_method" value="put">
+      <p class="forum-comment-text">${comment.content}</p>
+      <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit Comment</button>
+    </form>
   </div>
   `
   return newComment;
