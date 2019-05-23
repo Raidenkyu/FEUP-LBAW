@@ -122,7 +122,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row task-edit-check-row">
+                <div id="checklist" class="row task-edit-check-row">
                   <div class="col-md-10">
                     <span class="res-text">
                       <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg">Checklist title
@@ -133,15 +133,15 @@
                       <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
-                        <img src="/icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                        <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
                       <div class="res-text tasks-text">
                         <span>Task #1</span>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
@@ -149,7 +149,7 @@
                         <span>Task #2</span>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>

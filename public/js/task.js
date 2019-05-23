@@ -32,9 +32,25 @@ function taskFetch() {
     due_date.innerHTML = date;
   }
 
-  let date = task['due_date'];
-  if (date != null) {
-    let due_date = document.querySelector('#due-date');
-    due_date.innerHTML = date;
+  let checklistArray = task['checklist'];
+  let checks = document.querySelectorAll('.check');
+
+  checks.forEach(function(check) {
+    check.remove();
+  });
+  if (checklistArray.length > 0) {
+    let checklist = document.querySelector('#checklist');
+
+
+    checklistArray.forEach(function(check) {
+      let newCheck = document.createElement('div');
+      newCheck.classList.add('row');
+      newCheck.classList.add('check');
+      newCheck.innerHTML = `
+          < div class= "" > < img src = "/icons/check.svg" class= "task-check-icon" alt = "User Photo" ></div><div class="res-text tasks-text"><span> 
+          ${check}</span></div>
+          `
+      checklist.append(newCheck);
+    })
   }
 }
