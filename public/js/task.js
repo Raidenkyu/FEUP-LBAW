@@ -14,5 +14,27 @@ function generateTaskModal() {
 }
 
 function taskFetch() {
-  console.log(JSON.parse(this.responseText));
+  let task = (JSON.parse(this.responseText))['data'];
+  console.log(task);
+
+  let taskTitle = document.querySelector('#taskTitle');
+  taskTitle.innerHTML = task['name'];
+
+  let descriptionText = task['description'];
+  if (descriptionText != null) {
+    let description = document.querySelector('#description-text');
+    description.innerHTML = descriptionText;
+  }
+
+  let date = task['due_date'];
+  if (date != null) {
+    let due_date = document.querySelector('#due-date');
+    due_date.innerHTML = date;
+  }
+
+  let date = task['due_date'];
+  if (date != null) {
+    let due_date = document.querySelector('#due-date');
+    due_date.innerHTML = date;
+  }
 }

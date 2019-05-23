@@ -89,7 +89,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Interface</h5>
+          <h5 class="modal-title" id="taskTitle">Create Interface</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -105,7 +105,7 @@
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Due Date</span>
-                    <span class="res-text">Jun 3 at 10:00 PM</span>
+                    <span id="due-date" class="res-text">Jun 3 at 10:00 PM</span>
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Issue</span>
@@ -118,7 +118,7 @@
                       <img src="/icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg">Description
                     </span>
                     <div class="form-group task-edit-description">
-                      <textarea class="form-control" rows="3" id="comment"></textarea>
+                      <textarea class="form-control" rows="3" id="description-text"></textarea>
                     </div>
                   </div>
                 </div>
