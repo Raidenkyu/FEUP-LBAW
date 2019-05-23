@@ -115,7 +115,7 @@
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Issue</span>
-                    <button type="button" class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
+                    <button id="issue" type="button" class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
                   </div>
                 </div>
                 <div class="row task-edit-desc-row">
@@ -128,8 +128,8 @@
                     </div>
                   </div>
                 </div>
-                <div id="checklist" class="row task-edit-check-row">
-                  <div class="col-md-10">
+                <div class="row task-edit-check-row">
+                  <div id="checklist" class="col-md-10">
                     <span class="res-text">
                       <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg">Checklist title
                     </span>
