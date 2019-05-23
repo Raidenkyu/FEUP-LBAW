@@ -1,10 +1,13 @@
 @extends('layouts.layout')
 
-@section('title', 'Profile')
+@section('title', '{{$project->name}}')
 
 @section('content')
 
 <link rel="stylesheet" href="/css/dashboard_project.css">
+
+
+<script src="{{asset('js/task.js')}}" defer></script>
 
 <div class="page-container">
   <div class="container-fluid title-row">
@@ -33,7 +36,7 @@
           <span class="list-col-title">To Do</span>
           <div class="btn-group-vertical">
             @foreach($todo as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
           <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
@@ -47,7 +50,7 @@
           <span class="list-col-title">In Progress</span>
           <div class="btn-group-vertical">
             @foreach($in_progress as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
         </div>
@@ -58,7 +61,7 @@
           <span class="list-col-title">Pending Approval</span>
           <div class="btn-group-vertical">
             @foreach($pending as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
         </div>
@@ -69,7 +72,7 @@
           <span class="list-col-title">Done</span>
           <div class="btn-group-vertical">
             @foreach($done as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
         </div>

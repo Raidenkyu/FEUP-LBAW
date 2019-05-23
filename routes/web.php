@@ -48,7 +48,7 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Tasks
 
-Route::get('projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
+Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
 
 // Profile
 
