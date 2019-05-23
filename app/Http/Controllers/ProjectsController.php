@@ -8,23 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
-    //
-
 
     public function index(){
 
         if (!Auth::check()) return redirect('/');
 
-        $user = Auth::user();
+        $id = Auth::user()->id_member;
+        $member = \App\Member::find($id);
 
-        echo '<script>console.log('.json_encode($user).')</script>';
-
-        #$this->authorize('list', Card::class);
-
-        #$cards = Auth::user()->cards()->orderBy('id')->get();
-
-        $my_projects = \App\Project::all();  //TODO: Get só dos projects em o user é manager
-        $projects = \App\Project::all();    //TODO: Get de todos projects em que o user participa
+        $my_projects = $member->my_projects;
+        $projects = $member->projects;
 
         return view('pages.projects', ['projects' => $projects, 'my_projects' => $my_projects]);
     }
@@ -39,35 +32,43 @@ class ProjectsController extends Controller
       return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done]);
     }
 
+    public function create(){
+
+        if (!Auth::check()) return redirect('/');
+
+        return view('pages.create_project');
+    }
+
+    public function store(Request $request){
+      $data = $request->validate([
+        'name' => 'required',
+        'color' => 'required',
+      ]);
+
+      $project = \App\Project::create($data);
+
+      return redirect('/projects/' . $project->id_project);
+
+
+    }
+
     public static function colorToHex($color){
-      switch ($color) {
-        case 'Orange':
-          return 'f77d13';
-        case 'Yellow':
-          return 'ffcc00';
-        case 'Red':
-          return 'e82020';
-        case 'Green':
-          return '2dcc71';
-        case 'Lilac':
-          return '9c58b6';
-        case 'Sky':
-          return '4894dd';
-        case 'Blue':
-          return '2880ba';
-        case 'Purple':
-          return '7f14ad';
-        case 'Emerald':
-          return '179f85';
-        case 'Bordeaux':
-          return 'c92b1a';
-        case 'Golden':
-          return 'c45e00';
-        case 'Brown':
-          return 'c45e00';
-        default:
-          return '4894dd';
-      }
+      $colors = array(
+        'Orange' => 'f77d13',
+        'Yellow' => 'ffcc00',
+        'Red' => 'e82020',
+        'Green' => '2dcc71',
+        'Lilac' => '9c58b6',
+        'Sky' => '4894dd',
+        'Brown' => 'c45e00',
+        'Golden' => 'f39c13',
+        'Bordeaux' => 'c92b1a',
+        'Emerald' => '179f85',
+        'Purple' => '7f14ad',
+        'Blue' => '2880ba',
+      );
+
+      return $colors[$color];
     }
 
 }
