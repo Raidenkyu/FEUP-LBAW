@@ -44,7 +44,10 @@ h1,h2,h3,h4,h5,h6,p,span,button {
 }
 
 .title-line{
-    border-color: var(--white);
+    background-color: var(--orange);
+    min-width: 50px;
+    height: 7px;
+    margin-top:5px;
 }
 
 .title-box{
@@ -140,6 +143,19 @@ h1,h2,h3,h4,h5,h6,p,span,button {
 .forum-comment-image{
     width: 4.5em;
     margin-left: 1em;
+}
+
+.hidden-button{
+  display: none;
+}
+
+.edit-comment img, .delete-comment img{
+  width:1.5em;
+}
+
+.forum-comment-textarea{
+  width: 100%;
+  border-radius: 0.5em;
 }
 
 
