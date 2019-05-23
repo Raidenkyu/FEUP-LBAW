@@ -6,7 +6,7 @@ let projectTitle = document.querySelector(".pop-up-name");
 
 
 settingsButton.addEventListener('click', settingsButtonClicked);
-settingsButton.addEventListener('click', sendTitleRequest);
+settingsButton.addEventListener('click', sendSettingsRequest);
 opaque.addEventListener('click', closeSettings);
 
 
@@ -22,13 +22,12 @@ function settingsButtonClicked(project) {
 
 }
 
-function sendTitleRequest(event) {  
+function sendSettingsRequest(event) {  
     let id = document.getElementById('title-box').getAttribute('data-id');
-    sendAjaxRequest('get', '/api/projects/' + id, {}, titleRequestHandler);
+    sendAjaxRequest('get', '/api/projects/' + id, {}, settingsRequestHandler);
 }
 
-function titleRequestHandler() {
-    if (this.status != 200) window.location = '/projects/' + id;
+function settingsRequestHandler() {
     let project = JSON.parse(this.responseText);
     projectTitle.innerHTML = `${project.project.name}`;
   }
