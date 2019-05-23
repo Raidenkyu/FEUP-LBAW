@@ -443,6 +443,8 @@ INSERT INTO forum (id_forum, id_project, topic) VALUES (4, 3, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (5, 3, 'Team 2');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (6, 4, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (7, 4, 'Team 2');
+INSERT INTO forum (id_forum, id_project, topic) VALUES (8, 5, 'Team 1');
+INSERT INTO forum (id_forum, id_project, topic) VALUES (9, 5, 'Team 2');
 
 SELECT setval(pg_get_serial_sequence('forum', 'id_forum'), (SELECT MAX(id_forum) FROM forum));
 

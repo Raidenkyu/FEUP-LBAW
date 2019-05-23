@@ -34,10 +34,12 @@
             <a href="/projects/{{$forum->project->id_project}}/forums/{{$forum->id_forum}}" class="list-group-item list-group-item-action topic-sel">{{$forum->topic}}</a>
             @endforeach
           </div>
-          <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
-            @csrf
-            <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic" name="topic" required placeholder="+ Create new topic">
-          </form>
+          @if(\App\Member::find(Auth::user()->id_member)->my_projects->find($forum->project->id_project) != null)
+            <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
+              @csrf
+              <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic" name="topic" required placeholder="+ Create new topic">
+            </form>
+          @endif
         </div>
       </div>
       @yield('forum')
