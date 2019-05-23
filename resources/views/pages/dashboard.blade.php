@@ -208,147 +208,154 @@
       <div class="pop-up-settings-box pt-3">
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
       </div>
-      <div class="pop-up-name-box px-0 pt-4">
-        <span class="pop-up-name-title font-weight-bolder py-2">Name</span><br>
-        <span class="pop-up-name">{{ $project->name }}</span><br>
-      </div>
-      <div class="pop-up-color-box pt-4">
-        <div class="container px-0">
-          <h5 class="font-weight-bolder">Color</h5>
-          <div  class="color-picker container px-0 pt-2">
-            <div>
-              <input type="radio" id="color-picker-1" name="color" value="color-1" checked>
-              <label for="color-picker-1">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-            
-            <div>
-              <input type="radio" id="color-picker-2" name="color" value="color-2">
-              <label for="color-picker-2">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-            
-            <div>
-              <input type="radio" id="color-picker-3" name="color" value="color-3">
-              <label for="color-picker-3">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-          
-            <div>
-              <input type="radio" id="color-picker-4" name="color" value="color-4">
-              <label for="color-picker-4">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
 
-            <div>
-              <input type="radio" id="color-picker-5" name="color" value="color-4">
-              <label for="color-picker-5">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
+      <form id="settings-form" method="POST" action="/api/settings/save">
+        {{ csrf_field() }}
+        
+        <div class="pop-up-name-box px-0 pt-4">
+          <span class="pop-up-name-title font-weight-bolder py-2">Name</span><br>
+          <span class="pop-up-name">{{ $project->name }}</span><br>
+        </div>
+        <div class="pop-up-color-box pt-4">
+          <div class="container px-0">
+            <h5 class="font-weight-bolder">Color</h5>
+            <div  class="color-picker container px-0 pt-2">
+              <div>
+                <input type="radio" id="color-picker-1" name="color" value="color-1" checked>
+                <label for="color-picker-1">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+              
+              <div>
+                <input type="radio" id="color-picker-2" name="color" value="color-2">
+                <label for="color-picker-2">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+              
+              <div>
+                <input type="radio" id="color-picker-3" name="color" value="color-3">
+                <label for="color-picker-3">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+            
+              <div>
+                <input type="radio" id="color-picker-4" name="color" value="color-4">
+                <label for="color-picker-4">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
 
-            <div>
-              <input type="radio" id="color-picker-6" name="color" value="color-4">
-              <label for="color-picker-6">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
+              <div>
+                <input type="radio" id="color-picker-5" name="color" value="color-4">
+                <label for="color-picker-5">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="color-picker-6" name="color" value="color-4">
+                <label for="color-picker-6">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="color-picker container px-0">
+              <div>
+                <input type="radio" id="color-picker-7" name="color" value="color-1">
+                <label for="color-picker-7">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+              
+              <div>
+                <input type="radio" id="color-picker-8" name="color" value="color-2">
+                <label for="color-picker-8">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+              
+              <div>
+                <input type="radio" id="color-picker-9" name="color" value="color-3">
+                <label for="color-picker-9">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+            
+              <div>
+                <input type="radio" id="color-picker-10" name="color" value="color-4">
+                <label for="color-picker-10">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="color-picker-11" name="color" value="color-4">
+                <label for="color-picker-11">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="color-picker-12" name="color" value="color-4">
+                <label for="color-picker-12">
+                  <span>
+                    <img src="/icons/check-icn.svg" alt="Checked" />
+                  </span>
+                </label>
+              </div>
             </div>
           </div>
-          <div class="color-picker container px-0">
-            <div>
-              <input type="radio" id="color-picker-7" name="color" value="color-1">
-              <label for="color-picker-7">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-            
-            <div>
-              <input type="radio" id="color-picker-8" name="color" value="color-2">
-              <label for="color-picker-8">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-            
-            <div>
-              <input type="radio" id="color-picker-9" name="color" value="color-3">
-              <label for="color-picker-9">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-          
-            <div>
-              <input type="radio" id="color-picker-10" name="color" value="color-4">
-              <label for="color-picker-10">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
+        </div>
 
-            <div>
-              <input type="radio" id="color-picker-11" name="color" value="color-4">
-              <label for="color-picker-11">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
-
-            <div>
-              <input type="radio" id="color-picker-12" name="color" value="color-4">
-              <label for="color-picker-12">
-                <span>
-                  <img src="/icons/check-icn.svg" alt="Checked" />
-                </span>
-              </label>
-            </div>
+        <div class="container px-0 pt-4">
+          <h5 class="font-weight-bolder py-2 pop-up-team-title">Team</h5>
+          <h6 class="py-2 pop-up-man-title">MANAGERS</h6>
+          <div class="py-1 container px-0">
+            <img src="/images/pedro.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+            <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
           </div>
+          <h6 class="pt-2 pop-up-dev-title">DEVELOPERS</h6>
+          <div class="pt-1 pb-2 container px-0">
+            <img src="/images/claudio.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+            <img src="/images/joao.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+            <img src="/images/fernando.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+            <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
+          </div>        
         </div>
-      </div>
 
-      <div class="container px-0 pt-4">
-        <h5 class="font-weight-bolder py-2 pop-up-team-title">Team</h5>
-        <h6 class="py-2 pop-up-man-title">MANAGERS</h6>
-        <div class="py-1 container px-0">
-          <img src="/images/pedro.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-          <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
-        </div>
-        <h6 class="pt-2 pop-up-dev-title">DEVELOPERS</h6>
-        <div class="pt-1 pb-2 container px-0">
-          <img src="/images/claudio.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-          <img src="/images/joao.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-          <img src="/images/fernando.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-          <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
-        </div>
-        <button class="btn btn-primary pop-up-button-first" type="submit" class="btn btn-primary">
-          Leave project
-        </button><br>
-        <button class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
-          Delete project
-        </button>
-      </div>
+      </form>
+
+      <button class="btn btn-primary pop-up-button-first" type="submit" class="btn btn-primary">
+        Leave project
+      </button><br>
+      <button class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
+        Delete project
+      </button>
     </div>
 
   </div>
