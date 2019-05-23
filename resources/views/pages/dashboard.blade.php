@@ -209,9 +209,9 @@
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
       </div>
 
-      <form id="settings-form" method="POST" action="/api/settings/save">
+    <form id="settings-form" method="POST" action="{{ url('api/projects/'.$project->project_id.'/settings') }}">
         {{ csrf_field() }}
-        
+
         <div class="pop-up-name-box px-0 pt-4">
           <span class="pop-up-name-title font-weight-bolder py-2">Name</span><br>
           <span class="pop-up-name">{{ $project->name }}</span><br>
