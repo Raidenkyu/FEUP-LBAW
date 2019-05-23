@@ -29,14 +29,14 @@ DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member,
 
 
 -- TYPES
- 
+
 CREATE TYPE List AS ENUM ('To Do', 'In Progress', 'Pending Approval', 'Done');
- 
+
 CREATE TYPE Color AS ENUM ('Orange', 'Yellow', 'Red', 'Green', 'Lilac', 'Sky', 'Blue', 'Purple', 'Emerald', 'Bordeaux', 'Golden', 'Brown');
 
 
 -- TABLES
- 
+
 CREATE TABLE member (
     id_member SERIAL PRIMARY KEY,
     name text NOT NULL,
@@ -164,7 +164,7 @@ CREATE INDEX search_idx_desc ON MEMBER USING GIST (to_tsvector('english', ' ' ||
 -- TRIGGERS and UDFs
 
 CREATE OR REPLACE FUNCTION inactive_user_remove_assigns()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS
 $BODY$
 begin
 IF NEW.banned = true THEN
@@ -187,7 +187,7 @@ CREATE TRIGGER inactive_user_remove_assigns
 
 
 CREATE OR REPLACE FUNCTION unique_forum_titles()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS
 $BODY$
 begin
 IF EXISTS (SELECT * FROM forum WHERE id_project = NEW.id_project AND topic = NEW.topic) THEN
@@ -206,7 +206,7 @@ CREATE TRIGGER unique_forum_titles
 
 
 CREATE OR REPLACE FUNCTION only_manager()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS
 $BODY$
 begin
     IF (SELECT COUNT(*) FROM(SELECT id_member FROM project_member WHERE id_project = NEW.id_project AND manager = true) AS id) = 0 THEN
@@ -481,5 +481,3 @@ INSERT INTO admin (id_admin, username, password) VALUES (1, 'claudio', '03AC6742
 INSERT INTO admin (id_admin, username, password) VALUES (2, 'fernando', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO admin (id_admin, username, password) VALUES (3, 'joao', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
 INSERT INTO admin (id_admin, username, password) VALUES (4, 'pedro', '03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
-
-
