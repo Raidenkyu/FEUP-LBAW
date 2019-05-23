@@ -46,11 +46,29 @@ function taskFetch() {
       let newCheck = document.createElement('div');
       newCheck.classList.add('row');
       newCheck.classList.add('check');
-      newCheck.innerHTML = `
-          < div class= "" > < img src = "/icons/check.svg" class= "task-check-icon" alt = "User Photo" ></div><div class="res-text tasks-text"><span> 
-          ${check}</span></div>
-          `
-      checklist.append(newCheck);
+      let imgDiv = document.createElement('div');
+      let img = document.createElement('img');
+      img.setAttribute('src', '/icons/check.svg');
+      img.classList.add('task-check-icon');
+      img.setAttribute('alt', 'User Photo');
+      imgDiv.appendChild(img);
+      let checkDiv = document.createElement('div');
+      checkDiv.classList.add('res-text');
+      checkDiv.classList.add('tasks-text');
+      let spanCheck = document.createElement('span');
+      spanCheck.innerHTML = check;
+      checkDiv.appendChild(spanCheck);
+      newCheck.appendChild(imgDiv);
+      newCheck.appendChild(checkDiv);
+      checklist.appendChild(newCheck);
     })
+  }
+
+  issueText = task['issue'];
+  let issue = document.querySelector('#issue');
+  if (issueText != null) {
+    issue.innerHTML = '#' + issueText;
+  } else {
+    issue.innerHTML = 'None';
   }
 }
