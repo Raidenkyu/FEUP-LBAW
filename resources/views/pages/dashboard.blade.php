@@ -40,6 +40,12 @@
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
+          <div>
+            <button type="button" class="add-project-button">Create New Task</button>
+            <!--<form class="add_project_form">
+              <input type="text" name="name" placeholder="new card">
+            </form>-->
+          </div>
           <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
           <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
           <a href="#" class="list-group-item list-group-item-action task-sel">Add Tests</a>-->
