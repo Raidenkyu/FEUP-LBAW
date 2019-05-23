@@ -1,9 +1,17 @@
 let taskButtons = document.querySelectorAll('.task-button');
+let newTaskButtons = document.querySelectorAll('.add-project-button');
 
 taskButtons.forEach(function(button) {
-  button.addEventListener('click', generateTaskModal.bind(button));
+  button.addEventListener('click', generateTaskModal.bind(button, event));
 });
 
+newTaskButtons.forEach(function(button){
+  button.addEventListener('click', function(event){
+    console.log("Clicked");
+    event.preventDefault();
+    //addProjButtonToInput(button)
+  });
+});
 
 function generateTaskModal() {
   let id_task = this.getAttribute('data-id');
@@ -11,6 +19,10 @@ function generateTaskModal() {
   let id_project = 1;
   let url = '/api/projects/' + id_project + '/tasks/' + id_task;
   sendAjaxRequest('GET', url, {}, taskFetch);
+}
+
+function addProjButtonToInput() {
+  console.log("Clicked");
 }
 
 function taskFetch() {
