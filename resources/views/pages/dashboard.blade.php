@@ -35,13 +35,13 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">To Do</span>
-          <div class="btn-group-vertical">
+          <div class="btn-group-vertical" data-list="to-do">
             @foreach($todo as $task)
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
           <div>
-            <button type="button" class="add-project-button">Create New Task</button>
+            <a type="button" class="add-project-button" data-list="to-do">Create New Task</a>
             <!--<form class="add_project_form">
               <input type="text" name="name" placeholder="new card">
             </form>-->

@@ -7,9 +7,8 @@ taskButtons.forEach(function(button) {
 
 newTaskButtons.forEach(function(button){
   button.addEventListener('click', function(event){
-    console.log("Clicked");
     event.preventDefault();
-    //addProjButtonToInput(button)
+    addProjButtonToInput(button)
   });
 });
 
@@ -21,9 +20,7 @@ function generateTaskModal() {
   sendAjaxRequest('GET', url, {}, taskFetch);
 }
 
-function addProjButtonToInput() {
-  console.log("Clicked");
-}
+
 
 function taskFetch() {
   let task = (JSON.parse(this.responseText))['data'];
@@ -78,7 +75,45 @@ function taskFetch() {
 
 //////////////////////////////////////// NANDO ///////////////////////////////////////
 
+function addProjButtonToInput(button) {
+  console.log("Clicked");
+  let newTask = document.createElement("input");
+  let taskList = button.getAttribute('data-list');
+  newTask.type = "text";
+  newTask.name = "name";
+  newTask.placeholder = "Task Name";
+  newTask.addEventListener('change', addTaskAction.bind(newTask, taskList));
 
+  let list = document.querySelector('div[data-list="' + taskList + '"]');
+
+  list.after(newTask);
+  button.remove();
+}
+
+function addTaskAction(taskList){
+  console.log("Adding to " + taskList);
+
+  this.remove();
+
+  // TODO: POST REQUEST
+
+  createTaskButton = document.createElement("a");
+  createTaskButton.outerHTML = `<a type="button" class="add-project-button" data-list="${taskList}"></a>`
+  createTaskButton.innerHTML = `Create New Task`;
+  createTaskButton.setAttribute('type','button');
+  createTaskButton.setAttribute('class','add-project-button');
+  createTaskButton.setAttribute('data-list',taskList);
+  createTaskButton.addEventListener('click', function(event){
+    event.preventDefault();
+    addProjButtonToInput(createTaskButton);
+  });
+
+  let list = document.querySelector('div[data-list="' + taskList + '"]');
+  list.after(createTaskButton);
+
+  console.log(createTaskButton);
+  console.log("Added");
+}
 
 
 
