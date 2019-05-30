@@ -49,6 +49,11 @@ Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
 
+// Project Settings
+
+Route::get('api/projects/{id}', 'ProjectSettingsController@show');
+Route::post('api/projects/{id}', 'ProjectSettingsController@update');
+
 // Forums
 
 Route::get('projects/{id}/forums', 'ForumsController@forums');
@@ -63,7 +68,6 @@ Route::put('projects/{id_project}/forums/{id_forum}/{id_forum_comment}', 'ForumC
 Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
-
 
 // Admin
 
