@@ -3,10 +3,11 @@ let negSize = "-320px";
 let settingsButton = document.querySelector("#sidebarCollapse");
 let opaque = document.getElementById('opaque');
 let projectTitle = document.querySelector(".pop-up-name");
+let id = document.getElementById('title-box').getAttribute('data-id');
 
 
 settingsButton.addEventListener('click', settingsButtonClicked);
-settingsButton.addEventListener('click', sendSettingsRequest);
+settingsButton.addEventListener('click', getRequest);
 opaque.addEventListener('click', closeSettings);
 
 
@@ -22,15 +23,21 @@ function settingsButtonClicked(project) {
 
 }
 
-function sendSettingsRequest(event) {  
-    let id = document.getElementById('title-box').getAttribute('data-id');
-    sendAjaxRequest('get', '/api/projects/' + id, {}, settingsRequestHandler);
+function getRequest(event) {
+    sendAjaxRequest('get', '/api/projects/' + id, {}, getRequestHandler);
 }
 
-function settingsRequestHandler() {
+function getRequestHandler() {
     let project = JSON.parse(this.responseText);
     projectTitle.innerHTML = `${project.project.name}`;
-  }
+}
+
+function postRequest(event) {
+    sendAjaxRequest('post', '/api/projects/' + id, {}, postRequestHandler);
+}
+
+function postRequestHandler() {
+}
 
 function closeSettings(event) {
     if (opaque.style.display == 'block') {

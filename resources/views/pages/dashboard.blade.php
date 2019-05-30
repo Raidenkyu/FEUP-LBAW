@@ -209,7 +209,7 @@
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
       </div>
 
-    <form id="settings-form" method="POST" action="{{ url('api/projects/'.$project->project_id.'/settings') }}">
+    <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
 
         <div class="pop-up-name-box px-0 pt-4">
@@ -347,6 +347,10 @@
             <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
           </div>        
         </div>
+
+        <button class="btn btn-primary submit-button my-5" type="submit" class="btn btn-primary">
+          Save
+        </button><br>
 
       </form>
 

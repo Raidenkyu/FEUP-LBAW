@@ -46,8 +46,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('projects', 'ProjectsController@index');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
-Route::get('api/projects/{id}', 'ProjectsController@settings');
-
+Route::get('api/projects/{id}', 'ProjectSettingsController@show');
+Route::post('api/projects/{id}', 'ProjectSettingsController@update');
 // Profile
 
 Route::get('profile', 'ProfileController@index');

@@ -40,11 +40,6 @@ class ProjectsController extends Controller
       return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project]);
     }
 
-    public function settings($id){
-      $project = \App\Project::where('id_project', $id)->first();
-      return ['project' => $project];
-    }
-
     public static function colorToHex($color){
       switch ($color) {
         case 'Orange':
