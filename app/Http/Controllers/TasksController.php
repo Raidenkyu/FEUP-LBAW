@@ -23,9 +23,24 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_project)
     {
-        //
+        
+        
+        request()->validate([
+            'name' => 'required|min:3|max:255'
+        ]);
+        
+        
+        $task = new Task();
+
+        //this->authorize  ->  TODO
+
+        $task->id_project = $id_project;
+        $task->name = request('name');
+        $task->save();
+
+        return $task;
     }
 
     /**

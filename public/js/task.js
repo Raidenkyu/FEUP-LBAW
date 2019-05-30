@@ -94,11 +94,11 @@ function taskFetch() {
 //////////////////////////////////////// NANDO ///////////////////////////////////////
 
 function addProjButtonToInput(button) {
-  console.log("Clicked");
+  //console.log("Clicked");
   let newTask = document.createElement("input");
   let taskList = button.getAttribute('data-list');
   newTask.type = "text";
-  newTask.name = "name";
+  
   newTask.placeholder = "Task Name";
   newTask.addEventListener('change', addTaskAction.bind(newTask, taskList));
 
@@ -109,11 +109,53 @@ function addProjButtonToInput(button) {
 }
 
 function addTaskAction(taskList){
-  console.log("Adding to " + taskList);
+  //console.log("Adding to " + taskList);
+
+  let id = 1; //TODO: Get id
+  let taskName = this.value;
+
+  console.log("Task name: " + taskName);
+  console.log("Task list: " + taskList);
 
   this.remove();
 
-  // TODO: POST REQUEST
+  sendAjaxRequest('post', '/api/projects/' + id + '/tasks', {name: taskName, list_name: taskList},addTaskReturn);
+
+}
+
+
+function addTaskReturn(){
+
+  if(this.status == 201){
+
+    let task = JSON.parse(this.responseText);
+
+    // Create the new item
+    //let new_task = createTask(task);
+  
+    /*
+    // Insert the new item
+    let card =
+        document.querySelector('article.card[data-id="' + task.card_id + '"]');
+    let form = card.querySelector('form.new_item');
+    form.previousElementSibling.append(new_item);
+  
+    // Reset the new task form
+    form.querySelector('[type=text]').value = '';
+    */
+
+    console.log(this.responseText);
+
+    console.log(task);
+    console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
+
+  }
+  else{
+    console.log("PANIC! ERROR IN ADD TASK");
+  }
+
+  console.log("Status: " + this.status);
+
 
   createTaskButton = document.createElement("a");
   createTaskButton.outerHTML = `<a type="button" class="add-project-button" data-list="${taskList}"></a>`
@@ -129,8 +171,32 @@ function addTaskAction(taskList){
   let list = document.querySelector('div[data-list="' + taskList + '"]');
   list.after(createTaskButton);
 
-  console.log(createTaskButton);
   console.log("Added");
+
+}
+
+
+function createTask(task) {
+
+  //<button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+
+  let new_item = document.createElement('button');
+  new_item.setAttribute('data-id', task.id_task);
+  new_item.classList.add('item');
+  
+  new_item.innerHTML = `
+  <label>
+    <input type="checkbox"> <span>${
+      item.description}</span><a href="#" class="delete">&#10761;</a>
+  </label>
+  `;
+
+  new_item.querySelector('input').addEventListener(
+      'change', sendItemUpdateRequest);
+  new_item.querySelector('a.delete')
+      .addEventListener('click', sendDeleteItemRequest);
+
+  return new_item;
 }
 
 

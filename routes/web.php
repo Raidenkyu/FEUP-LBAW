@@ -49,6 +49,8 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 // Tasks
 
 Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
+Route::post('api/projects/{id_project}/tasks', 'TasksController@create');
+
 // Forums
 
 Route::get('projects/{id}/forums', 'ForumsController@forums');
