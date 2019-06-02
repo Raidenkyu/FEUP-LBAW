@@ -46,8 +46,10 @@ class TasksController extends Controller
             'id_project' => $id_project,
             'name' => request('name')
         ]);
+
+        $tasklist = request('list_name');
         
-        //TODO: Switch for tasklist
+
 
         return $task;
     }

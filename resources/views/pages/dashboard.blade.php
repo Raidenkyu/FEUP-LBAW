@@ -56,10 +56,16 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">In Progress</span>
-          <div class="btn-group-vertical">
+          <div class="btn-group-vertical" data-list="in-progress">
             @foreach($in_progress as $task)
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
+          </div>
+          <div>
+            <a type="button" class="add-project-button" data-list="in-progress">Create New Task</a>
+            <!--<form class="add_project_form">
+              <input type="text" name="name" placeholder="new card">
+            </form>-->
           </div>
         </div>
       </div>
@@ -67,10 +73,16 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">Pending Approval</span>
-          <div class="btn-group-vertical">
+          <div class="btn-group-vertical" data-list="pending">
             @foreach($pending as $task)
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
+          </div>
+          <div>
+            <a type="button" class="add-project-button" data-list="pending">Create New Task</a>
+            <!--<form class="add_project_form">
+              <input type="text" name="name" placeholder="new card">
+            </form>-->
           </div>
         </div>
       </div>
@@ -78,10 +90,16 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">Done</span>
-          <div class="btn-group-vertical">
+          <div class="btn-group-vertical" data-list="done">
             @foreach($done as $task)
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
+          </div>
+          <div>
+            <a type="button" class="add-project-button" data-list="done">Create New Task</a>
+            <!--<form class="add_project_form">
+              <input type="text" name="name" placeholder="new card">
+            </form>-->
           </div>
         </div>
       </div>

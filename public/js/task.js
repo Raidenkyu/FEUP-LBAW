@@ -130,19 +130,24 @@ function addTaskAction(taskList){
   this.remove();
 
   // API call
-  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', {name: taskName, list_name: taskList}, addTaskReturn);
+  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', {name: taskName, list_name: taskList}, addTaskReturn.bind(taskList));
 }
 
 /**
  * Function that gets called after the addTaskAction AjaxRequest
  */
-function addTaskReturn(){
+function addTaskReturn(load){
+  let request = load.srcElement;
+  let taskList = this;
+  console.log("THIS:");
+  console.log(request);
+  console.log(taskList);
 
-  console.log("Status: " + this.status);
+  console.log("Status: " + request.status);
 
-  if(this.status == 201){
+  if(request.status == 201){
 
-    let task = JSON.parse(this.responseText);
+    let task = JSON.parse(request.responseText);
 
     // Create the new item
     /*let new_task = createTask(task);
@@ -169,10 +174,10 @@ function addTaskReturn(){
     form.querySelector('[type=text]').value = '';
     */
 
-    console.log(this.responseText);
+    console.log(request.responseText);
 
     console.log(task);
-    console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
+    //console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
 
   }
   else{
@@ -180,13 +185,10 @@ function addTaskReturn(){
   }
 
   
-
-
   createTaskButton = document.createElement("a");
-  createTaskButton.outerHTML = `<a type="button" class="add-project-button" data-list="${taskList}"></a>`
   createTaskButton.innerHTML = `Create New Task`;
   createTaskButton.setAttribute('type','button');
-  createTaskButton.setAttribute('class','add-project-button');
+  createTaskButton.classList.add('add-project-button');
   createTaskButton.setAttribute('data-list',taskList);
   createTaskButton.addEventListener('click', function(event){
     event.preventDefault();
@@ -199,6 +201,9 @@ function addTaskReturn(){
   console.log("Added");
 
 }
+
+
+
 
 
 function createTask(task) {
