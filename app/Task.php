@@ -12,7 +12,7 @@ class Task extends Model
     protected $table = 'task';
     protected $primaryKey = 'id_task';
 
-    protected $fillable = ['id_project', 'name','list_name'];
+    protected $fillable = ['id_project', 'name', 'list_name'];
     public $timestamps = false;
 
     public function checklist()

@@ -127,6 +127,7 @@ function addTaskAction(taskList){
 
   this.remove();
 
+  // API call
   sendAjaxRequest('post', '/api/projects/' + id + '/tasks', {name: taskName, list_name: taskList},addTaskReturn);
 
 }
