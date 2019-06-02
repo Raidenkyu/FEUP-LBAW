@@ -1,5 +1,6 @@
 let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
+let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
 
 taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -14,8 +15,8 @@ newTaskButtons.forEach(function(button){
 
 function generateTaskModal() {
   let id_task = this.getAttribute('data-id');
-  // TODO: get project id
-  let id_project = 1;
+  
+  let id_project = globalProjectId;
   let url = '/api/projects/' + id_project + '/tasks/' + id_task;
   sendAjaxRequest('GET', url, {}, taskFetch);
 }
@@ -105,7 +106,8 @@ function addTaskClick(button) {
   newTaskInput.placeholder = "Task Name";
   
   // Add event listener
-  newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList));
+  newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList)); //TODO: Add focus on create
+  newTaskInput.addEventListener('focusout', () => {console.log('TODO: Replace with create button!');});
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
@@ -119,7 +121,7 @@ function addTaskClick(button) {
  */
 function addTaskAction(taskList){
 
-  let id = 1; //TODO: Get id
+  let projectId = globalProjectId;
   let taskName = this.value;
 
   console.log("Task name: " + taskName);
@@ -128,12 +130,15 @@ function addTaskAction(taskList){
   this.remove();
 
   // API call
-  sendAjaxRequest('post', '/api/projects/' + id + '/tasks', {name: taskName, list_name: taskList},addTaskReturn);
-
+  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', {name: taskName, list_name: taskList}, addTaskReturn);
 }
 
-
+/**
+ * Function that gets called after the addTaskAction AjaxRequest
+ */
 function addTaskReturn(){
+
+  console.log("Status: " + this.status);
 
   if(this.status == 201){
 
@@ -174,7 +179,7 @@ function addTaskReturn(){
     console.log("PANIC! ERROR IN ADD TASK");
   }
 
-  console.log("Status: " + this.status);
+  
 
 
   createTaskButton = document.createElement("a");

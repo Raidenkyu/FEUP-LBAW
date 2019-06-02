@@ -40,14 +40,14 @@ class TasksController extends Controller
             'name' => 'required|min:3|max:255'
         ]);
         
-        
-        $task = new Task();
-
         //this->authorize  ->  TODO
-
-        $task->id_project = $id_project;
-        $task->name = request('name');
-        $task->save();
+        
+        $task = Task::create([
+            'id_project' => $id_project,
+            'name' => request('name')
+        ]);
+        
+        //TODO: Switch for tasklist
 
         return $task;
     }
