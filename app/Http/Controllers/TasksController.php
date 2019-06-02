@@ -42,14 +42,31 @@ class TasksController extends Controller
         
         //this->authorize  ->  TODO
         
+        $task_list = 'To Do';
+
+        switch (request('list_name')) {
+            case 'to-do':
+                $task_list = 'To Do';
+                break;
+            case 'in-progress':
+                $task_list = 'In Progress';
+                break;
+            case 'pending':
+                $task_list = 'Pending Approval';
+                break;
+            case 'done':
+                $task_list = 'Done';
+                break;
+            default:
+                $task_list = 'To Do';
+                break;
+        }
+
         $task = Task::create([
             'id_project' => $id_project,
-            'name' => request('name')
+            'name' => request('name'),
+            'list_name' => $task_list
         ]);
-
-        $tasklist = request('list_name');
-        
-
 
         return $task;
     }

@@ -2,12 +2,12 @@ let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
 let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
 
-taskButtons.forEach(function(button) {
+taskButtons.forEach(function (button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
 });
 
-newTaskButtons.forEach(function(button){
-  button.addEventListener('click', function(event){
+newTaskButtons.forEach(function (button) {
+  button.addEventListener('click', function (event) {
     event.preventDefault();
     addTaskClick(button);
   });
@@ -15,7 +15,7 @@ newTaskButtons.forEach(function(button){
 
 function generateTaskModal() {
   let id_task = this.getAttribute('data-id');
-  
+
   let id_project = globalProjectId;
   let url = '/api/projects/' + id_project + '/tasks/' + id_task;
   sendAjaxRequest('GET', url, {}, taskFetch);
@@ -45,14 +45,14 @@ function taskFetch() {
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
 
-  checks.forEach(function(check) {
+  checks.forEach(function (check) {
     check.remove();
   });
   if (checklistArray.length > 0) {
     let checklist = document.querySelector('#checklist');
 
 
-    checklistArray.forEach(function(check) {
+    checklistArray.forEach(function (check) {
       let newCheck = document.createElement('div');
       newCheck.classList.add('row');
       newCheck.classList.add('check');
@@ -104,10 +104,10 @@ function addTaskClick(button) {
   let taskList = button.getAttribute('data-list');
   newTaskInput.type = "text";
   newTaskInput.placeholder = "Task Name";
-  
+
   // Add event listener
   newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList)); //TODO: Add focus on create
-  newTaskInput.addEventListener('focusout', () => {console.log('TODO: Replace with create button!');});
+  newTaskInput.addEventListener('focusout', () => { console.log('TODO: Replace with create button!'); });
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
@@ -119,7 +119,7 @@ function addTaskClick(button) {
  * Function that gets called after a change on the Add Task input box
  * @param {*} taskList 
  */
-function addTaskAction(taskList){
+function addTaskAction(taskList) {
 
   let projectId = globalProjectId;
   let taskName = this.value;
@@ -130,104 +130,88 @@ function addTaskAction(taskList){
   this.remove();
 
   // API call
-  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', {name: taskName, list_name: taskList}, addTaskReturn.bind(taskList));
+  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', { name: taskName, list_name: taskList }, addTaskReturn.bind(taskList));
 }
 
 /**
  * Function that gets called after the addTaskAction AjaxRequest
  */
-function addTaskReturn(load){
+function addTaskReturn(load) {
   let request = load.srcElement;
   let taskList = this;
   console.log("THIS:");
   console.log(request);
-  console.log(taskList);
+  console.log("Task list: " + taskList);
 
   console.log("Status: " + request.status);
 
-  if(request.status == 201){
+  if (request.status == 201) {
 
     let task = JSON.parse(request.responseText);
 
-    // Create the new item
-    /*let new_task = createTask(task);
-  
-    switch (new) {
-      case value:
-        
-        break;
-    
-      default:
-        break;
-    }
-
-    let list = document.querySelector('div[data-list="' + taskList + '"]');
-
-    /*
-    // Insert the new item
-    let card =
-        document.querySelector('article.card[data-id="' + task.card_id + '"]');
-    let form = card.querySelector('form.new_item');
-    form.previousElementSibling.append(new_item);
-  
-    // Reset the new task form
-    form.querySelector('[type=text]').value = '';
-    */
-
     console.log(request.responseText);
 
-    console.log(task);
-    //console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
+    //console.log(task);
+    console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
+
+    createTask(task, taskList); 
 
   }
-  else{
+  else {
     console.log("PANIC! ERROR IN ADD TASK");
   }
 
-  
   createTaskButton = document.createElement("a");
   createTaskButton.innerHTML = `Create New Task`;
-  createTaskButton.setAttribute('type','button');
+  createTaskButton.setAttribute('type', 'button');
   createTaskButton.classList.add('add-project-button');
-  createTaskButton.setAttribute('data-list',taskList);
-  createTaskButton.addEventListener('click', function(event){
+  createTaskButton.setAttribute('data-list', taskList);
+  createTaskButton.addEventListener('click', function (event) {
     event.preventDefault();
     addTaskClick(createTaskButton);
   });
 
-  let list = document.querySelector('div[data-list="' + taskList + '"]');
-  list.after(createTaskButton);
+  // create "add task" button
+  let list = document.querySelector('div .add-button-' + taskList);
+  list.appendChild(createTaskButton);
 
   console.log("Added");
-
 }
 
 
+function createTask(task, taskList) {
 
-
-
-function createTask(task) {
-
-  //<button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-
+  // create the new task
   let new_item = document.createElement('button');
   new_item.setAttribute('data-id', task.id_task);
-  new_item.classList.add('item');
-  
-  new_item.innerHTML = `
-  <label>
-    <input type="checkbox"> <span>${
-      item.description}</span><a href="#" class="delete">&#10761;</a>
-  </label>
-  `;
+  new_item.setAttribute('class', 'btn btn-primary task-sel task-button');
+  new_item.setAttribute('data-toggle', 'modal');
+  new_item.setAttribute('data-target', '#task-pop-up')
+  new_item.innerHTML = task.name;
 
-  new_item.querySelector('input').addEventListener(
-      'change', sendItemUpdateRequest);
-  new_item.querySelector('a.delete')
-      .addEventListener('click', sendDeleteItemRequest);
+  // add event listener
+  new_item.addEventListener('click', generateTaskModal.bind(new_item));
 
-  return new_item;
+  // add to respective task list
+  let list = document.querySelector('div[data-list="' + taskList + '"]');
+  list.appendChild(new_item);
 }
 
+
+function taskListSwitch(taskList) {
+  switch (taskList) {
+    case "To Do":
+      return 'to-do';
+    case "In Progress":
+      return 'in-progress';
+    case "Pending":
+      return 'pending';
+    case "Done":
+      return 'done';
+    
+    default:
+      return 'to-do';
+  }
+}
 
 

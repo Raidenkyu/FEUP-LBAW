@@ -41,15 +41,9 @@
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
-          <div>
+          <div class="add-button-to-do">
             <a type="button" class="add-project-button" data-list="to-do">Create New Task</a>
-            <!--<form class="add_project_form">
-              <input type="text" name="name" placeholder="new card">
-            </form>-->
           </div>
-          <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
-          <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
-          <a href="#" class="list-group-item list-group-item-action task-sel">Add Tests</a>-->
         </div>
       </div>
 
@@ -61,11 +55,8 @@
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
-          <div>
+          <div class="add-button-in-progress">
             <a type="button" class="add-project-button" data-list="in-progress">Create New Task</a>
-            <!--<form class="add_project_form">
-              <input type="text" name="name" placeholder="new card">
-            </form>-->
           </div>
         </div>
       </div>
@@ -78,11 +69,8 @@
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
-          <div>
+          <div class="add-button-pending">
             <a type="button" class="add-project-button" data-list="pending">Create New Task</a>
-            <!--<form class="add_project_form">
-              <input type="text" name="name" placeholder="new card">
-            </form>-->
           </div>
         </div>
       </div>
@@ -95,11 +83,8 @@
             <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
           </div>
-          <div>
+          <div class="add-button-done">
             <a type="button" class="add-project-button" data-list="done">Create New Task</a>
-            <!--<form class="add_project_form">
-              <input type="text" name="name" placeholder="new card">
-            </form>-->
           </div>
         </div>
       </div>
