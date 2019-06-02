@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Task;
+use App\Http\Resources\TaskResource as TaskResource;
+use Illuminate\Http\Request;
+
+class TasksController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id_project)
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store($id_project)
+    {
+        request()->validate([
+            'name' => 'required|min:3|max:255'
+        ]);
+        
+        
+        $task = new Task();
+
+        //this->authorize  ->  TODO
+
+        $task->id_project = $id_project;
+        $task->name = request('name');
+        $task->save();
+
+        return $task;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Task $task)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Task $task)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Task $task)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Task $task)
+    {
+        //
+    }
+
+    public function retrieve($id_project, $id_task)
+    {
+        $task = \App\Task::find($id_task);
+        $json = new TaskResource($task);
+        return $json;
+    }
+}

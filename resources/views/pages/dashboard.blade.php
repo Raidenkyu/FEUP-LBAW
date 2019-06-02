@@ -1,12 +1,15 @@
 @extends('layouts.layout')
 
-@section('title', 'Profile')
+@section('title', '{{$project->name}}')
 
 @section('content')
 
 <link rel="stylesheet" href="/css/dashboard_project.css">
 
 <script src="/js/settings.js" defer></script>
+
+<script src="{{asset('js/task.js')}}" defer></script>
+<script src="{{asset('js/app.js')}}" defer></script>
 
 <div class="page-container">
   <div class="container-fluid title-row">
@@ -18,12 +21,9 @@
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
-            <a href="dashboard_project.html"><button type="button"
-                class="btn btn-primary selection-button">•••Tasks</button></a>
-            <a href="forum_project.html"><button type="button"
-                class="btn btn-primary selection-button">•••Discussion</button></a>
-            <a><button type="button" id="sidebarCollapse"
-                class="btn btn-primary selection-button">•••Settings</button></a>
+            <a href="dashboard_project.html"><button type="button" class="btn btn-primary selection-button">•••Tasks</button></a>
+            <a href="forum_project.html"><button type="button" class="btn btn-primary selection-button">•••Discussion</button></a>
+            <a><button type="button" id="sidebarCollapse" class="btn btn-primary selection-button">•••Settings</button></a>
           </div>
         </div>
       </div>
@@ -36,10 +36,16 @@
       <div class="col-sm-* list-col">
         <div class="list-group">
           <span class="list-col-title">To Do</span>
-          <div class="btn-group-vertical">
+          <div class="btn-group-vertical" data-list="to-do">
             @foreach($todo as $task)
-              <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
             @endforeach
+          </div>
+          <div>
+            <a type="button" class="add-project-button" data-list="to-do">Create New Task</a>
+            <!--<form class="add_project_form">
+              <input type="text" name="name" placeholder="new card">
+            </form>-->
           </div>
           <!--<a class="list-group-item list-group-item-action task-sel">Create Interface</a>
           <a href="#" class="list-group-item list-group-item-action task-sel">Fix Login</a>
@@ -51,9 +57,9 @@
         <div class="list-group">
           <span class="list-col-title">In Progress</span>
           <div class="btn-group-vertical">
-          @foreach($in_progress as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @foreach($in_progress as $task)
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            @endforeach
           </div>
         </div>
       </div>
@@ -62,9 +68,9 @@
         <div class="list-group">
           <span class="list-col-title">Pending Approval</span>
           <div class="btn-group-vertical">
-          @foreach($pending as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @foreach($pending as $task)
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            @endforeach
           </div>
         </div>
       </div>
@@ -73,9 +79,9 @@
         <div class="list-group">
           <span class="list-col-title">Done</span>
           <div class="btn-group-vertical">
-          @foreach($done as $task)
-            <button type="button" class="btn btn-primary task-sel" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
-          @endforeach
+            @foreach($done as $task)
+            <button data-id='{{$task->id_task}}' type="button" class="btn btn-primary task-sel task-button" data-toggle="modal" data-target="#task-pop-up">{{$task->name}}</button>
+            @endforeach
           </div>
         </div>
       </div>
@@ -86,12 +92,11 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Interface</h5>
+          <h5 class="modal-title" id="taskTitle">Create Interface</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -103,17 +108,15 @@
                 <div class="row task-edit-top">
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Members</span>
-                    <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
-                      alt="Team Member">
+                    <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;" alt="Team Member">
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Due Date</span>
-                    <span class="res-text">Jun 3 at 10:00 PM</span>
+                    <span id="due-date" class="res-text">Jun 3 at 10:00 PM</span>
                   </div>
                   <div class="col-sm">
                     <span class="res-text task-edit-top-title">Issue</span>
-                    <button type="button"
-                      class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
+                    <button id="issue" type="button" class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
                   </div>
                 </div>
                 <div class="row task-edit-desc-row">
@@ -122,31 +125,30 @@
                       <img src="/icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg">Description
                     </span>
                     <div class="form-group task-edit-description">
-                      <textarea class="form-control" rows="3" id="comment"></textarea>
+                      <textarea class="form-control" rows="3" id="description-text"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row task-edit-check-row">
-                  <div class="col-md-10">
+                  <div id="checklist" class="col-md-10">
                     <span class="res-text">
                       <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg">Checklist title
                     </span>
                     <br>
 
                     <div class="progress task-edit-prog-bar">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
 
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
-                        <img src="/icons/check.svg" class="rounded-circle task-check-icon" alt="User Photo">
+                        <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
                       <div class="res-text tasks-text">
                         <span>Task #1</span>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
@@ -154,7 +156,7 @@
                         <span>Task #2</span>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row check">
                       <div class="">
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
