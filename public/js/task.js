@@ -8,7 +8,7 @@ taskButtons.forEach(function(button) {
 newTaskButtons.forEach(function(button){
   button.addEventListener('click', function(event){
     event.preventDefault();
-    addProjButtonToInput(button)
+    addTaskClick(button);
   });
 });
 
@@ -93,23 +93,31 @@ function taskFetch() {
 
 //////////////////////////////////////// NANDO ///////////////////////////////////////
 
-function addProjButtonToInput(button) {
-  //console.log("Clicked");
-  let newTask = document.createElement("input");
+/**
+ * Function that gets called when you press the "Create Task Button"
+ * @param {*} button 
+ */
+function addTaskClick(button) {
+  // Create the text input
+  let newTaskInput = document.createElement("input");
   let taskList = button.getAttribute('data-list');
-  newTask.type = "text";
+  newTaskInput.type = "text";
+  newTaskInput.placeholder = "Task Name";
   
-  newTask.placeholder = "Task Name";
-  newTask.addEventListener('change', addTaskAction.bind(newTask, taskList));
+  // Add event listener
+  newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList));
 
+  // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
-
-  list.after(newTask);
+  list.after(newTaskInput);
   button.remove();
 }
 
+/**
+ * Function that gets called after a change on the Add Task input box
+ * @param {*} taskList 
+ */
 function addTaskAction(taskList){
-  //console.log("Adding to " + taskList);
 
   let id = 1; //TODO: Get id
   let taskName = this.value;
@@ -131,8 +139,19 @@ function addTaskReturn(){
     let task = JSON.parse(this.responseText);
 
     // Create the new item
-    //let new_task = createTask(task);
+    /*let new_task = createTask(task);
   
+    switch (new) {
+      case value:
+        
+        break;
+    
+      default:
+        break;
+    }
+
+    let list = document.querySelector('div[data-list="' + taskList + '"]');
+
     /*
     // Insert the new item
     let card =
@@ -165,7 +184,7 @@ function addTaskReturn(){
   createTaskButton.setAttribute('data-list',taskList);
   createTaskButton.addEventListener('click', function(event){
     event.preventDefault();
-    addProjButtonToInput(createTaskButton);
+    addTaskClick(createTaskButton);
   });
 
   let list = document.querySelector('div[data-list="' + taskList + '"]');

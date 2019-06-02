@@ -25,8 +25,17 @@ class TasksController extends Controller
      */
     public function create($id_project)
     {
-        
-        
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store($id_project)
+    {
         request()->validate([
             'name' => 'required|min:3|max:255'
         ]);
@@ -41,17 +50,6 @@ class TasksController extends Controller
         $task->save();
 
         return $task;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

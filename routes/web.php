@@ -49,7 +49,7 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 // Tasks
 
 Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
-Route::post('api/projects/{id_project}/tasks', 'TasksController@create');
+Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
 
 // Forums
 
