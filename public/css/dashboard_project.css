@@ -208,6 +208,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .pop-up-name{
     font-size: 1em;
+    border: 2px;
 }
 
 .pop-up-color-box{
