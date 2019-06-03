@@ -94,6 +94,7 @@ function taskFetch() {
 
 //////////////////////////////////////// NANDO ///////////////////////////////////////
 
+
 /**
  * Function that gets called when you press the "Create Task Button"
  * @param {*} button 
@@ -105,16 +106,21 @@ function addTaskClick(button) {
   let taskList = button.getAttribute('data-list');
   newTaskInput.type = "text";
   newTaskInput.placeholder = "Task Name";
+  newTaskInput.setAttribute("data-list", taskList);
 
   // Add event listener
+  newTaskInput.addEventListener('focusout', removeInputBox);
   newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList)); //TODO: Add focus on create
-  newTaskInput.addEventListener('focusout', () => { console.log('TODO: Replace with create button!'); });
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
   list.after(newTaskInput);
+  // Set focus on new input
+  document.querySelector('div[data-list="' + taskList + '"] + input').focus();
+
   button.remove();
 }
+
 
 /**
  * Function that gets called after a change on the Add Task input box
@@ -131,6 +137,7 @@ function addTaskAction(taskList) {
   // API call
   sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', { name: taskName, list_name: taskList }, addTaskReturn.bind(taskList));
 }
+
 
 /**
  * Function that gets called after the addTaskAction AjaxRequest
@@ -153,14 +160,15 @@ function addTaskReturn(load) {
   createAddTaskButton(taskList);
 }
 
+
 /**
- * Function to create a Task Button in the correct list
+ * Function to create a "Task Button" in the correct list
  * @param {*} task 
  * @param {*} taskList 
  */
 function createTaskButton(task, taskList) {
 
-  // create the new task
+  // create the new "Task Button"
   let new_item = document.createElement('button');
   new_item.setAttribute('data-id', task.id_task);
   new_item.setAttribute('class', 'btn btn-primary task-sel task-button');
@@ -176,13 +184,14 @@ function createTaskButton(task, taskList) {
   list.appendChild(new_item);
 }
 
+
 /**
  * Function to create a "Add New Task" button and insert in the correct list
  * @param {*} taskList 
  */
 function createAddTaskButton(taskList){
 
-  // create "add task" button
+  // create "Add Task" button
   let addTaskButton = document.createElement("a");
   addTaskButton.innerHTML = `Create New Task`;
   addTaskButton.setAttribute('type', 'button');
@@ -193,12 +202,28 @@ function createAddTaskButton(taskList){
     addTaskClick(addTaskButton);
   });
 
-  // insert "add task" button
+  // insert "Add Task" button
   let list = document.querySelector('div .add-button-' + taskList);
   list.appendChild(addTaskButton);
 }
 
+function removeInputBox(event){
+  event.preventDefault();  // Does nothing?
 
+  this.removeEventListener('change', addTaskAction); // Does nothing?
+
+  if(this.value == ""){
+    createAddTaskButton(this.getAttribute("data-list"));
+  }
+
+  this.remove();
+}
+
+
+/**
+ * Switch for values of a Task's list 
+ * @param {*} taskList 
+ */
 function taskListSwitch(taskList) {
   switch (taskList) {
     case "To Do":
