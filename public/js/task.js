@@ -99,6 +99,7 @@ function taskFetch() {
  * @param {*} button 
  */
 function addTaskClick(button) {
+  
   // Create the text input
   let newTaskInput = document.createElement("input");
   let taskList = button.getAttribute('data-list');
@@ -124,9 +125,7 @@ function addTaskAction(taskList) {
   let projectId = globalProjectId;
   let taskName = this.value;
 
-  console.log("Task name: " + taskName);
-  console.log("Task list: " + taskList);
-
+  // remove the input box
   this.remove();
 
   // API call
@@ -139,47 +138,27 @@ function addTaskAction(taskList) {
 function addTaskReturn(load) {
   let request = load.srcElement;
   let taskList = this;
-  console.log("THIS:");
-  console.log(request);
-  console.log("Task list: " + taskList);
-
-  console.log("Status: " + request.status);
 
   if (request.status == 201) {
 
     let task = JSON.parse(request.responseText);
 
-    console.log(request.responseText);
-
-    //console.log(task);
-    console.log(task.list_name); //TODO: Ver porque é que não gera o list_name
-
-    createTask(task, taskList); 
-
+    // On success, create a task button for the new task
+    createTaskButton(task, taskList); 
   }
   else {
-    console.log("PANIC! ERROR IN ADD TASK");
+    console.log("PANIC! ERROR IN ADD TASK"); //TODO: Handle errors
   }
 
-  createTaskButton = document.createElement("a");
-  createTaskButton.innerHTML = `Create New Task`;
-  createTaskButton.setAttribute('type', 'button');
-  createTaskButton.classList.add('add-project-button');
-  createTaskButton.setAttribute('data-list', taskList);
-  createTaskButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    addTaskClick(createTaskButton);
-  });
-
-  // create "add task" button
-  let list = document.querySelector('div .add-button-' + taskList);
-  list.appendChild(createTaskButton);
-
-  console.log("Added");
+  createAddTaskButton(taskList);
 }
 
-
-function createTask(task, taskList) {
+/**
+ * Function to create a Task Button in the correct list
+ * @param {*} task 
+ * @param {*} taskList 
+ */
+function createTaskButton(task, taskList) {
 
   // create the new task
   let new_item = document.createElement('button');
@@ -195,6 +174,28 @@ function createTask(task, taskList) {
   // add to respective task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
   list.appendChild(new_item);
+}
+
+/**
+ * Function to create a "Add New Task" button and insert in the correct list
+ * @param {*} taskList 
+ */
+function createAddTaskButton(taskList){
+
+  // create "add task" button
+  let addTaskButton = document.createElement("a");
+  addTaskButton.innerHTML = `Create New Task`;
+  addTaskButton.setAttribute('type', 'button');
+  addTaskButton.classList.add('add-project-button');
+  addTaskButton.setAttribute('data-list', taskList);
+  addTaskButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    addTaskClick(addTaskButton);
+  });
+
+  // insert "add task" button
+  let list = document.querySelector('div .add-button-' + taskList);
+  list.appendChild(addTaskButton);
 }
 
 
