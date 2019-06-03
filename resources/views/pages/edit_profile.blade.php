@@ -13,7 +13,7 @@
                 <h1 class="register-title font-weight-bolder text-center">Edit Profile</h1>
             </div>
 
-            <form id="edit-profile-form" class="p-0 w-100" method="POST" action="/profile">
+            <form id="edit-profile-form" class="p-0 w-100" method="POST" action="/profile" enctype="multipart/form-data">
                 {{method_field('PATCH')}}
                 {{csrf_field()}}
                 <div class="row flex-row">
@@ -58,7 +58,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group center-block mx-auto pt-5 mt-5">
+
+                        <div class="form-group center-block pl-5 mx-auto mt-2">
+                            <div class="row justify-content-center">
+                                <input type="file" name="image">
+                            </div>
+
+                        </div>
+
+                        <div class=" form-group center-block mx-auto pt-5 mt-5">
                             <div class="row justify-content-center">
                                 <button class="btn btn-lg btn-primary login-btn" type="submit" form="edit-profile-form">
                                     Save Changes

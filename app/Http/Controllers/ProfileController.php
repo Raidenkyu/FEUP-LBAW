@@ -56,6 +56,18 @@ class ProfileController extends Controller
             $user->description = request('description');
         }
 
+        if (request()->image != null) {
+            request()->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $imageName = $user->id_member . '.' . request()->image->getClientOriginalExtension();
+
+            request()->image->move(public_path('images/profiles'), $imageName);
+        }
+
+
+
         $user->save();
         return view('pages.profile', ['user' => $user]);
     }

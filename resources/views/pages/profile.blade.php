@@ -19,9 +19,9 @@
     <div class="profile-strap-space row container align-self-center"></div>
     <div class="profile-header row container align-self-center">
       <div class="profile-image col-lg-3 col-lg-pull">
-        <img class="image-canvas rounded-circle align-self-center" alt="Responsive image" src="images/claudio.jpg">
+        <img class="image-canvas rounded-circle align-self-center" alt="Responsive image" src="{{\App\Http\Controllers\ImageController::getImage($user->id_member)}}">
       </div>
-      <div class="profile-info col-lg-8 col-lg-push align-self-center">
+      <div class=" profile-info col-lg-8 col-lg-push align-self-center">
         <div class="col">
           <div class="profile-title align-self-center">
             <p>{{ $user->name }}</p>
