@@ -62,7 +62,11 @@ class ProfileController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-            File::delete(\App\Http\Controllers\ImageController::getImage($user->id_member));
+            $matchingFiles = glob('images/profiles/' . $user->id_member . '.*');
+
+            if (count($matchingFiles) > 0) {
+                File::delete($matchingFiles[0]);
+            }
 
             $extension = request()->image->getClientOriginalExtension();
             $imageName = $user->id_member . '.'  . $extension;
