@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -61,9 +62,13 @@ class ProfileController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-            $imageName = $user->id_member . '.' . request()->image->getClientOriginalExtension();
+            File::delete(\App\Http\Controllers\ImageController::getImage($user->id_member));
+
+            $extension = request()->image->getClientOriginalExtension();
+            $imageName = $user->id_member . '.'  . $extension;
 
             request()->image->move(public_path('images/profiles'), $imageName);
+            \App\Http\Controllers\ImageController::resizeImage($imageName, $extension);
         }
 
 
