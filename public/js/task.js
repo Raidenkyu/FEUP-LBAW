@@ -81,6 +81,62 @@ function taskFetch() {
   } else {
     issue.innerHTML = 'None';
   }
+
+
+
+  // == Task List Actions == //
+
+  // Get and clear div
+  let taskListActionDiv = document.querySelector("div.task-list-action");
+  while (taskListActionDiv.firstChild) {
+    taskListActionDiv.removeChild(taskListActionDiv.firstChild);
+  }
+
+  // Create buttons
+  let taskUpgradeButton = newChangeTaskListButton();
+  taskUpgradeButton.setAttribute("id", "task-list-upgrade");
+  taskUpgradeButton.addEventListener("click", upgradeTaskAction);
+
+  let taskDowngradeButton = newChangeTaskListButton();
+  taskDowngradeButton.setAttribute("id", "task-list-downgrade");
+  taskDowngradeButton.addEventListener("click", downgradeTaskAction);
+
+  //console.log(task);
+  switch (task['list_name']) {
+    
+    // just has an "upgrade" button
+    case "To Do":
+      taskUpgradeButton.innerHTML = "Move to \"In Progress\"" ;
+      taskListActionDiv.appendChild(taskUpgradeButton);
+      break;
+
+    // has an "upgrade" and "downgrade" button
+    case "In Progress":
+      taskUpgradeButton.innerHTML = "Move to \"Pending Approval\"" ;
+      taskListActionDiv.appendChild(taskUpgradeButton);
+      taskDowngradeButton.innerHTML = "Move to \"To Do\"" ;
+      taskListActionDiv.appendChild(taskDowngradeButton);
+      break;
+
+    // has an "upgrade" and "downgrade" button (TODO: permission of upgrade)
+    case "Pending Approval":
+      taskUpgradeButton.innerHTML = "Move to \"Done\"" ;
+      taskListActionDiv.appendChild(taskUpgradeButton);
+      taskDowngradeButton.innerHTML = "Move to \"In Progress\"" ;
+      taskListActionDiv.appendChild(taskDowngradeButton);
+      break;
+
+    // just has an "downgrade" button (TODO: Maybe add a second downgrade to In Progress?)
+    case "Done":
+      taskDowngradeButton.innerHTML = "Move to \"Pending Approval\"" ;
+      taskListActionDiv.appendChild(taskDowngradeButton);
+      break;
+
+    default:
+      console.log("TODO: Handle Errors");
+      break;
+  }
+
 }
 
 
@@ -207,6 +263,11 @@ function createAddTaskButton(taskList){
   list.appendChild(addTaskButton);
 }
 
+
+/**
+ * Function to remove a "New Task" input text area
+ * @param {*} event 
+ */
 function removeInputBox(event){
   event.preventDefault();  // Does nothing?
 
@@ -240,4 +301,31 @@ function taskListSwitch(taskList) {
   }
 }
 
+
+function newChangeTaskListButton(){
+
+  // create the new "Change Task List Button"
+  let new_item = document.createElement('button');
+  new_item.type = "button";
+  new_item.classList.add("btn", "btn-primary", "task-edit-button", "res-text");
+  new_item.setAttribute("data-dismiss", "modal");
+  
+  return new_item;
+}
+
+function upgradeTaskAction(){
+
+  // API Call
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { name: taskName, list_name: taskList }, addTaskReturn.bind(taskList));
+
+}
+
+function downgradeTaskAction(){
+  // Hide modal
+
+
+
+}
+
+function upgradeTaskReturn
 

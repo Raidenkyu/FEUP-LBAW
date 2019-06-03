@@ -122,4 +122,13 @@ class TasksController extends Controller
         $json = new TaskResource($task);
         return $json;
     }
+
+    public function changeList($id_project, $id_task)
+    {
+        //
+        
+    }
+    
+
+
 }

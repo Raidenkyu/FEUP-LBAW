@@ -151,23 +151,6 @@
                         <span>Task #1</span>
                       </div>
                     </div>
-                    <div class="row check">
-                      <div class="">
-                        <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
-                      </div>
-                      <div class="res-text tasks-text">
-                        <span>Task #2</span>
-                      </div>
-                    </div>
-                    <div class="row check">
-                      <div class="">
-                        <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
-                      </div>
-                      <div class="res-text tasks-text">
-                        <span>Task #3</span>
-                      </div>
-                    </div>
-
 
                   </div>
                 </div>
@@ -193,8 +176,8 @@
                 </div>
                 <br>
                 <span>Actions</span>
-                <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Move to in Progress</button>
+                <div class="btn-group-vertical task-edit-button-group task-list-action">
+                  
                 </div>
 
               </div>
@@ -207,6 +190,7 @@
     </div>
   </div>
 
+  <!-- Settings side bar -->
   <div id="mySidenav" class="sidenav mt-5">
     <a href="javascript:void(0)" class="closebtn" onclick="settingsButtonClicked({{$project}});">&times;</a>
     <div class="pop-up-box">

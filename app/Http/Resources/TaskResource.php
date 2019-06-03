@@ -23,6 +23,7 @@ class TaskResource extends JsonResource
             'creation_date' => $this->creation_date,
             'due_date' => $this->due_date,
             'issue' => $this->issue,
+            'list_name' => $this->list_name,
             'checklist' => SubTaskResource::collection($this->checklist()),
             'members' => MemberResource::collection($this->members())
         ];
