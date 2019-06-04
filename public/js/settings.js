@@ -1,22 +1,28 @@
-let sidebar = document.querySelector("#mySidenav");
+/* Settings Window Animation */
 let negSize = "-320px";
-let settingsButton = document.querySelector("#sidebarCollapse");
 let opaque = document.getElementById('opaque');
+
+/* Global Project Elements */
 let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
-let submitButton = document.getElementById("submit-button");
-let sideProjectTitle = document.querySelector(".pop-up-name");
 let globalProjectColor = document.querySelector(".title-line");
 
+/* Settings Elements */
+let sidebar = document.querySelector("#mySidenav");
+let settingsButton = document.querySelector("#sidebarCollapse");
+let settingsProjectTitle = document.querySelector(".pop-up-name");
+let submitButton = document.getElementById("submit-button");
+
+/* Update current color on Settings Tab and loads Project's Color */
 colorPicker();
 
+/* Settings' Event Listeners */
 settingsButton.addEventListener('click', settingsButtonClicked);
 settingsButton.addEventListener('click', getRequest);
 opaque.addEventListener('click', closeSettings);
 submitButton.addEventListener('click', putRequest);
-sideProjectTitle.addEventListener('click', (event) => {
+settingsProjectTitle.addEventListener('click', (event) => {
     event.preventDefault;
 });
-globalProjectColor.style.backgroundColor = "#" + colorToHex(globalProjectColor.getAttribute('data-color'));
 
 function settingsButtonClicked(project) {
     if (sidebar.style.right == negSize || sidebar.style.right == "") {
@@ -58,7 +64,6 @@ function putRequestHandler() {
         projectTitle.innerHTML = project['name'];
         projectColor.setAttribute('style', 'background-color: #' + colorToHex(project['color']));
     }
-
 }
 
 function closeSettings(event) {
@@ -124,6 +129,7 @@ function colorToIndex(color) {
 }
 
 function colorPicker() {
+    globalProjectColor.style.backgroundColor = "#" + colorToHex(globalProjectColor.getAttribute('data-color'));
     let color = globalProjectColor.getAttribute('data-color');
     let colorPicker = document.querySelector('.color-picker div input[value="' + colorToIndex(color) + '"]');
     colorPicker.setAttribute('checked', true);
