@@ -81,7 +81,7 @@ function taskFetch() {
   issueText = task['issue'];
   let issue = document.querySelector('#issue');
   if (issueText != null) {
-    issue.innerHTML = '#' + issueText;
+    issue.innerHTML = issueText;
   } else {
     issue.innerHTML = 'None';
   }
@@ -182,6 +182,9 @@ function saveChangesAnswer() {
   console.log(this.status);
   if (this.status == 200) {
     let task = JSON.parse(this.responseText);
+    let taskId = task['id_task'];
+    let taskButton = document.querySelector('button[data-id="' + taskId + '"]');
+    taskButton.innerHTML = task['name'];
     console.log(task);
   }
   else{
