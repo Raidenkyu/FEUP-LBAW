@@ -22,4 +22,20 @@ class ProjectMember extends Model
         ])->exists();
         return $relation;
     }
+
+    public static function getDevs($id_project){
+        $devs = ProjectMember::where([
+            ['id_project', '=', $id_project],
+            ['manager', '=', 'false']
+        ])->get();
+        return $devs;
+    }
+
+    public static function getManagers($id_project){
+        $devs = ProjectMember::where([
+            ['id_project', '=', $id_project],
+            ['manager', '=', 'true']
+        ])->get();
+        return $devs;
+    }
 }

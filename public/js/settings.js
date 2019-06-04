@@ -46,12 +46,19 @@ function settingsButtonClicked(project) {
 
 function getRequest(event) {
     sendAjaxRequest('get', '/api/projects/' + globalProjectId + '/settings', {}, getRequestHandler);
+    sendAjaxRequest('get', '/api/projects/' + globalProjectId + '/members', {}, getMembersHandler);
 }
 
 function getRequestHandler() {
     let project = JSON.parse(this.responseText);
     let projectTitle = document.querySelector(".pop-up-name");
     projectTitle.innerHTML = `${project.project.name}`;
+}
+
+function getMembersHandler() {
+    let devs = JSON.parse(this.responseText)['devs'];
+    let managers = JSON.parse(this.responseText)['managers'];
+    
 }
 
 function putRequest(event) {

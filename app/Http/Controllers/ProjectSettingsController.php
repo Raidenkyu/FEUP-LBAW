@@ -26,6 +26,13 @@ class ProjectSettingsController extends Controller
         return $project;
     }
 
+    public function members($id_project){
+        $devs = \App\ProjectMember::getDevs($id_project);
+        $managers = \App\ProjectMember::getManagers($id_project);
+
+        return ['devs' => $devs, 'managers' => $managers];
+    }
+
     private function colorPicker($color) {
         switch ($color) {
             case 'color-1':
