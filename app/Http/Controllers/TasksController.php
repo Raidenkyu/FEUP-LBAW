@@ -39,9 +39,9 @@ class TasksController extends Controller
         request()->validate([
             'name' => 'required|min:3|max:255'
         ]);
-        
+
         //this->authorize  ->  TODO
-        
+
         $task_list = 'To Do';
 
         switch (request('list_name')) {
@@ -100,9 +100,9 @@ class TasksController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update($id_project, $id_task)
     {
-        //
+        $task = \App\Task::find($id_task);
     }
 
     /**
@@ -123,8 +123,9 @@ class TasksController extends Controller
         return $json;
     }
 
-    public function upgradeTask($task){
-        
+    public function upgradeTask($task)
+    {
+
         switch ($task->list_name) {
             case 'To Do':
                 $task->list_name = 'In Progress';
@@ -137,7 +138,7 @@ class TasksController extends Controller
                 break;
             case 'Done':
                 // TODO: Lançar erro
-                break;    
+                break;
             default:
                 // TODO: Lançar erro
                 break;
@@ -146,7 +147,8 @@ class TasksController extends Controller
         return $task;
     }
 
-    public function downgradeTask($task){
+    public function downgradeTask($task)
+    {
 
         switch ($task->list_name) {
             case 'To Do':
@@ -160,7 +162,7 @@ class TasksController extends Controller
                 break;
             case 'Done':
                 $task->list_name = 'Pending Approval';
-                break;    
+                break;
             default:
                 // TODO: Lançar erro
                 break;
@@ -175,26 +177,20 @@ class TasksController extends Controller
 
         $old_list = $task->list_name;
         $action = request('action');
-    
+
         // TODO: Authorization
 
-        if($action == 'upgrade'){
+        if ($action == 'upgrade') {
             $task = $this->upgradeTask($task);
             $task->save();
-        }
-        else if($action == 'downgrade'){
+        } else if ($action == 'downgrade') {
             $task = $this->downgradeTask($task);
             $task->save();
-        }
-        else{
+        } else {
             // TODO: Errors
         }
-        
+
         // Return both the new task and the old list to update the page
         return ['task' => $task, 'old_list' => $old_list, 'action' => $action];
     }
-    
-
-
-
 }

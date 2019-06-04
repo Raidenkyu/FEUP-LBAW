@@ -82,8 +82,8 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="taskTitle">Create Interface</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title-header" id="taskTitleHeader"><input type="text" id="taskTitle" class="modal-title border rounded" name="title"></input></h5>
+          <button id="close-task-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -111,7 +111,7 @@
                       <img src="/icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg">Description
                     </span>
                     <div class="form-group task-edit-description">
-                      <textarea class="form-control" rows="3" id="description-text"></textarea>
+                      <textarea class="form-control" rows="4" id="description-text" style="resize: none;"></textarea>
                     </div>
                   </div>
                 </div>
@@ -131,7 +131,7 @@
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
                       <div class="res-text tasks-text">
-                        <span>Task #1</span>
+                        <span class=".check-test">Task #1</span>
                       </div>
                     </div>
 
@@ -160,7 +160,7 @@
                 <br>
                 <span>Actions</span>
                 <div class="btn-group-vertical task-edit-button-group task-list-action">
-                  
+
                 </div>
 
               </div>
@@ -181,7 +181,7 @@
         <span class="pop-up-title font-weight-bolder">Settings</span><br>
       </div>
 
-    <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
+      <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 
@@ -192,7 +192,7 @@
         <div class="pop-up-color-box pt-4">
           <div class="container px-0">
             <h5 class="font-weight-bolder">Color</h5>
-            <div  class="color-picker container px-0 pt-2">
+            <div class="color-picker container px-0 pt-2">
               <div>
                 <input type="radio" id="color-picker-1" name="color" value="color-1">
                 <label for="color-picker-1">
@@ -201,7 +201,7 @@
                   </span>
                 </label>
               </div>
-              
+
               <div>
                 <input type="radio" id="color-picker-2" name="color" value="color-2">
                 <label for="color-picker-2">
@@ -210,7 +210,7 @@
                   </span>
                 </label>
               </div>
-              
+
               <div>
                 <input type="radio" id="color-picker-3" name="color" value="color-3">
                 <label for="color-picker-3">
@@ -219,7 +219,7 @@
                   </span>
                 </label>
               </div>
-            
+
               <div>
                 <input type="radio" id="color-picker-4" name="color" value="color-4">
                 <label for="color-picker-4">
@@ -256,7 +256,7 @@
                   </span>
                 </label>
               </div>
-              
+
               <div>
                 <input type="radio" id="color-picker-8" name="color" value="color-2">
                 <label for="color-picker-8">
@@ -265,7 +265,7 @@
                   </span>
                 </label>
               </div>
-              
+
               <div>
                 <input type="radio" id="color-picker-9" name="color" value="color-3">
                 <label for="color-picker-9">
@@ -274,7 +274,7 @@
                   </span>
                 </label>
               </div>
-            
+
               <div>
                 <input type="radio" id="color-picker-10" name="color" value="color-4">
                 <label for="color-picker-10">
@@ -318,7 +318,7 @@
             <img src="/images/joao.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
             <img src="/images/fernando.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
             <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
-          </div>        
+          </div>
         </div>
 
         <button class="btn btn-primary submit-button my-5" id="submit-button" type="submit" class="btn btn-primary">
