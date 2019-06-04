@@ -22,17 +22,17 @@ class ProjectsController extends Controller
     }
 
     public function dashboard($id){
-      // if (!Auth::check()) return redirect('/');
-      // $user = Auth::user();
+      if (!Auth::check()) return redirect('/');
+      $user = Auth::user();
       $todo = \App\Task::whereIdProject($id)->whereListName('To Do')->get();
       $in_progress = \App\Task::whereIdProject($id)->whereListName('In Progress')->get();
       $pending = \App\Task::whereIdProject($id)->whereListName('Pending Approval')->get();
       $done = \App\Task::whereIdProject($id)->whereListName('Done')->get();
       $project = \App\Project::where('id_project', $id)->first();
 
-     
+      $isManager = \App\ProjectMember::isManager($user->id_member, $id);
 
-      return view('pages.project', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project]);
+      return view('pages.project', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project, 'isManager' => $isManager]);
     }
 
     public function create(){

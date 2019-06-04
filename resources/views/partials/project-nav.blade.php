@@ -3,7 +3,7 @@
       <div class="col-2 align-self-center">
       <div class="title-line" data-color="{{$project->color}}"></div>
       </div>
-      <div class="col-* title-box" id="title-box" data-id="{{$project->id_project}}">{{$project->name}}</div>
+    <div class="col-* title-box" id="title-box" data-id="{{$project->id_project}}" data-isManager="{{$isManager}}">{{$project->name}}</div>
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">

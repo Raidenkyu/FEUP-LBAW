@@ -12,17 +12,27 @@ let settingsButton = document.querySelector("#sidebarCollapse");
 let settingsProjectTitle = document.querySelector(".pop-up-name");
 let submitButton = document.getElementById("submit-button");
 
-/* Update current color on Settings Tab and loads Project's Color */
-colorPicker();
+/* Permission Variable */
+let isManager = document.getElementById('title-box').getAttribute('data-isManager');
+
+if(isManager) {
+    /* Update current color on Settings Tab*/
+    colorPicker();
+
+    /* Settings' Event Listeners */
+    settingsButton.addEventListener('click', getRequest);
+    submitButton.addEventListener('click', putRequest);
+    settingsProjectTitle.addEventListener('click', (event) => {
+        event.preventDefault;
+    });
+} 
+
+/* Load Project Color */
+globalProjectColor.style.backgroundColor = "#" + colorToHex(globalProjectColor.getAttribute('data-color'));
 
 /* Settings' Event Listeners */
 settingsButton.addEventListener('click', settingsButtonClicked);
-settingsButton.addEventListener('click', getRequest);
 opaque.addEventListener('click', closeSettings);
-submitButton.addEventListener('click', putRequest);
-settingsProjectTitle.addEventListener('click', (event) => {
-    event.preventDefault;
-});
 
 function settingsButtonClicked(project) {
     if (sidebar.style.right == negSize || sidebar.style.right == "") {
@@ -129,7 +139,6 @@ function colorToIndex(color) {
 }
 
 function colorPicker() {
-    globalProjectColor.style.backgroundColor = "#" + colorToHex(globalProjectColor.getAttribute('data-color'));
     let color = globalProjectColor.getAttribute('data-color');
     let colorPicker = document.querySelector('.color-picker div input[value="' + colorToIndex(color) + '"]');
     colorPicker.setAttribute('checked', true);
