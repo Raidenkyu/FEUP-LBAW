@@ -7,9 +7,9 @@
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
-            <a href="dashboard_project.html"><button type="button"
+            <a href="/projects/{{ $project->id_project }}"><button type="button"
                 class="btn btn-primary selection-button">•••Tasks</button></a>
-            <a href="forum_project.html"><button type="button"
+            <a href="/projects/{{ $project->id_project }}/forums"><button type="button"
                 class="btn btn-primary selection-button">•••Discussion</button></a>
             <a><button type="button" id="sidebarCollapse"
                 class="btn btn-primary selection-button">•••Settings</button></a>
