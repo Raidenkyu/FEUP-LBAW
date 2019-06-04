@@ -77,6 +77,10 @@ Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
 
+// Member
+
+Route::get('projects/{id}/members', 'MemberController@index');
+
 // Admin
 
 Route::get('admin', 'AdminController@index');

@@ -308,21 +308,7 @@
             </div>
           </div>
 
-          <div class="container px-0 pt-4">
-            <h5 class="font-weight-bolder py-2 pop-up-team-title">Team</h5>
-            <h6 class="py-2 pop-up-man-title">MANAGERS</h6>
-            <div id="settings-managers" class="py-1 container px-0">
-              <img src="/images/pedro.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-              <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
-            </div>
-            <h6 class="pt-2 pop-up-dev-title">DEVELOPERS</h6>
-            <div id="settings-devs" class="pt-1 pb-2 container px-0">
-              <img src="/images/claudio.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-              <img src="/images/joao.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-              <img src="/images/fernando.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-              <img src="/icons/plus.svg" class="mr-2 rounded-circle team-profile-add" alt="Responsive image">
-            </div>
-          </div>
+
 
           <button class="btn btn-primary submit-button my-5" id="submit-button" type="submit" class="btn btn-primary">
             Save
@@ -336,6 +322,10 @@
       </button><br>
       
       @if($isManager)
+        <button onclick="location.href = '/projects/{{$project->id_project}}/members'" class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
+          Add members
+        </button><br>
+
         <button class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
           Delete project
         </button>
