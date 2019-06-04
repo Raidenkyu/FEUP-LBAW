@@ -1,6 +1,6 @@
 let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
-let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
+//let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
 
 taskButtons.forEach(function (button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));

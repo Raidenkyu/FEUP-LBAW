@@ -57,11 +57,11 @@ function putRequest(event) {
 }
 
 function putRequestHandler() {
-    let projectTitle = document.querySelector(".pop-up-name");
     let projectColor = document.querySelector(".title-line");
+    let globalProjectName = document.getElementById("title-box");
     if (this.status == 200) {
         let project = JSON.parse(this.responseText);
-        projectTitle.innerHTML = project['name'];
+        globalProjectName.innerHTML = project['name'];
         projectColor.setAttribute('style', 'background-color: #' + colorToHex(project['color']));
     }
 }
