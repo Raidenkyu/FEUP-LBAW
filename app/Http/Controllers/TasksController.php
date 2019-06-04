@@ -103,8 +103,6 @@ class TasksController extends Controller
     public function update($id_project, $id_task)
     {
         $task = \App\Task::find($id_task);
-
-        if ($task)
     }
 
     /**
@@ -185,9 +183,11 @@ class TasksController extends Controller
         if ($action == 'upgrade') {
             $task = $this->upgradeTask($task);
             $task->save();
-        } else {
+        } else if ($action == 'downgrade') {
             $task = $this->downgradeTask($task);
             $task->save();
+        } else {
+            // TODO: Errors
         }
 
         // Return both the new task and the old list to update the page
