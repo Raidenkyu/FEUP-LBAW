@@ -50,8 +50,8 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Project Settings
 
-Route::get('api/projects/{id}', 'ProjectSettingsController@show');
-Route::post('api/projects/{id}', 'ProjectSettingsController@update');
+Route::get('api/projects/{id}/settings', 'ProjectSettingsController@show');
+Route::put('api/projects/{id}/settings', 'ProjectSettingsController@update');
 
 // Tasks
 

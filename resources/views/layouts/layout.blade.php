@@ -30,15 +30,16 @@
     </div>
 
     <div id="sign" class="login-container">
-        @if (Auth::check())
-          <a href="{{ url('/profile') }}"><span style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
-          <button class="button btn btn-secondary" >
-            <a class="button" href="{{ url('/logout') }}"> Logout </a>
-          </button>
-        @else
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
-          <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
-        @endif
+      @if (Auth::check())
+      <a href="{{ url('/profile') }}"><img src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}" class="rounded-circle mx-2" style="width:35px;" alt="Responsive image"></a>
+      <a href="{{ url('/profile') }}"><span style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
+      <button class="button btn btn-secondary">
+        <a class="button" href="{{ url('/logout') }}"> Logout </a>
+      </button>
+      @else
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
+      <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
+      @endif
 
     </div>
   </nav>

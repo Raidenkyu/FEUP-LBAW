@@ -12,24 +12,7 @@
 <script src="{{asset('js/utils.js')}}" defer></script>
 
 <div class="page-container">
-  <div class="container-fluid title-row">
-    <div class="row">
-      <div class="col-2 align-self-center">
-        <div class="title-line"></div>
-      </div>
-      <div class="col-* title-box" id="title-box" data-id="{{$project->id_project}}">{{$project->name}}</div>
-      <div class="col-3 title-buttons">
-        <div class="container">
-          <div class="btn-group">
-            <a href="dashboard_project.html"><button type="button" class="btn btn-primary selection-button">•••Tasks</button></a>
-            <a href="forum_project.html"><button type="button" class="btn btn-primary selection-button">•••Discussion</button></a>
-            <a><button type="button" id="sidebarCollapse" class="btn btn-primary selection-button">•••Settings</button></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-*"></div>
-    </div>
-  </div>
+  @include('partials.project-nav')
 
   <div class="task-list-block">
     <div class="row lists-table d-flex justify-content-md-start">
@@ -200,17 +183,18 @@
 
     <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
+        {{ method_field('PUT') }}
 
         <div class="pop-up-name-box px-0 pt-4">
           <span class="pop-up-name-title font-weight-bolder py-2">Name</span><br>
-          <span class="pop-up-name">{{ $project->name }}</span><br>
+          <input type="text" class="pop-up-name" value="{{ $project->name }}"></input><br>
         </div>
         <div class="pop-up-color-box pt-4">
           <div class="container px-0">
             <h5 class="font-weight-bolder">Color</h5>
             <div  class="color-picker container px-0 pt-2">
               <div>
-                <input type="radio" id="color-picker-1" name="color" value="color-1" checked>
+                <input type="radio" id="color-picker-1" name="color" value="color-1">
                 <label for="color-picker-1">
                   <span>
                     <img src="/icons/check-icn.svg" alt="Checked" />
@@ -337,7 +321,7 @@
           </div>        
         </div>
 
-        <button class="btn btn-primary submit-button my-5" type="submit" class="btn btn-primary">
+        <button class="btn btn-primary submit-button my-5" id="submit-button" type="submit" class="btn btn-primary">
           Save
         </button><br>
 
