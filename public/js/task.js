@@ -103,9 +103,8 @@ function taskFetch() {
       'click', upgradeTaskAction.bind(task['id_proj'], task['id']));
 
   let taskDowngradeButton = newChangeTaskListButton();
-  taskDowngradeButton.setAttribute('id', 'task-list-downgrade');
-  taskDowngradeButton.addEventListener(
-      'click', downgradeTaskAction.bind(task['id_proj'], task['id']));
+  taskDowngradeButton.setAttribute("id", "task-list-downgrade");
+  taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
 
   // console.log(task);
   switch (task['list_name']) {
@@ -371,9 +370,7 @@ function upgradeTaskAction(taskId) {
   let projectId = this;
 
   // API Call
-  sendAjaxRequest(
-      'put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
-      {action: 'upgrade'}, changeTaskListReturn);
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, changeTaskListReturn);
 }
 
 /**
