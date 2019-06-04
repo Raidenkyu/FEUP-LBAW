@@ -1,4 +1,4 @@
-let taskButtons = document.querySelectorAll('.task-button');
+ taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
 //let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
 
@@ -29,6 +29,7 @@ function taskFetch() {
 
   let taskTitle = document.querySelector('#taskTitle');
   taskTitle.setAttribute('value', task['name']);
+  taskTitle.setAttribute('data-id', task['id']);
 
   let descriptionText = task['description'];
   if (descriptionText != null) {
@@ -78,7 +79,7 @@ function taskFetch() {
   issueText = task['issue'];
   let issue = document.querySelector('#issue');
   if (issueText != null) {
-    issue.innerHTML = '#' + issueText;
+    issue.innerHTML = issueText;
   } else {
     issue.innerHTML = 'None';
   }
@@ -141,8 +142,7 @@ function taskFetch() {
 }
 
 
-//////////////////////////////////////// JUAN
-/////////////////////////////////////////////
+//////////////////////////////////////// JUAN /////////////////////////////////////////////
 
 let closeTaskButton = document.querySelector('#close-task-button');
 
@@ -159,30 +159,39 @@ function saveChanges() {
     tasklist.push(check.innerHTML);
   });
 
+  let projectId = globalProjectId;
+  let taskId = taskTitle.getAttribute('data-id');
 
   // API call
   sendAjaxRequest(
-      'post', '/api/projects/' + projectId + '/tasks', {
+      'put', '/api/projects/' + projectId + '/tasks/' + taskId, {
         name: taskTitle.value,
-        description: description,
-        due_date: due_date,
+        description: description.innerHTML,
+        due_date: due_date.innerHTML,
         tasklist: tasklist,
-        issue: issue
+        issue: issue.innerHTML
       },
       saveChangesAnswer);
 }
 
 
 function saveChangesAnswer() {
-  if (this.status == 201) {
-    console.log('Task Changed');
+  console.log(this.status);
+  if (this.status == 200) {
+    let task = JSON.parse(this.responseText);
+    let taskId = task['id_task'];
+    let taskButton = document.querySelector('button[data-id="' + taskId + '"]');
+    taskButton.innerHTML = task['name'];
+    console.log(task);
+  }
+  else{
+    console.log(this.responseText);
   }
 }
 
 
 
-//////////////////////////////////////// NANDO
-//////////////////////////////////////////
+//////////////////////////////////////// NANDO //////////////////////////////////////////
 
 
 /**
@@ -275,10 +284,9 @@ function createTaskButton(task, taskList) {
 
 /**
  * Function to erase a "Task Button" in the correct list
- * @param {*} task 
+ * @param {*} task
  */
 function eraseTaskButton(task, taskList) {
-
   let item = document.querySelector('button[data-id="' + task.id_task + '"]');
   item.remove();
 }
@@ -333,7 +341,7 @@ function taskListSwitch(taskList) {
       return 'to-do';
     case 'In Progress':
       return 'in-progress';
-    case "Pending Approval":
+    case 'Pending Approval':
       return 'pending';
     case 'Done':
       return 'done';
@@ -357,10 +365,9 @@ function newChangeTaskListButton() {
 
 /**
  * Action that gets called after an upgrade button is pressed
- * @param {*} taskId 
+ * @param {*} taskId
  */
-function upgradeTaskAction(taskId){
-
+function upgradeTaskAction(taskId) {
   let projectId = this;
 
   // API Call
@@ -369,37 +376,29 @@ function upgradeTaskAction(taskId){
 
 /**
  * Action that gets called after an downgrade button is pressed
- * @param {*} taskId 
+ * @param {*} taskId
  */
-function downgradeTaskAction(taskId){
-  
+function downgradeTaskAction(taskId) {
   let projectId = this;
 
   // API Call
-  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "downgrade" }, changeTaskListReturn);
+  sendAjaxRequest(
+      'put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
+      {action: 'downgrade'}, changeTaskListReturn);
 }
 
 /**
  * Function to change the pages without reload
  */
-function changeTaskListReturn(){
-
-  if(this.status == 200){
+function changeTaskListReturn() {
+  if (this.status == 200) {
     let task = (JSON.parse(this.responseText))['task'];
     let old_list = (JSON.parse(this.responseText))['old_list'];
     let action = (JSON.parse(this.responseText))['action'];
 
     eraseTaskButton(task, taskListSwitch(old_list));
     createTaskButton(task, taskListSwitch(task.list_name));
+  } else {
+    console.log('TODO: Handle errors');
   }
-  else{
-    console.log("TODO: Handle errors");
-  }
-
 }
-
-
-
-
-
-

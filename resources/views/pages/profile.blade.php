@@ -24,7 +24,8 @@
       <div class=" profile-info col-lg-8 col-lg-push align-self-center">
         <div class="col">
           <div class="profile-title align-self-center">
-            <p>{{ $user->name }}</p>
+            <span>{{ $user->name }}</span>
+            <a href="{{ url('/profile/edit') }}"><img src="/icons/edit_pencil.svg" class="ml-2 pb-2" style="width:30px" alt="Responsive image"></a>
           </div>
 
 
