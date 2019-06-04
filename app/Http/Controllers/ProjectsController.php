@@ -29,6 +29,9 @@ class ProjectsController extends Controller
       $pending = \App\Task::whereIdProject($id)->whereListName('Pending Approval')->get();
       $done = \App\Task::whereIdProject($id)->whereListName('Done')->get();
       $project = \App\Project::where('id_project', $id)->first();
+
+     
+
       return view('pages.project', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project]);
     }
 
