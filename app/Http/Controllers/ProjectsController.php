@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -37,6 +38,18 @@ class ProjectsController extends Controller
         if (!Auth::check()) return redirect('/');
 
         return view('pages.create_project');
+    }
+
+    public function search(Request $request){
+      $results = DB::select("SELECT *
+                            FROM (SELECT *, to_tsvector('english', member.name) || to_tsvector('english', member.description) AS document
+                                  FROM member) search
+                            WHERE search.document @@ to_tsquery(?)
+                            ORDER BY ts_rank(search.document, to_tsquery('english', ?)) DESC
+                            ", [request('content'), request('content')]);
+
+      return response()->json($results);
+      // return response()->json(request('content'));
     }
 
     public function store(Request $request){

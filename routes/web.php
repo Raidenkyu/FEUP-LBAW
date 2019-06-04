@@ -47,6 +47,7 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('projects', 'ProjectsController@index');
 Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
+Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Forums

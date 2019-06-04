@@ -11,6 +11,8 @@ DROP TRIGGER IF EXISTS unique_forum_titles on forum;
 DROP TRIGGER IF EXISTS only_manager on project_member;
 DROP TRIGGER IF EXISTS make_everyone_manager on project_member;
 DROP TRIGGER IF EXISTS create_invite_notification on invite;
+DROP TRIGGER IF EXISTS update_old_member on member;
+DROP TRIGGER IF EXISTS insert_new_member on member;
 
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
@@ -18,6 +20,8 @@ DROP FUNCTION IF EXISTS unique_forum_titles();
 DROP FUNCTION IF EXISTS only_manager();
 DROP FUNCTION IF EXISTS make_everyone_manager();
 DROP FUNCTION IF EXISTS create_invite_notification();
+DROP FUNCTION IF EXISTS member_search_update();
+DROP FUNCTION IF EXISTS member_search_insert();
 
 
 -- Drop Tables
@@ -48,7 +52,9 @@ CREATE TABLE member (
     phone_number INTEGER,
     region_code INTEGER,
     banned BOOLEAN NOT NULL DEFAULT FALSE,
-    deleted BOOLEAN NOT NULL DEFAULT FALSE
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    search_name tsvector,
+    search_desc tsvector
 );
 
 CREATE TABLE default_auth (
@@ -162,6 +168,39 @@ CREATE INDEX search_idx_desc ON MEMBER USING GIST (to_tsvector('english', ' ' ||
 
 
 -- TRIGGERS and UDFs
+CREATE OR REPLACE FUNCTION member_search_update()
+RETURNS TRIGGER AS
+$BODY$
+begin
+  IF NEW.title <> OLD.title THEN
+    NEW.search_name = to_tsvector('english',  ' ' || NEW.name || NEW.username);
+    NEW.search_desc = to_tsvector('english',  ' ' || NEW.about || NEW.description || NEW.location);
+  END IF;
+  return new;
+end;
+$BODY$
+language 'plpgsql';
+
+CREATE OR REPLACE FUNCTION member_search_insert()
+RETURNS TRIGGER AS
+$BODY$
+begin
+  NEW.search_name = to_tsvector('english',  ' ' || NEW.name || NEW.username);
+  NEW.search_desc = to_tsvector('english',  ' ' || NEW.about || NEW.description || NEW.location);
+  return new;
+end;
+$BODY$
+language 'plpgsql';
+
+CREATE TRIGGER update_old_member
+    AFTER UPDATE ON member
+    FOR EACH ROW
+    EXECUTE PROCEDURE member_search_update();
+
+CREATE TRIGGER insert_new_member
+    AFTER INSERT ON member
+    FOR EACH ROW
+    EXECUTE PROCEDURE member_search_insert();
 
 CREATE OR REPLACE FUNCTION inactive_user_remove_assigns()
 RETURNS TRIGGER AS
@@ -297,6 +336,7 @@ INSERT INTO member (id_member, name, username, email, about, description, locati
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(18, 'Helena Sampaio', 'helenasampaio', 'helena@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000018', '351', false);
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(19, 'Paula Rocha', 'paularocha', 'paula@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000019', '351', false);
 INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(20, 'Beatriz Henriques', 'beatrizhenriques', 'beatriz@mail.com', 'Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod commodo velit, ut tincidunt urna consectetur eget. Aliquam vestibulum, sem et congue tincidunt, nibh ligula commodo urna, at gravida ante tortor eget magna. Curabitur euismod enim quis accumsan semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin.', 'Porto, Portugal', '910000020', '351', false);
+INSERT INTO member (id_member, name, username, email, about, description, location, phone_number, region_code, banned) VALUES(21, 'Sam Building', 'building', 'building@mail.com', 'building build building build', 'build build buiold build', 'buildingbuilding', '910000021', '351', false);
 
 SELECT setval(pg_get_serial_sequence('member', 'id_member'), (SELECT MAX(id_member) FROM member));
 
