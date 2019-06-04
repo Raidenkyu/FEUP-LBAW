@@ -197,7 +197,7 @@
                 <input type="radio" id="color-picker-1" name="color" value="color-1">
                 <label for="color-picker-1">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Orange Color" />
                   </span>
                 </label>
               </div>
@@ -206,7 +206,7 @@
                 <input type="radio" id="color-picker-2" name="color" value="color-2">
                 <label for="color-picker-2">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Yellow Color" />
                   </span>
                 </label>
               </div>
@@ -215,7 +215,7 @@
                 <input type="radio" id="color-picker-3" name="color" value="color-3">
                 <label for="color-picker-3">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Red Color" />
                   </span>
                 </label>
               </div>
@@ -224,80 +224,80 @@
                 <input type="radio" id="color-picker-4" name="color" value="color-4">
                 <label for="color-picker-4">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Green Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-5" name="color" value="color-4">
+                <input type="radio" id="color-picker-5" name="color" value="color-5">
                 <label for="color-picker-5">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Lilac Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-6" name="color" value="color-4">
+                <input type="radio" id="color-picker-6" name="color" value="color-6">
                 <label for="color-picker-6">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Sky Color" />
                   </span>
                 </label>
               </div>
             </div>
             <div class="color-picker container px-0">
               <div>
-                <input type="radio" id="color-picker-7" name="color" value="color-1">
+                <input type="radio" id="color-picker-7" name="color" value="color-7">
                 <label for="color-picker-7">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Brown Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-8" name="color" value="color-2">
+                <input type="radio" id="color-picker-8" name="color" value="color-8">
                 <label for="color-picker-8">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Golden Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-9" name="color" value="color-3">
+                <input type="radio" id="color-picker-9" name="color" value="color-9">
                 <label for="color-picker-9">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Bordeaux Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-10" name="color" value="color-4">
+                <input type="radio" id="color-picker-10" name="color" value="color-10">
                 <label for="color-picker-10">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Emerald Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-11" name="color" value="color-4">
+                <input type="radio" id="color-picker-11" name="color" value="color-11">
                 <label for="color-picker-11">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Purple Color" />
                   </span>
                 </label>
               </div>
 
               <div>
-                <input type="radio" id="color-picker-12" name="color" value="color-4">
+                <input type="radio" id="color-picker-12" name="color" value="color-12">
                 <label for="color-picker-12">
                   <span>
-                    <img src="/icons/check-icn.svg" alt="Checked" />
+                    <img src="/icons/check-icn.svg" alt="Blue Color" />
                   </span>
                 </label>
               </div>
