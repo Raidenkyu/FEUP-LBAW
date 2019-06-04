@@ -10,7 +10,6 @@ class ProjectsController extends Controller
 {
 
     public function index(){
-
         if (!Auth::check()) return redirect('/');
 
         $id = Auth::user()->id_member;
@@ -34,7 +33,6 @@ class ProjectsController extends Controller
     }
 
     public function create(){
-
         if (!Auth::check()) return redirect('/');
 
         return view('pages.create_project');
@@ -49,8 +47,6 @@ class ProjectsController extends Controller
       $project = \App\Project::create($data);
 
       return redirect('/projects/' . $project->id_project);
-
-
     }
 
     public static function colorToHex($color){
@@ -71,5 +67,4 @@ class ProjectsController extends Controller
 
       return $colors[$color];
     }
-
 }
