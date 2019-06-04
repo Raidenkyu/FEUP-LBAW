@@ -182,9 +182,12 @@ class TasksController extends Controller
             $task = $this->upgradeTask($task);
             $task->save();
         }
-        else{
+        else if($action == 'downgrade'){
             $task = $this->downgradeTask($task);
             $task->save();
+        }
+        else{
+            // TODO: Errors
         }
         
         // Return both the new task and the old list to update the page

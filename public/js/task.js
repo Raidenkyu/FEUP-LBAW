@@ -1,6 +1,6 @@
 let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
-let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
+//let globalProjectId = document.getElementById('title-box').getAttribute('data-id'); From settings.js
 
 taskButtons.forEach(function (button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -99,7 +99,7 @@ function taskFetch() {
 
   let taskDowngradeButton = newChangeTaskListButton();
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
-  taskDowngradeButton.addEventListener("click", downgradeTaskAction);
+  taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
 
   //console.log(task);
   switch (task['list_name']) {
@@ -240,6 +240,16 @@ function createTaskButton(task, taskList) {
   list.appendChild(new_item);
 }
 
+/**
+ * Function to erase a "Task Button" in the correct list
+ * @param {*} task 
+ */
+function eraseTaskButton(task, taskList) {
+
+  let item = document.querySelector('button[data-id="' + task.id_task + '"]');
+  item.remove();
+}
+
 
 /**
  * Function to create a "Add New Task" button and insert in the correct list
@@ -291,7 +301,7 @@ function taskListSwitch(taskList) {
       return 'to-do';
     case "In Progress":
       return 'in-progress';
-    case "Pending":
+    case "Pending Approval":
       return 'pending';
     case "Done":
       return 'done';
@@ -313,44 +323,52 @@ function newChangeTaskListButton(){
   return new_item;
 }
 
+
+/**
+ * Action that gets called after an upgrade button is pressed
+ * @param {*} taskId 
+ */
 function upgradeTaskAction(taskId){
 
   let projectId = this;
 
-  console.log("Task: " + taskId);
-  console.log("Project: " + projectId);
+  // API Call
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, changeTaskListReturn);
+}
+
+/**
+ * Action that gets called after an downgrade button is pressed
+ * @param {*} taskId 
+ */
+function downgradeTaskAction(taskId){
+  
+  let projectId = this;
 
   // API Call
-  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, upgradeTaskReturn);
-
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "downgrade" }, changeTaskListReturn);
 }
 
-
-function upgradeTaskReturn(){
-
-  console.log("Status: " + this.status);
+/**
+ * Function to change the pages without reload
+ */
+function changeTaskListReturn(){
 
   if(this.status == 200){
-    //console.log(JSON.parse(this.responseText));
-    console.log(this.responseText);
+    let task = (JSON.parse(this.responseText))['task'];
+    let old_list = (JSON.parse(this.responseText))['old_list'];
+    let action = (JSON.parse(this.responseText))['action'];
+
+    eraseTaskButton(task, taskListSwitch(old_list));
+    createTaskButton(task, taskListSwitch(task.list_name));
+  }
+  else{
+    console.log("TODO: Handle errors");
   }
 
-  
-  /*
-  let task = (JSON.parse(this.responseText))['task'];
-  let old_list = (JSON.parse(this.responseText))['old_list'];
-
-  console.log(task);
-  console.log(old_list);
-  */
-
 }
 
 
-function downgradeTaskAction(){
-  
 
 
 
-}
 
