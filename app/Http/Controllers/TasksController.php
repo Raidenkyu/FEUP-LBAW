@@ -103,6 +103,21 @@ class TasksController extends Controller
     public function update($id_project, $id_task)
     {
         $task = \App\Task::find($id_task);
+
+        if ($task->name != request('name') && request('name') != "") {
+            $task->name = request('name');
+        }
+
+        if ($task->description != request('description')) {
+            $task->description = request('description');
+        }
+
+        if ($task->issue != request('issue')) {
+            $task->issue = request('issue');
+        }
+
+        $task->save();
+        return $task;
     }
 
     /**

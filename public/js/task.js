@@ -1,11 +1,8 @@
-let taskButtons = document.querySelectorAll('.task-button');
+ taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
-<<<<<<< HEAD
 // let globalProjectId =
-// document.getElementById('title-box').getAttribute('data-id');
-=======
-//let globalProjectId = document.getElementById('title-box').getAttribute('data-id'); From settings.js
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
+// document.getElementById('title-box').getAttribute('data-id'); From
+// settings.js
 
 taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -34,6 +31,7 @@ function taskFetch() {
 
   let taskTitle = document.querySelector('#taskTitle');
   taskTitle.setAttribute('value', task['name']);
+  taskTitle.setAttribute('data-id', task['id']);
 
   let descriptionText = task['description'];
   if (descriptionText != null) {
@@ -105,13 +103,9 @@ function taskFetch() {
       'click', upgradeTaskAction.bind(task['id_proj'], task['id']));
 
   let taskDowngradeButton = newChangeTaskListButton();
-<<<<<<< HEAD
   taskDowngradeButton.setAttribute('id', 'task-list-downgrade');
-  taskDowngradeButton.addEventListener('click', downgradeTaskAction);
-=======
-  taskDowngradeButton.setAttribute("id", "task-list-downgrade");
-  taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
+  taskDowngradeButton.addEventListener(
+      'click', downgradeTaskAction.bind(task['id_proj'], task['id']));
 
   // console.log(task);
   switch (task['list_name']) {
@@ -151,8 +145,7 @@ function taskFetch() {
 }
 
 
-//////////////////////////////////////// JUAN
-/////////////////////////////////////////////
+//////////////////////////////////////// JUAN /////////////////////////////////////////////
 
 let closeTaskButton = document.querySelector('#close-task-button');
 
@@ -169,30 +162,36 @@ function saveChanges() {
     tasklist.push(check.innerHTML);
   });
 
+  let projectId = globalProjectId;
+  let taskId = taskTitle.getAttribute('data-id');
 
   // API call
   sendAjaxRequest(
-      'post', '/api/projects/' + projectId + '/tasks', {
+      'put', '/api/projects/' + projectId + '/tasks/' + taskId, {
         name: taskTitle.value,
-        description: description,
-        due_date: due_date,
+        description: description.innerHTML,
+        due_date: due_date.innerHTML,
         tasklist: tasklist,
-        issue: issue
+        issue: issue.innerHTML
       },
       saveChangesAnswer);
 }
 
 
 function saveChangesAnswer() {
-  if (this.status == 201) {
-    console.log('Task Changed');
+  console.log(this.status);
+  if (this.status == 200) {
+    let task = JSON.parse(this.responseText);
+    console.log(task);
+  }
+  else{
+    console.log(this.responseText);
   }
 }
 
 
 
-//////////////////////////////////////// NANDO
-//////////////////////////////////////////
+//////////////////////////////////////// NANDO //////////////////////////////////////////
 
 
 /**
@@ -285,10 +284,9 @@ function createTaskButton(task, taskList) {
 
 /**
  * Function to erase a "Task Button" in the correct list
- * @param {*} task 
+ * @param {*} task
  */
 function eraseTaskButton(task, taskList) {
-
   let item = document.querySelector('button[data-id="' + task.id_task + '"]');
   item.remove();
 }
@@ -343,11 +341,7 @@ function taskListSwitch(taskList) {
       return 'to-do';
     case 'In Progress':
       return 'in-progress';
-<<<<<<< HEAD
-    case 'Pending':
-=======
-    case "Pending Approval":
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
+    case 'Pending Approval':
       return 'pending';
     case 'Done':
       return 'done';
@@ -368,88 +362,45 @@ function newChangeTaskListButton() {
   return new_item;
 }
 
-<<<<<<< HEAD
-function upgradeTaskAction(taskId) {
-  let projectId = this;
-
-  console.log('Task: ' + taskId);
-  console.log('Project: ' + projectId);
-
-  // API Call
-  sendAjaxRequest(
-      'post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
-      {action: 'upgrade'}, upgradeTaskReturn);
-=======
 
 /**
  * Action that gets called after an upgrade button is pressed
- * @param {*} taskId 
+ * @param {*} taskId
  */
-function upgradeTaskAction(taskId){
-
+function upgradeTaskAction(taskId) {
   let projectId = this;
 
   // API Call
-  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, changeTaskListReturn);
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
+  sendAjaxRequest(
+      'put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
+      {action: 'upgrade'}, changeTaskListReturn);
 }
 
 /**
  * Action that gets called after an downgrade button is pressed
- * @param {*} taskId 
+ * @param {*} taskId
  */
-function downgradeTaskAction(taskId){
-  
+function downgradeTaskAction(taskId) {
   let projectId = this;
 
-<<<<<<< HEAD
-function upgradeTaskReturn() {
-  console.log('Status: ' + this.status);
-
-  if (this.status == 200) {
-    // console.log(JSON.parse(this.responseText));
-    console.log(this.responseText);
-  }
-
-
-  /*
-  let task = (JSON.parse(this.responseText))['task'];
-  let old_list = (JSON.parse(this.responseText))['old_list'];
-
-  console.log(task);
-  console.log(old_list);
-  */
-}
-
-
-function downgradeTaskAction() {}
-=======
   // API Call
-  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "downgrade" }, changeTaskListReturn);
+  sendAjaxRequest(
+      'put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
+      {action: 'downgrade'}, changeTaskListReturn);
 }
 
 /**
  * Function to change the pages without reload
  */
-function changeTaskListReturn(){
-
-  if(this.status == 200){
+function changeTaskListReturn() {
+  if (this.status == 200) {
     let task = (JSON.parse(this.responseText))['task'];
     let old_list = (JSON.parse(this.responseText))['old_list'];
     let action = (JSON.parse(this.responseText))['action'];
 
     eraseTaskButton(task, taskListSwitch(old_list));
     createTaskButton(task, taskListSwitch(task.list_name));
+  } else {
+    console.log('TODO: Handle errors');
   }
-  else{
-    console.log("TODO: Handle errors");
-  }
-
 }
-
-
-
-
-
-
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
