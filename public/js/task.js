@@ -179,16 +179,13 @@ function saveChanges() {
 
 
 function saveChangesAnswer() {
-  console.log(this.status);
   if (this.status == 200) {
+    
     let task = JSON.parse(this.responseText);
     let taskId = task['id_task'];
     let taskButton = document.querySelector('button[data-id="' + taskId + '"]');
     taskButton.innerHTML = task['name'];
-    console.log(task);
-  }
-  else{
-    console.log(this.responseText);
+    
   }
 }
 

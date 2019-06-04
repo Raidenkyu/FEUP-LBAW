@@ -20,6 +20,11 @@ class Task extends Model
         return $this->hasMany(SubTask::class, 'id_task')->get();
     }
 
+    public function checklistIds()
+    {
+        return $this->hasMany(SubTask::class, 'id_task')->get('id_subtask');
+    }
+
     public function members()
     {
         return $this->belongsToMany('App\Member', 'assigned_to', 'id_member', 'id_task')->get();
