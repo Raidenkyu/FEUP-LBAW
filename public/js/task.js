@@ -1,11 +1,6 @@
 let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
-<<<<<<< HEAD
-// let globalProjectId =
-// document.getElementById('title-box').getAttribute('data-id');
-=======
 //let globalProjectId = document.getElementById('title-box').getAttribute('data-id'); From settings.js
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 
 taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -105,13 +100,8 @@ function taskFetch() {
       'click', upgradeTaskAction.bind(task['id_proj'], task['id']));
 
   let taskDowngradeButton = newChangeTaskListButton();
-<<<<<<< HEAD
-  taskDowngradeButton.setAttribute('id', 'task-list-downgrade');
-  taskDowngradeButton.addEventListener('click', downgradeTaskAction);
-=======
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
   taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 
   // console.log(task);
   switch (task['list_name']) {
@@ -343,11 +333,7 @@ function taskListSwitch(taskList) {
       return 'to-do';
     case 'In Progress':
       return 'in-progress';
-<<<<<<< HEAD
-    case 'Pending':
-=======
     case "Pending Approval":
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
       return 'pending';
     case 'Done':
       return 'done';
@@ -368,18 +354,6 @@ function newChangeTaskListButton() {
   return new_item;
 }
 
-<<<<<<< HEAD
-function upgradeTaskAction(taskId) {
-  let projectId = this;
-
-  console.log('Task: ' + taskId);
-  console.log('Project: ' + projectId);
-
-  // API Call
-  sendAjaxRequest(
-      'post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
-      {action: 'upgrade'}, upgradeTaskReturn);
-=======
 
 /**
  * Action that gets called after an upgrade button is pressed
@@ -391,7 +365,6 @@ function upgradeTaskAction(taskId){
 
   // API Call
   sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, changeTaskListReturn);
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 }
 
 /**
@@ -402,28 +375,6 @@ function downgradeTaskAction(taskId){
   
   let projectId = this;
 
-<<<<<<< HEAD
-function upgradeTaskReturn() {
-  console.log('Status: ' + this.status);
-
-  if (this.status == 200) {
-    // console.log(JSON.parse(this.responseText));
-    console.log(this.responseText);
-  }
-
-
-  /*
-  let task = (JSON.parse(this.responseText))['task'];
-  let old_list = (JSON.parse(this.responseText))['old_list'];
-
-  console.log(task);
-  console.log(old_list);
-  */
-}
-
-
-function downgradeTaskAction() {}
-=======
   // API Call
   sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "downgrade" }, changeTaskListReturn);
 }
@@ -452,4 +403,3 @@ function changeTaskListReturn(){
 
 
 
->>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
