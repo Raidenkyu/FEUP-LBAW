@@ -322,7 +322,7 @@
       </button><br>
       
       @if($isManager)
-        <button onclick="location.href = '/projects/{{$project->id_project}}/members'" class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
+        <button onclick="location.href = '/projects/{{$project->id_project}}/members'" class="btn btn-primary mt-2" type="submit" class="btn btn-primary">
           Add members
         </button><br>
 
