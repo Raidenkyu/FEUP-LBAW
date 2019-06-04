@@ -42,7 +42,6 @@ function settingsButtonClicked(project) {
         sidebar.style.right = negSize;
         opaque.style.display = 'none';
     }
-
 }
 
 function getRequest(event) {
