@@ -58,7 +58,7 @@ Route::post('api/projects/{id}', 'ProjectSettingsController@update');
 Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
 Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
 
-Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
+Route::post('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
 
 // Forums
 

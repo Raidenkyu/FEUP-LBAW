@@ -95,7 +95,7 @@ function taskFetch() {
   // Create buttons
   let taskUpgradeButton = newChangeTaskListButton();
   taskUpgradeButton.setAttribute("id", "task-list-upgrade");
-  taskUpgradeButton.addEventListener("click", upgradeTaskAction);
+  taskUpgradeButton.addEventListener("click", upgradeTaskAction.bind(task['id_proj'], task['id']));
 
   let taskDowngradeButton = newChangeTaskListButton();
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
@@ -313,19 +313,44 @@ function newChangeTaskListButton(){
   return new_item;
 }
 
-function upgradeTaskAction(){
+function upgradeTaskAction(taskId){
+
+  let projectId = this;
+
+  console.log("Task: " + taskId);
+  console.log("Project: " + projectId);
 
   // API Call
-  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { name: taskName, list_name: taskList }, addTaskReturn.bind(taskList));
+  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, upgradeTaskReturn);
 
 }
+
+
+function upgradeTaskReturn(){
+
+  console.log("Status: " + this.status);
+
+  if(this.status == 200){
+    //console.log(JSON.parse(this.responseText));
+    console.log(this.responseText);
+  }
+
+  
+  /*
+  let task = (JSON.parse(this.responseText))['task'];
+  let old_list = (JSON.parse(this.responseText))['old_list'];
+
+  console.log(task);
+  console.log(old_list);
+  */
+
+}
+
 
 function downgradeTaskAction(){
-  // Hide modal
+  
 
 
 
 }
-
-function upgradeTaskReturn
 

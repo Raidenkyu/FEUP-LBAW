@@ -123,12 +123,75 @@ class TasksController extends Controller
         return $json;
     }
 
+    public function upgradeTask($task){
+        
+        switch ($task->list_name) {
+            case 'To Do':
+                $task->list_name = 'In Progress';
+                break;
+            case 'In Progress':
+                $task->list_name = 'Pending Approval';
+                break;
+            case 'Pending Approval':
+                $task->list_name = 'Done';
+                break;
+            case 'Done':
+                // TODO: Lançar erro
+                break;    
+            default:
+                // TODO: Lançar erro
+                break;
+        }
+
+        return $task;
+    }
+
+    public function downgradeTask($task){
+
+        switch ($task->list_name) {
+            case 'To Do':
+                // TODO: Lançar erro
+                break;
+            case 'In Progress':
+                $task->list_name = 'To Do';
+                break;
+            case 'Pending Approval':
+                $task->list_name = 'In Progress';
+                break;
+            case 'Done':
+                $task->list_name = 'Pending Approval';
+                break;    
+            default:
+                // TODO: Lançar erro
+                break;
+        }
+
+        return $task;
+    }
+
     public function changeList($id_project, $id_task)
     {
-        //
+        $task = \App\Task::find($id_task);
+
+        $old_list = $task->list_name;
+        $action = request('action');
+    
+        // TODO: Authorization
+
+        if($action == 'upgrade'){
+            $task = $this->upgradeTask($task);
+            $task->save();
+        }
+        else{
+            $task = $this->downgradeTask($task);
+            $task->save();
+        }
         
+        // Return both the new task and the old list to update the page
+        return ['task' => $task, 'old_list' => $old_list, 'action' => $action];
     }
     
+
 
 
 }
