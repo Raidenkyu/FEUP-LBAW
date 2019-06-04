@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', '{{$project->name}}')
+@section('title', $project->name)
 
 @section('content')
 
