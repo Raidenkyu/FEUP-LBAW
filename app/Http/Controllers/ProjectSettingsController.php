@@ -66,7 +66,6 @@ class ProjectSettingsController extends Controller
             
             default:
                 return 'Orange';
-                break;
         }
     }
 }

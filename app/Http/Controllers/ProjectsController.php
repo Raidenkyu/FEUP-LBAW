@@ -19,7 +19,7 @@ class ProjectsController extends Controller
         $my_projects = $member->my_projects;
         $projects = $member->projects;
 
-        return view('pages.projects', ['projects' => $projects, 'my_projects' => $my_projects]);
+        return view('pages.all_projects', ['projects' => $projects, 'my_projects' => $my_projects]);
     }
 
     public function dashboard($id){
@@ -30,7 +30,7 @@ class ProjectsController extends Controller
       $pending = \App\Task::whereIdProject($id)->whereListName('Pending Approval')->get();
       $done = \App\Task::whereIdProject($id)->whereListName('Done')->get();
       $project = \App\Project::where('id_project', $id)->first();
-      return view('pages.dashboard', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project]);
+      return view('pages.project', ['todo' => $todo, 'in_progress' => $in_progress, 'pending' => $pending, 'done' => $done, 'project' => $project]);
     }
 
     public function create(){
