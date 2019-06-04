@@ -1,13 +1,18 @@
 let taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
-let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
+<<<<<<< HEAD
+// let globalProjectId =
+// document.getElementById('title-box').getAttribute('data-id');
+=======
+//let globalProjectId = document.getElementById('title-box').getAttribute('data-id'); From settings.js
+>>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 
-taskButtons.forEach(function (button) {
+taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
 });
 
-newTaskButtons.forEach(function (button) {
-  button.addEventListener('click', function (event) {
+newTaskButtons.forEach(function(button) {
+  button.addEventListener('click', function(event) {
     event.preventDefault();
     addTaskClick(button);
   });
@@ -28,7 +33,7 @@ function taskFetch() {
   console.log(task);
 
   let taskTitle = document.querySelector('#taskTitle');
-  taskTitle.innerHTML = task['name'];
+  taskTitle.setAttribute('value', task['name']);
 
   let descriptionText = task['description'];
   if (descriptionText != null) {
@@ -45,14 +50,14 @@ function taskFetch() {
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
 
-  checks.forEach(function (check) {
+  checks.forEach(function(check) {
     check.remove();
   });
   if (checklistArray.length > 0) {
     let checklist = document.querySelector('#checklist');
 
 
-    checklistArray.forEach(function (check) {
+    checklistArray.forEach(function(check) {
       let newCheck = document.createElement('div');
       newCheck.classList.add('row');
       newCheck.classList.add('check');
@@ -66,6 +71,7 @@ function taskFetch() {
       checkDiv.classList.add('res-text');
       checkDiv.classList.add('tasks-text');
       let spanCheck = document.createElement('span');
+      spanCheck.setAttribute('class', 'check-test');
       spanCheck.innerHTML = check;
       checkDiv.appendChild(spanCheck);
       newCheck.appendChild(imgDiv);
@@ -87,86 +93,125 @@ function taskFetch() {
   // == Task List Actions == //
 
   // Get and clear div
-  let taskListActionDiv = document.querySelector("div.task-list-action");
+  let taskListActionDiv = document.querySelector('div.task-list-action');
   while (taskListActionDiv.firstChild) {
     taskListActionDiv.removeChild(taskListActionDiv.firstChild);
   }
 
   // Create buttons
   let taskUpgradeButton = newChangeTaskListButton();
-  taskUpgradeButton.setAttribute("id", "task-list-upgrade");
-  taskUpgradeButton.addEventListener("click", upgradeTaskAction.bind(task['id_proj'], task['id']));
+  taskUpgradeButton.setAttribute('id', 'task-list-upgrade');
+  taskUpgradeButton.addEventListener(
+      'click', upgradeTaskAction.bind(task['id_proj'], task['id']));
 
   let taskDowngradeButton = newChangeTaskListButton();
+<<<<<<< HEAD
+  taskDowngradeButton.setAttribute('id', 'task-list-downgrade');
+  taskDowngradeButton.addEventListener('click', downgradeTaskAction);
+=======
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
-  taskDowngradeButton.addEventListener("click", downgradeTaskAction);
+  taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
+>>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 
-  //console.log(task);
+  // console.log(task);
   switch (task['list_name']) {
-    
     // just has an "upgrade" button
-    case "To Do":
-      taskUpgradeButton.innerHTML = "Move to \"In Progress\"" ;
+    case 'To Do':
+      taskUpgradeButton.innerHTML = 'Move to "In Progress"';
       taskListActionDiv.appendChild(taskUpgradeButton);
       break;
 
     // has an "upgrade" and "downgrade" button
-    case "In Progress":
-      taskUpgradeButton.innerHTML = "Move to \"Pending Approval\"" ;
+    case 'In Progress':
+      taskUpgradeButton.innerHTML = 'Move to "Pending Approval"';
       taskListActionDiv.appendChild(taskUpgradeButton);
-      taskDowngradeButton.innerHTML = "Move to \"To Do\"" ;
+      taskDowngradeButton.innerHTML = 'Move to "To Do"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
     // has an "upgrade" and "downgrade" button (TODO: permission of upgrade)
-    case "Pending Approval":
-      taskUpgradeButton.innerHTML = "Move to \"Done\"" ;
+    case 'Pending Approval':
+      taskUpgradeButton.innerHTML = 'Move to "Done"';
       taskListActionDiv.appendChild(taskUpgradeButton);
-      taskDowngradeButton.innerHTML = "Move to \"In Progress\"" ;
+      taskDowngradeButton.innerHTML = 'Move to "In Progress"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
-    // just has an "downgrade" button (TODO: Maybe add a second downgrade to In Progress?)
-    case "Done":
-      taskDowngradeButton.innerHTML = "Move to \"Pending Approval\"" ;
+    // just has an "downgrade" button (TODO: Maybe add a second downgrade to In
+    // Progress?)
+    case 'Done':
+      taskDowngradeButton.innerHTML = 'Move to "Pending Approval"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
     default:
-      console.log("TODO: Handle Errors");
+      console.log('TODO: Handle Errors');
       break;
   }
-
 }
 
 
-//////////////////////////////////////// JUAN ///////////////////////////////////////
+//////////////////////////////////////// JUAN
+/////////////////////////////////////////////
+
+let closeTaskButton = document.querySelector('#close-task-button');
+
+closeTaskButton.addEventListener('click', saveChanges);
+
+function saveChanges() {
+  let taskTitle = document.querySelector('#taskTitle');
+  let description = document.querySelector('#description-text');
+  let due_date = document.querySelector('#due-date');
+  let checks = document.querySelectorAll('.check-test');
+  let issue = document.querySelector('#issue');
+  let tasklist = [];
+  checks.forEach(function(check) {
+    tasklist.push(check.innerHTML);
+  });
+
+
+  // API call
+  sendAjaxRequest(
+      'post', '/api/projects/' + projectId + '/tasks', {
+        name: taskTitle.value,
+        description: description,
+        due_date: due_date,
+        tasklist: tasklist,
+        issue: issue
+      },
+      saveChangesAnswer);
+}
+
+
+function saveChangesAnswer() {
+  if (this.status == 201) {
+    console.log('Task Changed');
+  }
+}
 
 
 
-
-
-
-
-//////////////////////////////////////// NANDO ///////////////////////////////////////
+//////////////////////////////////////// NANDO
+//////////////////////////////////////////
 
 
 /**
  * Function that gets called when you press the "Create Task Button"
- * @param {*} button 
+ * @param {*} button
  */
 function addTaskClick(button) {
-  
   // Create the text input
-  let newTaskInput = document.createElement("input");
+  let newTaskInput = document.createElement('input');
   let taskList = button.getAttribute('data-list');
-  newTaskInput.type = "text";
-  newTaskInput.placeholder = "Task Name";
-  newTaskInput.setAttribute("data-list", taskList);
+  newTaskInput.type = 'text';
+  newTaskInput.placeholder = 'Task Name';
+  newTaskInput.setAttribute('data-list', taskList);
 
   // Add event listener
   newTaskInput.addEventListener('focusout', removeInputBox);
-  newTaskInput.addEventListener('change', addTaskAction.bind(newTaskInput, taskList)); //TODO: Add focus on create
+  newTaskInput.addEventListener(
+      'change',
+      addTaskAction.bind(newTaskInput, taskList));  // TODO: Add focus on create
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
@@ -180,10 +225,9 @@ function addTaskClick(button) {
 
 /**
  * Function that gets called after a change on the Add Task input box
- * @param {*} taskList 
+ * @param {*} taskList
  */
 function addTaskAction(taskList) {
-
   let projectId = globalProjectId;
   let taskName = this.value;
 
@@ -191,7 +235,9 @@ function addTaskAction(taskList) {
   this.remove();
 
   // API call
-  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks', { name: taskName, list_name: taskList }, addTaskReturn.bind(taskList));
+  sendAjaxRequest(
+      'post', '/api/projects/' + projectId + '/tasks',
+      {name: taskName, list_name: taskList}, addTaskReturn.bind(taskList));
 }
 
 
@@ -203,14 +249,12 @@ function addTaskReturn(load) {
   let taskList = this;
 
   if (request.status == 201) {
-
     let task = JSON.parse(request.responseText);
 
     // On success, create a task button for the new task
-    createTaskButton(task, taskList); 
-  }
-  else {
-    console.log("PANIC! ERROR IN ADD TASK"); //TODO: Handle errors
+    createTaskButton(task, taskList);
+  } else {
+    console.log('PANIC! ERROR IN ADD TASK');  // TODO: Handle errors
   }
 
   createAddTaskButton(taskList);
@@ -219,11 +263,10 @@ function addTaskReturn(load) {
 
 /**
  * Function to create a "Task Button" in the correct list
- * @param {*} task 
- * @param {*} taskList 
+ * @param {*} task
+ * @param {*} taskList
  */
 function createTaskButton(task, taskList) {
-
   // create the new "Task Button"
   let new_item = document.createElement('button');
   new_item.setAttribute('data-id', task.id_task);
@@ -240,20 +283,29 @@ function createTaskButton(task, taskList) {
   list.appendChild(new_item);
 }
 
+/**
+ * Function to erase a "Task Button" in the correct list
+ * @param {*} task 
+ */
+function eraseTaskButton(task, taskList) {
+
+  let item = document.querySelector('button[data-id="' + task.id_task + '"]');
+  item.remove();
+}
+
 
 /**
  * Function to create a "Add New Task" button and insert in the correct list
- * @param {*} taskList 
+ * @param {*} taskList
  */
-function createAddTaskButton(taskList){
-
+function createAddTaskButton(taskList) {
   // create "Add Task" button
-  let addTaskButton = document.createElement("a");
+  let addTaskButton = document.createElement('a');
   addTaskButton.innerHTML = `Create New Task`;
   addTaskButton.setAttribute('type', 'button');
   addTaskButton.classList.add('add-project-button');
   addTaskButton.setAttribute('data-list', taskList);
-  addTaskButton.addEventListener('click', function (event) {
+  addTaskButton.addEventListener('click', function(event) {
     event.preventDefault();
     addTaskClick(addTaskButton);
   });
@@ -266,15 +318,15 @@ function createAddTaskButton(taskList){
 
 /**
  * Function to remove a "New Task" input text area
- * @param {*} event 
+ * @param {*} event
  */
-function removeInputBox(event){
+function removeInputBox(event) {
   event.preventDefault();  // Does nothing?
 
-  this.removeEventListener('change', addTaskAction); // Does nothing?
+  this.removeEventListener('change', addTaskAction);  // Does nothing?
 
-  if(this.value == ""){
-    createAddTaskButton(this.getAttribute("data-list"));
+  if (this.value == '') {
+    createAddTaskButton(this.getAttribute('data-list'));
   }
 
   this.remove();
@@ -282,60 +334,84 @@ function removeInputBox(event){
 
 
 /**
- * Switch for values of a Task's list 
- * @param {*} taskList 
+ * Switch for values of a Task's list
+ * @param {*} taskList
  */
 function taskListSwitch(taskList) {
   switch (taskList) {
-    case "To Do":
+    case 'To Do':
       return 'to-do';
-    case "In Progress":
+    case 'In Progress':
       return 'in-progress';
-    case "Pending":
+<<<<<<< HEAD
+    case 'Pending':
+=======
+    case "Pending Approval":
+>>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
       return 'pending';
-    case "Done":
+    case 'Done':
       return 'done';
-    
+
     default:
       return 'to-do';
   }
 }
 
 
-function newChangeTaskListButton(){
-
+function newChangeTaskListButton() {
   // create the new "Change Task List Button"
   let new_item = document.createElement('button');
-  new_item.type = "button";
-  new_item.classList.add("btn", "btn-primary", "task-edit-button", "res-text");
-  new_item.setAttribute("data-dismiss", "modal");
-  
+  new_item.type = 'button';
+  new_item.classList.add('btn', 'btn-primary', 'task-edit-button', 'res-text');
+  new_item.setAttribute('data-dismiss', 'modal');
+
   return new_item;
 }
 
+<<<<<<< HEAD
+function upgradeTaskAction(taskId) {
+  let projectId = this;
+
+  console.log('Task: ' + taskId);
+  console.log('Project: ' + projectId);
+
+  // API Call
+  sendAjaxRequest(
+      'post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName',
+      {action: 'upgrade'}, upgradeTaskReturn);
+=======
+
+/**
+ * Action that gets called after an upgrade button is pressed
+ * @param {*} taskId 
+ */
 function upgradeTaskAction(taskId){
 
   let projectId = this;
 
-  console.log("Task: " + taskId);
-  console.log("Project: " + projectId);
-
   // API Call
-  sendAjaxRequest('post', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, upgradeTaskReturn);
-
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "upgrade" }, changeTaskListReturn);
+>>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
 }
 
+/**
+ * Action that gets called after an downgrade button is pressed
+ * @param {*} taskId 
+ */
+function downgradeTaskAction(taskId){
+  
+  let projectId = this;
 
-function upgradeTaskReturn(){
+<<<<<<< HEAD
+function upgradeTaskReturn() {
+  console.log('Status: ' + this.status);
 
-  console.log("Status: " + this.status);
-
-  if(this.status == 200){
-    //console.log(JSON.parse(this.responseText));
+  if (this.status == 200) {
+    // console.log(JSON.parse(this.responseText));
     console.log(this.responseText);
   }
 
-  
+
   /*
   let task = (JSON.parse(this.responseText))['task'];
   let old_list = (JSON.parse(this.responseText))['old_list'];
@@ -343,14 +419,37 @@ function upgradeTaskReturn(){
   console.log(task);
   console.log(old_list);
   */
+}
+
+
+function downgradeTaskAction() {}
+=======
+  // API Call
+  sendAjaxRequest('put', '/api/projects/' + projectId + '/tasks/' + taskId + '/listName', { action: "downgrade" }, changeTaskListReturn);
+}
+
+/**
+ * Function to change the pages without reload
+ */
+function changeTaskListReturn(){
+
+  if(this.status == 200){
+    let task = (JSON.parse(this.responseText))['task'];
+    let old_list = (JSON.parse(this.responseText))['old_list'];
+    let action = (JSON.parse(this.responseText))['action'];
+
+    eraseTaskButton(task, taskListSwitch(old_list));
+    createTaskButton(task, taskListSwitch(task.list_name));
+  }
+  else{
+    console.log("TODO: Handle errors");
+  }
 
 }
 
 
-function downgradeTaskAction(){
-  
 
 
 
-}
 
+>>>>>>> 21685d4d234efbff11c0a4af6ed91507ce588688
