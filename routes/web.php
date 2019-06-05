@@ -48,6 +48,8 @@ Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
 Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
+Route::delete('api/projects/{id}/leave', 'ProjectsController@leave');
+Route::delete('api/projects/{id}/delete', 'ProjectsController@destroy');
 
 // Project Settings
 
