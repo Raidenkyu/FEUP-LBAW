@@ -57,7 +57,7 @@ class NotificationsController extends Controller
             //TODO: maybe send error
         }
         
-        //delete projectMember entry
+        //delete ProjectMember entry
         ProjectMember::where([
             ['id_member', '=', $notification->id_member],
             ['id_project', '=', $notification->id_project]
