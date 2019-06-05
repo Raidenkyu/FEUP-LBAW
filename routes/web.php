@@ -54,6 +54,7 @@ Route::get('projects/{id}', 'ProjectsController@dashboard');
 Route::get('api/projects/{id}/settings', 'ProjectSettingsController@show');
 Route::put('api/projects/{id}/settings', 'ProjectSettingsController@update');
 Route::get('api/projects/{id}/members', 'ProjectSettingsController@members');
+Route::delete('api/projects/{id}/delete', 'ProjectSettingsController@destroy');
 
 // Tasks
 

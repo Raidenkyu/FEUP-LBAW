@@ -330,19 +330,24 @@
         </form>
       @endif
 
-      <button class="btn btn-primary pop-up-button-first" type="submit">
-        Leave project
-      </button><br>
-      
       @if($isManager)
-        <button onclick="location.href = '/projects/{{$project->id_project}}/members'" class="btn btn-primary mt-2" type="submit" class="btn btn-primary">
+        <button onclick="location.href = '/projects/{{$project->id_project}}/members'" class="btn btn-primary mt-2 pop-up-button-first" type="submit">
           Add members
         </button><br>
 
-        <button class="btn btn-primary pop-up-button-last" type="submit">
-          Delete project
-        </button>
+      <form method="POST" action="/api/projects/{{ $project->id_project }}/delete">
+          {{ method_field('DELETE') }}
+          {{ csrf_field() }}
+          <button class="btn btn-primary pop-up-button-delete" type="submit">
+              Delete project
+          </button><br>
+        </form>
+        
       @endif
+
+      <button class="btn btn-primary pop-up-button-delete pop-up-button-last" type="submit">
+          Leave project
+      </button><br>
     </div>
 
   </div>

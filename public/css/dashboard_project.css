@@ -347,11 +347,16 @@ background-color: #f77d13;
 }
 
 .pop-up-button-first{
-    margin: 1em 0em 0em 0em;
+    margin: 1em 0em 1em 0em;
+}
+
+.pop-up-button-delete{
+    margin: 0.5em 0em;
+    background-color: red;
 }
 
 .pop-up-button-last{
-    margin: 0.5em 0em;
+    margin: 1em 0em;
     margin-bottom: 5em;
 }
 

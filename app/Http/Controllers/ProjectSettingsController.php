@@ -33,6 +33,18 @@ class ProjectSettingsController extends Controller
         return ['devs' => $devs, 'managers' => $managers];
     }
 
+    public function leave($id_project) {
+        $id_member = Auth::user()->id_member;
+        
+        return redirect('/projects');
+    }
+
+    public function destroy($id_project) {
+        $project = \App\Project::find($id_project);
+        $project->delete();
+        return redirect('/projects');
+    }
+
     private function colorPicker($color) {
         switch ($color) {
             case 'color-1':
