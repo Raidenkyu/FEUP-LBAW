@@ -54,7 +54,7 @@
                         <div class="row justify-content-center pt-5">
                             <div class="profile-image col-lg-3 col-lg-pull justify-content-center">
                                 <label>Picture</label><br>
-                                <img class="image-canvas rounded-circle align-self-center" alt="Responsive image" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}">
+                                <img class="image-canvas rounded-circle align-self-center" alt="User Image" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}">
                             </div>
                         </div>
 

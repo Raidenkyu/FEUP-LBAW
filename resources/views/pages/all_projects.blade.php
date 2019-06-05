@@ -10,7 +10,7 @@
     <div class="container py-5">
         <div class="row">
             <h1 class="dashboard-title font-weight-bolder">Projects</h1>
-            <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Responsive image">
+            <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Search Icon">
         </div>
     </div>
 
