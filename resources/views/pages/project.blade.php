@@ -115,7 +115,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row task-edit-check-row">
+                <div id="checklist-box" class="row task-edit-check-row">
                   <div id="checklist" class="col-md-10">
                     <span class="res-text">
                       <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg">Checklist title
@@ -131,11 +131,24 @@
                         <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
                       </div>
                       <div class="res-text tasks-text">
-                        <span class=".check-test">Task #1</span>
+                        <span class="check-text">Task #1</span>
                       </div>
                     </div>
 
                   </div>
+
+                </div>
+                <div id="add-task-button" class="row">
+
+                  <div class="">
+                    <button class="btn btn-link pr-0 mr-0">
+                      <img src="/icons/plus.svg" class="task-add-icon bg-dark pr-0 mr-0" alt="Add SubTask Icon">
+                    </button>
+                  </div>
+                  <div class="res-text tasks-text">
+                    <button class=".add-subtask btn btn-link text-dark">Add SubTask</button>
+                  </div>
+
                 </div>
 
                 <div class="row task-edit-comm-row">

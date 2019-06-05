@@ -57,21 +57,41 @@ function taskFetch() {
       let newCheck = document.createElement('div');
       newCheck.classList.add('row');
       newCheck.classList.add('check');
+
       let imgDiv = document.createElement('div');
+
       let img = document.createElement('img');
       img.setAttribute('src', '/icons/check.svg');
       img.classList.add('task-check-icon');
       img.setAttribute('alt', 'User Photo');
       imgDiv.appendChild(img);
+
       let checkDiv = document.createElement('div');
       checkDiv.classList.add('res-text');
       checkDiv.classList.add('tasks-text');
+
       let spanCheck = document.createElement('span');
       spanCheck.setAttribute('class', 'check-test');
-      spanCheck.innerHTML = check;
+      spanCheck.innerHTML = check['brief'];
+      spanCheck.setAttribute('data-id',check['id']);
       checkDiv.appendChild(spanCheck);
+
+      let imgBtn = document.createElement('button');
+      imgBtn.classList.add('btn');
+
+      let img2 = document.createElement('img');
+      img2.setAttribute('src', '/icons/deny.svg');
+      img2.classList.add('task-check-icon');
+      
+      img2.setAttribute('alt', 'User Photo');
+      imgBtn.appendChild(img2);
+
+      imgBtn.addEventListener('click',destroySubTask.bind(newCheck, check['id']));
+      
       newCheck.appendChild(imgDiv);
       newCheck.appendChild(checkDiv);
+      newCheck.appendChild(imgBtn);
+
       checklist.appendChild(newCheck);
     })
   }
@@ -152,13 +172,9 @@ function saveChanges() {
   let taskTitle = document.querySelector('#taskTitle');
   let description = document.querySelector('#description-text');
   let due_date = document.querySelector('#due-date');
-  let checks = document.querySelectorAll('.check-test');
+ 
   let issue = document.querySelector('#issue');
-  let tasklist = [];
-  checks.forEach(function(check) {
-    tasklist.push(check.innerHTML);
-  });
-
+ 
   let projectId = globalProjectId;
   let taskId = taskTitle.getAttribute('data-id');
 
@@ -168,7 +184,6 @@ function saveChanges() {
         name: taskTitle.value,
         description: description.innerHTML,
         due_date: due_date.innerHTML,
-        tasklist: tasklist,
         issue: issue.innerHTML
       },
       saveChangesAnswer);
@@ -176,20 +191,162 @@ function saveChanges() {
 
 
 function saveChangesAnswer() {
-  console.log(this.status);
   if (this.status == 200) {
+    
     let task = JSON.parse(this.responseText);
     let taskId = task['id_task'];
     let taskButton = document.querySelector('button[data-id="' + taskId + '"]');
     taskButton.innerHTML = task['name'];
-    console.log(task);
-  }
-  else{
-    console.log(this.responseText);
+    
   }
 }
 
 
+let addSubTaskButton = document.querySelector("#add-task-button");
+
+addSubTaskButton.addEventListener('click', addSubTaskClick);
+
+function addSubTaskClick(){
+    // Create the text input
+    let newSubTaskInput = document.createElement('input');
+    newSubTaskInput.type = 'text';
+    newSubTaskInput.placeholder = 'SubTask Brief';
+  
+    // Add event listener
+    newSubTaskInput.addEventListener('focusout', removeSubTaskInput);
+    newSubTaskInput.addEventListener(
+        'change',
+        addSubTaskAction.bind(newSubTaskInput));  // TODO: Add focus on create
+  
+
+    let list = document.querySelector('#checklist');
+    list.after(newSubTaskInput);
+    // Set focus on new input
+    newSubTaskInput.focus();
+  
+    addSubTaskButton.remove();
+}
+
+function removeSubTaskInput(event) {
+  event.preventDefault();  
+
+  if (this.value == '') {
+    this.remove();
+    createAddSubTaskButton();
+  }
+
+  this.removeEventListener('change', addSubTaskAction); 
+
+}
+
+function addSubTaskAction() {
+  let projectId = globalProjectId;
+  let brief = this.value;
+  
+  let taskTitle = document.querySelector('#taskTitle');
+  let idTask = taskTitle.getAttribute('data-id');
+  
+
+  // API call
+  sendAjaxRequest(
+      'post', '/api/projects/' + projectId + '/tasks/' + idTask + '/subtasks',
+      {brief: brief}, addSubTaskReturn);
+      this.remove();
+}
+
+function addSubTaskReturn(){
+  if (this.status == 201) {
+    let subtask = JSON.parse(this.responseText);
+
+    // On success, create a task button for the new task
+    createSubTask(subtask);
+  } else {
+    console.log('PANIC! ERROR IN ADD SUBTASK');  // TODO: Handle errors
+  }
+
+  createAddSubTaskButton();
+}
+
+function createSubTask(subtask){
+  let checkDiv = document.createElement('div');
+  checkDiv.classList.add("row");
+  checkDiv.classList.add("check");
+
+  let imageDiv = document.createElement('div');
+
+  let img = document.createElement('img');
+  img.setAttribute('src','/icons/check.svg');
+  img.setAttribute('alt','Subtask Photo');
+  img.classList.add('task-check-icon');
+  imageDiv.appendChild(img);
+
+  let spanDiv = document.createElement('div');
+  spanDiv.classList.add('res-text');
+  spanDiv.classList.add('tasks-text');
+
+  let span = document.createElement('span');
+  span.classList.add('check-text');
+  span.innerHTML = subtask['brief'];
+  span.setAttribute('data-id',subtask['id_subtask']);
+  spanDiv.appendChild(span);
+
+  let imgBtn = document.createElement('button');
+  imgBtn.classList.add('btn');
+
+  let img2 = document.createElement('img');
+  img2.setAttribute('src', '/icons/deny.svg');
+  img2.classList.add('task-check-icon');
+      
+  img2.setAttribute('alt', 'User Photo');
+  imgBtn.appendChild(img2);
+
+  imgBtn.addEventListener('click',destroySubTask.bind(checkDiv, subtask['id_subtask']));
+
+  checkDiv.appendChild(imageDiv);
+  checkDiv.appendChild(spanDiv);
+  checkDiv.appendChild(imgBtn);
+
+  let checklist = document.querySelector("#checklist");
+  checklist.appendChild(checkDiv);
+}
+
+function createAddSubTaskButton(){
+  let checklistBox = document.querySelector("#checklist-box");
+  addSubTaskButton = document.createElement('div');
+  addSubTaskButton.innerHTML = `
+    <div id="add-task-button" class="row">
+      <div class="">
+        <button class="btn btn-link pr-0 mr-0">
+          <img src="/icons/plus.svg" class="task-add-icon bg-dark pr-0 mr-0" alt="Add SubTask Icon">
+        </button>
+      </div>
+      <div class="res-text tasks-text">
+        <button class=".add-subtask btn btn-link text-dark">Add SubTask</button>
+      </div>
+    </div>
+    `
+  checklistBox.after(addSubTaskButton);
+  addSubTaskButton.addEventListener('click', addSubTaskClick);
+}
+
+function destroySubTask(id){
+
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+    // API call
+    sendAjaxRequest(
+      'delete', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
+      {},
+      destroySubTaskAnswer.bind(this));
+}
+
+function destroySubTaskAnswer(load){
+  let checkDiv = this;
+  let request = load.srcElement;
+  
+  if(request.status == 200){
+    checkDiv.remove();
+  }
+}
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 

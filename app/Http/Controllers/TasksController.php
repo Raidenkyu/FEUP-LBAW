@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\SubTask;
 use App\Http\Resources\TaskResource as TaskResource;
 use Illuminate\Http\Request;
 
@@ -115,6 +116,10 @@ class TasksController extends Controller
         if ($task->issue != request('issue')) {
             $task->issue = request('issue');
         }
+
+        $checklist = $task->checklist();
+        $updatedChecklist = request('tasklist');
+        
 
         $task->save();
         return $task;

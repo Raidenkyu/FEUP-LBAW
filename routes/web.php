@@ -62,6 +62,11 @@ Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
 
 Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
 
+// SubTasks
+
+Route::post('api/projects/{id_project}/tasks/{id_task}/subtasks', 'SubTasksController@store');
+Route::delete('api/projects/{id_project}/tasks/{id_task}/subtasks/{id_subtask}', 'SubTasksController@destroy');
+
 // Forums
 
 Route::get('projects/{id}/forums', 'ForumsController@forums');

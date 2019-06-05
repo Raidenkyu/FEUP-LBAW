@@ -15,7 +15,8 @@ class SubTaskResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->brief
+            'id' => $this->id_subtask,
+            'brief' => $this->brief
         ];
     }
 }
