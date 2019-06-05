@@ -108,7 +108,7 @@
                 <div class="row task-edit-desc-row">
                   <div class="col-md-10">
                     <span class="res-text">
-                      <img src="/icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg">Description
+                      <img src="/icons/description.svg" class="rounded-circle img-fluid task-edit-desc-svg" alt="Description Icon">Description
                     </span>
                     <div class="form-group task-edit-description">
                       <textarea class="form-control" rows="4" id="description-text" style="resize: none;"></textarea>
@@ -118,7 +118,7 @@
                 <div id="checklist-box" class="row task-edit-check-row">
                   <div id="checklist" class="col-md-10">
                     <span class="res-text">
-                      <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg">Checklist title
+                      <img src="/icons/check.svg" class="rounded-circle img-fluid task-edit-check-svg" alt="Checklist Icon">Checklist title
                     </span>
                     <br>
 
@@ -128,7 +128,7 @@
 
                     <div class="row check">
                       <div class="">
-                        <img src="/icons/check.svg" class="task-check-icon" alt="User Photo">
+                        <img src="/icons/check.svg" class="task-check-icon" alt="Checklist Subtasks Check Icon">
                       </div>
                       <div class="res-text tasks-text">
                         <span class="check-text">Task #1</span>
@@ -154,7 +154,7 @@
                 <div class="row task-edit-comm-row">
                   <div class="col-md-10">
                     <span class="res-text">
-                      <img src="/icons/comments.svg" class="img-fluid task-edit-check-svg">Comments
+                      <img src="/icons/comments.svg" class="img-fluid task-edit-check-svg" alt="Comments Icon">Comments
                     </span>
 
                   </div>

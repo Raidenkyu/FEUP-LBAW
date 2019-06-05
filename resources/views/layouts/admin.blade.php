@@ -5,7 +5,7 @@
   <title>@yield('title','workpad')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet href="{{ asset('/css/roboto.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
@@ -25,7 +25,7 @@
 
   <nav class="navbar navbar-dark shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Responsive image"></a>
+      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Workpad logo"></a>
     </div>
 
     <div id="sign" class="login-container">
