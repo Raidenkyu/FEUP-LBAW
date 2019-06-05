@@ -8,7 +8,7 @@ class ImageController extends Controller
 {
     public static function getImage($id)
     {
-        $matchingFiles = glob('images/' . $id . '.*');
+        $matchingFiles = glob('images/profiles/' . $id . '.*');
 
         if (count($matchingFiles) > 0) {
             return $matchingFiles[0];
