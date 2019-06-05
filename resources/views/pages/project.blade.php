@@ -323,14 +323,14 @@
 
 
 
-          <button class="btn btn-primary submit-button my-5" id="submit-button" type="submit" class="btn btn-primary">
+          <button class="btn btn-primary submit-button my-5" id="submit-button" type="submit">
             Save
           </button><br>
 
         </form>
       @endif
 
-      <button class="btn btn-primary pop-up-button-first" type="submit" class="btn btn-primary">
+      <button class="btn btn-primary pop-up-button-first" type="submit">
         Leave project
       </button><br>
       
@@ -339,7 +339,7 @@
           Add members
         </button><br>
 
-        <button class="btn btn-primary pop-up-button-last" type="submit" class="btn btn-primary">
+        <button class="btn btn-primary pop-up-button-last" type="submit">
           Delete project
         </button>
       @endif
