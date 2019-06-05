@@ -87,6 +87,10 @@ Route::get('profile/{id_member}', 'ProfileController@show');
 
 Route::get('projects/{id}/members', 'MemberController@index');
 
+// Notification
+
+Route::get('api/notifications', 'NotificationsController@index');
+
 // Admin
 
 Route::get('admin', 'AdminController@index');
