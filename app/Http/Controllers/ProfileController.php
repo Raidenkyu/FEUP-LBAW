@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $user = (\App\Member::where('id_member', Auth::user()->id_member)->get())[0];
 
         //return $projects;
-        return view('pages.profile', ['user' => $user]);
+        return view('pages.profile', ['user' => $user, 'canEdit' => true]);
     }
 
 
@@ -78,6 +78,23 @@ class ProfileController extends Controller
 
 
         $user->save();
-        return view('pages.profile', ['user' => $user]);
+        return view('pages.profile', ['user' => $user, 'canEdit' => true]);
     }
+
+    public function show($id_member){
+
+        if (!Auth::check()) return redirect('/');
+
+        $canEdit = false;
+
+        if(Auth::user()->id_member == $id_member){
+            $canEdit = true;
+        }
+
+        $user = \App\Member::find($id_member);
+        
+        //return $projects;
+        return view('pages.profile', ['user' => $user, 'canEdit' => $canEdit]);
+    }
+
 }

@@ -26,4 +26,8 @@ class Project extends Model
         'topic' => $topic
       ]);
     }
+
+    public function addManager(){
+      
+    }
 }

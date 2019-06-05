@@ -16,7 +16,7 @@
     @foreach ($selectedForum->comments as $comment)
     <div id="forum-comment-{{$comment->id_forum_comment}}" class="row forum-comment">
       <div class="col-2 forum-comment-image-box">
-        <img src="{{asset(\App\Http\Controllers\ImageController::getImage($comment->member->id_member))}}" class="rounded-circle forum-comment-image" alt="User Photo">
+        <img src="{{asset(\App\Http\Controllers\ImageController::getImage($comment->member->id_member))}}" class="rounded-circle forum-comment-image" alt="User Image">
       </div>
       <div class="col-10">
         <div class="row">
@@ -26,8 +26,8 @@
           <div class="col-7 forum-comment-date">
             <span class="align-bottom">{{date('H:i Y-m-d', strtotime($comment->date))}}</span>
             @if ($comment->id_member == Auth::user()->id_member)
-            <a class="edit-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/edit_pencil.svg" alt="Edit comment" /></a>
-            <a class="delete-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/trash.svg" alt="Delete comment" /></a>
+            <a class="edit-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/edit_pencil.svg" alt="Edit Comment" /></a>
+            <a class="delete-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/trash.svg" alt="Delete Comment" /></a>
             @endif
           </div>
         </div>

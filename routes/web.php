@@ -46,6 +46,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('projects', 'ProjectsController@index');
 Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
+Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Project Settings
@@ -81,10 +82,15 @@ Route::put('projects/{id_project}/forums/{id_forum}/{id_forum_comment}', 'ForumC
 Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
+Route::get('profile/{id_member}', 'ProfileController@show');
 
 // Member
 
 Route::get('projects/{id}/members', 'MemberController@index');
+
+// Notification
+
+Route::get('api/notifications', 'NotificationsController@index');
 
 // Admin
 
