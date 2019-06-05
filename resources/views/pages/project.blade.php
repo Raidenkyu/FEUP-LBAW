@@ -344,10 +344,15 @@
         </form>
         
       @endif
-
-      <button class="btn btn-primary pop-up-button-delete pop-up-button-last" type="submit">
-          Leave project
-      </button><br>
+      
+      <form method="POST" action="/api/projects/{{ $project->id_project }}/leave">
+          {{ method_field('DELETE') }}
+          {{ csrf_field() }}
+          <button class="btn btn-primary pop-up-button-delete pop-up-button-last" type="submit">
+              Leave project
+          </button><br>
+      </form>
+      
     </div>
 
   </div>

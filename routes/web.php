@@ -48,13 +48,14 @@ Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
 Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
+Route::delete('api/projects/{id}/leave', 'ProjectsController@leave');
+Route::delete('api/projects/{id}/delete', 'ProjectsController@destroy');
 
 // Project Settings
 
 Route::get('api/projects/{id}/settings', 'ProjectSettingsController@show');
 Route::put('api/projects/{id}/settings', 'ProjectSettingsController@update');
 Route::get('api/projects/{id}/members', 'ProjectSettingsController@members');
-Route::delete('api/projects/{id}/delete', 'ProjectSettingsController@destroy');
 
 // Tasks
 
