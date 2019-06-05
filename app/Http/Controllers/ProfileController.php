@@ -78,7 +78,7 @@ class ProfileController extends Controller
 
 
         $user->save();
-        return view('pages.profile', ['user' => $user]);
+        return view('pages.profile', ['user' => $user, 'canEdit' => true]);
     }
 
     public function show($id_member){

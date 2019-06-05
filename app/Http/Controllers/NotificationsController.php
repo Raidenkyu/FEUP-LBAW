@@ -14,12 +14,10 @@ class NotificationsController extends Controller
 
         if (!Auth::check()) return redirect('/');
 
-        
+        $id_member = Auth::user()->id_member;
 
-        $user = (\App\Member::where('id_member', Auth::user()->id_member)->get())[0];
+        Notifications::getNotifications($id_member);
 
-        //return $projects;
-        return view('pages.profile', ['user' => $user, 'canEdit' => true]);
 
     }
 }
