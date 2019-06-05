@@ -34,13 +34,12 @@ Route::delete('api/item/{id}', 'ItemController@delete');
 // Authentication
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 */
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Projects
 
@@ -49,6 +48,25 @@ Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
 Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
+
+// Project Settings
+
+Route::get('api/projects/{id}/settings', 'ProjectSettingsController@show');
+Route::put('api/projects/{id}/settings', 'ProjectSettingsController@update');
+Route::get('api/projects/{id}/members', 'ProjectSettingsController@members');
+
+// Tasks
+
+Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
+Route::put('api/projects/{id_project}/tasks/{id_task}', 'TasksController@update');
+Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
+
+Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
+
+// SubTasks
+
+Route::post('api/projects/{id_project}/tasks/{id_task}/subtasks', 'SubTasksController@store');
+Route::delete('api/projects/{id_project}/tasks/{id_task}/subtasks/{id_subtask}', 'SubTasksController@destroy');
 
 // Forums
 
@@ -64,7 +82,15 @@ Route::put('projects/{id_project}/forums/{id_forum}/{id_forum_comment}', 'ForumC
 Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
+Route::get('profile/{id_member}', 'ProfileController@show');
 
+// Member
+
+Route::get('projects/{id}/members', 'MemberController@index');
+
+// Notification
+
+Route::get('api/notifications', 'NotificationsController@index');
 
 // Admin
 

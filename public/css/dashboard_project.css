@@ -40,7 +40,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .page-container {
     min-height: calc(100vh - 130px);
-    width: 100vw;
+    /*width: 100vw;*/
     overflow-x: scroll;
 }
 
@@ -49,7 +49,7 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 
 .title-line{
-    background-color: var(--orange);
+    /* background-color: var(--orange); */
     min-width: 50px;
     height: 7px;
     margin-top:5px;
@@ -135,6 +135,15 @@ h1,h2,h3,h4,h5,h6,span,button {
     margin-right: 1em;
 }
 
+.task-add-icon{
+    width: 2em;
+    margin-right: 1em;
+}
+
+.add-task-button{
+    cursor:pointer;
+}
+
 .task-edit-top-title{
     font-weight: bold;
     padding-right: 1em;
@@ -207,7 +216,8 @@ h1,h2,h3,h4,h5,h6,span,button {
 }
 
 .pop-up-name{
-    font-size: 0.8em;
+    font-size: 1em;
+    border: 2px;
 }
 
 .pop-up-color-box{
@@ -238,77 +248,103 @@ h1,h2,h3,h4,h5,h6,span,button {
     .sidenav a {font-size: 18px;}
 }
 
-.color-picker{
-    width: 32px;
-    height: 32px;
-    margin-right:0px;
-    margin-bottom:0px;
+.color-picker div{
     display: inline-block;
-  }
+}
 
-  .color-picker:hover{
-    border-radius: 2px;
-    border-color: white;
-    border-style: solid;
-  }
+input[type="radio"] {
+    display: none;
+}
 
-  #color-picker-1{
+input[type="radio"] + label {
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    line-height: 37px;
+}
+
+input[type="radio"] + label span img {
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+
+#color-picker-1 + label span{
     background-color:#f77d13;
-  }
+}
 
-  #color-picker-2{
+#color-picker-2 + label span{
     background-color:#ffcc00;
-  }
+}
 
-  #color-picker-3{
+#color-picker-3 + label span{
     background-color:#e82020;
-  }
+}
 
-  #color-picker-4{
+#color-picker-4 + label span{
     background-color:#2dcc71;
-  }
+}
 
-  #color-picker-5{
+#color-picker-5 + label span{
     background-color:#9c58b6;
-  }
+}
 
-  #color-picker-6{
+#color-picker-6 + label span{
     background-color:#4894dd;
-  }
+}
 
-  #color-picker-7{
+#color-picker-7 + label span{
     background-color:#c45e00;
-  }
+}
 
-  #color-picker-8{
+#color-picker-8 + label span{
     background-color:#f39c13;
-  }
+}
 
-  #color-picker-9{
+#color-picker-9 + label span{
     background-color:#c92b1a;
-  }
+}
 
-  #color-picker-10{
+#color-picker-10 + label span{
     background-color:#179f85;
-  }
+}
 
-  #color-picker-11{
+#color-picker-11 + label span{
     background-color:#7f14ad;
-  }
+}
 
-  #color-picker-12{
+#color-picker-12 + label span{
     background-color:#2880ba;
-  }
+}
 
-  .team-profile-icon{
-    width:35px;
-  }
+input[type="radio"]:checked + label span img {
+    opacity: 1;
+}
 
-  .team-profile-add{
-    width:35px;
-    padding: 10px;
-    background-color: #f77d13;
-  }
+.team-profile-icon{
+width:35px;
+}
+
+.team-profile-add{
+width:35px;
+padding: 10px;
+background-color: #f77d13;
+}
 
 .pop-up-button-first{
     margin: 1em 0em 0em 0em;

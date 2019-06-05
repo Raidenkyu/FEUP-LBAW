@@ -80,7 +80,8 @@ CREATE TABLE project (
 CREATE TABLE project_member (
     id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE,
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    manager BOOLEAN NOT NULL
+    manager BOOLEAN NOT NULL,
+    PRIMARY KEY(id_project, id_member)
 );
 
 CREATE TABLE task (
@@ -483,6 +484,8 @@ INSERT INTO forum (id_forum, id_project, topic) VALUES (4, 3, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (5, 3, 'Team 2');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (6, 4, 'Team 1');
 INSERT INTO forum (id_forum, id_project, topic) VALUES (7, 4, 'Team 2');
+INSERT INTO forum (id_forum, id_project, topic) VALUES (8, 5, 'Team 1');
+INSERT INTO forum (id_forum, id_project, topic) VALUES (9, 5, 'Team 2');
 
 SELECT setval(pg_get_serial_sequence('forum', 'id_forum'), (SELECT MAX(id_forum) FROM forum));
 

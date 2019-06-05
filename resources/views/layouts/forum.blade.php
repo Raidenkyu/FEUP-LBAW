@@ -15,8 +15,8 @@
       <div class="col-3 title-buttons">
         <div class="container">
           <div class="btn-group">
-            <a href="dashboard_project.html"><button type="button" class="btn btn-primary selection-button">•••Tasks</button></a>
-            <a href="forum_project.html"><button type="button" class="btn btn-primary selection-button">•••Discussion</button></a>
+            <a href="/projects/{{ $forums->first()->project->id_project }}"><button type="button" class="btn btn-primary selection-button">•••Tasks</button></a>
+            <a href="/projects/{{ $forums->first()->project->id_project }}/forums"><button type="button" class="btn btn-primary selection-button">•••Discussion</button></a>
             <a><button type="button" id="sidebarCollapse" onclick="settingsButtonClicked()" class="btn btn-primary selection-button">•••Settings</button></a>
           </div>
         </div>
@@ -34,10 +34,12 @@
             <a href="/projects/{{$forum->project->id_project}}/forums/{{$forum->id_forum}}" class="list-group-item list-group-item-action topic-sel">{{$forum->topic}}</a>
             @endforeach
           </div>
-          <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
-            @csrf
-            <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic" name="topic" required placeholder="+ Create new topic">
-          </form>
+          @if(\App\Member::find(Auth::user()->id_member)->my_projects->find($forum->project->id_project) != null)
+            <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum" method="post">
+              @csrf
+              <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic" name="topic" required placeholder="+ Create new topic">
+            </form>
+          @endif
         </div>
       </div>
       @yield('forum')

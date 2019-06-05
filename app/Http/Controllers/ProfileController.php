@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,7 @@ class ProfileController extends Controller
         $user = (\App\Member::where('id_member', Auth::user()->id_member)->get())[0];
 
         //return $projects;
-        return view('pages.profile', ['user' => $user]);
+        return view('pages.profile', ['user' => $user, 'canEdit' => true]);
     }
 
 
@@ -56,7 +57,44 @@ class ProfileController extends Controller
             $user->description = request('description');
         }
 
+        if (request()->image != null) {
+            request()->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $matchingFiles = glob('images/profiles/' . $user->id_member . '.*');
+
+            if (count($matchingFiles) > 0) {
+                File::delete($matchingFiles[0]);
+            }
+
+            $extension = request()->image->getClientOriginalExtension();
+            $imageName = $user->id_member . '.'  . $extension;
+
+            request()->image->move(public_path('images/profiles'), $imageName);
+            \App\Http\Controllers\ImageController::resizeImage($imageName, $extension);
+        }
+
+
+
         $user->save();
         return view('pages.profile', ['user' => $user]);
     }
+
+    public function show($id_member){
+
+        if (!Auth::check()) return redirect('/');
+
+        $canEdit = false;
+
+        if(Auth::user()->id_member == $id_member){
+            $canEdit = true;
+        }
+
+        $user = \App\Member::find($id_member);
+        
+        //return $projects;
+        return view('pages.profile', ['user' => $user, 'canEdit' => $canEdit]);
+    }
+
 }
