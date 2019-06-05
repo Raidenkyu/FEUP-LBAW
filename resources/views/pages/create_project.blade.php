@@ -45,8 +45,9 @@
     <h6 class="py-2 man-title">MANAGERS</h6>
     <div class="py-1 container px-0">
       <container class="managers-pics pics">
-        <container>
+        <container class="one-pic">
           <img id_member="{{Auth::user()->id_member}}" src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+          <img id_member="{{Auth::user()->id_member}}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">
         </container>
       </container>
       <input type="text" name="content" placeholder="+" class="team-profile-add-managers">

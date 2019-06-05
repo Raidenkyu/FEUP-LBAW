@@ -1,7 +1,16 @@
 $('.team-profile-add-managers').on('keyup', searchManagersRequest);
 $('.team-profile-add-developers').on('keyup', searchDevelopersRequest);
 $('#create-project-form').on('submit', createProjectRequest);
-$('.pics img').on('click', removeUser);
+$('.delete-circle').on('click', removeUser);
+$('.one-pic').on('mouseover', addX);
+$('.one-pic').on('mouseout', removeX);
+
+function addX(event){
+  event.target.parentNode.querySelector('.delete-circle').classList.add('showing');
+}
+function removeX(event){
+  event.target.parentNode.querySelector('.delete-circle').classList.remove('showing');
+}
 
 function removeUser(event){
   let id = parseInt(event.target.getAttribute('id_member'));
@@ -13,9 +22,6 @@ function removeUser(event){
     developersList.splice(developersList.indexOf(id), 1);
     event.target.parentNode.remove();
   }
-
-  console.log(managersList);
-  console.log(developersList);
 }
 
 function createProjectRequest(event){
@@ -99,8 +105,11 @@ function searchDevelopersHandler(event){
 
 function addManager(event){
   let pic = document.createElement('container');
-  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
-  pic.addEventListener('click', removeUser);
+  pic.classList.add('one-pic');
+  pic.addEventListener('mouseover', addX);
+  pic.addEventListener('mouseout', removeX);
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.querySelector('.delete-circle').addEventListener('click', removeUser);
   managersList.push(parseInt(event.target.getAttribute('id_member')));
   document.querySelector('.managers-pics').appendChild(pic);
 
@@ -116,8 +125,11 @@ function addManager(event){
 
 function addDeveloper(event){
   let pic = document.createElement('container');
-  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
-  pic.addEventListener('click', removeUser);
+  pic.classList.add('one-pic');
+  pic.addEventListener('mouseover', addX);
+  pic.addEventListener('mouseout', removeX);
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.querySelector('.delete-circle').addEventListener('click', removeUser);
   developersList.push(parseInt(event.target.getAttribute('id_member')));
   document.querySelector('.developers-pics').appendChild(pic);
 
