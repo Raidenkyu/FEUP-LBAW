@@ -78,19 +78,21 @@ function taskFetch() {
       spanCheck.setAttribute('data-id',check['id']);
       checkDiv.appendChild(spanCheck);
 
-      let imgDiv2 = document.createElement('div');
-      imgDiv2.classList.add('float-right');
+      let imgBtn = document.createElement('button');
+      imgBtn.classList.add('btn');
 
       let img2 = document.createElement('img');
       img2.setAttribute('src', '/icons/deny.svg');
       img2.classList.add('task-check-icon');
       
       img2.setAttribute('alt', 'User Photo');
-      imgDiv2.appendChild(img2);
+      imgBtn.appendChild(img2);
+
+      imgBtn.addEventListener('click',destroySubTask.bind(newCheck, check['id']));
       
       newCheck.appendChild(imgDiv);
       newCheck.appendChild(checkDiv);
-      newCheck.appendChild(imgDiv2);
+      newCheck.appendChild(imgBtn);
 
       checklist.appendChild(newCheck);
     })
@@ -290,8 +292,21 @@ function createSubTask(subtask){
   span.setAttribute('data-id',subtask['id_subtask']);
   spanDiv.appendChild(span);
 
+  let imgBtn = document.createElement('button');
+  imgBtn.classList.add('btn');
+
+  let img2 = document.createElement('img');
+  img2.setAttribute('src', '/icons/deny.svg');
+  img2.classList.add('task-check-icon');
+      
+  img2.setAttribute('alt', 'User Photo');
+  imgBtn.appendChild(img2);
+
+  imgBtn.addEventListener('click',destroySubTask.bind(checkDiv, subtask['id_subtask']));
+
   checkDiv.appendChild(imageDiv);
   checkDiv.appendChild(spanDiv);
+  checkDiv.appendChild(imgBtn);
 
   let checklist = document.querySelector("#checklist");
   checklist.appendChild(checkDiv);
@@ -316,6 +331,24 @@ function createAddSubTaskButton(){
   addSubTaskButton.addEventListener('click', addSubTaskClick);
 }
 
+function destroySubTask(id){
+
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+    // API call
+    sendAjaxRequest(
+      'delete', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
+      {},
+      destroySubTaskAnswer.bind(this));
+}
+
+function destroySubTaskAnswer(load){
+  let checkDiv = this;
+  let request = load.srcElement;
+  
+  if(request.status == 200){
+    checkDiv.remove();
+  }
+}
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 

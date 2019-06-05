@@ -85,6 +85,6 @@ class SubTasksController extends Controller
      */
     public function destroy($id_project, $id_task, $id_subtask)
     {
-        return SubTask::destroy(id_subtask);
+        return SubTask::destroy($id_subtask);
     }
 }
