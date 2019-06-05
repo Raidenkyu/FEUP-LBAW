@@ -31,12 +31,12 @@
     <div id="sign" class="login-container">
       @if (Auth::check())
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
           <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="Responsive image">
         </button>
-        <div class="dropdown-menu">
-{{--           <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a> --}}
+        <div class="dropdown-menu container">
+          <div class="notify-box"><a class="dropdown-item" href="#">Link 1</a></div>
+          <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
         </div>
       </div> 
       <a href="{{ url('/projects') }}"><img src="/icons/due_date.svg" class="mx-1" style="width:45px" alt="Responsive image"></a>

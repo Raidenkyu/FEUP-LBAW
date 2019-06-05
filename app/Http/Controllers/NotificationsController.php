@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +15,8 @@ class NotificationsController extends Controller
 
         $id_member = Auth::user()->id_member;
 
-        Notifications::getNotifications($id_member);
+        $notifications = \App\Notification::getNotifications($id_member);
 
-
+        return $notifications;
     }
 }

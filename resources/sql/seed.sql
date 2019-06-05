@@ -132,10 +132,10 @@ CREATE TABLE invite (
 CREATE TABLE notification (
     id_notification SERIAL PRIMARY KEY,
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    content text NOT NULL,
-    seen BOOLEAN DEFAULT FALSE NOT NULL,
-    interactable BOOLEAN NOT NULL,
-    link text
+    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
+    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
+    interactable BOOLEAN NOT NULL DEFAULT FALSE,
+    action text NOT NULL
 );
 
 CREATE TABLE admin (
@@ -243,7 +243,7 @@ CREATE TRIGGER make_everyone_manager
     FOR EACH ROW
     EXECUTE PROCEDURE make_everyone_manager();
 
-
+/*
 CREATE OR REPLACE FUNCTION create_invite_notification()
 RETURNS TRIGGER AS
 $BODY$
@@ -259,6 +259,7 @@ CREATE TRIGGER create_invite_notification
     AFTER INSERT ON invite
     FOR EACH ROW
     EXECUTE PROCEDURE create_invite_notification();
+*/
 
 -- deletes (order is important!)
 
@@ -463,8 +464,8 @@ SELECT setval(pg_get_serial_sequence('forum_comment', 'id_forum_comment'), (SELE
 
 
 -- notification (id_notification, id_member, content, seen, interactable, link)
-INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (1, 1, 'Pedro commented on your task', true, false, '/');
-INSERT INTO notification (id_notification, id_member, content, seen, interactable, link) VALUES (2, 2, 'Claudio commented on your task', true, false, '/');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (1, 1, 3, null, true, 'teste1');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (2, 1, 4, null, true, 'teste2');
 
 SELECT setval(pg_get_serial_sequence('notification', 'id_notification'), (SELECT MAX(id_notification) FROM notification));
 
