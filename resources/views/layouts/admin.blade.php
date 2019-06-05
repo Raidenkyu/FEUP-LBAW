@@ -25,7 +25,7 @@
 
   <nav class="navbar navbar-dark shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Responsive image"></a>
+      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Workpad logo"></a>
     </div>
 
     <div id="sign" class="login-container">
