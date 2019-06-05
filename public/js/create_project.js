@@ -1,5 +1,21 @@
 $('.team-profile-add-managers').on('keyup', searchManagersRequest);
 $('.team-profile-add-developers').on('keyup', searchDevelopersRequest);
+$('#create-project-form').on('submit', createProjectRequest);
+
+function createProjectRequest(event){
+  event.preventDefault();
+
+  let projectName = $('input.project-name').val();
+
+  if(projectName != '')
+    sendAjaxRequest('post', '/projects', {name: projectName, color: selectedColor, managers: JSON.stringify(managersList), developers: JSON.stringify(developersList), _token: token}, createProjectHandler);
+}
+
+function createProjectHandler(event){
+  if (this.status != 200) window.location = '/';
+  let json = JSON.parse(this.responseText);
+  window.location.href = json;
+}
 
 function searchManagersRequest(event){
   let content = $(this).val();
@@ -108,7 +124,7 @@ $('.color-picker').click(function(event){
   if(this != colorSelected){
     $(colorSelected).removeClass("color-selected");
     $(this).addClass("color-selected");
-    $('#color-selected-hidden').val(getColor($('.color-picker').index(this)));
+    selectedColor = getColor($('.color-picker').index(this));
   }
 });
 

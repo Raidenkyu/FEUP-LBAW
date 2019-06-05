@@ -49,18 +49,25 @@ class ProjectsController extends Controller
                             ", [request('content'), request('content')]);
 
       return response()->json($results);
-      // return response()->json(request('content'));
     }
 
     public function store(Request $request){
       $data = $request->validate([
         'name' => 'required',
-        'color' => 'required',
+        'color' => 'required'
       ]);
 
       $project = \App\Project::create($data);
 
-      return redirect('/projects/' . $project->id_project);
+      foreach (json_decode(stripslashes(request('managers'))) as $manager) {
+        DB::table('project_member')->insert(['id_project' => $project->id_project, 'id_member' => $manager, 'manager' => 'true']);
+      }
+
+      foreach (json_decode(stripslashes(request('developers'))) as $developer) {
+        DB::table('project_member')->insert(['id_project' => $project->id_project, 'id_member' => $developer, 'manager' => 'false']);
+      }
+
+      return response()->json('/projects/' . $project->id_project);
 
 
     }

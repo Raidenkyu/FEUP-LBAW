@@ -18,15 +18,15 @@
       </div>
     </div>
 
-  <form class="p-0 w-50 justify-content-left" action="/projects" method="post">
+  <form id="create-project-form" class="p-0 w-50 justify-content-left" action="/projects" method="post">
 
     @csrf
 
     <div class="form-group input-group-lg py-1">
-      <input required class="border rounded form-control ml-2" placeholder="Project name" name="name" type="text">
+      <input required class="project-name border rounded form-control ml-2" placeholder="Project name" name="name" type="text">
     </div>
 
-    <input type="hidden" name="color" id="color-selected-hidden" value="Orange">
+    {{-- <input type="hidden" name="color" id="color-selected-hidden" value="Orange"> --}}
 
     <div class="color-box pt-4">
       <div class="container px-0">
@@ -70,6 +70,7 @@
 
   <script>
       var token = '{{Session::token()}}';
+      var selectedColor = 'Orange';
       var managersList = [{{Auth::user()->id_member}}];
       var developersList = [];
   </script>
