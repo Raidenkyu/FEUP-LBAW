@@ -5,14 +5,16 @@ notification_button.addEventListener('click', clickNotificationAction);
 
 function clickNotificationAction(){
   
+    console.log(this);
+
     // API call
-    sendAjaxRequest('get', 'api/notifications', {}, clickNotificationReturn);
+    sendAjaxRequest('get', '/api/notifications', {}, clickNotificationReturn);
 
 }
 
 function clickNotificationReturn(){
 
-    console.log("Status: " + this.status);
+    console.log(this.status);
 
     
 

@@ -46,8 +46,8 @@
     <div class="py-1 container px-0">
       <container class="managers-pics pics">
         <container class="one-pic">
-          <img id_member="{{Auth::user()->id_member}}" src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
-          <img id_member="{{Auth::user()->id_member}}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+          <img id_member="{{Auth::user()->id_member}}" src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="{{Auth:user()->name}}'s Avatar'">
+          <img id_member="{{Auth::user()->id_member}}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Delete Icon">
         </container>
       </container>
       <input type="text" name="content" placeholder="+" class="team-profile-add-managers">

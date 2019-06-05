@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="stylesheet href="{{ asset('/css/roboto.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/roboto.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
@@ -18,8 +18,6 @@
   <script type="text/javascript" src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/navbar.js') }}" defer></script>
-
-
 
 </head>
 
