@@ -135,6 +135,15 @@ h1,h2,h3,h4,h5,h6,span,button {
     margin-right: 1em;
 }
 
+.task-add-icon{
+    width: 2em;
+    margin-right: 1em;
+}
+
+.add-task-button{
+    cursor:pointer;
+}
+
 .task-edit-top-title{
     font-weight: bold;
     padding-right: 1em;
