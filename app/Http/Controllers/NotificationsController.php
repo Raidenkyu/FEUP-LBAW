@@ -46,6 +46,8 @@ class NotificationsController extends Controller
         }
          
         $notification->delete();
+
+        return Notification::where('id_member', $notification->id_member)->count();
     }
 
     public function refuse($id_notify){

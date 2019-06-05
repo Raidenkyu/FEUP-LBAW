@@ -59,7 +59,6 @@ function createNotification(notification, projName) {
 
     let notButton = document.createElement('a');
     notButton.classList.add('dropdown-item', 'col-sm-10');
-    notButton.setAttribute('href', '#');
     
 
     // If "is interactable"
@@ -82,6 +81,7 @@ function createNotification(notification, projName) {
     else {
         if(notification.action == "checkPending"){
 
+            notButton.setAttribute('href', '/projects/' + notification.id_project);
             notButton.innerHTML = "A task needs approval in Project '" + projName + "'";
             
             let notAccept = createAcceptButton();
@@ -104,14 +104,6 @@ function createNotification(notification, projName) {
             // TODO: Handle de erro na base de dados?
         }
     }
-
-
-
-
-
-
-
-
 
     return notDiv;
 }
@@ -160,7 +152,10 @@ function readNotificationAction(){
 function readNotificationReturn(){
     
     if(this.status == 200){
-        // ok
+        let notCount = JSON.parse(this.responseText);
+        if(notCount == 0){
+            changeNotificationIcon(false);
+        }
     }
     else{
         console.log("TODO: Handle errors")
@@ -191,6 +186,34 @@ function refuseInviteReturn(){
     }
 
 }
+
+
+function changeNotificationIcon(newVal){
+
+    //remove old icon
+    let oldIconButton = document.querySelector('#notification-icon');
+
+    while(oldIconButton.firstChild){
+        oldIconButton.removeChild(oldIconButton.firstChild)
+    }
+
+    //add new icon
+    let newIcon = document.createElement('img');
+    if(newVal){
+        newIcon.src = "/icons/ban.svg";
+        newIcon.alt = "There are notifications";
+    }
+    else{
+        newIcon.src = "/icons/notification_center.svg";
+        newIcon.alt = "No notifications";
+    }
+    
+    newIcon.classList.add('mx-1');
+    newIcon.setAttribute('style','width:45px');
+    
+    oldIconButton.appendChild(newIcon);
+}
+
 
 
 function encodeForAjax(data) {
