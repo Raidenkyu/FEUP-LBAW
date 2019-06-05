@@ -16,7 +16,7 @@
       <div class="col-sm users-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title font-weight-bolder">Users</h4>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Responsive image">
+          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
@@ -32,11 +32,11 @@
             <tbody>
               @foreach($users as $user)
                 <tr>
-                  <td><img class="ban rounded-circle" src="./images/{{$user->username}}.jpg"></td>
+                  <td><img class="ban rounded-circle" src="./images/{{$user->username}}.jpg" alt="User Image"></td>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
                   <td>
-                    <img class="ban" src="./icons/ban.svg">
+                    <img class="ban" src="./icons/ban.svg" alt="Ban Icon">
                   </td>
                 </tr>
               @endforeach
@@ -48,7 +48,7 @@
       <div class="col-sm projects-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title">Projects</h4>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Responsive image">
+          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
@@ -64,7 +64,7 @@
                 <tr>
                   <td>{{$project->name}}</td>
                   <td>
-                    <img class="ban" src="./icons/ban.svg">
+                    <img class="ban" src="./icons/ban.svg" alt="Ban Icon">
                   </td>
                 </tr>
               @endforeach
