@@ -17,6 +17,20 @@ class NotificationsController extends Controller
 
         $notifications = \App\Notification::getNotifications($id_member);
 
-        return $notifications;
+        $proj_names = [];
+
+        foreach($notifications as $notify){
+            $id_proj = $notify->id_project;
+            if($id_proj == null){
+                array_push($proj_names, null);
+            }
+            else{
+                $project = \App\Project::find($id_proj);
+                array_push($proj_names, $project->name);
+            }
+            
+        }
+
+        return ['notifications' => $notifications, 'names' => $proj_names];
     }
 }
