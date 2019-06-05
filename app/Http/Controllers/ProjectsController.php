@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -41,15 +42,36 @@ class ProjectsController extends Controller
         return view('pages.create_project');
     }
 
+    public function search(Request $request){
+      $results = DB::select("SELECT *
+                            FROM (SELECT *, to_tsvector('english', member.name) || to_tsvector('english', member.description) AS document
+                                  FROM member) search
+                            WHERE search.document @@ to_tsquery(?)
+                            ORDER BY ts_rank(search.document, to_tsquery('english', ?)) DESC
+                            ", [request('content'), request('content')]);
+
+      return response()->json($results);
+    }
+
     public function store(Request $request){
       $data = $request->validate([
         'name' => 'required',
-        'color' => 'required',
+        'color' => 'required'
       ]);
 
       $project = \App\Project::create($data);
 
-      return redirect('/projects/' . $project->id_project);
+      foreach (json_decode(stripslashes(request('managers'))) as $manager) {
+        DB::table('project_member')->insert(['id_project' => $project->id_project, 'id_member' => $manager, 'manager' => 'true']);
+      }
+
+      foreach (json_decode(stripslashes(request('developers'))) as $developer) {
+        DB::table('project_member')->insert(['id_project' => $project->id_project, 'id_member' => $developer, 'manager' => 'false']);
+      }
+
+      return response()->json('/projects/' . $project->id_project);
+
+
     }
 
     public static function colorToHex($color){

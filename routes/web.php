@@ -46,6 +46,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('projects', 'ProjectsController@index');
 Route::post('projects', 'ProjectsController@store');
 Route::get('projects/new', 'ProjectsController@create');
+Route::post('projects/search', 'ProjectsController@search');
 Route::get('projects/{id}', 'ProjectsController@dashboard');
 
 // Project Settings
