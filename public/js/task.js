@@ -482,9 +482,10 @@ function removeInputBox(event) {
 
   if (this.value == '') {
     createAddTaskButton(this.getAttribute('data-list'));
+    this.remove();
   }
 
-  this.remove();
+  
 }
 
 
