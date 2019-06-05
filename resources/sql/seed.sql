@@ -78,8 +78,8 @@ CREATE TABLE project (
 );
 
 CREATE TABLE project_member (
-    id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE,
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     manager BOOLEAN NOT NULL,
     PRIMARY KEY(id_project, id_member)
 );

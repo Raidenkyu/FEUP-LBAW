@@ -74,6 +74,21 @@ class ProjectsController extends Controller
 
     }
 
+    public function leave($id_project) {
+      $id_member = Auth::user()->id_member;
+      \App\ProjectMember::where([
+          ['id_member', '=', $id_member],
+          ['id_project', '=', $id_project]
+      ])->delete();
+      return redirect('/projects');
+  }
+
+  public function destroy($id_project) {
+      $project = \App\Project::find($id_project);
+      $project->delete();
+      return redirect('/projects');
+  }
+
     public static function colorToHex($color){
       $colors = array(
         'Orange' => 'f77d13',
