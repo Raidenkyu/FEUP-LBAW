@@ -1,6 +1,22 @@
 $('.team-profile-add-managers').on('keyup', searchManagersRequest);
 $('.team-profile-add-developers').on('keyup', searchDevelopersRequest);
 $('#create-project-form').on('submit', createProjectRequest);
+$('.pics img').on('click', removeUser);
+
+function removeUser(event){
+  let id = parseInt(event.target.getAttribute('id_member'));
+
+  if(managersList.includes(id) && managersList.length > 1){
+    managersList.splice(managersList.indexOf(id), 1);
+    event.target.parentNode.remove();
+  } else if(developersList.includes(id)){
+    developersList.splice(developersList.indexOf(id), 1);
+    event.target.parentNode.remove();
+  }
+
+  console.log(managersList);
+  console.log(developersList);
+}
 
 function createProjectRequest(event){
   event.preventDefault();
@@ -48,7 +64,7 @@ function searchManagersHandler(event){
       item.addEventListener('click', addManager);
       item.classList.add('item');
       item.setAttribute('id_member', json[i].id_member);
-      item.innerHTML = `<img src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a>${json[i].name}</a>`
+      item.innerHTML = `<img id_member="${json[i].id_member}" src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
       results.appendChild(item);
     }
   }
@@ -75,20 +91,18 @@ function searchDevelopersHandler(event){
       item.addEventListener('click', addDeveloper);
       item.classList.add('item');
       item.setAttribute('id_member', json[i].id_member);
-      item.innerHTML = `<img src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a>${json[i].name}</a>`
+      item.innerHTML = `<img id_member="${json[i].id_member}" src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
       results.appendChild(item);
     }
   }
 }
 
 function addManager(event){
-  let pic = document.createElement('img');
-  managersList.push(parseInt(event.target.parentNode.getAttribute('id_member')));
-  pic.classList.add('mr-2');
-  pic.classList.add('rounded-circle');
-  pic.classList.add('team-profile-icon');
-  pic.setAttribute('src', `/images/${event.target.parentNode.getAttribute('id_member')}.jpg`)
-  event.target.parentNode.parentNode.parentNode.querySelector('.pics').appendChild(pic);
+  let pic = document.createElement('container');
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.addEventListener('click', removeUser);
+  managersList.push(parseInt(event.target.getAttribute('id_member')));
+  document.querySelector('.managers-pics').appendChild(pic);
 
   $('.team-profile-add-managers').val('');
 
@@ -101,13 +115,11 @@ function addManager(event){
 }
 
 function addDeveloper(event){
-  let pic = document.createElement('img');
-  developersList.push(parseInt(event.target.parentNode.getAttribute('id_member')));
-  pic.classList.add('mr-2');
-  pic.classList.add('rounded-circle');
-  pic.classList.add('team-profile-icon');
-  pic.setAttribute('src', `/images/${event.target.parentNode.getAttribute('id_member')}.jpg`)
-  event.target.parentNode.parentNode.parentNode.querySelector('.pics').appendChild(pic);
+  let pic = document.createElement('container');
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.addEventListener('click', removeUser);
+  developersList.push(parseInt(event.target.getAttribute('id_member')));
+  document.querySelector('.developers-pics').appendChild(pic);
 
   $('.team-profile-add-developers').val('');
 

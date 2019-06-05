@@ -44,8 +44,10 @@
     <h5 class="font-weight-bolder py-2 team-title">Team</h5>
     <h6 class="py-2 man-title">MANAGERS</h6>
     <div class="py-1 container px-0">
-      <container class="pics">
-        <img src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+      <container class="managers-pics pics">
+        <container>
+          <img id_member="{{Auth::user()->id_member}}" src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image">
+        </container>
       </container>
       <input type="text" name="content" placeholder="+" class="team-profile-add-managers">
       <div class="results managers hidden">
@@ -53,8 +55,7 @@
     </div>
     <h6 class="pt-2 dev-title">DEVELOPERS</h6>
     <div class="py-1 container px-0">
-      <container class="pics">
-        {{-- <img src="/images/{{Auth::user()->id_member}}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"> --}}
+      <container class="developers-pics pics">
       </container>
       <input type="text" name="content" placeholder="+" class="team-profile-add-developers">
       <div class="results developers hidden">
