@@ -7,6 +7,7 @@ $('.dropdown-menu').click(function(e) {
     e.stopPropagation();
 });
 
+
 function clickNotificationAction() {
 
     console.log(this);
@@ -54,35 +55,55 @@ function createNotification(notification, projName) {
     let notDiv = document.createElement('div');
     notDiv.classList.add('notify-box', 'row', 'mx-0');
     notDiv.setAttribute('style', 'width:100%;');
+    notDiv.setAttribute('data-id_notify', notification.id_notification);
 
     let notButton = document.createElement('a');
     notButton.classList.add('dropdown-item', 'col-sm-10');
     notButton.setAttribute('href', '#');
     
 
-
+    // If "is interactable"
     if (notification.interactable) {
 
-        notButton.innerHTML = "You were invited to Project " + projName;
+        notButton.innerHTML = "You were invited to Project '" + projName + "'";
 
         let notAccept = createAcceptButton();
         let notDeny = createDenyButton();
 
-        notAccept.addEventListener('click', () => {console.log("Accept")});
-        notDeny.addEventListener('click', () => {console.log("Deny")});
+        notAccept.addEventListener('click', readNotificationAction.bind(notDiv));
+        notDeny.addEventListener('click', refuseInviteAction.bind(notDiv));
 
 
         notDiv.appendChild(notButton);
         notDiv.appendChild(notAccept);
         notDiv.appendChild(notDeny);
     }
+    // If "not interactable"
     else {
+        if(notification.action == "checkPending"){
 
+            notButton.innerHTML = "A task needs approval in Project '" + projName + "'";
+            
+            let notAccept = createAcceptButton();
+            notAccept.addEventListener('click', readNotificationAction.bind(notDiv));
 
+            notDiv.appendChild(notButton);
+            notDiv.appendChild(notAccept);
+        }
+        else if(notification.action == "beenRemoved"){
+            
+            notButton.innerHTML = "You were removed from Project '" + projName + "'";
+            
+            let notAccept = createAcceptButton();
+            notAccept.addEventListener('click', readNotificationAction.bind(notDiv));
 
+            notDiv.appendChild(notButton);
+            notDiv.appendChild(notAccept);
+        }
+        else{
+            // TODO: Handle de erro na base de dados?
+        }
     }
-
-
 
 
 
@@ -124,8 +145,52 @@ function createDenyButton() {
 }
 
 
+function readNotificationAction(){
+    
+    //get notification id
+    let id_notify = this.getAttribute('data-id_notify');
 
+    // API call
+    sendAjaxRequest('delete', '/api/notifications/' + id_notify, {}, readNotificationReturn);
 
+    //remove from page
+    this.remove();
+}
+
+function readNotificationReturn(){
+    
+    if(this.status == 200){
+        // ok
+    }
+    else{
+        console.log("TODO: Handle errors")
+    }
+
+}
+
+function refuseInviteAction(){
+
+    //get notification id
+    let id_notify = this.getAttribute('data-id_notify');
+
+    // API call
+    sendAjaxRequest('post', '/api/notifications/' + id_notify + '/refuse', {}, refuseInviteReturn);
+
+    //remove from page
+    this.remove();
+}
+
+function refuseInviteReturn(){
+    
+    if(this.status == 200){
+        // ok
+    }
+    else{
+        console.log("TODO: Handle errors");
+        console.log("Status: " + status);
+    }
+
+}
 
 
 function encodeForAjax(data) {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notification;
+use App\ProjectMember;
 
 class NotificationsController extends Controller
 {
@@ -32,5 +34,35 @@ class NotificationsController extends Controller
         }
 
         return ['notifications' => $notifications, 'names' => $proj_names];
+    }
+
+    public function destroy($id_notify){
+
+        $notification = Notification::find($id_notify);
+
+        if($notification->id_member != Auth::user()->id_member){
+            return redirect('/');
+            //TODO: maybe send error
+        }
+         
+        $notification->delete();
+    }
+
+    public function refuse($id_notify){
+
+        $notification = Notification::find($id_notify);
+
+        if($notification->id_member != Auth::user()->id_member){
+            return redirect('/');
+            //TODO: maybe send error
+        }
+        
+        //delete projectMember entry
+        ProjectMember::where([
+            ['id_member', '=', $notification->id_member],
+            ['id_project', '=', $notification->id_project]
+        ])->delete();
+
+        $notification->delete();
     }
 }

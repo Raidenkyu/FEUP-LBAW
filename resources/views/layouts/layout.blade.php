@@ -34,7 +34,7 @@
         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
           <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="Responsive image">
         </button>
-        <div class="dropdown-menu container" style="width: 400px">
+        <div class="dropdown-menu container" style="width: 420px">
           <div class="notify-box"><a class="dropdown-item" href="#">Link 1</a></div>
           <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
         </div>
