@@ -25,7 +25,9 @@
         <div class="col">
           <div class="profile-title align-self-center">
             <span>{{ $user->name }}</span>
+            @if ($canEdit)
             <a href="{{ url('/profile/edit') }}"><img src="/icons/edit_pencil.svg" class="ml-2 pb-2" style="width:30px" alt="Responsive image"></a>
+            @endif
           </div>
 
 
