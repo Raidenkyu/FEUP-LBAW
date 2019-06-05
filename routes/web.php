@@ -75,6 +75,7 @@ Route::put('projects/{id_project}/forums/{id_forum}/{id_forum_comment}', 'ForumC
 Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
+Route::get('profile/{id_member}', 'ProfileController@show');
 
 // Admin
 
