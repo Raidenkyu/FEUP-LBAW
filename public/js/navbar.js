@@ -1,11 +1,25 @@
 
-let notification_button = document.querySelector('button.dropdown-toggle');
 
-notification_button.addEventListener('click', clickNotificationAction);
+startUp();
 
-$('.dropdown-menu').click(function(e) {
-    e.stopPropagation();
-});
+
+function startUp(){
+
+    let isLoggedDiv = document.querySelector('#isLogged');
+
+    console.log(isLoggedDiv.getAttribute('data-isLogged'));
+
+    if(isLoggedDiv.getAttribute('data-isLogged') == true){
+        let notification_button = document.querySelector('button.dropdown-toggle');
+
+        notification_button.addEventListener('click', clickNotificationAction);
+        $('.dropdown-menu').click(function(e) {
+            e.stopPropagation();
+        });
+    }
+
+
+}
 
 
 function clickNotificationAction() {

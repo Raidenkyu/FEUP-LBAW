@@ -30,6 +30,7 @@
 
     <div id="sign" class="login-container">
       @if (Auth::check())
+      <div id="isLogged" style="display:hidden;" data-isLogged="true"></div>
       <div class="btn-group">
         <button id="notification-icon" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
           @if (\App\Notification::existsNotifications(Auth::user()))
@@ -51,6 +52,7 @@
         <a class="button" href="{{ url('/logout') }}"> Logout </a>
       </button>
       @else
+      <div id="isLogged" style="display:hidden;" data-isLogged="false"></div>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
       <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
       @endif
