@@ -12,7 +12,7 @@
 
   <div class="page-container">
     <div class="container projects">
-      <div class="container py-5">
+      <div class="container create py-5">
         <div class="row">
           <h1 class="dashboard-title font-weight-bolder px-2">Create new project</h1>
         </div>
@@ -23,11 +23,10 @@
       @csrf
 
       <div class="form-group input-group-lg py-1">
-        <input required class="project-name border rounded form-control ml-2" placeholder="Project name" name="name" type="text">
+        <input required class="project-name border rounded form-control" placeholder="Project name" name="name" type="text">
       </div>
 
       {{-- <input type="hidden" name="color" id="color-selected-hidden" value="Orange"> --}}
-
       <div class="color-box pt-4">
         <div class="container px-0">
           <h5 class="font-weight-bolder">Color</h5>

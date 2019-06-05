@@ -130,9 +130,25 @@ textarea, input{
 }
 
 @media (max-width: 768px){
-    .dashboard-title {
-      text-align: center;
-    }
+  .create {
+    padding: 0.75em 0.5em !important;
+  }  
+  
+  .dashboard-title {
+      font-size: 2em;
+  }
+
+  input.project-name {
+    width: 14em;
+  }
+
+  .color-box {
+    padding-top: 1em !important;
+  }
+
+  .color-box .container {
+    padding: 0;
+  }
 }
 
 
