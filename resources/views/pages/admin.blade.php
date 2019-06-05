@@ -32,7 +32,7 @@
             <tbody>
               @foreach($users as $user)
                 <tr>
-                  <td><img class="ban rounded-circle" src="./images/{{$user->username}}.jpg" alt="User Image"></td>
+                  <td><img class="ban rounded-circle" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}" alt="User Image"></td>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
                   <td>
