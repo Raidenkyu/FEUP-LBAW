@@ -73,7 +73,7 @@
   <script>
       var token = '{{Session::token()}}';
       var selectedColor = 'Orange';
-      var managersList = [{{Auth::user()->id_member}}];
+      var managersList = [];
       var developersList = [];
   </script>
 

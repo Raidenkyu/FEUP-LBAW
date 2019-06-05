@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectSettingsController extends Controller
 {
@@ -27,11 +28,22 @@ class ProjectSettingsController extends Controller
     }
 
     public function members($id_project){
-        $devs = \App\ProjectMember::getDevs($id_project);
+        $developers = \App\ProjectMember::getDevs($id_project);
         $managers = \App\ProjectMember::getManagers($id_project);
 
         return ['devs' => $devs, 'managers' => $managers];
     }
+
+
+        public function addMember($id_project){
+          DB::table('project_member')->insert(['id_project' => $id_project, 'id_member' => request('id'), 'manager' => request('manager')]);
+          return request('id');
+        }
+
+        public function removeMember($id_project){
+          DB::table('project_member')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
+          return request('id');
+        }
 
     private function colorPicker($color) {
         switch ($color) {
@@ -70,7 +82,7 @@ class ProjectSettingsController extends Controller
 
             case 'color-12':
                 return 'Blue';
-            
+
             default:
                 return 'Orange';
         }

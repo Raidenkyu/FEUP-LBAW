@@ -19,7 +19,7 @@ class MemberController extends Controller
         $project = \App\Project::find($id_project);
         $isManager = \App\ProjectMember::isManager(Auth::user()->id_member, $id_project);
 
-        return view('pages.add_member', ['project' => $project, 'isManager' => $isManager]);
+        return view('pages.add_member', ['project' => $project, 'id_project' => $id_project, 'isManager' => $isManager]);
     }
 
     /**
