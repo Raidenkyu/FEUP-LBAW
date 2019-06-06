@@ -140,3 +140,11 @@ footer {
 .footer-link{
   color: white;
 }
+
+.delete-button {
+  background-color: red;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
