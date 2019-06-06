@@ -113,8 +113,8 @@ function createNotification(notification, projName) {
         let notAccept = createAcceptButton();
         let notDeny = createDenyButton();
 
-        notAccept.addEventListener('click', readNotificationAction.bind(notDiv));
-        notDeny.addEventListener('click', refuseInviteAction.bind(notDiv));
+        notAccept.addEventListener('click', interactInviteAction.bind(notDiv, "accept"));
+        notDeny.addEventListener('click', interactInviteAction.bind(notDiv, "refuse"));
         notDiv.appendChild(notButton);
         notDiv.appendChild(notAccept);
         notDiv.appendChild(notDeny);
@@ -222,16 +222,17 @@ function readNotificationReturn() {
 
 }
 
+
 /**
- * Action that gets called after a "Refuse invite" button is pressed
+ * Action that gets called after a "Accept/Refuse invite" button is pressed
  */
-function refuseInviteAction() {
+function interactInviteAction(action) {
 
     //get notification id
     let id_notify = this.getAttribute('data-id_notify');
 
     // API call
-    sendAjaxRequest('post', '/api/notifications/' + id_notify + '/refuse', {}, refuseInviteReturn);
+    sendAjaxRequest('post', '/api/notifications/' + id_notify + '/interact', {action : action}, interactInviteReturn);
 
     //remove from page
     this.remove();
@@ -240,11 +241,16 @@ function refuseInviteAction() {
 /**
  * Function that gets called after the "refuseInviteAction" AJAX call returns
  */
-function refuseInviteReturn() {
+function interactInviteReturn() {
 
     if (this.status == 200) {
         // Update the icon if necessary
-
+        let notCount = JSON.parse(this.responseText);
+        if (notCount == 0) {
+            changeNotificationIcon(false);
+            let notifyFolder = document.querySelector('div.dropdown-menu');
+            notifyFolder.appendChild(createEmptyNotifications());
+        }
     }
     else {
         console.log("TODO: Handle errors");
@@ -252,6 +258,7 @@ function refuseInviteReturn() {
     }
 
 }
+
 
 /**
  * Function that changes the notification icon according to the argument received (true => change to "Has notifications"; false => change to "No notifications")

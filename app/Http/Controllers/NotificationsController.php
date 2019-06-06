@@ -50,7 +50,7 @@ class NotificationsController extends Controller
         return Notification::where('id_member', $notification->id_member)->count();
     }
 
-    public function refuse($id_notify){
+    public function interact($id_notify){
 
         $notification = Notification::find($id_notify);
 
@@ -59,12 +59,25 @@ class NotificationsController extends Controller
             //TODO: maybe send error
         }
         
-        //delete ProjectMember entry
-        ProjectMember::where([
+        //get Invite entry
+        $invite = \App\Invite::where([
             ['id_member', '=', $notification->id_member],
             ['id_project', '=', $notification->id_project]
-        ])->delete();
+        ])->get()[0];
 
+        //if accept, create ProjectMember
+        if(request('action') == "accept"){
+            $projMember = new ProjectMember();
+            $projMember->id_member = $invite->id_member;
+            $projMember->id_project = $invite->id_project;
+            $projMember->manager = $invite->manager;
+            $projMember->save();
+        }
+
+        //delete the notification and the invite
+        //TODO: delete invite, not necessary but would be nice
         $notification->delete();
+
+        return Notification::where('id_member', $notification->id_member)->count();
     }
 }
