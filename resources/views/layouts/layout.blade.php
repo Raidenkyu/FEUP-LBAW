@@ -49,7 +49,7 @@
             alt="Create Project"></a>
         <a href="{{ url('/profile') }}"><img
             src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}"
-            class="rounded-circle mx-2" style="width:35px;" alt="Responsive image"></a>
+            class="rounded-circle mx-2" style="width:35px;" alt="User Image"></a>
         <a href="{{ url('/profile') }}"><span class="user-name"
             style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
       </div>
@@ -57,7 +57,7 @@
         Logout
       </button>
       @else
-      <div id="isLogged" style="display:hidden;" data-isLogged="false"></div>
+      <div id="isLogged" style="display:none;" data-isLogged="false"></div>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
       <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
       @endif
