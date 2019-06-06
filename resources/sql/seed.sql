@@ -59,7 +59,7 @@ CREATE TABLE member (
 );
 
 CREATE TABLE default_auth (
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT def_auth_email_uk UNIQUE,
     password TEXT NOT NULL
 );
@@ -105,7 +105,8 @@ CREATE TABLE assigned_to (
 CREATE TABLE subtask(
     id_subtask SERIAL PRIMARY KEY,
     id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE,
-    brief text NOT NULL
+    brief text NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE task_comment (

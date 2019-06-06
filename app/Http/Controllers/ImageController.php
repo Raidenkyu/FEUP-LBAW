@@ -15,6 +15,15 @@ class ImageController extends Controller
         } else return 'images/profiles/default.png';
     }
 
+    public static function getImageJSON($id)
+    {
+        $matchingFiles = glob('images/profiles/' . $id . '.*');
+
+        if (count($matchingFiles) > 0) {
+            return response()->file($matchingFiles[0]);
+        } else return response()->file('images/profiles/default.png');
+    }
+
     public static function resizeImage($file, $extension)
     {
         $file = 'images/profiles/' . $file;
@@ -71,5 +80,12 @@ class ImageController extends Controller
 
         if ($dst_img) imagedestroy($dst_img);
         if ($src_img) imagedestroy($src_img);
+    }
+
+    public static function getBanImage($isBanned)
+    {
+        if ($isBanned) {
+            return '/icons/done.svg';
+        } else return '/icons/ban.svg';
     }
 }

@@ -16,7 +16,8 @@ class SubTaskResource extends JsonResource
     {
         return [
             'id' => $this->id_subtask,
-            'brief' => $this->brief
+            'brief' => $this->brief,
+            'completed' => $this->completed
         ];
     }
 }

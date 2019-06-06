@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use Illuminate\Http\Request;
 use App\SubTask;
 
@@ -35,7 +35,7 @@ class SubTasksController extends Controller
      */
     public function store($id_project, $id_task)
     {
-    
+
         $subtask = SubTask::create([
             'id_task' => $id_task,
             'brief' => request('brief')
@@ -72,9 +72,18 @@ class SubTasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id_project, $id_task, $id_subtask)
     {
-        //
+        $subtask = SubTask::find($id_task);
+
+        if($subtask->completed){
+            $subtask->completed = false;
+        }
+        else{
+            $subtask->completed = true;
+        }
+        $subtask->save();
+        return $subtask;
     }
 
     /**

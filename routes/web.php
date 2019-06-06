@@ -18,19 +18,6 @@ Route::get('/', function () {
 */
 Route::get('/', 'HomeController@index');
 
-/*
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-*/
-
 // Authentication
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -71,6 +58,7 @@ Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksControlle
 
 Route::post('api/projects/{id_project}/tasks/{id_task}/subtasks', 'SubTasksController@store');
 Route::delete('api/projects/{id_project}/tasks/{id_task}/subtasks/{id_subtask}', 'SubTasksController@destroy');
+Route::put('api/projects/{id_project}/tasks/{id_task}/subtasks/{id_subtask}', 'SubTasksController@update');
 
 // Forums
 
@@ -87,6 +75,8 @@ Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
 Route::get('profile/{id_member}', 'ProfileController@show');
+Route::get('profile/{id}/image', 'ImageController@getImageJSON');
+Route::delete('api/profile/{id_member}/delete', 'ProfileController@delete');
 
 // Member
 
@@ -102,3 +92,16 @@ Route::post('api/notifications/{id}/interact', 'NotificationsController@interact
 // Admin
 
 Route::get('admin', 'AdminController@index');
+
+// Admin Auth
+Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm');
+Route::post('admin/login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
+Route::get('admin/logout', 'Auth\AdminLoginController@logout');
+
+// Admin API 
+Route::put('api/users/{id_user}/ban','AdminController@ban');
+Route::put('api/users/{id_user}/unban','AdminController@unban');
+
+
+Route::put('api/projects/{id_project}/delete','AdminController@deleteProject');
+Route::put('api/projects/{id_project}/restore','AdminController@restoreProject');

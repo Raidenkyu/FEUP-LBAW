@@ -76,7 +76,7 @@ function searchManagersHandler(event){
       item.addEventListener('click', addManager);
       item.classList.add('item');
       item.setAttribute('id_member', json[i].id_member);
-      item.innerHTML = `<img id_member="${json[i].id_member}" src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
+      item.innerHTML = `<img id_member="${json[i].id_member}" src="/profile/${json[i].id_member}/image" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
       results.appendChild(item);
     }
   }
@@ -109,7 +109,7 @@ function searchDevelopersHandler(event){
       item.addEventListener('click', addDeveloper);
       item.classList.add('item');
       item.setAttribute('id_member', json[i].id_member);
-      item.innerHTML = `<img id_member="${json[i].id_member}" src="/images/${json[i].id_member}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
+      item.innerHTML = `<img id_member="${json[i].id_member}" src="/profile/${json[i].id_member}/image" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><a id_member="${json[i].id_member}">${json[i].name}</a>`
       results.appendChild(item);
     }
   }
@@ -122,7 +122,7 @@ function addManager(event){
   pic.classList.add('one-pic');
   pic.addEventListener('mouseover', addX);
   pic.addEventListener('mouseout', removeX);
-  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/profile/${event.target.getAttribute('id_member')}/image" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
   pic.querySelector('.delete-circle').addEventListener('click', removeUser);
   managersList.push(parseInt(event.target.getAttribute('id_member')));
   document.querySelector('.managers-pics').appendChild(pic);
@@ -142,7 +142,7 @@ function addDeveloper(event){
   pic.classList.add('one-pic');
   pic.addEventListener('mouseover', addX);
   pic.addEventListener('mouseout', removeX);
-  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/images/${event.target.getAttribute('id_member')}.jpg" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
+  pic.innerHTML = `<img id_member="${event.target.getAttribute('id_member')}" src="/profile/${event.target.getAttribute('id_member')}/image" class="mr-2 rounded-circle team-profile-icon" alt="Responsive image"><img id_member="${event.target.getAttribute('id_member')}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Responsive image">`
   pic.querySelector('.delete-circle').addEventListener('click', removeUser);
   developersList.push(parseInt(event.target.getAttribute('id_member')));
   document.querySelector('.developers-pics').appendChild(pic);
