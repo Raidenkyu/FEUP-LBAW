@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if(auth('admin')->user() == null){
+        if (auth('admin')->user() == null) {
             return redirect('admin\login');
         }
         $users = \App\Member::all();
@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
 
     public function ban($id_user)
-    { 
+    {
         $user = \App\Member::find($id_user);
         $user->banned = true;
         $user->save();
@@ -29,7 +29,7 @@ class AdminController extends Controller
     }
 
     public function unban($id_user)
-    { 
+    {
         $user = \App\Member::find($id_user);
         $user->banned = false;
         $user->save();
@@ -37,7 +37,7 @@ class AdminController extends Controller
     }
 
     public function deleteProject($id_project)
-    { 
+    {
         $project = \App\Project::find($id_project);
         $project->deleted = true;
         $project->save();
@@ -45,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function restoreProject($id_project)
-    { 
+    {
         $project = \App\Project::find($id_project);
         $project->deleted = false;
         $project->save();

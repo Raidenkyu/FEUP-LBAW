@@ -13,7 +13,8 @@ class ProjectMember extends Model
     protected $fillable = ['id_member', 'id_project', 'manager'];
     public $timestamps = false;
 
-    public static function isManager($id_member, $id_project){
+    public static function isManager($id_member, $id_project)
+    {
         $relation = ProjectMember::where([
             ['id_member', '=', $id_member],
             ['id_project', '=', $id_project],
@@ -22,7 +23,8 @@ class ProjectMember extends Model
         return $relation;
     }
 
-    public static function getDevs($id_project){
+    public static function getDevs($id_project)
+    {
         $devs = ProjectMember::where([
             ['id_project', '=', $id_project],
             ['manager', '=', 'false']
@@ -30,7 +32,8 @@ class ProjectMember extends Model
         return $devs;
     }
 
-    public static function getManagers($id_project){
+    public static function getManagers($id_project)
+    {
         $devs = ProjectMember::where([
             ['id_project', '=', $id_project],
             ['manager', '=', 'true']

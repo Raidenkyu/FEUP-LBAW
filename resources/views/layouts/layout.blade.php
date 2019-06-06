@@ -6,7 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
@@ -33,22 +34,28 @@
       <div id="isLogged" style="display:hidden;" data-isLogged="true"></div>
       <div class="center-group" style="display:inline">
         <div class="btn-group">
-          <button id="notification-icon" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
+          <button id="notification-icon" type="button"
+            class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
             @if (\App\Notification::existsNotifications(Auth::user()))
-              <img src="/icons/notification_center_on.svg" class="mx-1" style="width:45px" alt="There are notifications">
+            <img src="/icons/notification_center_on.svg" class="mx-1" style="width:45px" alt="There are notifications">
             @else
-              <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="No notifications">
+            <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="No notifications">
             @endif
           </button>
           <div class="dropdown-menu container" style="width: 420px">
             <div class="notify-box"><a class="dropdown-item" href="#">Link 1</a></div>
             <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
           </div>
-        </div> 
-        <a href="{{ url('/projects') }}"><img src="/icons/dashboard.svg" class="mx-1" style="width:45px" alt="Dashboard Icon"></a>
-        <a href="{{ url('/projects/new') }}"><img src="/icons/create_project.svg" class="mx-1" style="width:45px" alt="Create Project"></a>
-        <a href="{{ url('/profile') }}"><img src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}" class="rounded-circle mx-2" style="width:35px;" alt="Responsive image"></a>
-        <a href="{{ url('/profile') }}"><span class="user-name" style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
+        </div>
+        <a href="{{ url('/projects') }}"><img src="/icons/dashboard.svg" class="mx-1" style="width:45px"
+            alt="Dashboard Icon"></a>
+        <a href="{{ url('/projects/new') }}"><img src="/icons/create_project.svg" class="mx-1" style="width:45px"
+            alt="Create Project"></a>
+        <a href="{{ url('/profile') }}"><img
+            src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}"
+            class="rounded-circle mx-2" style="width:35px;" alt="Responsive image"></a>
+        <a href="{{ url('/profile') }}"><span class="user-name"
+            style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
       </div>
       <button class="button btn btn-secondary logout">
         <a class="button" href="{{ url('/logout') }}"> Logout </a>
