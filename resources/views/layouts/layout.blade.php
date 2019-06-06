@@ -34,7 +34,7 @@
       <div class="btn-group">
         <button id="notification-icon" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
           @if (\App\Notification::existsNotifications(Auth::user()))
-            <img src="/icons/ban.svg" class="mx-1" style="width:45px" alt="There are notifications">
+            <img src="/icons/notification_center_on.svg" class="mx-1" style="width:45px" alt="There are notifications">
           @else
             <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="No notifications">
           @endif

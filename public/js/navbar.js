@@ -125,6 +125,7 @@ function createNotification(notification, projName) {
 
             // Add correct text and anchor
             notButton.setAttribute('href', '/projects/' + notification.id_project);
+            notButton.setAttribute('target','_blank');
             notButton.innerHTML = "A task needs approval in Project '" + projName + "'";
 
             // Create appropriate buttons
@@ -162,7 +163,7 @@ function createAcceptButton() {
 
     let notAcceptImg = document.createElement('img');
     notAcceptImg.src = "/icons/check.svg";
-    notAcceptImg.classList.add('img-fluid');
+    notAcceptImg.classList.add('img-fluid', 'notify-action-button');
     notAcceptImg.alt = "Accept Notification";
     notAccept.appendChild(notAcceptImg);
 
@@ -179,7 +180,7 @@ function createDenyButton() {
 
     let notDenyImg = document.createElement('img');
     notDenyImg.src = "/icons/deny.svg";
-    notDenyImg.classList.add('img-fluid');
+    notDenyImg.classList.add('img-fluid', 'notify-action-button');
     notDenyImg.alt = "Deny Notification";
     notDeny.appendChild(notDenyImg);
 
@@ -268,7 +269,7 @@ function changeNotificationIcon(newVal) {
     //add new icon
     let newIcon = document.createElement('img');
     if (newVal) {
-        newIcon.src = "/icons/ban.svg";
+        newIcon.src = "/icons/notification_center_on.svg";
         newIcon.alt = "There are notifications";
     }
     else {

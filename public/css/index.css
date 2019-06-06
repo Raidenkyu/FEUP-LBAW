@@ -65,6 +65,10 @@ h1,h2,h3,h4,h5,h6 {
     display:none;
 }
 
+.notify-action-button{
+    cursor: pointer;
+}
+
 @media (max-width: 576px) {
     .motivation {
         font-size: 1.1em;
