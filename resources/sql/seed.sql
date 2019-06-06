@@ -79,10 +79,10 @@ CREATE TABLE project (
 );
 
 CREATE TABLE project_member (
+    id_proj_member SERIAL PRIMARY KEY,
     id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE ON DELETE CASCADE,
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
-    manager BOOLEAN NOT NULL,
-    PRIMARY KEY(id_project, id_member)
+    manager BOOLEAN NOT NULL
 );
 
 CREATE TABLE task (
@@ -389,7 +389,7 @@ INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 1, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 2, true);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 3, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(1, 4, true);
-INSERT INTO project_member (id_project, id_member, manager) VALUES(2, 4, false);
+INSERT INTO project_member (id_project, id_member, manager) VALUES(2, 4, true);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(2, 5, false);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(2, 7, true);
 INSERT INTO project_member (id_project, id_member, manager) VALUES(2, 10, false);

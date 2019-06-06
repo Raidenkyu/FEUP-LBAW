@@ -9,10 +9,9 @@ class ProjectMember extends Model
     //
 
     protected $table = 'project_member';
-    protected $primaryKey = ['id_member', 'id_project'];
-    // protected $fillable = ['name', 'username', 'email', 'id_member'];
+    protected $primaryKey = 'id_proj_member';
+    protected $fillable = ['id_member', 'id_project', 'manager'];
     public $timestamps = false;
-    public $incrementing = false;
 
     public static function isManager($id_member, $id_project){
         $relation = ProjectMember::where([
