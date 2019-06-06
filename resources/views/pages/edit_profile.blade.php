@@ -72,12 +72,24 @@
                                     Save Changes
                                 </button>
                             </div>
-
+                            <div class="row justify-content-center mt-5">
+                                <button class="delete-button btn btn-lg btn-primary" type="submit" form="delete-profile">
+                                    Delete Account
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
 
+            
+            <form id="delete-profile" method="POST" action="/api/profile/{{ Auth::user()->id_member }}/delete">
+                {{method_field('DELETE')}}
+                {{csrf_field()}}
+                
+            </form>
+           
+            
 
         </div>
 

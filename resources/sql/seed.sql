@@ -59,7 +59,7 @@ CREATE TABLE member (
 );
 
 CREATE TABLE default_auth (
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT def_auth_email_uk UNIQUE,
     password TEXT NOT NULL
 );
