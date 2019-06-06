@@ -69,11 +69,16 @@ h1,h2,h3,h4,h5,h6 {
     cursor: pointer;
 }
 
-@media (max-width: 390px) {
-    .center-group img {
-        width: 35px !important;
+@media (max-width: 768px){
+    .second-section{
+        display:block !important;
+    }
+    .dropdown-menu {
+        font-size: 0.9em;
+        width: 400px !important;
     }
 }
+
 @media (max-width: 576px) {
     .motivation {
         font-size: 1.1em;
@@ -83,15 +88,26 @@ h1,h2,h3,h4,h5,h6 {
     }
     .center-group .user-name{
         display: none;
-    }
+    }  
     .dropdown-menu {
-        width: 200px !important;
+        font-size: 0.75em;
+        width: 320px !important;
+    }
+    .notify-action-button {
+        min-width: 20px;
     }
 }
 
-@media (max-width: 768px){
-    .second-section{
-        display:block !important;
+@media (max-width: 390px) {
+    .center-group img {
+        width: 35px !important;
+    }
+    .dropdown-menu {
+        font-size: 0.6em;
+        width: 280px !important;
+    }
+    .notify-action-button {
+        width: 5% !important;
     }
 }
 
