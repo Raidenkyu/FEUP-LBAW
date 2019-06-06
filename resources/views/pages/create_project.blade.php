@@ -50,7 +50,7 @@
       <container class="one-pic">
         <img id_member="{{Auth::user()->id_member}}"
           src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}"
-          class="mr-2 rounded-circle team-profile-icon">
+          class="mr-2 rounded-circle team-profile-icon" alt="User Image">
         <img id_member="{{Auth::user()->id_member}}" src="/icons/delete.png"
           class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Delete Icon">
       </container>
