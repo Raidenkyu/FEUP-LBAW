@@ -44,10 +44,10 @@ class ProjectsController extends Controller
 
     public function search(Request $request){
       $results = DB::select("SELECT *
-                            FROM (SELECT *, to_tsvector('english', member.name) || to_tsvector('english', member.description) AS document
+                            FROM (SELECT *, to_tsvector('english', member.name) || to_tsvector('english', member.username) AS document
                                   FROM member) search
-                            WHERE search.document @@ to_tsquery(?)
-                            ORDER BY ts_rank(search.document, to_tsquery('english', ?)) DESC
+                            WHERE search.document @@ plainto_tsquery(?)
+                            ORDER BY ts_rank(search.document, plainto_tsquery('english', ?)) DESC
                             ", [request('content'), request('content')]);
 
       return response()->json($results);

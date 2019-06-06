@@ -60,12 +60,16 @@ function searchManagersHandler(event){
     results.classList.add('hidden');
   }
 
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
+
+  let j = 0;
+
   for (var i = 0; i < json.length; i++) {
-    while (results.firstChild) {
-      results.removeChild(results.firstChild);
-    }
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
+      j++;
       let item = document.createElement('div');
       item.addEventListener('click', addManager);
       item.classList.add('item');
@@ -74,6 +78,8 @@ function searchManagersHandler(event){
       results.appendChild(item);
     }
   }
+
+  if(j == 0) results.classList.add('hidden');
 }
 
 function searchDevelopersHandler(event){
@@ -87,12 +93,16 @@ function searchDevelopersHandler(event){
     results.classList.add('hidden');
   }
 
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
+
+  let j = 0;
+
   for (var i = 0; i < json.length; i++) {
-    while (results.firstChild) {
-      results.removeChild(results.firstChild);
-    }
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
+      j++;
       let item = document.createElement('div');
       item.addEventListener('click', addDeveloper);
       item.classList.add('item');
@@ -101,6 +111,8 @@ function searchDevelopersHandler(event){
       results.appendChild(item);
     }
   }
+
+  if(j == 0) results.classList.add('hidden');
 }
 
 function addManager(event){
