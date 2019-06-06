@@ -22,12 +22,12 @@
 
   <nav class="navbar navbar-dark navbar-right shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="{{ url('/') }}"><img src="/icons/logo.png" style="width:50px;" alt="Responsive image"></a>
+      <a href="{{ url('/') }}"><img src="/icons/logo.png" style="width:50px;" alt="Workpad logo"></a>
     </div>
 
     <div id="sign" class="login-container">
       @if (Auth::check())
-      <div id="isLogged" style="display:hidden;" data-isLogged="true"></div>
+      <div id="isLogged" style="display:none;" data-isLogged="true"></div>
       <div class="center-group" style="display:inline">
         <div class="btn-group">
           <button id="notification-icon" type="button"
@@ -53,8 +53,8 @@
         <a href="{{ url('/profile') }}"><span class="user-name"
             style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
       </div>
-      <button class="button btn btn-secondary logout">
-        <a class="button" href="{{ url('/logout') }}"> Logout </a>
+      <button class="button btn btn-secondary logout" onclick="location.href = '/logout';">
+        Logout
       </button>
       @else
       <div id="isLogged" style="display:hidden;" data-isLogged="false"></div>
