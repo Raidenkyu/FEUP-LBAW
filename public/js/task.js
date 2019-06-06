@@ -71,9 +71,14 @@ function taskFetch() {
       checkDiv.classList.add('tasks-text');
 
       let spanCheck = document.createElement('span');
-      spanCheck.setAttribute('class', 'check-test');
-      spanCheck.innerHTML = check['brief'];
+      spanCheck.setAttribute('class', 'check-text');
+      let brief = check['brief']
+      if(check['completed'] == "true"){
+        brief = "<strike>" + brief + "<strike>";
+      }
+      spanCheck.innerHTML = brief;
       spanCheck.setAttribute('data-id',check['id']);
+      spanCheck.addEventListener('click',updateSubtask.bind(spanCheck));
       checkDiv.appendChild(spanCheck);
 
       let imgBtn = document.createElement('button');
@@ -288,6 +293,7 @@ function createSubTask(subtask){
   span.classList.add('check-text');
   span.innerHTML = subtask['brief'];
   span.setAttribute('data-id',subtask['id_subtask']);
+  span.addEventListener('click',updateSubtask.bind(span));
   spanDiv.appendChild(span);
 
   let imgBtn = document.createElement('button');
@@ -329,8 +335,9 @@ function createAddSubTaskButton(){
   addSubTaskButton.addEventListener('click', addSubTaskClick);
 }
 
-function destroySubTask(id){
+function destroySubTask(){
 
+  let id = this.getAttribute('data-id');
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
     // API call
     sendAjaxRequest(
@@ -347,6 +354,33 @@ function destroySubTaskAnswer(load){
     checkDiv.remove();
   }
 }
+
+function updateSubtask(){
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+  let id = this.getAttribute('data-id');
+  console.log("Works?");
+  sendAjaxRequest(
+    'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
+    {},
+    updateSubtaskAnswer.bind(this));
+}
+
+function updateSubtaskAnswer(load){
+  let request = load.srcElement;
+  console.log(request.status);
+  if(request.status == 200){
+    let subtask = JSON.parse(request.responseText);
+    let brief = this.innerHTML;
+    if(subtask['completed']){
+      brief = "<strike>" + brief + "<strike>";
+    }
+    else{
+      brief = brief.replace('<strike>','');
+    }
+    this.innerHTML = brief;
+  }
+}
+
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 

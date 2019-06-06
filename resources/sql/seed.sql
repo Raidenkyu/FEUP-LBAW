@@ -105,7 +105,8 @@ CREATE TABLE assigned_to (
 CREATE TABLE subtask(
     id_subtask SERIAL PRIMARY KEY,
     id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE,
-    brief text NOT NULL
+    brief text NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE task_comment (

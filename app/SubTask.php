@@ -10,6 +10,6 @@ class SubTask extends Model
     protected $primaryKey = 'id_subtask';
 
 
-    protected $fillable = ['id_task', 'brief'];
+    protected $fillable = ['id_task', 'brief','completed'];
     public $timestamps = false;
 }
