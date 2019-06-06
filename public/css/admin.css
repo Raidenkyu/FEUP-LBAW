@@ -83,3 +83,8 @@ form  {
 .users-table, .projects-table{
   margin: 0 1em 1em 1em;
 }
+
+.profile-ref:hover {
+    text-decoration: none;
+    
+}

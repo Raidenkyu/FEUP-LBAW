@@ -102,3 +102,21 @@ Route::post('api/notifications/{id}/interact', 'NotificationsController@interact
 // Admin
 
 Route::get('admin', 'AdminController@index');
+
+// Admin Auth
+Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm');
+Route::post('admin/login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
+Route::get('admin/logout', 'Auth\AdminLoginController@logout');
+
+// Admin API 
+Route::put('api/users/{id_user}/ban','AdminController@ban');
+Route::put('api/users/{id_user}/unban','AdminController@unban');
+
+
+Route::put('api/projects/{id_project}/delete','AdminController@deleteProject');
+Route::put('api/projects/{id_project}/restore','AdminController@restoreProject');
+
+//  Home
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -5,6 +5,7 @@
   <title>@yield('title','workpad')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
@@ -25,11 +26,11 @@
 
   <nav class="navbar navbar-dark shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Workpad logo"></a>
+      <a href="/home"><img src="{{asset('/icons/logo.png')}}" style="width:50px;" alt="Workpad logo"></a>
     </div>
 
     <div id="sign" class="login-container">
-      <a href="./admin_login.html"><button class="btn btn-secondary">Log out</button></a>
+      <a href="/admin/logout"><button class="btn btn-secondary">Log out</button></a>
     </div>
   </nav>
   @yield('content')

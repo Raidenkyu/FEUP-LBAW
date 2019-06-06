@@ -57,6 +57,11 @@ return [
             'driver' => 'session',
             'provider' => 'def_auths',
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -99,6 +104,11 @@ return [
         'def_auths' => [
             'driver' => 'eloquent',
             'model' => App\DefaultAuth::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
