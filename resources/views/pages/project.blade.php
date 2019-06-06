@@ -25,7 +25,7 @@
             @endforeach
           </div>
           <div class="add-button-to-do">
-            <a type="button" class="add-project-button" data-list="to-do">Create New Task</a>
+            <button type="button" class="add-project-button btn btn-outline-light btn-block" data-list="to-do">Create New Task</button>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
             @endforeach
           </div>
           <div class="add-button-in-progress">
-            <a type="button" class="add-project-button" data-list="in-progress">Create New Task</a>
+            <button type="button" class="add-project-button btn btn-outline-light btn-block" data-list="in-progress">Create New Task</button>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
             @endforeach
           </div>
           <div class="add-button-pending">
-            <a type="button" class="add-project-button" data-list="pending">Create New Task</a>
+            <button type="button" class="add-project-button btn btn-outline-light btn-block" data-list="pending">Create New Task</button>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
             @endforeach
           </div>
           <div class="add-button-done">
-            <a type="button" class="add-project-button" data-list="done">Create New Task</a>
+            <button type="button" class="add-project-button btn btn-outline-light btn-block" data-list="done">Create New Task</button>
           </div>
         </div>
       </div>
@@ -142,11 +142,11 @@
 
                   <div class="">
                     <button class="btn btn-link pr-0 mr-0">
-                      <img src="/icons/plus.svg" class="task-add-icon bg-dark pr-0 mr-0" alt="Add SubTask Icon">
+                      <img src="/icons/plus.svg" class="task-add-icon pr-0 mr-0" alt="Add SubTask Icon">
                     </button>
                   </div>
                   <div class="res-text tasks-text">
-                    <button class=".add-subtask btn btn-link text-dark">Add SubTask</button>
+                    <button class="add-subtask btn btn-link text-dark">Add SubTask</button>
                   </div>
 
                 </div>

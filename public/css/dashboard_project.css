@@ -132,12 +132,18 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .task-check-icon{
     width: 2em;
-    margin-right: 1em;
+    margin-right: 0.5em;
+    margin-left: 1em;
 }
 
 .task-add-icon{
-    width: 2em;
+    width: 1.5em;
     margin-right: 1em;
+}
+
+.add-subtask{
+    padding-top: 0;
+    padding-left: 0.5em;
 }
 
 .add-task-button{
@@ -443,18 +449,6 @@ footer {
     .tasks-text{
         margin-top: 0.5em;
     }
-    .list-col:nth-child(1){
-        height: 150px;
-    }
-    .list-col:nth-child(2){
-        height: 180px;
-    }
-    .list-col:nth-child(3){
-        height: 90px;
-    }
-    .list-col:nth-child(4){
-        height: 150px;
-    }
 }
 
 
@@ -487,20 +481,12 @@ footer {
         margin: 0 0.15em;
     }
 
-    .list-col:nth-child(1){
-        height: 140px;
-    }
-    .list-col:nth-child(2){
-        height: 165px;
-    }
-    .list-col:nth-child(3){
-        height: 80px;
-    }
-    .list-col:nth-child(4){
-        height: 140px;
-    }
 }
 
 .check-text{
     cursor:pointer;
+}
+
+.check > button{
+    padding: 0em;
 }

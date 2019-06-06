@@ -215,6 +215,7 @@ function addSubTaskClick(){
     // Create the text input
     let newSubTaskInput = document.createElement('input');
     newSubTaskInput.type = 'text';
+    newSubTaskInput.classList.add('ml-3');
     newSubTaskInput.placeholder = 'SubTask Brief';
   
     // Add event listener
@@ -323,11 +324,11 @@ function createAddSubTaskButton(){
     <div id="add-task-button" class="row">
       <div class="">
         <button class="btn btn-link pr-0 mr-0">
-          <img src="/icons/plus.svg" class="task-add-icon bg-dark pr-0 mr-0" alt="Add SubTask Icon">
+          <img src="/icons/plus.svg" class="task-add-icon pr-0 mr-0" alt="Add SubTask Icon">
         </button>
       </div>
       <div class="res-text tasks-text">
-        <button class=".add-subtask btn btn-link text-dark">Add SubTask</button>
+        <button class="add-subtask btn btn-link text-dark">Add SubTask</button>
       </div>
     </div>
     `
@@ -335,9 +336,9 @@ function createAddSubTaskButton(){
   addSubTaskButton.addEventListener('click', addSubTaskClick);
 }
 
-function destroySubTask(){
+function destroySubTask(id){
 
-  let id = this.getAttribute('data-id');
+  //let id = this.getAttribute('data-id');
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
     // API call
     sendAjaxRequest(
@@ -489,10 +490,13 @@ function eraseTaskButton(task, taskList) {
  */
 function createAddTaskButton(taskList) {
   // create "Add Task" button
-  let addTaskButton = document.createElement('a');
+  let addTaskButton = document.createElement('button');
   addTaskButton.innerHTML = `Create New Task`;
   addTaskButton.setAttribute('type', 'button');
   addTaskButton.classList.add('add-project-button');
+  addTaskButton.classList.add('btn');
+  addTaskButton.classList.add('btn-outline-light');
+  addTaskButton.classList.add('btn-block');
   addTaskButton.setAttribute('data-list', taskList);
   addTaskButton.addEventListener('click', function(event) {
     event.preventDefault();
