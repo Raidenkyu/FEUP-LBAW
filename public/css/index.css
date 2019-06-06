@@ -69,12 +69,23 @@ h1,h2,h3,h4,h5,h6 {
     cursor: pointer;
 }
 
+@media (max-width: 390px) {
+    .center-group img {
+        width: 35px !important;
+    }
+}
 @media (max-width: 576px) {
     .motivation {
         font-size: 1.1em;
     }
     .second-container {
         text-align: center;
+    }
+    .center-group .user-name{
+        display: none;
+    }
+    .dropdown-menu {
+        width: 200px !important;
     }
 }
 
