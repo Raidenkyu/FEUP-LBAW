@@ -26,11 +26,11 @@
 
   <nav class="navbar navbar-dark shadow-sm sticky-top">
     <div id="logo" class="logo-container mr-auto">
-      <a href="./index.html"><img src="./icons/logo.png" style="width:50px;" alt="Workpad logo"></a>
+      <a href="/home"><img src="{{asset('/icons/logo.png')}}" style="width:50px;" alt="Workpad logo"></a>
     </div>
 
     <div id="sign" class="login-container">
-      <a href="./admin_login.html"><button class="btn btn-secondary">Log out</button></a>
+      <a href="/admin/logout"><button class="btn btn-secondary">Log out</button></a>
     </div>
   </nav>
   @yield('content')

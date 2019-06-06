@@ -4,10 +4,9 @@
 
 @section('content')
 
-<link rel="stylesheet" href="css/admin.css">
-<script src="/js/utils.js" defer></script>
-<script src="/js/admin.js" defer></script>
-
+<link rel="stylesheet" href="{{asset('/css/admin.css')}}">
+<script src="{{asset('/js/utils.js')}}" defer></script>
+<script src="{{asset('/js/admin.js')}}" defer></script>
 <div class="page-container">
   <div class="container py-5">
     <h1 class="dashboard-title font-weight-bolder">Admin dashboard</h1>
@@ -18,7 +17,7 @@
       <div class="col-sm users-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title font-weight-bolder">Users</h4>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Search Icon">
+          <img class="mx-2 mb-2" src="{{asset('icons/search.svg')}}" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
@@ -50,7 +49,7 @@
       <div class="col-sm projects-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title">Projects</h4>
-          <img class="mx-2 mb-2" src="./icons/search.svg" style="width:25px;height:25px;" alt="Search Icon">
+          <img class="mx-2 mb-2" src="{{asset('icons/search.svg')}}" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
