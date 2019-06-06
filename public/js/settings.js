@@ -46,7 +46,7 @@ function settingsButtonClicked(project) {
 
 function getRequest(event) {
     sendAjaxRequest('get', '/api/projects/' + globalProjectId + '/settings', {}, getRequestHandler);
-    sendAjaxRequest('get', '/api/projects/' + globalProjectId + '/members', {}, getMembersHandler);
+    //sendAjaxRequest('get', '/api/projects/' + globalProjectId + '/members', {}, getMembersHandler);
 }
 
 function getRequestHandler() {

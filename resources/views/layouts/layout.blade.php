@@ -30,13 +30,18 @@
 
     <div id="sign" class="login-container">
       @if (Auth::check())
+      <div id="isLogged" style="display:hidden;" data-isLogged="true"></div>
       <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-          <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="Responsive image">
+        <button id="notification-icon" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-0" data-toggle="dropdown">
+          @if (\App\Notification::existsNotifications(Auth::user()))
+            <img src="/icons/ban.svg" class="mx-1" style="width:45px" alt="There are notifications">
+          @else
+            <img src="/icons/notification_center.svg" class="mx-1" style="width:45px" alt="No notifications">
+          @endif
         </button>
-        <div class="dropdown-menu">
-{{--           <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a> --}}
+        <div class="dropdown-menu container" style="width: 420px">
+          <div class="notify-box"><a class="dropdown-item" href="#">Link 1</a></div>
+          <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
         </div>
       </div> 
       <a href="{{ url('/projects') }}"><img src="/icons/due_date.svg" class="mx-1" style="width:45px" alt="Responsive image"></a>
@@ -47,6 +52,7 @@
         <a class="button" href="{{ url('/logout') }}"> Logout </a>
       </button>
       @else
+      <div id="isLogged" style="display:hidden;" data-isLogged="false"></div>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
       <button class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Sign Up</button>
       @endif

@@ -95,6 +95,9 @@ Route::get('projects/{id}/members', 'MemberController@index');
 // Notification
 
 Route::get('api/notifications', 'NotificationsController@index');
+Route::delete('api/notifications/{id}', 'NotificationsController@destroy');
+Route::post('api/notifications/{id}/refuse', 'NotificationsController@refuse');
+
 
 // Admin
 
