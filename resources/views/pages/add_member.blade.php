@@ -51,7 +51,13 @@
     </div>
 
     <div class="container px-0 pt-4">
-      <h5 class="font-weight-bolder py-2 team-title">Filters</h5>
+      <h5 class="font-weight-bolder py-2 team-title">
+        Filters
+        <label class="switch">
+          <input id="filter-checkbox" type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </h5>
       <h6 class="py-2 man-title">AGE (<span id="range-min-value">18</span> through <span id="range-max-value">99</span>)</h6>
       <div>
         <p class="py-2 man-title">Minimum</p>
@@ -74,24 +80,6 @@
 
 
 <script>
-  document.querySelector('#range-min').addEventListener('mouseup', function(event){
-    if(event.target.value > rangeMax)
-      event.target.value = rangeMin;
-    else
-      rangeMin = event.target.value;
-
-      document.querySelector('#range-min-value').innerHTML = rangeMin;
-  });
-
-
-  document.querySelector('#range-max').addEventListener('mouseup', function(event){
-    if(event.target.value < rangeMin)
-      event.target.value = rangeMax;
-    else
-      rangeMax = event.target.value;
-
-    document.querySelector('#range-max-value').innerHTML = rangeMax;
-  });
 
 
   var rangeMax = 99;
@@ -106,14 +94,6 @@
     location: '',
     languages: []
   };
-
-  [].forEach.call(document.querySelectorAll('.managers-pics .one-pic .delete-circle'), function(manager) {
-    managersList.push(parseInt(manager.getAttribute('id_member')));
-  });
-
-  [].forEach.call(document.querySelectorAll('.developers-pics .one-pic .delete-circle'), function(developer) {
-    developersList.push(parseInt(developer.getAttribute('id_member')));
-  });
 </script>
 
 @endsection

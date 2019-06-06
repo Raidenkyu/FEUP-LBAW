@@ -1,3 +1,30 @@
+document.querySelector('#range-min').addEventListener('mouseup', function(event){
+  if(event.target.value > rangeMax)
+    event.target.value = rangeMin;
+  else
+    rangeMin = event.target.value;
+
+    document.querySelector('#range-min-value').innerHTML = rangeMin;
+});
+
+
+document.querySelector('#range-max').addEventListener('mouseup', function(event){
+  if(event.target.value < rangeMin)
+    event.target.value = rangeMax;
+  else
+    rangeMax = event.target.value;
+
+  document.querySelector('#range-max-value').innerHTML = rangeMax;
+});
+
+[].forEach.call(document.querySelectorAll('.managers-pics .one-pic .delete-circle'), function(manager) {
+  managersList.push(parseInt(manager.getAttribute('id_member')));
+});
+
+[].forEach.call(document.querySelectorAll('.developers-pics .one-pic .delete-circle'), function(developer) {
+  developersList.push(parseInt(developer.getAttribute('id_member')));
+});
+
 $('.team-profile-add-managers').on('keyup', searchManagersRequest);
 $('.team-profile-add-developers').on('keyup', searchDevelopersRequest);
 $('#create-project-form').on('submit', createProjectRequest);
@@ -72,9 +99,12 @@ function searchManagersHandler(event){
     results.removeChild(results.firstChild);
   }
 
+  let j = 0;
+
   for (var i = 0; i < json.length; i++) {
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
+      j++;
       let item = document.createElement('div');
       item.addEventListener('click', addManager);
       item.classList.add('item');
@@ -83,6 +113,8 @@ function searchManagersHandler(event){
       results.appendChild(item);
     }
   }
+
+  if(j == 0) results.classList.add('hidden');
 }
 
 function searchDevelopersHandler(event){
@@ -99,10 +131,13 @@ function searchDevelopersHandler(event){
   while (results.firstChild) {
     results.removeChild(results.firstChild);
   }
-  
+
+  let j = 0;
+
   for (var i = 0; i < json.length; i++) {
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
+      j++;
       let item = document.createElement('div');
       item.addEventListener('click', addDeveloper);
       item.classList.add('item');
@@ -111,6 +146,8 @@ function searchDevelopersHandler(event){
       results.appendChild(item);
     }
   }
+
+  if(j == 0) results.classList.add('hidden');
 }
 
 function addManager(event){
