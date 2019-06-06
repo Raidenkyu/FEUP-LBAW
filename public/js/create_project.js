@@ -60,10 +60,11 @@ function searchManagersHandler(event){
     results.classList.add('hidden');
   }
 
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
+
   for (var i = 0; i < json.length; i++) {
-    while (results.firstChild) {
-      results.removeChild(results.firstChild);
-    }
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
       let item = document.createElement('div');
@@ -87,10 +88,11 @@ function searchDevelopersHandler(event){
     results.classList.add('hidden');
   }
 
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
+  
   for (var i = 0; i < json.length; i++) {
-    while (results.firstChild) {
-      results.removeChild(results.firstChild);
-    }
 
     if(!managersList.includes(json[i].id_member) && !developersList.includes(json[i].id_member)){
       let item = document.createElement('div');
