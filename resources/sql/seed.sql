@@ -51,6 +51,7 @@ CREATE TABLE member (
     location text,
     phone_number INTEGER,
     region_code INTEGER,
+    age INTEGER,
     banned BOOLEAN NOT NULL DEFAULT FALSE,
     deleted BOOLEAN NOT NULL DEFAULT FALSE,
     search_name tsvector,
@@ -132,7 +133,8 @@ CREATE TABLE forum_comment (
 CREATE TABLE invite (
     id_invite SERIAL PRIMARY KEY,
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE
+    id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE,
+    manager BOOLEAN NOT NULL
 );
 
 CREATE TABLE notification (
@@ -141,7 +143,8 @@ CREATE TABLE notification (
     id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
     id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
     interactable BOOLEAN NOT NULL DEFAULT FALSE,
-    action text NOT NULL
+    action text NOT NULL,
+    id_invite INTEGER REFERENCES invite (id_invite) ON UPDATE CASCADE
 );
 
 CREATE TABLE admin (
@@ -282,12 +285,14 @@ CREATE TRIGGER make_everyone_manager
     FOR EACH ROW
     EXECUTE PROCEDURE make_everyone_manager();
 
-/*
+
+--(id_notification, id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, null, true, 'inviteProject');
+
 CREATE OR REPLACE FUNCTION create_invite_notification()
 RETURNS TRIGGER AS
 $BODY$
 begin
-    INSERT INTO notification (id_member, content, interactable) VALUES (NEW.id_member, ('You have been invited to Join Project ' || (SELECT max(name) FROM project WHERE id_project = NEW.id_project)), true);
+    INSERT INTO notification (id_member, id_project, id_task, interactable, action, id_invite) VALUES (NEW.id_member, NEW.id_project, null, true, 'inviteProject', NEW.id_invite);
 return new;
 end;
 $BODY$
@@ -298,7 +303,7 @@ CREATE TRIGGER create_invite_notification
     AFTER INSERT ON invite
     FOR EACH ROW
     EXECUTE PROCEDURE create_invite_notification();
-*/
+
 
 -- deletes (order is important!)
 
@@ -504,23 +509,15 @@ SELECT setval(pg_get_serial_sequence('forum_comment', 'id_forum_comment'), (SELE
 
 
 -- notification (id_notification, id_member, content, seen, interactable, link)
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, null, true, 'inviteProject');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (2, 1, 4, null, true, 'inviteProject');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (3, 1, 1, 1, false, 'checkPending');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (4, 1, 4, 2, false, 'checkPending');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (5, 1, 1, 1, false, 'beenRemoved');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (6, 1, 4, 2, false, 'beenRemoved');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, 1, false, 'checkPending');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (2, 1, 4, 2, false, 'checkPending');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (3, 1, 1, 1, false, 'beenRemoved');
+INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (4, 1, 4, 2, false, 'beenRemoved');
 
 
 SELECT setval(pg_get_serial_sequence('notification', 'id_notification'), (SELECT MAX(id_notification) FROM notification));
 
-
--- invite (id_invite, id_member, id_project)
-
-INSERT INTO invite (id_invite, id_member, id_project) VALUES (1,3,2);
-INSERT INTO invite (id_invite, id_member, id_project) VALUES (2,9,2);
-INSERT INTO invite (id_invite, id_member, id_project) VALUES (3,12,2);
-INSERT INTO invite (id_invite, id_member, id_project) VALUES (4,15,2);
+INSERT INTO invite (id_invite, id_member, id_project, manager) VALUES (1, 1, 3, true);
 
 SELECT setval(pg_get_serial_sequence('invite', 'id_invite'), (SELECT MAX(id_invite) FROM invite));
 

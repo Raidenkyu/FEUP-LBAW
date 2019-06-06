@@ -36,12 +36,12 @@ class ProjectSettingsController extends Controller
 
 
         public function addMember($id_project){
-          DB::table('project_member')->insert(['id_project' => $id_project, 'id_member' => request('id'), 'manager' => request('manager')]);
+          DB::table('invite')->insert(['id_project' => $id_project, 'id_member' => request('id'), 'manager' => request('manager')]);
           return request('id');
         }
 
         public function removeMember($id_project){
-          DB::table('project_member')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
+          DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
           return request('id');
         }
 
