@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
