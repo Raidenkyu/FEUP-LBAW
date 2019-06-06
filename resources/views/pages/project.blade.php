@@ -162,13 +162,11 @@
 
               </div>
               <div class="col-sm-3 task-edit-side">
-                <span>Add to Task</span>
+                <span>Task Settings</span>
 
                 <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Members</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Due Date</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Checklist</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Attachment</button>
+                  <button type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
+                  <button type="button" class="btn btn-primary task-edit-button res-text">Delete Task</button>
                 </div>
                 <br>
                 <span>Actions</span>
