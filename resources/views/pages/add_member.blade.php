@@ -11,12 +11,33 @@
 <div class="page-container">
   @include('partials.project-nav2')
 
-  <div class="container px-1 projects">
-    <div class="container py-5">
-      <div class="row">
-        <h1 class="dashboard-title font-weight-bolder px-2">Add New Developers</h1>
-      </div>
+  <div class="container px-0 pt-4">
+    <h1 class="dashboard-title font-weight-bolder px-2">Add New Developers</h1>
+    <h5 class="font-weight-bolder py-2 team-title">
+      Filters
+      <label class="switch">
+        <input id="filter-checkbox" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </h5>
+    <h6 class="py-2 man-title">AGE (<span id="range-min-value">18</span> through <span id="range-max-value">99</span>)</h6>
+    <div>
+      <p class="py-2 man-title">Minimum</p>
+      <span class="py-2 man-title">18</span>
+      <input id="range-min" type="range" id="start" name="volume" min="18" max="99" value="18">
+      <span class="py-2 man-title">99</span>
     </div>
+    <div>
+      <p class="py-2 man-title">Maximum</p>
+      <span class="py-2 man-title">18</span>
+      <input id="range-max" type="range" id="start" name="volume" min="18" max="99" value="99">
+      <span class="py-2 man-title">99</span>
+    </div>
+    <h6 class="py-2 man-title">LOCATION</h6>
+    <input required class="project-name border rounded form-control" placeholder="Location" name="location" type="text">
+    <h6 class="py-2 man-title">LANGUAGES</h6>
+    <input required class="project-name border rounded form-control" placeholder="Languages" name="languages" type="text">
+  </div>
 
     <div class="container px-0 pt-4">
       <h5 class="font-weight-bolder py-2 team-title">Team</h5>
@@ -48,31 +69,6 @@
         <div class="results developers hidden">
         </div>
       </div>
-    </div>
-
-    <div class="container px-0 pt-4">
-      <h5 class="font-weight-bolder py-2 team-title">
-        Filters
-        <label class="switch">
-          <input id="filter-checkbox" type="checkbox">
-          <span class="slider round"></span>
-        </label>
-      </h5>
-      <h6 class="py-2 man-title">AGE (<span id="range-min-value">18</span> through <span id="range-max-value">99</span>)</h6>
-      <div>
-        <p class="py-2 man-title">Minimum</p>
-        <span class="py-2 man-title">18</span>
-        <input id="range-min" type="range" id="start" name="volume" min="18" max="99" value="18">
-        <span class="py-2 man-title">99</span>
-      </div>
-      <div>
-        <p class="py-2 man-title">Maximum</p>
-        <span class="py-2 man-title">18</span>
-        <input id="range-max" type="range" id="start" name="volume" min="18" max="99" value="99">
-        <span class="py-2 man-title">99</span>
-      </div>
-      <h6 class="py-2 man-title">LOCATION</h6>
-      <h6 class="py-2 man-title">LANGUAGES</h6>
     </div>
 
   </div>
