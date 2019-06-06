@@ -72,4 +72,11 @@ class ImageController extends Controller
         if ($dst_img) imagedestroy($dst_img);
         if ($src_img) imagedestroy($src_img);
     }
+
+    public static function getBanImage($isBanned)
+    {
+        if ($isBanned) {
+            return '/icons/done.svg';
+        } else return '/icons/ban.svg';
+    }
 }

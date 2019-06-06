@@ -10,7 +10,7 @@ class Member extends Model
 
     protected $table = 'member';
     protected $primaryKey = 'id_member';
-    protected $fillable = ['name', 'username', 'email', 'id_member'];
+    protected $fillable = ['name', 'username', 'email', 'id_member','banned','deleted'];
     public $timestamps = false;
 
 

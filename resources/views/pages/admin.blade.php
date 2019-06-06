@@ -5,6 +5,8 @@
 @section('content')
 
 <link rel="stylesheet" href="css/admin.css">
+<script src="/js/utils.js" defer></script>
+<script src="/js/admin.js" defer></script>
 
 <div class="page-container">
   <div class="container py-5">
@@ -31,12 +33,12 @@
             </thead>
             <tbody>
               @foreach($users as $user)
-                <tr>
+                <tr id="user{{$user->id_member}}">
                   <td><img class="ban rounded-circle" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}" alt="User Image"></td>
-                  <td>{{$user->name}}</td>
+                  <td><a class="text-dark profile-ref" href="/profiles/{{$user->id_member}}">{{$user->name}}</a></td>
                   <td>{{$user->email}}</td>
                   <td>
-                    <img class="ban" src="./icons/ban.svg" alt="Ban Icon">
+                    <img data-id="{{$user->id_member}}" data-ban="{{$user->banned? 'true' : 'false'}}" class="ban" src="{{asset(\App\Http\Controllers\ImageController::getBanImage($user->banned))}}" alt="Ban Icon">
                   </td>
                 </tr>
               @endforeach
@@ -64,7 +66,7 @@
                 <tr>
                   <td>{{$project->name}}</td>
                   <td>
-                    <img class="ban" src="./icons/ban.svg" alt="Ban Icon">
+                    <img data-id="{{$project->id_project}}" data-delete="{{$project->deleted? 'true' : 'false'}}" class="ban" src="{{asset(\App\Http\Controllers\ImageController::getBanImage($project->deleted))}}" alt="Ban Icon">
                   </td>
                 </tr>
               @endforeach

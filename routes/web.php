@@ -95,3 +95,11 @@ Route::get('api/notifications', 'NotificationsController@index');
 // Admin
 
 Route::get('admin', 'AdminController@index');
+
+// Admin API 
+Route::put('api/users/{id_user}/ban','AdminController@ban');
+Route::put('api/users/{id_user}/unban','AdminController@unban');
+
+
+Route::put('api/projects/{id_project}/delete','AdminController@deleteProject');
+Route::put('api/projects/{id_project}/restore','AdminController@restoreProject');
