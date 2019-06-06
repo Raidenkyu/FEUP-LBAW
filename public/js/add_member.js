@@ -1,3 +1,12 @@
+function getImage($id)
+{
+    matchingFiles = glob('images/profiles/' . $id . '.*');
+
+    if (count($matchingFiles) > 0) {
+        return $matchingFiles[0];
+    } else return 'images/profiles/default.png';
+}
+
 document.querySelector('#range-min').addEventListener('mouseup', function(event){
   if(event.target.value > rangeMax)
     event.target.value = rangeMin;

@@ -87,6 +87,7 @@ Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::patch('profile', 'ProfileController@update');
 Route::get('profile/{id_member}', 'ProfileController@show');
+Route::get('profile/{id}/image', 'ImageController@getImageJSON');
 
 // Member
 
