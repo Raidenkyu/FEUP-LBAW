@@ -41,8 +41,6 @@ class TasksController extends Controller
             'name' => 'required|min:3|max:255'
         ]);
 
-        //this->authorize  ->  TODO
-
         $task_list = 'To Do';
 
         switch (request('list_name')) {
@@ -105,6 +103,8 @@ class TasksController extends Controller
     {
         $task = \App\Task::find($id_task);
 
+        //$this->authorize('update', $task); TODO: uncomment and test when code is fixed
+
         if ($task->name != request('name') && request('name') != "") {
             $task->name = request('name');
         }
@@ -140,6 +140,7 @@ class TasksController extends Controller
     {
         $task = \App\Task::find($id_task);
         $json = new TaskResource($task);
+        $this->authorize('view', $task);
         return $json;
     }
 
@@ -195,10 +196,10 @@ class TasksController extends Controller
     {
         $task = \App\Task::find($id_task);
 
+        $this->authorize('update', $task);
+
         $old_list = $task->list_name;
         $action = request('action');
-
-        // TODO: Authorization
 
         if ($action == 'upgrade') {
             $task = $this->upgradeTask($task);

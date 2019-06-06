@@ -24,6 +24,9 @@ class ProjectsController extends Controller
 
     public function dashboard($id){
       if (!Auth::check()) return redirect('/');
+
+      $this->authorize('view', \App\Project::find($id)); 
+
       $user = Auth::user();
       $todo = \App\Task::whereIdProject($id)->whereListName('To Do')->get();
       $in_progress = \App\Task::whereIdProject($id)->whereListName('In Progress')->get();
@@ -115,6 +118,9 @@ class ProjectsController extends Controller
 
   public function destroy($id_project) {
       $project = \App\Project::find($id_project);
+
+      $this->authorize('delete', $project);
+
       $project->delete();
       return redirect('/projects');
   }
