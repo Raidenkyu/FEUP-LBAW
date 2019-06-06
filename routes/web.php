@@ -104,8 +104,3 @@ Route::put('api/users/{id_user}/unban','AdminController@unban');
 
 Route::put('api/projects/{id_project}/delete','AdminController@deleteProject');
 Route::put('api/projects/{id_project}/restore','AdminController@restoreProject');
-
-// //  Home
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/home', 'HomeController@index')->name('home');
