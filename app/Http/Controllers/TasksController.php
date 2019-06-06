@@ -119,7 +119,7 @@ class TasksController extends Controller
 
         $checklist = $task->checklist();
         $updatedChecklist = request('tasklist');
-        
+
 
         $task->save();
         return $task;
