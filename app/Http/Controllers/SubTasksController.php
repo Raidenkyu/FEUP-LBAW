@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use Illuminate\Http\Request;
 use App\SubTask;
 
@@ -35,7 +35,7 @@ class SubTasksController extends Controller
      */
     public function store($id_project, $id_task)
     {
-    
+
         $subtask = SubTask::create([
             'id_task' => $id_task,
             'brief' => request('brief')

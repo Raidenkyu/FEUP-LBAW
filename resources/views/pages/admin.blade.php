@@ -21,29 +21,32 @@
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($users as $user)
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($users as $user)
                 <tr id="user{{$user->id_member}}">
-                  <td><img class="ban rounded-circle" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}" alt="User Image"></td>
+                  <td><img class="ban rounded-circle"
+                      src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}"
+                      alt="User Image"></td>
                   <td><a class="text-dark profile-ref" href="/profiles/{{$user->id_member}}">{{$user->name}}</a></td>
                   <td>{{$user->email}}</td>
                   <td>
-                    <img data-id="{{$user->id_member}}" data-ban="{{$user->banned? 'true' : 'false'}}" class="ban" src="{{asset(\App\Http\Controllers\ImageController::getBanImage($user->banned))}}" alt="Ban Icon">
+                    <img data-id="{{$user->id_member}}" data-ban="{{$user->banned? 'true' : 'false'}}" class="ban"
+                      src="{{asset(\App\Http\Controllers\ImageController::getBanImage($user->banned))}}" alt="Ban Icon">
                   </td>
                 </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div class="col-sm projects-table">
@@ -53,25 +56,27 @@
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Project</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($projects as $project)
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Project</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($projects as $project)
                 <tr>
                   <td>{{$project->name}}</td>
                   <td>
-                    <img data-id="{{$project->id_project}}" data-delete="{{$project->deleted? 'true' : 'false'}}" class="ban" src="{{asset(\App\Http\Controllers\ImageController::getBanImage($project->deleted))}}" alt="Ban Icon">
+                    <img data-id="{{$project->id_project}}" data-delete="{{$project->deleted? 'true' : 'false'}}"
+                      class="ban" src="{{asset(\App\Http\Controllers\ImageController::getBanImage($project->deleted))}}"
+                      alt="Ban Icon">
                   </td>
                 </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

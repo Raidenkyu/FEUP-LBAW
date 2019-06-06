@@ -19,14 +19,16 @@
     <div class="profile-strap-space row container align-self-center"></div>
     <div class="profile-header row container align-self-center">
       <div class="profile-image col-lg-3 col-lg-pull">
-        <img class="image-canvas rounded-circle align-self-center" alt="User Image" src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}">
+        <img class="image-canvas rounded-circle align-self-center" alt="User Image"
+          src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}">
       </div>
       <div class=" profile-info col-lg-8 col-lg-push align-self-center">
         <div class="col">
           <div class="profile-title align-self-center">
             <span>{{ $user->name }}</span>
             @if ($canEdit)
-            <a href="{{ url('/profile/edit') }}"><img src="/icons/edit_pencil.svg" class="ml-2 pb-2" style="width:30px" alt="Edit Icon"></a>
+            <a href="{{ url('/profile/edit') }}"><img src="/icons/edit_pencil.svg" class="ml-2 pb-2" style="width:30px"
+                alt="Edit Icon"></a>
             @endif
           </div>
 

@@ -15,27 +15,31 @@
       </div>
       <div class="modal-body pb-0">
         <form id="login-form" class="p-0 justify-content-center" method="POST" action="/login">
-            {{ csrf_field() }}
+          {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
-            <input id="email" type="email" name="email" class="border rounded form-control {{ $errors->has('email') ? 'border-danger' : '' }}" placeholder="Email" value="{{ old('email') }}" required autofocus>
+            <input id="email" type="email" name="email"
+              class="border rounded form-control {{ $errors->has('email') ? 'border-danger' : '' }}" placeholder="Email"
+              value="{{ old('email') }}" required>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input id="password" type="password" name="password" class="border rounded form-control {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" type="password" required>
+            <input id="password" type="password" name="password"
+              class="border rounded form-control {{ $errors->has('password') ? 'border-danger' : '' }}"
+              placeholder="Password" type="password" required>
           </div>
 
         </form>
 
         @if ($errors->any())
-          <div class="errors alert alert-danger pb-1">
-            <h5>Errors:</h5>
-            <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
+        <div class="errors alert alert-danger pb-1">
+          <h5>Errors:</h5>
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
         @endif
 
       </div>
@@ -67,11 +71,11 @@
 </div>
 
 <!-- Register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel2" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title font-weight-bold" id="ModalLabel">Create a workpad account</h5>
+        <h5 class="modal-title font-weight-bold" id="ModalLabel2">Create a workpad account</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -81,35 +85,45 @@
           {{ csrf_field() }}
 
           <div class="form-group input-group-lg py-1">
-            <input id="username" type="text" name="username" class="border rounded form-control {{ $errors->has('username') ? 'border-danger' : '' }}" placeholder="Username" value="{{ old('username') }}" autofocus required>
+            <input id="username" type="text" name="username"
+              class="border rounded form-control {{ $errors->has('username') ? 'border-danger' : '' }}"
+              placeholder="Username" value="{{ old('username') }}" required>
           </div>
           <div class="form-group input-group-lg py-1">
-            <input id="name" type="text" name="name" class="border rounded form-control {{ $errors->has('name') ? 'border-danger' : '' }}" placeholder="Name" value="{{ old('name') }}" required>
+            <input id="name" type="text" name="name"
+              class="border rounded form-control {{ $errors->has('name') ? 'border-danger' : '' }}" placeholder="Name"
+              value="{{ old('name') }}" required>
           </div>
           <div class="form-group input-group-lg py-1">
-            <input id="email" type="email" name="email" class="border rounded form-control {{ $errors->has('email') ? 'border-danger' : '' }}" placeholder="Email" value="{{ old('email') }}" required>
+            <input id="email2" type="email" name="email"
+              class="border rounded form-control {{ $errors->has('email') ? 'border-danger' : '' }}" placeholder="Email"
+              value="{{ old('email') }}" required>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input id="password" type="password" name="password" class="border rounded form-control {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" required>
+            <input id="password2" type="password" name="password"
+              class="border rounded form-control {{ $errors->has('password') ? 'border-danger' : '' }}"
+              placeholder="Password" required>
           </div>
 
           <div class="form-group input-group-lg py-1">
-            <input id="password-confirm" type="password" name="password_confirmation" class="border rounded form-control {{ $errors->has('password_confirmation') ? 'border-danger' : '' }}" placeholder="Confirm password" required>
+            <input id="password-confirm" type="password" name="password_confirmation"
+              class="border rounded form-control {{ $errors->has('password_confirmation') ? 'border-danger' : '' }}"
+              placeholder="Confirm password" required>
           </div>
 
           <!--<input name="is-reg" hidden>-->
         </form>
 
         @if ($errors->any())
-          <div class="errors alert alert-danger pb-1">
-            <h5>Errors:</h5>
-            <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
+        <div class="errors alert alert-danger pb-1">
+          <h5>Errors:</h5>
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
         @endif
 
 

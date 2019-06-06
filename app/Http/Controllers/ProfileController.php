@@ -88,12 +88,12 @@ class ProfileController extends Controller
 
         $canEdit = false;
 
-        if(Auth::user()->id_member == $id_member){
+        if (Auth::user()->id_member == $id_member) {
             $canEdit = true;
         }
 
         $user = \App\Member::find($id_member);
-        
+
         //return $projects;
         return view('pages.profile', ['user' => $user, 'canEdit' => $canEdit]);
     }
@@ -102,13 +102,12 @@ class ProfileController extends Controller
     {
         if (!Auth::check()) return redirect('/');
 
-        if(Auth::user()->id_member == $id_member) {
-           $user = \App\Member::find($id_member);
-           $user->deleted = true;
-           $user->save();
+        if (Auth::user()->id_member == $id_member) {
+            $user = \App\Member::find($id_member);
+            $user->deleted = true;
+            $user->save();
         }
 
         return redirect('/');
     }
-
 }

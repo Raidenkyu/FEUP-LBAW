@@ -16,7 +16,8 @@
     @foreach ($selectedForum->comments as $comment)
     <div id="forum-comment-{{$comment->id_forum_comment}}" class="row forum-comment">
       <div class="col-2 forum-comment-image-box">
-        <img src="{{asset(\App\Http\Controllers\ImageController::getImage($comment->member->id_member))}}" class="rounded-circle forum-comment-image" alt="User Image">
+        <img src="{{asset(\App\Http\Controllers\ImageController::getImage($comment->member->id_member))}}"
+          class="rounded-circle forum-comment-image" alt="User Image">
       </div>
       <div class="col-10">
         <div class="row">
@@ -26,19 +27,26 @@
           <div class="col-7 forum-comment-date">
             <span class="align-bottom">{{date('H:i Y-m-d', strtotime($comment->date))}}</span>
             @if ($comment->id_member == Auth::user()->id_member)
-            <a class="edit-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/edit_pencil.svg" alt="Edit Comment" /></a>
-            <a class="delete-comment" href="#"><img action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" src="/icons/trash.svg" alt="Delete Comment" /></a>
+            <a class="edit-comment" href="#"><img
+                action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}"
+                src="/icons/edit_pencil.svg" alt="Edit Comment" /></a>
+            <a class="delete-comment" href="#"><img
+                action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}"
+                src="/icons/trash.svg" alt="Delete Comment" /></a>
             @endif
           </div>
         </div>
         @if ($comment->id_member == Auth::user()->id_member)
-        <form class="edit-comment-form" action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}" method="post">
+        <form class="edit-comment-form"
+          action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/{{$comment->id_forum_comment}}"
+          method="post">
           @csrf
           @method('put')
           @endif
           <p class="forum-comment-text">{{$comment->content}}</p>
           @if ($comment->id_member == Auth::user()->id_member)
-          <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit Comment</button>
+          <button id="edit-comment-button" type="button submit" class="btn btn-secondary hidden-button">Edit
+            Comment</button>
         </form>
         @endif
       </div>
@@ -46,7 +54,9 @@
     @endforeach
   </div>
   <div class="form-group forum-comment-box">
-    <form id="create-comment-form" action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/create_comment" method="post">
+    <form id="create-comment-form"
+      action="/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/create_comment"
+      method="post">
       @csrf
       <textarea required class="form-control" rows="5" name="content" id="comment-content"></textarea>
       <button id="add-comment-button" type="button submit" class="btn btn-secondary">Add Comment</button>

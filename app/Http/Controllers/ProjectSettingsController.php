@@ -9,13 +9,18 @@ class ProjectSettingsController extends Controller
 {
     //
 
-    public function show($id){
+    public function show($id)
+    {
         $project = \App\Project::where('id_project', $id)->first();
         return ['project' => $project];
     }
 
-    public function update($id){
+    public function update($id)
+    {
         $project = \App\Project::where('id_project', $id)->first();
+
+        $this->authorize('update', $project);
+
         request()->validate([
             'name' => 'required | min:3',
             'color' => 'required'
@@ -27,25 +32,31 @@ class ProjectSettingsController extends Controller
         return $project;
     }
 
-    public function members($id_project){
+    public function members($id_project)
+    {
         $developers = \App\ProjectMember::getDevs($id_project);
         $managers = \App\ProjectMember::getManagers($id_project);
 
-        return ['devs' => $devs, 'managers' => $managers];
+        return ['devs' => $developers, 'managers' => $managers];
     }
 
 
-        public function addMember($id_project){
-          DB::table('invite')->insert(['id_project' => $id_project, 'id_member' => request('id'), 'manager' => request('manager')]);
-          return request('id');
-        }
+    public function addMember($id_project)
+    {
+        $this->authorize('update', \App\Project::find($id_project));
+        DB::table('invite')->insert(['id_project' => $id_project, 'id_member' => request('id'), 'manager' => request('manager')]);
+        return request('id');
+    }
 
-        public function removeMember($id_project){
-          DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
-          return request('id');
-        }
+    public function removeMember($id_project)
+    {
+        $this->authorize('update', \App\Project::find($id_project));
+        DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
+        return request('id');
+    }
 
-    private function colorPicker($color) {
+    private function colorPicker($color)
+    {
         switch ($color) {
             case 'color-1':
                 return 'Orange';
