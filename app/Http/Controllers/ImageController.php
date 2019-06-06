@@ -20,8 +20,8 @@ class ImageController extends Controller
         $matchingFiles = glob('images/profiles/' . $id . '.*');
 
         if (count($matchingFiles) > 0) {
-            return response()->json($matchingFiles[0]);
-        } else return response()->json('images/profiles/default.png');
+            return response()->file($matchingFiles[0]);
+        } else return response()->file('images/profiles/default.png');
     }
 
     public static function resizeImage($file, $extension)
