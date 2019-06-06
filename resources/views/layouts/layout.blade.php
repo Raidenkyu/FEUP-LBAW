@@ -44,7 +44,7 @@
           <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
         </div>
       </div> 
-      <a href="{{ url('/projects') }}"><img src="/icons/due_date.svg" class="mx-1" style="width:45px" alt="Responsive image"></a>
+      <a href="{{ url('/projects') }}"><img src="/icons/dashboard.svg" class="mx-1" style="width:45px" alt="Responsive image"></a>
       <a href="{{ url('/projects/new') }}"><img src="/icons/create_project.svg" class="mx-1" style="width:45px" alt="Responsive image"></a>
       <a href="{{ url('/profile') }}"><img src="{{asset(\App\Http\Controllers\ImageController::getImage(Auth::user()->id_member))}}" class="rounded-circle mx-2" style="width:35px;" alt="Responsive image"></a>
       <a href="{{ url('/profile') }}"><span style="color:white; margin-right:7px">{{ (\App\Member::where('id_member',Auth::user()->id_member)->get())[0]->name }}</span></a>
