@@ -15,6 +15,8 @@ function removeX(event){
 function removeUser(event){
   let id = parseInt(event.target.getAttribute('id_member'));
 
+  if(id == id_member) return;
+
   if(managersList.includes(id) && managersList.length > 1){
     managersList.splice(managersList.indexOf(id), 1);
     event.target.parentNode.remove();

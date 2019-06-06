@@ -43,12 +43,42 @@ class ProjectsController extends Controller
     }
 
     public function search(Request $request){
-      $results = DB::select("SELECT *
-                            FROM (SELECT *, to_tsvector('english', member.name) || to_tsvector('english', member.username) AS document
-                                  FROM member) search
-                            WHERE search.document @@ plainto_tsquery(?)
-                            ORDER BY ts_rank(search.document, plainto_tsquery('english', ?)) DESC
-                            ", [request('content'), request('content')]);
+      $search_array = array(request('content'));
+      $where_query = "WHERE search.info1 @@ plainto_tsquery(?)";
+
+      if(request('languages') != ''){
+        array_push($search_array, request('languages'));
+        $where_query = $where_query . "and search.info2 @@ plainto_tsquery(?)";
+      }
+
+      if(request('location') != ''){
+        array_push($search_array, request('location'));
+        $where_query = $where_query . "and search.info3 @@ plainto_tsquery(?)";
+      }
+
+      if(request('ageMin') != ''){
+        array_push($search_array, request('ageMin'));
+        $where_query = $where_query . "and age >= ?";
+      }
+
+      if(request('ageMax') != ''){
+        array_push($search_array, request('ageMax'));
+        $where_query = $where_query . "and age <= ?";
+      }
+
+      array_push($search_array, request('content'));
+
+
+      $results = DB::select(
+          "SELECT *
+          FROM (SELECT *,
+          	  to_tsvector('english', member.name) || to_tsvector('english', member.username) AS info1,
+          	  to_tsvector('english', member.about) || to_tsvector('english', member.description) AS info2,
+          	  to_tsvector('english', member.location) AS info3
+          	  FROM member) search
+          " . $where_query . "
+          ORDER BY ts_rank(search.info1, plainto_tsquery('english', ?)) DESC
+          ", $search_array);
 
       return response()->json($results);
     }

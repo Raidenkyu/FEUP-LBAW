@@ -75,13 +75,23 @@ function createProjectHandler(event){
 }
 
 function searchManagersRequest(event){
+  let filter = document.querySelector('#filter-checkbox');
   let content = $(this).val();
-  sendAjaxRequest('POST', "/projects/search", {content: content, _token: token}, searchManagersHandler);
+  let languages = filter.checked? document.querySelector('input[name=languages]').value  : '';
+  let location = filter.checked? document.querySelector('input[name=location]').value  : '';
+  let ageMin = filter.checked? document.querySelector('#range-min').value : '';
+  let ageMax = filter.checked? document.querySelector('#range-max').value : '';
+  sendAjaxRequest('POST', "/projects/search", {content: content, languages: languages, location: location, ageMin: ageMin, ageMax: ageMax,  _token: token}, searchManagersHandler);
 }
 
 function searchDevelopersRequest(event){
+  let filter = document.querySelector('#filter-checkbox');
   let content = $(this).val();
-  sendAjaxRequest('POST', "/projects/search", {content: content, _token: token}, searchDevelopersHandler);
+  let languages = filter.checked? document.querySelector('input[name=languages]').value  : '';
+  let location = filter.checked? document.querySelector('input[name=location]').value  : '';
+  let ageMin = filter.checked? document.querySelector('#range-min').value : '';
+  let ageMax = filter.checked? document.querySelector('#range-max').value : '';
+  sendAjaxRequest('POST', "/projects/search", {content: content, languages: languages, location: location, ageMin: ageMin, ageMax: ageMax,  _token: token}, searchDevelopersHandler);
 }
 
 function searchManagersHandler(event){
