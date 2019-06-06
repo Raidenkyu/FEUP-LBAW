@@ -15,6 +15,15 @@ class ImageController extends Controller
         } else return 'images/profiles/default.png';
     }
 
+    public static function getImageJSON($id)
+    {
+        $matchingFiles = glob('images/profiles/' . $id . '.*');
+
+        if (count($matchingFiles) > 0) {
+            return response()->file($matchingFiles[0]);
+        } else return response()->file('images/profiles/default.png');
+    }
+
     public static function resizeImage($file, $extension)
     {
         $file = 'images/profiles/' . $file;
