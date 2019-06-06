@@ -26,7 +26,7 @@ function startUp() {
  */
 function clickNotificationAction() {
 
-    console.log(this);
+    //console.log(this);
 
     // API call
     sendAjaxRequest('get', '/api/notifications', {}, clickNotificationReturn);
@@ -55,7 +55,7 @@ function clickNotificationReturn() {
         else {
             // create all the notifications
             for (i in notifications) {
-                console.log(notifications[i]);
+                //console.log(notifications[i]);
                 notifyFolder.appendChild(createNotification(notifications[i], projNames[i]));
             }
         }
