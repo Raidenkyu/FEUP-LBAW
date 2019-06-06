@@ -13,37 +13,43 @@
                 <h1 class="register-title font-weight-bolder text-center">Edit Profile</h1>
             </div>
 
-            <form id="edit-profile-form" class="p-0 w-100" method="POST" action="/profile" enctype="multipart/form-data">
+            <form id="edit-profile-form" class="p-0 w-100" method="POST" action="/profile"
+                enctype="multipart/form-data">
                 {{method_field('PATCH')}}
                 {{csrf_field()}}
                 <div class="row flex-row">
                     <div class="input-body col-lg-7 col-xs-12 px-0 mx-0">
                         <div class="form-group input-group-lg py-1">
                             <label>Name</label>
-                            <input class="border rounded form-control" name="name" value="{{$user->name}}" placeholder="Name">
+                            <input class="border rounded form-control" name="name" value="{{$user->name}}"
+                                placeholder="Name">
                         </div>
 
                         <div class="row pl-0">
                             <div class="form-group input-group-lg py-1 col-6">
                                 <label>Location</label>
-                                <input class="border rounded form-control" name="location" value="{{$user->location}}" placeholder="Location">
+                                <input class="border rounded form-control" name="location" value="{{$user->location}}"
+                                    placeholder="Location">
                             </div>
 
                             <div class="form-group input-group-lg py-1 col-6">
                                 <label>Phone</label>
-                                <input class="border rounded form-control" name="phone" value="{{$user->phone_number}}" placeholder="Phone Number">
+                                <input class="border rounded form-control" name="phone" value="{{$user->phone_number}}"
+                                    placeholder="Phone Number">
                             </div>
                         </div>
 
 
                         <div class="form-group input-group-lg py-1">
                             <label>Brief</label>
-                            <input class="border rounded form-control" name="brief" value="{{$user->about}}" placeholder="Brief">
+                            <input class="border rounded form-control" name="brief" value="{{$user->about}}"
+                                placeholder="Brief">
                         </div>
 
                         <div class="form-group input-group-lg py-1">
                             <label>Descritption</label>
-                            <textarea class="border rounded form-control" name="description" placeholder="Description" cols="10" rows="5" style="resize: none;">
+                            <textarea class="border rounded form-control" name="description" placeholder="Description"
+                                cols="10" rows="5" style="resize: none;">
                             {{$user->description}}
                             </textarea>
                         </div>
@@ -54,7 +60,8 @@
                         <div class="row justify-content-center pt-5">
                             <div class="profile-image col-lg-3 col-lg-pull justify-content-center">
                                 <label>Picture</label><br>
-                                <img class="image-canvas rounded-circle align-self-center" alt="User Image" src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}">
+                                <img class="image-canvas rounded-circle align-self-center" alt="User Image"
+                                    src="{{asset(\App\Http\Controllers\ImageController::getImage($user->id_member))}}">
                             </div>
                         </div>
 
@@ -73,7 +80,8 @@
                                 </button>
                             </div>
                             <div class="row justify-content-center mt-5">
-                                <button class="delete-button btn btn-lg btn-primary" type="submit" form="delete-profile">
+                                <button class="delete-button btn btn-lg btn-primary" type="submit"
+                                    form="delete-profile">
                                     Delete Account
                                 </button>
                             </div>
@@ -82,14 +90,14 @@
                 </div>
             </form>
 
-            
+
             <form id="delete-profile" method="POST" action="/api/profile/{{ Auth::user()->id_member }}/delete">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
-                
+
             </form>
-           
-            
+
+
 
         </div>
 
