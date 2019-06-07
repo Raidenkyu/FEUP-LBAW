@@ -22,10 +22,6 @@ h1,h2,h3,h4,h5,h6 {
   border-radius: 15px;
 }
 
-.profile-bottom{
-  padding-inline-start: 2em;
-}
-
 .profile-text{
   text-align: left;
 }
