@@ -52,12 +52,19 @@ class ProjectSettingsController extends Controller
     {
         $this->authorize('update', \App\Project::find($id_project));
         //DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
-        \App\Notification::create([
-            'id_member' => request('id'),
-            'id_project' => $id_project,
-            'interactable' => false,
-            'action' => 'beenRemoved'
-        ]);
+        try {
+            //TODO: logger
+            \App\Notification::create([
+                'id_member' => request('id'),
+                'id_project' => $id_project,
+                'interactable' => false,
+                'action' => 'beenRemoved'
+            ]);
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+        
+
         return request('id');
     }
 
