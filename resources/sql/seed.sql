@@ -177,7 +177,7 @@ CREATE OR REPLACE FUNCTION member_search_update()
 RETURNS TRIGGER AS
 $BODY$
 begin
-  IF NEW.title <> OLD.title THEN
+  IF NEW.name <> OLD.name OR NEW.username <> OLD.username OR NEW.about <> OLD.about OR NEW.description <> OLD.description OR NEW.location <> OLD.location THEN
     NEW.search_name = to_tsvector('english',  ' ' || NEW.name || NEW.username);
     NEW.search_desc = to_tsvector('english',  ' ' || NEW.about || NEW.description || NEW.location);
   END IF;

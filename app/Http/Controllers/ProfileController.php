@@ -108,6 +108,6 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return redirect('/');
+        return redirect('/logout');
     }
 }
