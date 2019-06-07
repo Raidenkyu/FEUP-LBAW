@@ -16,10 +16,6 @@ input[type=range]::-webkit-slider-runnable-track {
   background: #ddd;
 }
 
-.page-container {
-  min-height: calc(100vh - 130px);
-}
-
 .one-pic{
   position: relative;
   display: inline-block;
@@ -243,7 +239,6 @@ h1,h2,h3,h4,h5,h6,span,button {
 
 .page-container {
     min-height: calc(100vh - 130px);
-    /*width: 100vw;*/
     overflow-x: scroll;
 }
 
@@ -284,6 +279,7 @@ h1,h2,h3,h4,h5,h6,span,button {
     margin: 1em;
     background-color: var(--blue);
     border-radius: 0.5em;
+    height: 100%;
 }
 
 .list-col-title{
@@ -609,10 +605,6 @@ footer {
 
 .tasks-text{
     margin-top: 0.2em;
-}
-
-.list-col{
-  height: 100%;
 }
 
 .project-title-line{
