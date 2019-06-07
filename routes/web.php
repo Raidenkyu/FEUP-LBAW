@@ -60,6 +60,8 @@ Route::put('api/projects/{id_project}/tasks/{id_task}', 'TasksController@update'
 Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
 
 Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
+Route::delete('api/projects/{id_project}/tasks/{id_task}', 'TasksController@delete');
+
 
 // SubTasks
 

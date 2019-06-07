@@ -224,4 +224,17 @@ class TasksController extends Controller
         // Return both the new task and the old list to update the page
         return ['task' => $task, 'old_list' => $old_list, 'action' => $action];
     }
+
+    public function delete($id_project, $id_task){
+        $task = \App\Task::find($id_task);
+        $task->delete();
+
+        $remainingTasks = \App\Task::where([
+            ['id_project','=',$id_project],
+            ['list_name', '=', $task->list_name]
+        ])->get();
+
+        return ['tasks' => $remainingTasks, 'list_name' => $task->list_name];
+    }
+
 }

@@ -177,7 +177,7 @@
 
                 <div class="btn-group-vertical task-edit-button-group">
                   <button type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Delete Task</button>
+                  <button type="button" class="btn btn-primary task-edit-button delete-task res-text" data-dismiss="modal">Delete Task</button>
                 </div>
                 <br>
                 <span>Actions</span>

@@ -25,7 +25,7 @@ function generateTaskModal() {
 
 function taskFetch() {
   let task = (JSON.parse(this.responseText))['data'];
-  console.log(task);
+  //console.log(task);
 
   let taskTitle = document.querySelector('#taskTitle');
   taskTitle.setAttribute('value', task['name']);
@@ -164,6 +164,44 @@ function taskFetch() {
       console.log('TODO: Handle Errors');
       break;
   }
+
+  let deleteTaskButton = document.querySelector('.delete-task');
+
+  deleteTaskButton.addEventListener('click', deleteTaskAction);
+
+}
+
+function deleteTaskAction(){
+
+  let projectId = globalProjectId;
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+
+  //API Call
+  sendAjaxRequest('delete', '/api/projects/' + projectId + '/tasks/' + taskId, {}, deleteTaskReturn);
+
+}
+
+function deleteTaskReturn(){
+
+  if (this.status == 200) {
+    
+    let tasks = JSON.parse(this.responseText)['tasks'];
+    let listName = taskListSwitch(JSON.parse(this.responseText)['list_name']);
+
+    let taskDiv = document.querySelector('div[data-list="' + listName + '"]');
+
+    while (taskDiv.firstChild) {
+      taskDiv.removeChild(taskDiv.firstChild);
+    }
+
+    for(i in tasks){
+      createTaskButton(tasks[i], listName);
+    }
+  }
+  else{
+    console.log("TODO: Lançar erros");
+  }
+
 }
 
 

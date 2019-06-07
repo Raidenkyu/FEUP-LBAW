@@ -35,7 +35,7 @@ DROP FUNCTION IF EXISTS create_initial_topic();
 
 DROP TABLE IF EXISTS cards, items, users CASCADE;
 
-DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin, invite CASCADE;
+DROP TABLE IF EXISTS member, default_auth, google_auth, project, project_member, task, assigned_to, subtask, task_comment, forum, forum_comment, notification, admin, invite, remember_password CASCADE;
 
 
 -- TYPES
@@ -67,7 +67,9 @@ CREATE TABLE member (
 CREATE TABLE default_auth (
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT def_auth_email_uk UNIQUE,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    banned BOOLEAN NOT NULL DEFAULT FALSE,
+	deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE remember_password (
@@ -189,7 +191,7 @@ CREATE OR REPLACE FUNCTION member_search_update()
 RETURNS TRIGGER AS
 $BODY$
 begin
-  IF NEW.title <> OLD.title THEN
+  IF NEW.name <> OLD.name OR NEW.username <> OLD.username OR NEW.about <> OLD.about OR NEW.description <> OLD.description OR NEW.location <> OLD.location THEN
     NEW.search_name = to_tsvector('english',  ' ' || NEW.name || NEW.username);
     NEW.search_desc = to_tsvector('english',  ' ' || NEW.about || NEW.description || NEW.location);
   END IF;
