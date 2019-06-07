@@ -24,6 +24,7 @@ function generateTaskModal() {
 
 
 function taskFetch() {
+  console.log(this.responseText);
   let task = (JSON.parse(this.responseText))['data'];
   //console.log(task);
 
@@ -37,13 +38,25 @@ function taskFetch() {
     description.innerHTML = descriptionText;
   }
 
-  /*
-  let date = task['due_date'];
-  if (date != null) {
-    let due_date = document.querySelector('#due-date');
-    due_date.innerHTML = date;
-  }
-  */
+  let members = task['members'];
+  let memsDiv = document.querySelector("#members-row");
+
+  let previousImages = document.querySelectorAll('img[alt="Team Member"');
+
+  previousImages.forEach((e)=>{
+    e.remove();
+  });
+
+  members.forEach((member) =>{
+    let memImg = document.createElement('img');
+    console.log(member);
+    memImg.setAttribute('src',"/"+member[1]);
+    memImg.setAttribute('data-id',member[0]);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    memsDiv.appendChild(memImg);
+  });
 
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
@@ -216,7 +229,6 @@ closeTaskButton.addEventListener('click', saveChanges);
 function saveChanges() {
   let taskTitle = document.querySelector('#taskTitle');
   let description = document.querySelector('#description-text');
-  //let due_date = document.querySelector('#due-date');
 
   let issue = document.querySelector('#issue');
 
@@ -404,7 +416,6 @@ function destroySubTaskAnswer(load){
 function updateSubtask(){
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
   let id = this.getAttribute('data-id');
-  console.log("Works?");
   sendAjaxRequest(
     'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id,
     {},
@@ -427,6 +438,44 @@ function updateSubtaskAnswer(load){
   }
 }
 
+let selfAssignButton = document.querySelector("#selfAssignButton");
+
+selfAssignButton.addEventListener('click',selfAssign);
+
+function selfAssign(){
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+
+  sendAjaxRequest(
+    'post', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/selfAssign/', 
+    {},
+    selfAssigned);
+}
+
+function selfAssigned(){
+  console.log(this.responseText);
+  if(this.status == 200){
+    let assignment = JSON.parse(this.responseText);
+    console.log(assignment['id_task']);
+    if(assignment['id_task'] < 0){
+      let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+      if(prevImg != null){
+        prevImg.remove();
+        
+      }
+      return;
+    }
+    let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+    if(prevImg == null){
+    let memImg = document.createElement('img');
+    memImg.setAttribute('src',"/"+assignment['img_src']);
+    memImg.setAttribute('data-id',assignment['id_member']);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    document.querySelector("#members-row").appendChild(memImg);
+    }
+  }
+}
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 

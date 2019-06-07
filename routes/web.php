@@ -58,6 +58,7 @@ Route::delete('projects/{id_project}/remove', 'ProjectSettingsController@removeM
 Route::get('api/projects/{id_project}/tasks/{id_task}', 'TasksController@retrieve');
 Route::put('api/projects/{id_project}/tasks/{id_task}', 'TasksController@update');
 Route::post('api/projects/{id_project}/tasks', 'TasksController@store');
+Route::post('api/projects/{id_project}/tasks/{id_task}/selfAssign', 'TasksController@selfAssign');
 
 Route::put('api/projects/{id_project}/tasks/{id_task}/listName', 'TasksController@changeList');
 Route::delete('api/projects/{id_project}/tasks/{id_task}', 'TasksController@delete');
