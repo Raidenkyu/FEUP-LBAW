@@ -556,10 +556,10 @@ SELECT setval(pg_get_serial_sequence('forum_comment', 'id_forum_comment'), (SELE
 
 
 -- notification (id_notification, id_member, content, seen, interactable, link)
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, 1, false, 'checkPending');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (2, 1, 4, 2, false, 'checkPending');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (3, 1, 1, 1, false, 'beenRemoved');
-INSERT INTO notification (id_notification, id_member, id_project, id_task, interactable, action) VALUES (4, 1, 4, 2, false, 'beenRemoved');
+INSERT INTO notification (id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, false, 'checkPending');
+INSERT INTO notification (id_member, id_project, id_task, interactable, action) VALUES (1, 4, 2, false, 'checkPending');
+INSERT INTO notification (id_member, id_project, id_task, interactable, action) VALUES (1, 1, 1, false, 'beenRemoved');
+INSERT INTO notification (id_member, id_project, id_task, interactable, action) VALUES (1, 4, 2, false, 'beenRemoved');
 
 
 SELECT setval(pg_get_serial_sequence('notification', 'id_notification'), (SELECT MAX(id_notification) FROM notification));

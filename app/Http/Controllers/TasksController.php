@@ -6,6 +6,7 @@ use App\Task;
 use App\SubTask;
 use App\Http\Resources\TaskResource as TaskResource;
 use Illuminate\Http\Request;
+use App\ProjectMember;
 
 class TasksController extends Controller
 {
@@ -153,6 +154,15 @@ class TasksController extends Controller
                 break;
             case 'In Progress':
                 $task->list_name = 'Pending Approval';
+                $devs = ProjectMember::getManagers($task->id_project);
+                foreach ($devs as $dev) { 
+                    \App\Notification::create([
+                        'id_member' => $dev->id_member,
+                        'id_project' => $task->id_project,
+                        'interactable' => false,
+                        'action' => 'checkPending'
+                    ]);
+                }
                 break;
             case 'Pending Approval':
                 $task->list_name = 'Done';
