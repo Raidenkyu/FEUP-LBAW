@@ -8,10 +8,10 @@
     <div class="col-3 title-buttons">
       <div class="container">
         <div class="btn-group">
-          <a href="/projects/{{ $project->id_project }}"><button type="button"
-              class="btn btn-primary selection-button">•••Tasks</button></a>
-          <a href="/projects/{{ $project->id_project }}/forums"><button type="button"
-              class="btn btn-primary selection-button">•••Discussion</button></a>
+          <button type="button" class="btn btn-primary selection-button"
+            onclick="location.href = '/projects/{{ $project->id_project }}';">•••Tasks</button>
+          <button type="button" class="btn btn-primary selection-button"
+            onclick="location.href = '/projects/{{ $project->id_project }}/forums';">•••Discussion</button>
         </div>
       </div>
     </div>
