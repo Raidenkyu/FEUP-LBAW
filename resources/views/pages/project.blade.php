@@ -104,13 +104,10 @@
                       alt="Team Member">
                   </div>
                   <div class="col-sm">
-                    <span class="res-text task-edit-top-title">Due Date</span>
-                    <span id="due-date" class="res-text">Jun 3 at 10:00 PM</span>
-                  </div>
-                  <div class="col-sm">
                     <span class="res-text task-edit-top-title">Issue</span>
-                    <button id="issue" type="button"
-                      class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
+                    <input type="text" id="issue"
+                        class="modal-title border rounded" name="issue"></input>
+
                   </div>
                 </div>
                 <div class="row task-edit-desc-row">
@@ -131,11 +128,6 @@
                         alt="Checklist Icon">Checklist title
                     </span>
                     <br>
-
-                    <div class="progress task-edit-prog-bar">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
 
                     <div class="row check">
                       <div class="">
@@ -160,15 +152,6 @@
                     <button class="add-subtask btn btn-link text-dark">Add SubTask</button>
                   </div>
 
-                </div>
-
-                <div class="row task-edit-comm-row">
-                  <div class="col-md-10">
-                    <span class="res-text">
-                      <img src="/icons/comments.svg" class="img-fluid task-edit-check-svg" alt="Comments Icon">Comments
-                    </span>
-
-                  </div>
                 </div>
 
               </div>
