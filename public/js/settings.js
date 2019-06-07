@@ -147,6 +147,6 @@ function colorToIndex(color) {
 function colorPicker() {
     let color = globalProjectColor.getAttribute('data-color');
     let colorPicker = document.querySelector('.color-picker div input[value="' + colorToIndex(color) + '"]');
-    colorPicker.setAttribute('checked', true);
+    colorPicker.setAttribute('checked', '');
 }
 
