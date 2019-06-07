@@ -18,7 +18,10 @@ class ForumsController extends Controller
   {
     if (!Auth::check()) return redirect('/');
     $forums = \App\Project::find($id)->forums;
-    return view('pages.forums', compact('forums'));
+    $isManager = \App\ProjectMember::isManager(Auth::user()->id_member, $id);
+    $project = \App\Project::where('id_project', $id)->first();
+
+    return view('pages.forums', compact('forums', 'isManager', 'project'));
   }
 
   public function forum($id, $forum_id)
@@ -26,6 +29,9 @@ class ForumsController extends Controller
     if (!Auth::check()) return redirect('/');
     $forums = \App\Project::find($id)->forums;
     $selectedForum = \App\Project::find($id)->forums->find($forum_id);
-    return view('pages.forum', compact('forums', 'selectedForum'));
+    $isManager = \App\ProjectMember::isManager(Auth::user()->id_member, $id);
+    $project = \App\Project::where('id_project', $id)->first();
+
+    return view('pages.forum', compact('forums', 'selectedForum', 'isManager', 'project'));
   }
 }
