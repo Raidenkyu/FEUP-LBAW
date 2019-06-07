@@ -71,7 +71,7 @@ function clickNotificationReturn() {
  * Function to create a "no notification" element
  */
 function createEmptyNotifications(){
-    
+
     let notDiv = document.createElement('div');
     notDiv.classList.add('notify-box', 'row', 'mx-0');
     notDiv.setAttribute('style', 'width:100%;');
@@ -87,8 +87,8 @@ function createEmptyNotifications(){
 
 /**
  * Function to create a notification element
- * @param {*} notification 
- * @param {*} projName 
+ * @param {*} notification
+ * @param {*} projName
  */
 function createNotification(notification, projName) {
 
@@ -163,7 +163,7 @@ function createAcceptButton() {
 
     let notAcceptImg = document.createElement('img');
     notAcceptImg.src = "/icons/check.svg";
-    notAcceptImg.classList.add('img-fluid', 'notify-action-button');
+    notAcceptImg.classList.add('img-fluid', 'notify-action-button',  'check');
     notAcceptImg.alt = "Accept Notification";
     notAccept.appendChild(notAcceptImg);
 
@@ -180,7 +180,7 @@ function createDenyButton() {
 
     let notDenyImg = document.createElement('img');
     notDenyImg.src = "/icons/deny.svg";
-    notDenyImg.classList.add('img-fluid', 'notify-action-button');
+    notDenyImg.classList.add('img-fluid', 'notify-action-button',  'deny');
     notDenyImg.alt = "Deny Notification";
     notDeny.appendChild(notDenyImg);
 
@@ -262,7 +262,7 @@ function interactInviteReturn() {
 
 /**
  * Function that changes the notification icon according to the argument received (true => change to "Has notifications"; false => change to "No notifications")
- * @param {*} newVal 
+ * @param {*} newVal
  */
 function changeNotificationIcon(newVal) {
 
@@ -314,4 +314,3 @@ function sendAjaxRequest(method, url, data, handler) {
     request.addEventListener('load', handler);
     request.send(encodeForAjax(data));
 }
-
