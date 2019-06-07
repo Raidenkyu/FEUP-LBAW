@@ -167,7 +167,7 @@ function addManager(event){
     if (this.status != 200) window.location = '/';
     let json = JSON.parse(this.responseText);
 
-    let pic = document.createElement('container');
+    let pic = document.createElement('div');
     pic.classList.add('one-pic');
     pic.addEventListener('mouseover', addX);
     pic.addEventListener('mouseout', removeX);
@@ -194,7 +194,7 @@ function addDeveloper(event){
     if (this.status != 200) window.location = '/';
     let json = JSON.parse(this.responseText);
 
-    let pic = document.createElement('container');
+    let pic = document.createElement('div');
     pic.classList.add('one-pic');
     pic.addEventListener('mouseover', addX);
     pic.addEventListener('mouseout', removeX);

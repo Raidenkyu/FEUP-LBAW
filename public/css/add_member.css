@@ -16,6 +16,19 @@ h1,h2,h3,h4,h5,h6 {
   min-height: calc(100vh - 130px);
 }
 
+.one-pic{
+  position: relative;
+  display: inline-block;
+}
+
+.pics{
+  display: inline-block;
+  float: left;
+}
+
+div.results{
+  z-index: 1000;
+}
 
 .color-picker{
   width: 50px;
