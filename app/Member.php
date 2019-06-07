@@ -16,12 +16,12 @@ class Member extends Model
 
   public function projects()
   {
-    return $this->belongsToMany('App\Project', 'project_member', 'id_member', 'id_project');
+    return $this->belongsToMany('App\Project', 'project_member', 'id_member', 'id_project')->where('deleted',false);
   }
 
   public function my_projects()
   {
-    return $this->belongsToMany('App\Project', 'project_member', 'id_member', 'id_project')->wherePivot('manager', 'true');
+    return $this->belongsToMany('App\Project', 'project_member', 'id_member', 'id_project')->wherePivot('manager', 'true')->where('deleted',false);
   }
 
   public function forum_comments()
