@@ -244,18 +244,36 @@ class TasksController extends Controller
     public function selfAssign($id_project, $id_task){
         
         $id = Auth::user()->id_member;
-        $assignTo = AssignedTo::create([
-            'id_member' => $id,
-            'id_task' => $id_task
-        ]);
+        $previous = AssignedTo::where([
+            ['id_member', '=', $id],
+            ['id_task', '=', $id_task]
+        ])->get();
+        if($previous->count() == 0){
+            $assignTo = AssignedTo::create([
+                'id_member' => $id,
+                'id_task' => $id_task
+            ]);
+            
+            $ret =[
+                'id_member' => $id,
+                'id_task' => $id_task,
+                'img_src' => ImageController::getImage($id)
+            ];
+            return $ret;
+        }
+        else{
+            
+            foreach($previous as $p){
+                $p->delete();
+            }
+            $ret =[
+                'id_member' => $id,
+                'id_task' => -1
+            ];
+            return $ret;
+        }
 
-        
-        $ret =[
-            'id_member' => $id,
-            'id_task' => $id_task,
-            'img_src' => ImageController::getImage($id)
-        ];
-        return $ret;
+
     }
 
 }

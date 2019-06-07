@@ -41,10 +41,17 @@ function taskFetch() {
   let members = task['members'];
   let memsDiv = document.querySelector("#members-row");
 
+  let previousImages = document.querySelectorAll('img[alt="Team Member"');
+
+  previousImages.forEach((e)=>{
+    e.remove();
+  });
+
   members.forEach((member) =>{
     let memImg = document.createElement('img');
     console.log(member);
     memImg.setAttribute('src',"/"+member[1]);
+    memImg.setAttribute('data-id',member[0]);
     memImg.setAttribute('class',"rounded-circle img-fluid");
     memImg.setAttribute('alt',"Team Member");
     memImg.setAttribute('style',"max-width:35px;");
@@ -447,14 +454,28 @@ function selfAssign(){
 }
 
 function selfAssigned(){
+  console.log(this.responseText);
   if(this.status == 200){
     let assignment = JSON.parse(this.responseText);
+    console.log(assignment['id_task']);
+    if(assignment['id_task'] < 0){
+      let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+      if(prevImg != null){
+        prevImg.remove();
+        
+      }
+      return;
+    }
+    let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+    if(prevImg == null){
     let memImg = document.createElement('img');
     memImg.setAttribute('src',"/"+assignment['img_src']);
+    memImg.setAttribute('data-id',assignment['id_member']);
     memImg.setAttribute('class',"rounded-circle img-fluid");
     memImg.setAttribute('alt',"Team Member");
     memImg.setAttribute('style',"max-width:35px;");
     document.querySelector("#members-row").appendChild(memImg);
+    }
   }
 }
 
