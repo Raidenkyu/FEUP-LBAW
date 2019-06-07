@@ -86,7 +86,14 @@ h1,h2,h3,h4,h5,h6 {
 
 .one-pic{
   position: relative;
+  display: inline-block;
 }
+
+.pics{
+  display: inline-block;
+  float: left;
+}
+
 /*
 input[name="content"]{
   position: relative;
@@ -132,8 +139,8 @@ textarea, input{
 @media (max-width: 768px){
   .create {
     padding: 0.75em 0.5em !important;
-  }  
-  
+  }
+
   .dashboard-title {
       font-size: 2em;
   }
@@ -149,6 +156,10 @@ textarea, input{
   .color-box .container {
     padding: 0;
   }
+}
+
+div.results{
+  z-index: 1000;
 }
 
 

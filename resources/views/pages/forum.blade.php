@@ -68,6 +68,7 @@
   var token = '{{Session::token()}}';
   var urlCreateComment = '/projects/{{$selectedForum->project->id_project}}/forums/{{$selectedForum->id_forum}}/create_comment';
   var name = '{{\App\Member::find(Auth::user()->id_member)->name}}';
+  var idMember = '{{Auth::user()->id_member}}';
   var username = '{{\App\Member::find(Auth::user()->id_member)->username}}';
   var idProject = '{{$selectedForum->project->id_project}}';
   var idForum = '{{$selectedForum->id_forum}}';
