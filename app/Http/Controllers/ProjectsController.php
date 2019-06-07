@@ -139,7 +139,9 @@ class ProjectsController extends Controller
 
     $this->authorize('delete', $project);
 
-    $project->delete();
+    $project->deleted = true;
+    $project->save();
+
     return redirect('/projects');
   }
 
