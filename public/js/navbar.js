@@ -26,8 +26,6 @@ function startUp() {
  */
 function clickNotificationAction() {
 
-    //console.log(this);
-
     // API call
     sendAjaxRequest('get', '/api/notifications', {}, clickNotificationReturn);
 }
@@ -55,15 +53,12 @@ function clickNotificationReturn() {
         else {
             // create all the notifications
             for (i in notifications) {
-                //console.log(notifications[i]);
                 notifyFolder.appendChild(createNotification(notifications[i], projNames[i]));
             }
         }
 
     }
-    else {
-        console.log("TODO: Handle errors")
-    }
+
 
 }
 
@@ -145,9 +140,7 @@ function createNotification(notification, projName) {
             notDiv.appendChild(notButton);
             notDiv.appendChild(notAccept);
         }
-        else {
-            // TODO: Handle de erro na base de dados?
-        }
+
     }
 
     return notDiv;
@@ -216,9 +209,6 @@ function readNotificationReturn() {
             notifyFolder.appendChild(createEmptyNotifications());
         }
     }
-    else {
-        console.log("TODO: Handle errors")
-    }
 
 }
 
@@ -252,10 +242,7 @@ function interactInviteReturn() {
             notifyFolder.appendChild(createEmptyNotifications());
         }
     }
-    else {
-        console.log("TODO: Handle errors");
-        console.log("Status: " + status);
-    }
+
 
 }
 

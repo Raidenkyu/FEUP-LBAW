@@ -103,7 +103,7 @@
                     <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
                       alt="Team Member">
                   </div>
-                  <div class="col-sm">
+                  <div class="col-sm issue-box">
                     <span class="res-text task-edit-top-title">Issue</span>
                     <input type="text" id="issue"
                         class="modal-title border rounded" name="issue"></input>
@@ -189,6 +189,7 @@
       </div>
 
       @if($isManager)
+      <div id="isManager" style="display:none;" data-isManager="true"></div>
       <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -319,7 +320,9 @@
           Save
         </button><br>
 
-      </form>
+      </form>  
+      @else
+      <div id="isManager" style="display:none;" data-isManager="false"></div> 
       @endif
 
       @if($isManager)
