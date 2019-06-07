@@ -52,7 +52,7 @@
               </button>
             </div>
             <div class="col-6 text-right pr-0">
-              <button class="btn ">Forgot Password?</button>
+              <button class="btn " onclick="location.href='password/reset';">Forgot Password?</button>
             </div>
 
           </div>
