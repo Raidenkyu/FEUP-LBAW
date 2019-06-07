@@ -28,6 +28,11 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     border-color: var(--blue);
 }
 
+footer{
+  position: fixed;
+  bottom: 0;
+}
+
 .btn-primary:hover{
     background-color: var(--darkest_blue);
     border-color: var(--darkest_blue);
@@ -73,6 +78,7 @@ h1,h2,h3,h4,h5,h6,p,span,button {
     margin: 1em;
     background-color: rgb(231, 231, 231);
     border-radius: 0.5em;
+    margin-bottom: 4em;
 }
 
 .topics-list-title{

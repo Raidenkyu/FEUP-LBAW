@@ -11,11 +11,41 @@ h1,h2,h3,h4,h5,h6 {
   background-color: #4894dd;
 }
 
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  height: 18px;
+  width: 18px;
+  margin-top: -8px;
+  border-radius: 99px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 4px;
+  background: #ddd;
+}
 
 .page-container {
   min-height: calc(100vh - 130px);
 }
 
+.one-pic{
+  position: relative;
+  display: inline-block;
+}
+
+.pics{
+  display: inline-block;
+  float: left;
+}
+
+div.results{
+  z-index: 1000;
+}
 
 .color-picker{
   width: 50px;
