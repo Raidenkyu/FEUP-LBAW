@@ -1,6 +1,7 @@
  taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
 //let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
+let globalIsManager = document.querySelector('#isManager').getAttribute('data-isManager');
 
 taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -25,7 +26,6 @@ function generateTaskModal() {
 
 function taskFetch() {
   let task = (JSON.parse(this.responseText))['data'];
-  //console.log(task);
 
   let taskTitle = document.querySelector('#taskTitle');
   taskTitle.setAttribute('value', task['name']);
@@ -37,11 +37,24 @@ function taskFetch() {
     description.innerHTML = descriptionText;
   }
 
-  let date = task['due_date'];
-  if (date != null) {
-    let due_date = document.querySelector('#due-date');
-    due_date.innerHTML = date;
-  }
+  let members = task['members'];
+  let memsDiv = document.querySelector("#members-row");
+
+  let previousImages = document.querySelectorAll('img[alt="Team Member"');
+
+  previousImages.forEach((e)=>{
+    e.remove();
+  });
+
+  members.slice(-3).forEach((member) =>{
+    let memImg = document.createElement('img');
+    memImg.setAttribute('src',"/"+member[1]);
+    memImg.setAttribute('data-id',member[0]);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    memsDiv.appendChild(memImg);
+  });
 
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
@@ -104,9 +117,9 @@ function taskFetch() {
   issueText = task['issue'];
   let issue = document.querySelector('#issue');
   if (issueText != null) {
-    issue.innerHTML = issueText;
+    issue.value = issueText;
   } else {
-    issue.innerHTML = 'None';
+    issue.value = 'None';
   }
 
 
@@ -129,7 +142,6 @@ function taskFetch() {
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
   taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
 
-  // console.log(task);
   switch (task['list_name']) {
     // just has an "upgrade" button
     case 'To Do':
@@ -145,23 +157,22 @@ function taskFetch() {
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
-    // has an "upgrade" and "downgrade" button (TODO: permission of upgrade)
+    // has an "upgrade" and "downgrade" button
     case 'Pending Approval':
-      taskUpgradeButton.innerHTML = 'Move to "Done"';
-      taskListActionDiv.appendChild(taskUpgradeButton);
+      if(globalIsManager == "true"){
+        taskUpgradeButton.innerHTML = 'Move to "Done"';
+        taskListActionDiv.appendChild(taskUpgradeButton);
+      }
       taskDowngradeButton.innerHTML = 'Move to "In Progress"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
-    // just has an "downgrade" button (TODO: Maybe add a second downgrade to In
-    // Progress?)
     case 'Done':
       taskDowngradeButton.innerHTML = 'Move to "Pending Approval"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
     default:
-      console.log('TODO: Handle Errors');
       break;
   }
 
@@ -199,13 +210,11 @@ function deleteTaskReturn(){
     }
   }
   else{
-    console.log("TODO: Lançar erros");
   }
 
 }
 
 
-//////////////////////////////////////// JUAN /////////////////////////////////////////////
 
 let closeTaskButton = document.querySelector('#close-task-button');
 
@@ -214,9 +223,13 @@ closeTaskButton.addEventListener('click', saveChanges);
 function saveChanges() {
   let taskTitle = document.querySelector('#taskTitle');
   let description = document.querySelector('#description-text');
-  let due_date = document.querySelector('#due-date');
 
   let issue = document.querySelector('#issue');
+
+  let issueVal = 'None';
+  if(Number(issue.value)){
+    issueVal = issue.value;
+  }
 
   let projectId = globalProjectId;
   let taskId = taskTitle.getAttribute('data-id');
@@ -226,8 +239,8 @@ function saveChanges() {
       'put', '/api/projects/' + projectId + '/tasks/' + taskId, {
         name: taskTitle.value,
         description: description.innerHTML,
-        due_date: due_date.innerHTML,
-        issue: issue.innerHTML
+        due_date: null,
+        issue: issueVal
       },
       saveChangesAnswer);
 }
@@ -260,7 +273,7 @@ function addSubTaskClick(){
     newSubTaskInput.addEventListener('focusout', removeSubTaskInput);
     newSubTaskInput.addEventListener(
         'change',
-        addSubTaskAction.bind(newSubTaskInput));  // TODO: Add focus on create
+        addSubTaskAction.bind(newSubTaskInput));
 
 
     let list = document.querySelector('#checklist');
@@ -305,7 +318,7 @@ function addSubTaskReturn(){
     // On success, create a task button for the new task
     createSubTask(subtask);
   } else {
-    console.log('PANIC! ERROR IN ADD SUBTASK');  // TODO: Handle errors
+    console.log('ERROR IN ADD SUBTASK');  
   }
 
   createAddSubTaskButton();
@@ -397,7 +410,6 @@ function destroySubTaskAnswer(load){
 function updateSubtask(){
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
   let id = this.getAttribute('data-id');
-  console.log("Works?");
   sendAjaxRequest(
     'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id,
     {},
@@ -406,7 +418,6 @@ function updateSubtask(){
 
 function updateSubtaskAnswer(load){
   let request = load.srcElement;
-  console.log(request.status);
   if(request.status == 200){
     let subtask = JSON.parse(request.responseText);
     let brief = this.innerHTML;
@@ -420,8 +431,44 @@ function updateSubtaskAnswer(load){
   }
 }
 
+let selfAssignButton = document.querySelector("#selfAssignButton");
 
-//////////////////////////////////////// NANDO //////////////////////////////////////////
+selfAssignButton.addEventListener('click',selfAssign);
+
+function selfAssign(){
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+
+  sendAjaxRequest(
+    'post', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/selfAssign/', 
+    {},
+    selfAssigned);
+}
+
+function selfAssigned(){
+  if(this.status == 200){
+    let assignment = JSON.parse(this.responseText);
+    if(assignment['id_task'] < 0){
+      let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+      if(prevImg != null){
+        prevImg.remove();
+        
+      }
+      return;
+    }
+    let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+    if(prevImg == null){
+    let memImg = document.createElement('img');
+    memImg.setAttribute('src',"/"+assignment['img_src']);
+    memImg.setAttribute('data-id',assignment['id_member']);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    document.querySelector("#members-row").appendChild(memImg);
+    }
+  }
+}
+
+
 
 
 /**
@@ -441,7 +488,7 @@ function addTaskClick(button) {
   newTaskInput.addEventListener('focusout', removeInputBox);
   newTaskInput.addEventListener(
       'change',
-      addTaskAction.bind(newTaskInput, taskList));  // TODO: Add focus on create
+      addTaskAction.bind(newTaskInput, taskList));
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
@@ -484,7 +531,7 @@ function addTaskReturn(load) {
     // On success, create a task button for the new task
     createTaskButton(task, taskList);
   } else {
-    console.log('PANIC! ERROR IN ADD TASK');  // TODO: Handle errors
+    console.log('ERROR IN ADD TASK');
   }
 
   createAddTaskButton(taskList);
@@ -634,6 +681,5 @@ function changeTaskListReturn() {
     eraseTaskButton(task, taskListSwitch(old_list));
     createTaskButton(task, taskListSwitch(task.list_name));
   } else {
-    console.log('TODO: Handle errors');
   }
 }

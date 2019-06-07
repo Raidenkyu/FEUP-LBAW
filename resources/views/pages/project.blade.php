@@ -97,19 +97,16 @@
             <div class="row">
               <div class="col-sm-9">
                 <div class="row task-edit-top">
-                  <div class="col-sm">
+                  <div id="members-row" class="col-sm">
                     <span class="res-text task-edit-top-title">Members</span>
                     <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
                       alt="Team Member">
                   </div>
-                  <div class="col-sm">
-                    <span class="res-text task-edit-top-title">Due Date</span>
-                    <span id="due-date" class="res-text">Jun 3 at 10:00 PM</span>
-                  </div>
-                  <div class="col-sm">
+                  <div class="col-sm issue-box">
                     <span class="res-text task-edit-top-title">Issue</span>
-                    <button id="issue" type="button"
-                      class="btn btn-primary task-edit-button issue-button res-text">#6566</button>
+                    <input type="text" id="issue"
+                        class="modal-title border rounded" name="issue"></input>
+
                   </div>
                 </div>
                 <div class="row task-edit-desc-row">
@@ -130,11 +127,6 @@
                         alt="Checklist Icon">Checklist title
                     </span>
                     <br>
-
-                    <div class="progress task-edit-prog-bar">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
 
                     <div class="row check">
                       <div class="">
@@ -161,21 +153,12 @@
 
                 </div>
 
-                <div class="row task-edit-comm-row">
-                  <div class="col-md-10">
-                    <span class="res-text">
-                      <img src="/icons/comments.svg" class="img-fluid task-edit-check-svg" alt="Comments Icon">Comments
-                    </span>
-
-                  </div>
-                </div>
-
               </div>
               <div class="col-sm-3 task-edit-side">
                 <span>Task Settings</span>
 
                 <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
+                  <button id="selfAssignButton" type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
                   <button type="button" class="btn btn-primary task-edit-button delete-task res-text" data-dismiss="modal">Delete Task</button>
                 </div>
                 <br>
@@ -205,6 +188,7 @@
       </div>
 
       @if($isManager)
+      <div id="isManager" style="display:none;" data-isManager="true"></div>
       <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -335,7 +319,9 @@
           Save
         </button><br>
 
-      </form>
+      </form>  
+      @else
+      <div id="isManager" style="display:none;" data-isManager="false"></div> 
       @endif
 
       @if($isManager)

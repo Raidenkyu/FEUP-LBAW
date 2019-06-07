@@ -27,6 +27,9 @@ class Task extends Model
 
     public function members()
     {
-        return $this->belongsToMany('App\Member', 'assigned_to', 'id_member', 'id_task')->get();
+        return AssignedTo::where([
+            ['id_task', '=', $this->id_task]
+        ])->get();
+        //return $this->belongsToMany('App\Member', 'assigned_to', 'id_member', 'id_task')->get();
     }
 }
