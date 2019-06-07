@@ -70,7 +70,7 @@ CREATE TABLE default_auth (
 );
 
 CREATE TABLE google_auth (
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT gog_auth_email_uk UNIQUE,
     password TEXT NOT NULL
 );
@@ -103,8 +103,8 @@ CREATE TABLE task (
 );
 
 CREATE TABLE assigned_to (
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE subtask(
@@ -116,7 +116,7 @@ CREATE TABLE subtask(
 
 CREATE TABLE task_comment (
     id_task_comment SERIAL PRIMARY KEY,
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     id_task INTEGER NOT NULL REFERENCES task (id_task) ON UPDATE CASCADE,
     content text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
@@ -130,27 +130,27 @@ CREATE TABLE forum (
 
 CREATE TABLE forum_comment (
     id_forum_comment SERIAL PRIMARY KEY,
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    id_forum INTEGER NOT NULL REFERENCES forum (id_forum) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_forum INTEGER NOT NULL REFERENCES forum (id_forum) ON UPDATE CASCADE ON DELETE CASCADE,
     content text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE invite (
     id_invite SERIAL PRIMARY KEY,
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     id_project INTEGER NOT NULL REFERENCES project (id_project) ON UPDATE CASCADE,
     manager BOOLEAN NOT NULL
 );
 
 CREATE TABLE notification (
     id_notification SERIAL PRIMARY KEY,
-    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE,
-    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE,
-    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_project INTEGER REFERENCES project (id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_task INTEGER REFERENCES task (id_task) ON UPDATE CASCADE ON DELETE CASCADE,
     interactable BOOLEAN NOT NULL DEFAULT FALSE,
     action text NOT NULL,
-    id_invite INTEGER REFERENCES invite (id_invite) ON UPDATE CASCADE
+    id_invite INTEGER REFERENCES invite (id_invite) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE admin (
