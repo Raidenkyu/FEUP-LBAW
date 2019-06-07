@@ -20,4 +20,9 @@ class HomeController extends Controller
         # echo '<script>console.log('.json_encode(Auth::user()).')</script>';
         return view('pages.homepage');
     }
+
+    public function info()
+    {
+        return view('pages.info');
+    }
 }
