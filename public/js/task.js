@@ -47,7 +47,7 @@ function taskFetch() {
     e.remove();
   });
 
-  members.forEach((member) =>{
+  members.slice(-3).forEach((member) =>{
     let memImg = document.createElement('img');
     console.log(member);
     memImg.setAttribute('src',"/"+member[1]);
