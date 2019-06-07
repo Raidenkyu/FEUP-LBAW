@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
+  <link rel="stylesheet" type="text/css" media="print" href="{{ asset('/css/print.css') }}">
   <script src="{{ asset('/js/jquery-3.2.1.slim.min.js') }}"></script>
   <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
