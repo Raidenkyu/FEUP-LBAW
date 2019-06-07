@@ -24,6 +24,7 @@ function generateTaskModal() {
 
 
 function taskFetch() {
+  console.log(this.responseText);
   let task = (JSON.parse(this.responseText))['data'];
   //console.log(task);
 
@@ -37,11 +38,25 @@ function taskFetch() {
     description.innerHTML = descriptionText;
   }
 
-  let date = task['due_date'];
-  if (date != null) {
-    let due_date = document.querySelector('#due-date');
-    due_date.innerHTML = date;
-  }
+  let members = task['members'];
+  let memsDiv = document.querySelector("#members-row");
+
+  let previousImages = document.querySelectorAll('img[alt="Team Member"');
+
+  previousImages.forEach((e)=>{
+    e.remove();
+  });
+
+  members.forEach((member) =>{
+    let memImg = document.createElement('img');
+    console.log(member);
+    memImg.setAttribute('src',"/"+member[1]);
+    memImg.setAttribute('data-id',member[0]);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    memsDiv.appendChild(memImg);
+  });
 
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
@@ -87,12 +102,12 @@ function taskFetch() {
       let img2 = document.createElement('img');
       img2.setAttribute('src', '/icons/deny.svg');
       img2.classList.add('task-check-icon');
-      
+
       img2.setAttribute('alt', 'User Photo');
       imgBtn.appendChild(img2);
 
       imgBtn.addEventListener('click',destroySubTask.bind(newCheck, check['id']));
-      
+
       newCheck.appendChild(imgDiv);
       newCheck.appendChild(checkDiv);
       newCheck.appendChild(imgBtn);
@@ -104,9 +119,9 @@ function taskFetch() {
   issueText = task['issue'];
   let issue = document.querySelector('#issue');
   if (issueText != null) {
-    issue.innerHTML = issueText;
+    issue.value = issueText;
   } else {
-    issue.innerHTML = 'None';
+    issue.value = 'None';
   }
 
 
@@ -184,7 +199,7 @@ function deleteTaskAction(){
 function deleteTaskReturn(){
 
   if (this.status == 200) {
-    
+
     let tasks = JSON.parse(this.responseText)['tasks'];
     let listName = taskListSwitch(JSON.parse(this.responseText)['list_name']);
 
@@ -214,10 +229,14 @@ closeTaskButton.addEventListener('click', saveChanges);
 function saveChanges() {
   let taskTitle = document.querySelector('#taskTitle');
   let description = document.querySelector('#description-text');
-  let due_date = document.querySelector('#due-date');
- 
+
   let issue = document.querySelector('#issue');
- 
+
+  let issueVal = 'None';
+  if(Number(issue.value)){
+    issueVal = issue.value;
+  }
+
   let projectId = globalProjectId;
   let taskId = taskTitle.getAttribute('data-id');
 
@@ -226,8 +245,8 @@ function saveChanges() {
       'put', '/api/projects/' + projectId + '/tasks/' + taskId, {
         name: taskTitle.value,
         description: description.innerHTML,
-        due_date: due_date.innerHTML,
-        issue: issue.innerHTML
+        due_date: null,
+        issue: issueVal
       },
       saveChangesAnswer);
 }
@@ -235,12 +254,12 @@ function saveChanges() {
 
 function saveChangesAnswer() {
   if (this.status == 200) {
-    
+
     let task = JSON.parse(this.responseText);
     let taskId = task['id_task'];
     let taskButton = document.querySelector('button[data-id="' + taskId + '"]');
     taskButton.innerHTML = task['name'];
-    
+
   }
 }
 
@@ -255,41 +274,41 @@ function addSubTaskClick(){
     newSubTaskInput.type = 'text';
     newSubTaskInput.classList.add('ml-3');
     newSubTaskInput.placeholder = 'SubTask Brief';
-  
+
     // Add event listener
     newSubTaskInput.addEventListener('focusout', removeSubTaskInput);
     newSubTaskInput.addEventListener(
         'change',
         addSubTaskAction.bind(newSubTaskInput));  // TODO: Add focus on create
-  
+
 
     let list = document.querySelector('#checklist');
     list.after(newSubTaskInput);
     // Set focus on new input
     newSubTaskInput.focus();
-  
+
     addSubTaskButton.remove();
 }
 
 function removeSubTaskInput(event) {
-  event.preventDefault();  
+  event.preventDefault();
 
   if (this.value == '') {
     this.remove();
     createAddSubTaskButton();
   }
 
-  this.removeEventListener('change', addSubTaskAction); 
+  this.removeEventListener('change', addSubTaskAction);
 
 }
 
 function addSubTaskAction() {
   let projectId = globalProjectId;
   let brief = this.value;
-  
+
   let taskTitle = document.querySelector('#taskTitle');
   let idTask = taskTitle.getAttribute('data-id');
-  
+
 
   // API call
   sendAjaxRequest(
@@ -341,7 +360,7 @@ function createSubTask(subtask){
   let img2 = document.createElement('img');
   img2.setAttribute('src', '/icons/deny.svg');
   img2.classList.add('task-check-icon');
-      
+
   img2.setAttribute('alt', 'User Photo');
   imgBtn.appendChild(img2);
 
@@ -380,7 +399,7 @@ function destroySubTask(id){
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
     // API call
     sendAjaxRequest(
-      'delete', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
+      'delete', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id,
       {},
       destroySubTaskAnswer.bind(this));
 }
@@ -388,7 +407,7 @@ function destroySubTask(id){
 function destroySubTaskAnswer(load){
   let checkDiv = this;
   let request = load.srcElement;
-  
+
   if(request.status == 200){
     checkDiv.remove();
   }
@@ -397,9 +416,8 @@ function destroySubTaskAnswer(load){
 function updateSubtask(){
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
   let id = this.getAttribute('data-id');
-  console.log("Works?");
   sendAjaxRequest(
-    'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
+    'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id,
     {},
     updateSubtaskAnswer.bind(this));
 }
@@ -420,6 +438,44 @@ function updateSubtaskAnswer(load){
   }
 }
 
+let selfAssignButton = document.querySelector("#selfAssignButton");
+
+selfAssignButton.addEventListener('click',selfAssign);
+
+function selfAssign(){
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+
+  sendAjaxRequest(
+    'post', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/selfAssign/', 
+    {},
+    selfAssigned);
+}
+
+function selfAssigned(){
+  console.log(this.responseText);
+  if(this.status == 200){
+    let assignment = JSON.parse(this.responseText);
+    console.log(assignment['id_task']);
+    if(assignment['id_task'] < 0){
+      let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+      if(prevImg != null){
+        prevImg.remove();
+        
+      }
+      return;
+    }
+    let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
+    if(prevImg == null){
+    let memImg = document.createElement('img');
+    memImg.setAttribute('src',"/"+assignment['img_src']);
+    memImg.setAttribute('data-id',assignment['id_member']);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    document.querySelector("#members-row").appendChild(memImg);
+    }
+  }
+}
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 
@@ -431,6 +487,7 @@ function updateSubtaskAnswer(load){
 function addTaskClick(button) {
   // Create the text input
   let newTaskInput = document.createElement('input');
+  newTaskInput.classList.add('create-new-task-input')
   let taskList = button.getAttribute('data-list');
   newTaskInput.type = 'text';
   newTaskInput.placeholder = 'Task Name';
@@ -561,7 +618,7 @@ function removeInputBox(event) {
     this.remove();
   }
 
-  
+
 }
 
 

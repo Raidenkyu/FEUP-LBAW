@@ -40,8 +40,6 @@
             @endif
           </button>
           <div class="dropdown-menu container" style="width: 420px">
-            <div class="notify-box"><a class="dropdown-item" href="#">Link 1</a></div>
-            <div class="notify-box"><a class="dropdown-item" href="#">Link 2</a></div>
           </div>
         </div>
         <a href="{{ url('/projects') }}"><img src="/icons/dashboard.svg" class="mx-1" style="width:45px"

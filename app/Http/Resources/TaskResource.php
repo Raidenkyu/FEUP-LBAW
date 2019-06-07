@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\MemberResource as MemberResource;
 use App\Http\Resources\SubTaskResource as SubTaskResource;
+use App\Http\Controllers\ImageController as ImageController;
 
 class TaskResource extends JsonResource
 {
@@ -16,6 +17,11 @@ class TaskResource extends JsonResource
      */
     public function toArray($request)
     {
+        $members = MemberResource::collection($this->members());
+        $mems = array();
+        foreach($members as $member){
+            array_push($mems,[$member->id_member,ImageController::getImage($member->id_member)]);
+        }
         return [
             'id' => $this->id_task,
             'id_proj' => $this->id_project,
@@ -26,7 +32,7 @@ class TaskResource extends JsonResource
             'issue' => $this->issue,
             'list_name' => $this->list_name,
             'checklist' => SubTaskResource::collection($this->checklist()),
-            'members' => MemberResource::collection($this->members())
+            'members' => $mems
         ];
     }
 }

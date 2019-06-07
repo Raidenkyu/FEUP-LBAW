@@ -73,9 +73,6 @@ class RegisterController extends Controller
             'email' => $data['email']
         ]);
 
-        $remember_password = Member::create([
-            'email' => $data['email']
-        ]);
 
         return DefaultAuth::create([
             'id_member' => $member->id_member,

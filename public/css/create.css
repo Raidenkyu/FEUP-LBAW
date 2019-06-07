@@ -130,7 +130,7 @@ textarea, input{
     border: none;
 }
 
-@media (max-width: 768px){
+@media (max-width: 1000px){
   .create {
     padding: 0.75em 0.5em !important;
   }
@@ -143,12 +143,13 @@ textarea, input{
     width: 14em;
   }
 
-  .color-box {
-    padding-top: 1em !important;
+  .color-picker{
+    width: 35px;
+    height: 35px;
   }
 
-  .color-box .container {
-    padding: 0;
+  .color-picker:hover, .color-selected{
+    border-width: 1.5px;
   }
 }
 
