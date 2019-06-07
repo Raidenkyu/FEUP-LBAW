@@ -37,11 +37,13 @@ function taskFetch() {
     description.innerHTML = descriptionText;
   }
 
+  /*
   let date = task['due_date'];
   if (date != null) {
     let due_date = document.querySelector('#due-date');
     due_date.innerHTML = date;
   }
+  */
 
   let checklistArray = task['checklist'];
   let checks = document.querySelectorAll('.check');
@@ -104,9 +106,9 @@ function taskFetch() {
   issueText = task['issue'];
   let issue = document.querySelector('#issue');
   if (issueText != null) {
-    issue.innerHTML = issueText;
+    issue.value = issueText;
   } else {
-    issue.innerHTML = 'None';
+    issue.value = 'None';
   }
 
 
@@ -214,9 +216,14 @@ closeTaskButton.addEventListener('click', saveChanges);
 function saveChanges() {
   let taskTitle = document.querySelector('#taskTitle');
   let description = document.querySelector('#description-text');
-  let due_date = document.querySelector('#due-date');
+  //let due_date = document.querySelector('#due-date');
 
   let issue = document.querySelector('#issue');
+
+  let issueVal = 'None';
+  if(Number(issue.value)){
+    issueVal = issue.value;
+  }
 
   let projectId = globalProjectId;
   let taskId = taskTitle.getAttribute('data-id');
@@ -226,8 +233,8 @@ function saveChanges() {
       'put', '/api/projects/' + projectId + '/tasks/' + taskId, {
         name: taskTitle.value,
         description: description.innerHTML,
-        due_date: due_date.innerHTML,
-        issue: issue.innerHTML
+        due_date: null,
+        issue: issueVal
       },
       saveChangesAnswer);
 }
