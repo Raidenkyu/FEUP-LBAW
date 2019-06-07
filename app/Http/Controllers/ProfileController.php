@@ -57,6 +57,10 @@ class ProfileController extends Controller
             $user->description = request('description');
         }
 
+        if ($user->age != request('age') && request('age') != "" && is_numeric(request('age'))) {
+            $user->age = request('age');
+        }
+
         if (request()->image != null) {
             request()->validate([
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

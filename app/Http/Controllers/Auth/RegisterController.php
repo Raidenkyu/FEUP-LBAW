@@ -72,10 +72,12 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email']
         ]);
-
+ /*
+        //TODO: model errado
         $remember_password = Member::create([
             'email' => $data['email']
         ]);
+        */
 
         return DefaultAuth::create([
             'id_member' => $member->id_member,

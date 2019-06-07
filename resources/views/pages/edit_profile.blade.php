@@ -49,9 +49,13 @@
                         <div class="form-group input-group-lg py-1">
                             <label>Descritption</label>
                             <textarea class="border rounded form-control" name="description" placeholder="Description"
-                                cols="10" rows="5" style="resize: none;">
-                            {{$user->description}}
-                            </textarea>
+                                cols="10" rows="5" style="resize: none;">{{$user->description}}</textarea>
+                        </div>
+
+                        <div class="form-group input-group-lg py-1">
+                            <label>Age</label>
+                            <input class="border rounded form-control" name="age" value="{{$user->age}}"
+                                placeholder="Age">
                         </div>
 
 
