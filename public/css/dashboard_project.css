@@ -284,6 +284,17 @@ input[type="radio"] + label span {
     line-height: 37px;
 }
 
+.create-new-task-input{
+  background-color: transparent;
+  color: white;
+  padding: 2px;
+}
+
+.create-new-task-input::placeholder{
+  color: white;
+  text-align: center;
+}
+
 input[type="radio"] + label span img {
     opacity: 0;
     transition: all .3s ease;
@@ -481,6 +492,11 @@ footer {
     }
 
 }
+
+
+ .task-button{
+   margin-bottom: 1em;
+ }
 
 .check-text{
     cursor:pointer;
