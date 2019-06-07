@@ -24,6 +24,7 @@ function generateTaskModal() {
 
 
 function taskFetch() {
+  console.log(this.responseText);
   let task = (JSON.parse(this.responseText))['data'];
   //console.log(task);
 
@@ -36,6 +37,19 @@ function taskFetch() {
     let description = document.querySelector('#description-text');
     description.innerHTML = descriptionText;
   }
+
+  let members = task['members'];
+  let memsDiv = document.querySelector("#members-row");
+
+  members.forEach((member) =>{
+    let memImg = document.createElement('img');
+    console.log(member);
+    memImg.setAttribute('src',"/"+member[1]);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    memsDiv.appendChild(memImg);
+  });
 
   let date = task['due_date'];
   if (date != null) {
@@ -397,7 +411,6 @@ function destroySubTaskAnswer(load){
 function updateSubtask(){
   let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
   let id = this.getAttribute('data-id');
-  console.log("Works?");
   sendAjaxRequest(
     'put', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/subtasks/' + id, 
     {},
@@ -420,6 +433,30 @@ function updateSubtaskAnswer(load){
   }
 }
 
+let selfAssignButton = document.querySelector("#selfAssignButton");
+
+selfAssignButton.addEventListener('click',selfAssign);
+
+function selfAssign(){
+  let taskId = document.querySelector('#taskTitle').getAttribute('data-id');
+
+  sendAjaxRequest(
+    'post', '/api/projects/' + globalProjectId + '/tasks/' + taskId + '/selfAssign/', 
+    {},
+    selfAssigned);
+}
+
+function selfAssigned(){
+  if(this.status == 200){
+    let assignment = JSON.parse(this.responseText);
+    let memImg = document.createElement('img');
+    memImg.setAttribute('src',"/"+assignment['img_src']);
+    memImg.setAttribute('class',"rounded-circle img-fluid");
+    memImg.setAttribute('alt',"Team Member");
+    memImg.setAttribute('style',"max-width:35px;");
+    document.querySelector("#members-row").appendChild(memImg);
+  }
+}
 
 //////////////////////////////////////// NANDO //////////////////////////////////////////
 

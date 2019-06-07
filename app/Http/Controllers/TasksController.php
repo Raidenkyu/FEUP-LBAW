@@ -7,6 +7,9 @@ use App\SubTask;
 use App\Http\Resources\TaskResource as TaskResource;
 use Illuminate\Http\Request;
 use App\ProjectMember;
+use App\AssignedTo as AssignedTo;
+use App\Http\Controllers\ImageController as ImageController;
+use Illuminate\Support\Facades\Auth as Auth;
 
 class TasksController extends Controller
 {
@@ -235,6 +238,24 @@ class TasksController extends Controller
         ])->get();
 
         return ['tasks' => $remainingTasks, 'list_name' => $task->list_name];
+    }
+
+
+    public function selfAssign($id_project, $id_task){
+        
+        $id = Auth::user()->id_member;
+        $assignTo = AssignedTo::create([
+            'id_member' => $id,
+            'id_task' => $id_task
+        ]);
+
+        
+        $ret =[
+            'id_member' => $id,
+            'id_task' => $id_task,
+            'img_src' => ImageController::getImage($id)
+        ];
+        return $ret;
     }
 
 }

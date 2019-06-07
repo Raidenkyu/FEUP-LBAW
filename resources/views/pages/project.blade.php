@@ -98,7 +98,7 @@
             <div class="row">
               <div class="col-sm-9">
                 <div class="row task-edit-top">
-                  <div class="col-sm">
+                  <div id="members-row" class="col-sm">
                     <span class="res-text task-edit-top-title">Members</span>
                     <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
                       alt="Team Member">
@@ -176,7 +176,7 @@
                 <span>Task Settings</span>
 
                 <div class="btn-group-vertical task-edit-button-group">
-                  <button type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
+                  <button id="selfAssignButton" type="button" class="btn btn-primary task-edit-button res-text">Self-Assign</button>
                   <button type="button" class="btn btn-primary task-edit-button delete-task res-text" data-dismiss="modal">Delete Task</button>
                 </div>
                 <br>
