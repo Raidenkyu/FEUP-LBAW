@@ -51,7 +51,6 @@ class ProjectSettingsController extends Controller
     public function removeMember($id_project)
     {
         $this->authorize('update', \App\Project::find($id_project));
-        //DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
         try {
             //TODO: logger
             \App\Notification::create([
@@ -63,7 +62,9 @@ class ProjectSettingsController extends Controller
         } catch (\Throwable $th) {
             return redirect('/');
         }
-        
+        //DB::table('invite')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
+        DB::table('project_member')->where('id_project', '=', $id_project)->where('id_member', '=', request('id'))->delete();
+
 
         return request('id');
     }
