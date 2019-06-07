@@ -15,16 +15,11 @@
       <div class="about col-lg-6 col-xs-12 flex text-center mt-5">
         <h3 id="about">About Us</h3>
         <div class="text-left py-4">
-          <h6 class="about-text py-2 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod
-            tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa
-            qui officia deserunt mollit anim id est laborum.</h6>
+          <h6 class="about-text py-2 m-0">We are a team of students, aiming to create a platform for
+            all teams from all over the world. Uniting developers and giving them an instrument to take 
+          their projects to the next level is our motto. We hope to continue to extend our platform to everyone
+        who seeks the best for their projects. Expect our best efforts to evolve our functionalities over time
+      to ensure the best experience to our users. Thank you for sticking with us on this adventure!</h6>
         </div>
       </div>
       <div class="col-lg-6 col-xs-12 flex mt-5 justify-content-center">
@@ -61,19 +56,34 @@
       <div class="container faq p-5">
         <div class="question card px-3" data-toggle="collapse" href="#collapseAnswer" role="button"
           aria-expanded="false" aria-controls="collapseAnswer">
-          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex
-            ea commodo consequat.</h6>
+          <h6>How can I access all my projects?</h6>
         </div>
         <div id="collapseAnswer" class="card answer collapse px-3">
-          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex
-            ea commodo consequat.</h6>
+          <h6>By accessing the Dashboard Icon (2nd Icon) on the Top Navigation Bar, you can access your personal
+            dashboard, which contains all your projects: the ones you own, and the ones that you participate in.</h6>
         </div>
+      </div>
+
+      <div class="container faq p-5">
+          <div class="question card px-3" data-toggle="collapse" href="#collapseAnswer2" role="button"
+            aria-expanded="false" aria-controls="collapseAnswer2">
+            <h6>How can I access my notifications?</h6>
+          </div>
+          <div id="collapseAnswer2" class="card answer collapse px-3">
+            <h6>By accessing the Notification Icon (1st Icon) on the Top Navigation Bar, you can access your notifications, which include
+              invitations to projects or tasks from the projects you already participate in.</h6>
+          </div>
+      </div>
+
+      <div class="container faq p-5">
+          <div class="question card px-3" data-toggle="collapse" href="#collapseAnswer3" role="button"
+            aria-expanded="false" aria-controls="collapseAnswer3">
+            <h6>How can I access my Profile?</h6>
+          </div>
+          <div id="collapseAnswer3" class="card answer collapse px-3">
+            <h6>By clicking your username OR your profile image, on the Top Navigation Bar, you can access your profile page, where you can
+              see your informations and edit your profile.</h6>
+          </div>
       </div>
 
     </div>
