@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\DefaultAuth as DefaultAuth;
 
 class ResetPasswordController extends Controller
 {
@@ -25,7 +26,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,6 +36,31 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function reset(){
+        $pass = request('password');
+        $conf = request('password_confirmation');
+        $email = request('email');
+        $auth = DefaultAuth::where('email',$email)->get()[0];
+        if($pass == $conf){
+            $auth->password = bcrypt($pass);
+            $auth->save();
+            return redirect('/');
+        }
+        dd(request());
+        return back();
+
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('def_auth');
+    }
+ 
+    public function broker()
+    {
+         return Password::broker('def_auths');
     }
 
 }

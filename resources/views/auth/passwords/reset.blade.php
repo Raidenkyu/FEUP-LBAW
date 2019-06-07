@@ -35,12 +35,12 @@
 
                         <div class="form-group input-group-lg py-1">
                             <input class="border rounded form-control" name="password_confirmation" placeholder="Confirm Password"
-                                type="password_confirmation">
+                                type="password">
                         </div>
 
                         <div class="form-group center-block mx-auto py-1">
                             <div class="row mx-0">
-                                <button type="submit" value="Submit" type="button"
+                                <button type="submit" value="Submit"
                                     class="btn btn-lg btn-block btn-primary login-btn">Reset Password</button>
                             </div>
 

@@ -155,7 +155,7 @@ return [
         ],
         'def_auths' => [
             'provider' => 'def_auths',
-            'table' => 'default_auth',
+            'table' => 'remember_password',
             'expire' => 60,
         ],
     ],
