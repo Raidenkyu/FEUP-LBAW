@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'def_auth',
-        'passwords' => 'users',
+        'passwords' => 'def_auths',
     ],
 
     /*
@@ -151,6 +151,11 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'def_auths' => [
+            'provider' => 'def_auths',
+            'table' => 'remember_password',
             'expire' => 60,
         ],
     ],

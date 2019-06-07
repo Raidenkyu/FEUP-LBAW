@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Member;
 use App\DefaultAuth;
+use App\RememberPassword;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -69,6 +70,10 @@ class RegisterController extends Controller
         $member = Member::create([
             'name' => $data['name'],
             'username' => $data['username'],
+            'email' => $data['email']
+        ]);
+
+        $remember_password = Member::create([
             'email' => $data['email']
         ]);
 

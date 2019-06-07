@@ -67,9 +67,13 @@ CREATE TABLE member (
 CREATE TABLE default_auth (
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT def_auth_email_uk UNIQUE,
-    password TEXT NOT NULL,
-    banned BOOLEAN NOT NULL DEFAULT FALSE,
-    deleted BOOLEAN NOT NULL DEFAULT FALSE
+    password TEXT NOT NULL
+);
+
+CREATE TABLE remember_password (
+    email TEXT NOT NULL REFERENCES default_auth (email) ON UPDATE CASCADE ON DELETE CASCADE,
+    token TEXT,
+    created_at DATE
 );
 
 CREATE TABLE google_auth (
@@ -185,7 +189,7 @@ CREATE OR REPLACE FUNCTION member_search_update()
 RETURNS TRIGGER AS
 $BODY$
 begin
-  IF NEW.name <> OLD.name OR NEW.username <> OLD.username OR NEW.about <> OLD.about OR NEW.description <> OLD.description OR NEW.location <> OLD.location THEN
+  IF NEW.title <> OLD.title THEN
     NEW.search_name = to_tsvector('english',  ' ' || NEW.name || NEW.username);
     NEW.search_desc = to_tsvector('english',  ' ' || NEW.about || NEW.description || NEW.location);
   END IF;

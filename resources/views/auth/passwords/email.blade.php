@@ -1,47 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('title', 'Reset Password')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<link rel="stylesheet" href="{{asset('css/admin.css')}}">
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+<div class="page-container">
+    <div class="d-flex justify-content-center pt-5">
+        <img class="img-fluid workpad-logo" src="{{asset('/icons/home-logo.png')}}" alt="Workpad Logo">
+    </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <div class="py-2 pb-5">
+        <div class="login-block container mt-5 w-50 d-flex bg-white rounded">
+            <div class="col">
+                <div class="row py-4 justify-content-center">
+                    <h1 class="register-title font-weight-bolder text-center">Send E-mail to reset Password</h1>
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                <div class="row justify-content-center">
+                    <form class="p-0" method="POST" action="/password/email">
+                        {{ csrf_field() }}
+                        <div class="form-group input-group-lg py-1">
+                            <input class="border rounded form-control justify-content-start" name="email"
+                                placeholder="E-mail" type="email">
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+
+                        <div class="form-group center-block mx-auto py-1">
+                            <div class="row mx-0">
+                                <button type="submit" value="Submit" type="button"
+                                    class="btn btn-lg btn-block btn-primary login-btn">Send E-mail</button>
                             </div>
+
                         </div>
                     </form>
                 </div>
+
             </div>
+
         </div>
+
     </div>
 </div>
+
 @endsection
