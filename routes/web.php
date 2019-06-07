@@ -17,6 +17,7 @@ Route::get('/', function () {
 });
 */
 Route::get('/', 'HomeController@index');
+Route::get('/info', 'HomeController@info');
 
 // Authentication
 /*

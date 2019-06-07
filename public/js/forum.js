@@ -101,7 +101,7 @@ function createComment(comment){
   newComment.classList.add('forum-comment');
   newComment.innerHTML = `
   <div class="col-2 forum-comment-image-box">
-    <img src="/images/${username}.jpg" class="rounded-circle forum-comment-image" alt="User Photo">
+    <img src="/profile/${idMember}/image" class="rounded-circle forum-comment-image" alt="User Photo">
   </div>
   <div class="col-10">
     <div class="row">

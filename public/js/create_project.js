@@ -118,7 +118,7 @@ function searchDevelopersHandler(event){
 }
 
 function addManager(event){
-  let pic = document.createElement('container');
+  let pic = document.createElement('div');
   pic.classList.add('one-pic');
   pic.addEventListener('mouseover', addX);
   pic.addEventListener('mouseout', removeX);
@@ -138,7 +138,7 @@ function addManager(event){
 }
 
 function addDeveloper(event){
-  let pic = document.createElement('container');
+  let pic = document.createElement('div');
   pic.classList.add('one-pic');
   pic.addEventListener('mouseover', addX);
   pic.addEventListener('mouseout', removeX);
