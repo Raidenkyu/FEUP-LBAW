@@ -82,12 +82,12 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="task-pop-up" tabindex="-1" role="dialog" aria-labelledby="taskTitleHeader"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title-header" id="taskTitleHeader"><input type="text" id="taskTitle"
+          <h5 class="modal-title-header" id="taskTitleHeader"> <input type="text" id="taskTitle"
               class="modal-title border rounded" name="title"></input></h5>
           <button id="close-task-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
