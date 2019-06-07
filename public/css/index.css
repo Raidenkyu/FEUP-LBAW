@@ -80,6 +80,20 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 @media (max-width: 576px) {
+    .dropdown-item{
+      /* display: none; */
+    }
+
+    .notify-action-button.check{
+      position:absolute;
+      right: 30px;
+    }
+
+    .notify-action-button.deny{
+      position:absolute;
+      right: 10px;
+    }
+
     .motivation {
         font-size: 1.1em;
     }
@@ -99,7 +113,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .notify-action-button{
-  max-width: 15px;
+  max-width: 25px;
 }
 
 @media (max-width: 390px) {
@@ -111,7 +125,7 @@ h1,h2,h3,h4,h5,h6 {
         width: 280px !important;
     }
     .notify-action-button {
-        width: 5% !important;
+        width: 30px !important;
     }
 }
 
