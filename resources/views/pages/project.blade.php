@@ -87,8 +87,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title-header" id="taskTitleHeader"> <input type="text" id="taskTitle"
-              class="modal-title border rounded" name="title"></input></h5>
+          <div class="container modal-title-header" id="taskTitleHeader"><input type="text" id="taskTitle" class="modal-title border rounded" name="title"></input></div>
           <button id="close-task-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -103,7 +102,7 @@
                     <img src="/images/claudio.jpg" class="rounded-circle img-fluid" style="max-width:35px;"
                       alt="Team Member">
                   </div>
-                  <div class="col-sm">
+                  <div class="col-sm issue-box">
                     <span class="res-text task-edit-top-title">Issue</span>
                     <input type="text" id="issue"
                         class="modal-title border rounded" name="issue"></input>
@@ -189,6 +188,7 @@
       </div>
 
       @if($isManager)
+      <div id="isManager" style="display:none;" data-isManager="true"></div>
       <form id="settings-form" method="POST" action="/api/projects/{{$project->id_project}}/settings">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -319,7 +319,9 @@
           Save
         </button><br>
 
-      </form>
+      </form>  
+      @else
+      <div id="isManager" style="display:none;" data-isManager="false"></div> 
       @endif
 
       @if($isManager)

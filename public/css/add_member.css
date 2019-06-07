@@ -1,3 +1,23 @@
+:root{
+    --orange: #F39C13;
+    --dark_orange: #F77D13;
+    --white: white;
+    --black: black;
+    --blue: #4894DD;
+    --dark_blue: #21618C;
+    --darkest_blue: #34495E;
+    --darkest_dark_blue: #2B3E50;
+    --darkest_grey: #576161;
+    --dark_grey: #848C8C;
+    --grey: #A5ABAB;
+    --other_grey: #C6BCBC;
+}
+
+body {
+    font-family: 'Noto Sans TC',sans-serif;
+    background-color: #F5F5F5;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   background: transparent;
@@ -195,26 +215,6 @@ textarea, input{
 .results .item {
 	padding: 10px;
 	border-bottom: 1px solid #c0c0c0;
-}
-
-:root{
-    --orange: #F39C13;
-    --dark_orange: #F77D13;
-    --white: white;
-    --black: black;
-    --blue: #4894DD;
-    --dark_blue: #21618C;
-    --darkest_blue: #34495E;
-    --darkest_dark_blue: #2B3E50;
-    --darkest_grey: #576161;
-    --dark_grey: #848C8C;
-    --grey: #A5ABAB;
-    --other_grey: #C6BCBC;
-}
-
-body {
-    font-family: 'Noto Sans TC',sans-serif;
-    background-color: #F5F5F5;
 }
 
 h1,h2,h3,h4,h5,h6,span,button {

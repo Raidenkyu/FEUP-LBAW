@@ -1,6 +1,7 @@
  taskButtons = document.querySelectorAll('.task-button');
 let newTaskButtons = document.querySelectorAll('.add-project-button');
 //let globalProjectId = document.getElementById('title-box').getAttribute('data-id');
+let globalIsManager = document.querySelector('#isManager').getAttribute('data-isManager');
 
 taskButtons.forEach(function(button) {
   button.addEventListener('click', generateTaskModal.bind(button, event));
@@ -24,9 +25,7 @@ function generateTaskModal() {
 
 
 function taskFetch() {
-  console.log(this.responseText);
   let task = (JSON.parse(this.responseText))['data'];
-  //console.log(task);
 
   let taskTitle = document.querySelector('#taskTitle');
   taskTitle.setAttribute('value', task['name']);
@@ -47,9 +46,8 @@ function taskFetch() {
     e.remove();
   });
 
-  members.forEach((member) =>{
+  members.slice(-3).forEach((member) =>{
     let memImg = document.createElement('img');
-    console.log(member);
     memImg.setAttribute('src',"/"+member[1]);
     memImg.setAttribute('data-id',member[0]);
     memImg.setAttribute('class',"rounded-circle img-fluid");
@@ -144,7 +142,6 @@ function taskFetch() {
   taskDowngradeButton.setAttribute("id", "task-list-downgrade");
   taskDowngradeButton.addEventListener("click", downgradeTaskAction.bind(task['id_proj'], task['id']));
 
-  // console.log(task);
   switch (task['list_name']) {
     // just has an "upgrade" button
     case 'To Do':
@@ -160,23 +157,22 @@ function taskFetch() {
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
-    // has an "upgrade" and "downgrade" button (TODO: permission of upgrade)
+    // has an "upgrade" and "downgrade" button
     case 'Pending Approval':
-      taskUpgradeButton.innerHTML = 'Move to "Done"';
-      taskListActionDiv.appendChild(taskUpgradeButton);
+      if(globalIsManager == "true"){
+        taskUpgradeButton.innerHTML = 'Move to "Done"';
+        taskListActionDiv.appendChild(taskUpgradeButton);
+      }
       taskDowngradeButton.innerHTML = 'Move to "In Progress"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
-    // just has an "downgrade" button (TODO: Maybe add a second downgrade to In
-    // Progress?)
     case 'Done':
       taskDowngradeButton.innerHTML = 'Move to "Pending Approval"';
       taskListActionDiv.appendChild(taskDowngradeButton);
       break;
 
     default:
-      console.log('TODO: Handle Errors');
       break;
   }
 
@@ -214,13 +210,11 @@ function deleteTaskReturn(){
     }
   }
   else{
-    console.log("TODO: Lançar erros");
   }
 
 }
 
 
-//////////////////////////////////////// JUAN /////////////////////////////////////////////
 
 let closeTaskButton = document.querySelector('#close-task-button');
 
@@ -279,7 +273,7 @@ function addSubTaskClick(){
     newSubTaskInput.addEventListener('focusout', removeSubTaskInput);
     newSubTaskInput.addEventListener(
         'change',
-        addSubTaskAction.bind(newSubTaskInput));  // TODO: Add focus on create
+        addSubTaskAction.bind(newSubTaskInput));
 
 
     let list = document.querySelector('#checklist');
@@ -324,7 +318,7 @@ function addSubTaskReturn(){
     // On success, create a task button for the new task
     createSubTask(subtask);
   } else {
-    console.log('PANIC! ERROR IN ADD SUBTASK');  // TODO: Handle errors
+    console.log('ERROR IN ADD SUBTASK');  
   }
 
   createAddSubTaskButton();
@@ -424,7 +418,6 @@ function updateSubtask(){
 
 function updateSubtaskAnswer(load){
   let request = load.srcElement;
-  console.log(request.status);
   if(request.status == 200){
     let subtask = JSON.parse(request.responseText);
     let brief = this.innerHTML;
@@ -452,10 +445,8 @@ function selfAssign(){
 }
 
 function selfAssigned(){
-  console.log(this.responseText);
   if(this.status == 200){
     let assignment = JSON.parse(this.responseText);
-    console.log(assignment['id_task']);
     if(assignment['id_task'] < 0){
       let prevImg = document.querySelector('img[data-id="' +assignment['id_member']+'"]');
       if(prevImg != null){
@@ -477,7 +468,7 @@ function selfAssigned(){
   }
 }
 
-//////////////////////////////////////// NANDO //////////////////////////////////////////
+
 
 
 /**
@@ -497,7 +488,7 @@ function addTaskClick(button) {
   newTaskInput.addEventListener('focusout', removeInputBox);
   newTaskInput.addEventListener(
       'change',
-      addTaskAction.bind(newTaskInput, taskList));  // TODO: Add focus on create
+      addTaskAction.bind(newTaskInput, taskList));
 
   // Add newTaskInput to the correct task list
   let list = document.querySelector('div[data-list="' + taskList + '"]');
@@ -540,7 +531,7 @@ function addTaskReturn(load) {
     // On success, create a task button for the new task
     createTaskButton(task, taskList);
   } else {
-    console.log('PANIC! ERROR IN ADD TASK');  // TODO: Handle errors
+    console.log('ERROR IN ADD TASK');
   }
 
   createAddTaskButton(taskList);
@@ -690,6 +681,5 @@ function changeTaskListReturn() {
     eraseTaskButton(task, taskListSwitch(old_list));
     createTaskButton(task, taskListSwitch(task.list_name));
   } else {
-    console.log('TODO: Handle errors');
   }
 }

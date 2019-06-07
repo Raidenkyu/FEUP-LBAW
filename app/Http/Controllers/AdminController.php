@@ -9,7 +9,7 @@ class AdminController extends Controller
     public function index()
     {
         if (auth('admin')->user() == null) {
-            return redirect('admin\login');
+            return redirect('admin/login');
         }
         $users = \App\Member::all();
         $projects = \App\Project::all();
