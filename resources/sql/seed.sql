@@ -13,6 +13,8 @@ DROP TRIGGER IF EXISTS make_everyone_manager on project_member;
 DROP TRIGGER IF EXISTS create_invite_notification on invite;
 DROP TRIGGER IF EXISTS update_old_member on member;
 DROP TRIGGER IF EXISTS insert_new_member on member;
+DROP TRIGGER IF EXISTS update_member_status on member;
+
 
 
 DROP FUNCTION IF EXISTS inactive_user_remove_assigns();
@@ -22,6 +24,7 @@ DROP FUNCTION IF EXISTS make_everyone_manager();
 DROP FUNCTION IF EXISTS create_invite_notification();
 DROP FUNCTION IF EXISTS member_search_update();
 DROP FUNCTION IF EXISTS member_search_insert();
+DROP FUNCTION IF EXISTS update_member_status();
 
 
 -- Drop Tables
@@ -61,7 +64,9 @@ CREATE TABLE member (
 CREATE TABLE default_auth (
     id_member INTEGER NOT NULL REFERENCES member (id_member) ON UPDATE CASCADE ON DELETE CASCADE,
     email text NOT NULL CONSTRAINT def_auth_email_uk UNIQUE,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    banned BOOLEAN NOT NULL DEFAULT FALSE,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE google_auth (
@@ -304,6 +309,27 @@ CREATE TRIGGER create_invite_notification
     AFTER INSERT ON invite
     FOR EACH ROW
     EXECUTE PROCEDURE create_invite_notification();
+
+
+
+CREATE OR REPLACE FUNCTION update_member_status()
+RETURNS TRIGGER AS
+$BODY$
+begin
+    IF NEW.banned <> OLD.banned OR NEW.deleted <> OLD.deleted THEN
+        UPDATE default_auth SET banned = NEW.banned WHERE default_auth.id_member = NEW.id_member;
+        UPDATE default_auth SET deleted = NEW.deleted WHERE default_auth.id_member = NEW.id_member;
+    END IF;
+return new;
+end;
+$BODY$
+language plpgsql;
+
+
+CREATE TRIGGER update_member_status
+    AFTER UPDATE ON member
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_member_status();
 
 
 -- deletes (order is important!)
