@@ -22,7 +22,7 @@
           <form id="create-forum-form" class="" action="/projects/{{$forum->project->id_project}}/forums/create_forum"
             method="post">
             @csrf
-            <input href="#" class="list-group-item list-group-item-action topic-extra-sel" id="create-topic"
+            <input class="list-group-item list-group-item-action topic-extra-sel" id="create-topic"
               name="topic" required placeholder="+ Create new topic">
           </form>
           @endif
