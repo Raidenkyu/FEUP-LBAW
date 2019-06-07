@@ -1,65 +1,58 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('title', 'Reset Password')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+<link rel="stylesheet" href="{{asset('css/admin.css')}}">
 
+<div class="page-container">
+    <div class="d-flex justify-content-center pt-5">
+        <img class="img-fluid workpad-logo" src="{{asset('/icons/home-logo.png')}}" alt="Workpad Logo">
+    </div>
+
+    <div class="py-2 pb-5">
+        <div class="login-block container mt-5 w-50 d-flex bg-white rounded">
+            <div class="col">
+                <div class="row py-4 justify-content-center">
+                    <h1 class="register-title font-weight-bolder text-center">Reset Password</h1>
+                </div>
+
+
+                <div class="row justify-content-center">
+                    <form class="p-0" method="POST" action="/password/reset">
+                        {{ csrf_field() }}
                         <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="form-group input-group-lg py-1">
+                            <input class="border rounded form-control justify-content-start" name="email"
+                                placeholder="E-mail" type="email">
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="form-group input-group-lg py-1">
+                            <input class="border rounded form-control" name="password" placeholder="Password"
+                                type="password">
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="form-group input-group-lg py-1">
+                            <input class="border rounded form-control" name="password_confirmation" placeholder="Confirm Password"
+                                type="password">
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                        <div class="form-group center-block mx-auto py-1">
+                            <div class="row mx-0">
+                                <button type="submit" value="Submit"
+                                    class="btn btn-lg btn-block btn-primary login-btn">Reset Password</button>
                             </div>
+
                         </div>
                     </form>
                 </div>
+
             </div>
+
         </div>
+
     </div>
 </div>
+
 @endsection
