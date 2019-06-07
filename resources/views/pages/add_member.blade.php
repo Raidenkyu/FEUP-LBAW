@@ -48,11 +48,7 @@
       <div class="managers-pics pics">
         @foreach (\App\ProjectMember::getManagers($id_project) as $manager)
         <div class="one-pic">
-          <img id_member="{{$manager->id_member}}"
-            src="{{asset(\App\Http\Controllers\ImageController::getImage($manager->id_member))}}"
-            class="mr-2 rounded-circle team-profile-icon">
-          <img id_member="{{$manager->id_member}}" src="/icons/delete.png"
-            class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Delete Icon">
+          <img id_member="{{$manager->id_member}}" src="{{asset(\App\Http\Controllers\ImageController::getImage($manager->id_member))}}" class="mr-2 rounded-circle team-profile-icon"><img id_member="{{$manager->id_member}}" src="/icons/delete.png" class="delete-circle mr-2 rounded-circle team-profile-icon" alt="Delete Icon">
         </div>
         @endforeach
       </div>

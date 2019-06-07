@@ -4,6 +4,7 @@
 
 @section('forum')
 
+<script src="/js/forum.js" defer></script>
 
 <link rel="stylesheet" href="/css/forum_project.css">
 

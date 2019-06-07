@@ -17,7 +17,6 @@
       <div class="col-sm users-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title font-weight-bolder">Users</h4>
-          <img class="mx-2 mb-2" src="{{asset('icons/search.svg')}}" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
@@ -52,7 +51,6 @@
       <div class="col-sm projects-table">
         <div class="row m-2">
           <h4 class="dashboard-menu-title">Projects</h4>
-          <img class="mx-2 mb-2" src="{{asset('icons/search.svg')}}" style="width:25px;height:25px;" alt="Search Icon">
         </div>
         <div class="row mx-2">
           <div class="table-responsive">
