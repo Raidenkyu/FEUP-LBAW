@@ -14,6 +14,7 @@ DROP TRIGGER IF EXISTS create_invite_notification on invite;
 DROP TRIGGER IF EXISTS update_old_member on member;
 DROP TRIGGER IF EXISTS insert_new_member on member;
 DROP TRIGGER IF EXISTS update_member_status on member;
+DROP TRIGGER IF EXISTS create_initial_topic on project;
 
 
 
@@ -25,6 +26,8 @@ DROP FUNCTION IF EXISTS create_invite_notification();
 DROP FUNCTION IF EXISTS member_search_update();
 DROP FUNCTION IF EXISTS member_search_insert();
 DROP FUNCTION IF EXISTS update_member_status();
+DROP FUNCTION IF EXISTS create_initial_topic();
+
 
 
 -- Drop Tables
@@ -332,6 +335,23 @@ CREATE TRIGGER update_member_status
     EXECUTE PROCEDURE update_member_status();
 
 
+CREATE OR REPLACE FUNCTION create_initial_topic()
+RETURNS TRIGGER AS
+$BODY$
+begin
+    INSERT INTO forum (id_project, topic) VALUES (NEW.id_project, 'General');
+return new;
+end;
+$BODY$
+language plpgsql;
+
+
+CREATE TRIGGER create_initial_topic
+    AFTER INSERT ON project
+    FOR EACH ROW
+    EXECUTE PROCEDURE create_initial_topic();
+
+
 -- deletes (order is important!)
 
 DELETE FROM admin;
@@ -510,15 +530,15 @@ SELECT setval(pg_get_serial_sequence('task_comment', 'id_task_comment'), (SELECT
 
 
 -- forum (id_forum, id_project, topic)
-INSERT INTO forum (id_forum, id_project, topic) VALUES (1, 1, 'General');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (2, 2, 'Team 1');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (3, 2, 'Team 2');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (4, 3, 'Team 1');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (5, 3, 'Team 2');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (6, 4, 'Team 1');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (7, 4, 'Team 2');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (8, 5, 'Team 1');
-INSERT INTO forum (id_forum, id_project, topic) VALUES (9, 5, 'Team 2');
+INSERT INTO forum (id_project, topic) VALUES (1, 'Discussion');
+INSERT INTO forum (id_project, topic) VALUES (2, 'Team 1');
+INSERT INTO forum (id_project, topic) VALUES (2, 'Team 2');
+INSERT INTO forum (id_project, topic) VALUES (3, 'Team 1');
+INSERT INTO forum (id_project, topic) VALUES (3, 'Team 2');
+INSERT INTO forum (id_project, topic) VALUES (4, 'Team 1');
+INSERT INTO forum (id_project, topic) VALUES (4, 'Team 2');
+INSERT INTO forum (id_project, topic) VALUES (5, 'Team 1');
+INSERT INTO forum (id_project, topic) VALUES (5, 'Team 2');
 
 SELECT setval(pg_get_serial_sequence('forum', 'id_forum'), (SELECT MAX(id_forum) FROM forum));
 
